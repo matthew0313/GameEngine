@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class CodeBlock : MonoBehaviour
 {
-    public SnapPoint snappedPoint;
-    public MyGameObject owner;
+    [HideInInspector] public SnapPoint snappedPoint;
+    [HideInInspector] public MyGameObject owner;
     public abstract string id { get; }
 }

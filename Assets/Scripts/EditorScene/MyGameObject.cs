@@ -7,6 +7,9 @@ public class MyGameObject : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     public readonly List<string> images = new();
+    public readonly List<CodeBlock> codeBlocks = new();
+    public readonly Dictionary<string, float> numericVariables = new();
+
     public bool dirty = false;
     public event Action onStart;
     void Awake()
