@@ -7,9 +7,14 @@ public class EditorSceneManager : MonoBehaviour
 {
     public static EditorSceneManager Instance { get; private set; }
     public string projectName { get; private set; }
-    [SerializeField] Transform m_codePanel;
+
+    [SerializeField] CodeBlockList codeBlockList;
     [SerializeField] string savePath = "Saves";
-    public Transform codePanel => m_codePanel;
+
+    [Header("Tabs")]
+    [SerializeField] CodeTab m_codeTab;
+    public CodeTab codeTab => m_codeTab;
+
     public readonly List<MyAsset> assets = new();
     public readonly List<MyLog> logs = new();
     public readonly List<SnapPoint> snapPoints = new();
@@ -46,6 +51,14 @@ public class EditorSceneManager : MonoBehaviour
     {
         logs.Add(log);
         onLogsChange?.Invoke();
+    }
+    public CodeBlock IDToBlock(string id)
+    {
+        foreach(var block in codeBlockList.codeBlocks)
+        {
+            if(block.id == id) return block;
+        }
+        return null;
     }
 }
 public enum MyLogType

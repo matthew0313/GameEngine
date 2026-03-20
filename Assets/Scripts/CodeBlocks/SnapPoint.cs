@@ -18,7 +18,7 @@ public abstract class SnapPoint : MonoBehaviour
     public void Detach()
     {
         if (snapped == null) return;
-        snapped.transform.SetParent(EditorSceneManager.Instance.codePanel, true);
+        snapped.transform.SetParent(EditorSceneManager.Instance.codeTab.blockAnchor, true);
         snapped.snappedPoint = null;
         snapped = null;
         OnSnappedChange();
