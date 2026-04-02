@@ -8,10 +8,10 @@ public class NumericSnapPoint : SnapPoint
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] TMP_InputField inputField;
-    public override bool IsSnappable(CodeBlock codeBlock) => codeBlock is NumericCodeBlock;
+    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is NumericCodeBlock;
     protected override void OnSnappedChange()
     {
-        inputField.gameObject.SetActive(snapped != null);
+        inputField.gameObject.SetActive(snapped == null);
         base.OnSnappedChange();
     }
     private void Update()

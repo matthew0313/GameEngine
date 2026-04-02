@@ -70,9 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9850a357e1c2b6469697f3087dc1469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumericSnapPoint
+  owner: {fileID: 0}
   snapAnchor: {fileID: 5281054007434813328}
   layoutElement: {fileID: 6857741228373430495}
-  defaultWidth: 50
+  defaultWidth: 100
   inputField: {fileID: 5860870903949229784}
 --- !u!1 &3596883588647298174
 GameObject:
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2d2d74d5db98fad4092e91b2637f8788, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

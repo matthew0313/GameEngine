@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +10,7 @@ public class Codeblock_Move : ExecutableCodeBlock
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint moveX, moveY;
     [SerializeField] ExecutableSnapPoint onFinish;
-    public override void Execute()
+    public override async UniTask Execute()
     {
         owner.transform.position += new Vector3(moveX.GetValue(), moveY.GetValue());
     }

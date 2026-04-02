@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
+{
+    public bool isPrefab = false;
+    [HideInInspector] public ulong uid;
+    [HideInInspector] public bool dirty = false;
+    public abstract string id { get; }
+
+    public MyGameObject parent;
+    public readonly List<MyGameObject> children = new();
+    public List<CodeBlock> codeBlocks { get; } = new();
+    public Vector2 lastOffset { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    [SerializeField] List<CodeBlockList> availableCodeBlockLists;
+    [SerializeField] List<CodeBlock> availableCodeBlocks;
+    void Start()
+    {
+        if (!loaded) uid = MathUtilities.GenerateRandomID();
+    }
+    public virtual IEnumerable<CodeBlock> GetAvailableBlocks()
+    {
+        foreach (var list in availableCodeBlockLists)
+        {
+            foreach (var block in list.GetBlocks())
+            {
+                yield return block;
+            }
+        }
+        foreach (var block in availableCodeBlocks)
+        {
+            yield return block;
+        }
+    }
+    public virtual IEnumerable<ExposedElement> GetElements()
+    {
+        yield return new ExposedString(
+            "Name",
+            (self) => name,
+            (self, value) => name = value);
+    }
+
+    public readonly Dictionary<string, float> numericVariables = new();
+    bool loaded = false;
+    public virtual MyGameObjectSave Save(bool prettyPrint = true)
+    {
+        MyGameObjectSave save = new();
+        save.id = id;
+        save.uid = uid;
+        save.position = transform.position;
+        List<CodeBlockSave> codeBlockSaves = new();
+        foreach (var block in codeBlocks)
+        {
+            if (block.snappedPoint == null)
+            {
+                var tmp = block.Save();
+                tmp.position = block.transform.position;
+                codeBlockSaves.Add(tmp);
+            }
+        }
+        save.data.strings["CodeBlocks"] = JsonUtility.ToJson(codeBlockSaves, prettyPrint);
+        foreach(var child in children)
+        {
+            save.children.Add(child.Save(prettyPrint));
+        }
+        return save;
+    }
+    public virtual void Load(MyGameObjectSave save)
+    {
+        loaded = true;
+        uid = save.uid;
+        codeBlocks.Clear();
+        if (save.data.strings.ContainsKey("CodeBlocks"))
+        {
+            List<CodeBlockSave> codeBlockSaves = JsonUtility.FromJson<List<CodeBlockSave>>(save.data.strings["CodeBlocks"]);
+            foreach (var blockSave in codeBlockSaves)
+            {
+                CodeBlock blockPrefab = EditorSceneManager.Instance.IDToBlock(blockSave.id);
+                if (blockPrefab != null)
+                {
+                    CodeBlock block = Instantiate(blockPrefab, transform);
+                    block.Load(blockSave);
+                    block.transform.position = blockSave.position;
+                    block.gameObject.SetActive(false);
+                    codeBlocks.Add(block);
+                }
+            }
+        }
+        foreach(var childSave in save.children)
+        {
+            MyGameObject child = Instantiate(EditorSceneManager.Instance.IDToGameObject(childSave.id), transform);
+            child.Load(childSave);
+            children.Add(child);
+        }
+    }
+    public IEnumerable<MyGameObject> GetHierarchy()
+    {
+        yield return this;
+        foreach (var child in children)
+        {
+            foreach (var i in child.GetHierarchy()) yield return i;
+        }
+    }
+}
+[System.Serializable]
+public class MyGameObjectSave
+{
+    public string id;
+    public ulong uid;
+    public Vector2 position;
+    public DataUnit data = new();
+    public List<MyGameObjectSave> children = new();
+}

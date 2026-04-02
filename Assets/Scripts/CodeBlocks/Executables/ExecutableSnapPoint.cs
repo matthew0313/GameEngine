@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using TMPro;
 using UnityEngine;
@@ -7,16 +8,16 @@ public class ExecutableSnapPoint : SnapPoint
 {
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultHeight = 0.0f;
-    public override bool IsSnappable(CodeBlock codeBlock) => codeBlock is ExecutableCodeBlock;
+    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is ExecutableCodeBlock;
     private void Update()
     {
-        layoutElement.minHeight = GetHeight();
+        if(layoutElement != null) layoutElement.minHeight = GetHeight();
     }
-    public void Execute()
+    public async UniTask Execute()
     {
         if (snapped is ExecutableCodeBlock executableCodeBlock)
         {
-            executableCodeBlock.Execute();
+            await executableCodeBlock.Execute();
         }
     }
     public float GetHeight()
