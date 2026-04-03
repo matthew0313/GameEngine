@@ -5,25 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MyGameObject_Sprite : MyGameObject
 {
-    public SpriteRenderer spriteRenderer { get; private set; }
+    SpriteRenderer m_spriteRenderer;
+    public SpriteRenderer spriteRenderer
+    {
+        get
+        {
+            m_spriteRenderer ??= GetComponent<SpriteRenderer>();
+            return m_spriteRenderer;
+        }
+    }
     public override string id => "Sprite";
     public int imageIndex { get; private set; } = -1;
     public readonly List<ImageAsset> images = new();
-    private void OnEnable()
-    {
-        spriteRenderer ??= GetComponent<SpriteRenderer>();
-    }
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
-        yield return new ExposedVector2(
-            "Position",
-            (self) => transform.localPosition,
-            (self, value) => transform.localPosition = value);
-        yield return new ExposedFloat(
-            "Rotation",
-            (self) => transform.localEulerAngles.z,
-            (self, value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
         yield return new ExposedList(
             "Images",
             (self) =>

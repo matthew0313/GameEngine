@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ConsoleTab : Tab
 {
-    [SerializeField] Button openButton;
+    [SerializeField] Button openButton, clearButton;
     [SerializeField] Color openColor, closeColor;
     [SerializeField] Transform elementAnchor;
     [SerializeField] ConsoleTabElement elementPrefab;
@@ -15,12 +15,14 @@ public class ConsoleTab : Tab
     {
         base.Open();
         openButton.image.color = openColor;
+        clearButton.onClick.AddListener(Clear);
         gameObject.SetActive(true);
     }
     public override void Close()
     {
         base.Close();
         openButton.image.color = closeColor;
+        clearButton.onClick.RemoveListener(Clear);
         gameObject.SetActive(false);
     }
     private void OnEnable()
@@ -47,4 +49,5 @@ public class ConsoleTab : Tab
             elements[i].gameObject.SetActive(false);
         }
     }
+    void Clear() => EditorSceneManager.Instance.ClearLog();
 }

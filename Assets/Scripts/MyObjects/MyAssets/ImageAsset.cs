@@ -12,7 +12,7 @@ public class ImageAsset : MyAsset, IFileAsset
     Vector2 pivot = new Vector2(0.5f, 0.5f);
     public void LoadFile(string filePath)
     {
-        if(!Directory.Exists(filePath) || !filePath.EndsWith(".png"))
+        if(!File.Exists(filePath) || !filePath.EndsWith(".png"))
         {
             EditorSceneManager.Instance.AddLog(new()
             {

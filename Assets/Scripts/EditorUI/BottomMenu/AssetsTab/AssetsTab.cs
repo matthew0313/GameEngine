@@ -30,14 +30,14 @@ public class AssetsTab : Tab
     }
     private void OnEnable()
     {
-        EditorSceneManager.Instance.onAssetsReload += Refresh;
+        EditorSceneManager.Instance.onAssetsChange += Refresh;
         searchInput.onEndEdit.AddListener(OnSearchInputEndEdit);
         reloadButton.onClick.AddListener(Reload);
         Refresh();
     }
     private void OnDisable()
     {
-        EditorSceneManager.Instance.onAssetsReload -= Refresh;
+        EditorSceneManager.Instance.onAssetsChange -= Refresh;
         searchInput.onEndEdit.RemoveListener(OnSearchInputEndEdit);
         reloadButton.onClick.RemoveListener(Reload);
     }

@@ -5,17 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MyGameObject_Camera : MyGameObject
 {
-    public Camera cam { get; private set; }
-    public RenderTexture renderTexture { get; private set; }
+    Camera m_cam;
+    RenderTexture m_renderTexture;
+    public Camera cam
+    {
+        get
+        {
+            m_cam ??= GetComponent<Camera>();
+            m_cam.targetTexture = renderTexture;
+            return m_cam;
+        }
+    }
+    public RenderTexture renderTexture
+    {
+        get
+        {
+            m_renderTexture ??= new RenderTexture(size.x, size.y, 24);
+            return m_renderTexture;
+        }
+    }
+
     public float priority = 0;
     public override string id => "Camera";
 
-    void Awake()
-    {
-        cam = GetComponent<Camera>();
-        renderTexture = new RenderTexture(EditorSceneManager.Instance.screenSize.x, EditorSceneManager.Instance.screenSize.y, 24);
-        cam.targetTexture = renderTexture;
-    }
+    public Vector2Int size { get; private set; } = new Vector2Int(600, 600);
 
     public override IEnumerable<ExposedElement> GetElements()
     {

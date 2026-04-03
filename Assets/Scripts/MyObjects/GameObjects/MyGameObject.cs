@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
 {
-    public bool isPrefab = false;
     [HideInInspector] public ulong uid;
     [HideInInspector] public bool dirty = false;
     public abstract string id { get; }
@@ -12,7 +11,7 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
     public MyGameObject parent;
     public readonly List<MyGameObject> children = new();
     public List<CodeBlock> codeBlocks { get; } = new();
-    public Vector2 lastOffset { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Vector2 lastOffset { get; set; } = Vector2.zero;
 
     [SerializeField] List<CodeBlockList> availableCodeBlockLists;
     [SerializeField] List<CodeBlock> availableCodeBlocks;
@@ -40,6 +39,14 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
             "Name",
             (self) => name,
             (self, value) => name = value);
+        yield return new ExposedVector2(
+            "Position",
+            (self) => transform.localPosition,
+            (self, value) => transform.localPosition = value);
+        yield return new ExposedFloat(
+            "Rotation",
+            (self) => transform.localEulerAngles.z,
+            (self, value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
     }
 
     public readonly Dictionary<string, float> numericVariables = new();
@@ -60,6 +67,7 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
                 codeBlockSaves.Add(tmp);
             }
         }
+        save.data.SaveVector2("lastOffset", lastOffset);
         save.data.strings["CodeBlocks"] = JsonUtility.ToJson(codeBlockSaves, prettyPrint);
         foreach(var child in children)
         {
@@ -72,6 +80,7 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
         loaded = true;
         uid = save.uid;
         codeBlocks.Clear();
+        lastOffset = save.data.LoadVector2("lastOffset");
         if (save.data.strings.ContainsKey("CodeBlocks"))
         {
             List<CodeBlockSave> codeBlockSaves = JsonUtility.FromJson<List<CodeBlockSave>>(save.data.strings["CodeBlocks"]);

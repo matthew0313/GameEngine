@@ -54,7 +54,8 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
     {
         if (selected is ICodeable codeable && codeable != editing)
         {
-            if(editing != null) foreach (var block in editing.codeBlocks) block.gameObject.SetActive(false);
+            if(debugMode) foreach(var block in debugBlocks) block.gameObject.SetActive(false);
+            if (editing != null) foreach (var block in editing.codeBlocks) block.gameObject.SetActive(false);
             editing = codeable;
             panOffset = editing.lastOffset;
             grid.offset = panOffset;
@@ -64,6 +65,10 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
                 block.transform.SetParent(anchor, true);
                 block.gameObject.SetActive(true);
             }
+        }
+        if(selected == null)
+        {
+            if (debugMode) foreach (var block in debugBlocks) block.gameObject.SetActive(true);
         }
     }
     void Update()

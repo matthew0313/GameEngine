@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class EditorSceneManager : MonoBehaviour
 {
@@ -21,7 +24,7 @@ public class EditorSceneManager : MonoBehaviour
 
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();
-    public event Action onAssetsReload;
+    public event Action onAssetsChange;
 
     public ISelectable selected { get; private set; } = null;
     public event Action<ISelectable> onSelect;
@@ -45,6 +48,11 @@ public class EditorSceneManager : MonoBehaviour
             type = MyLogType.Info,
             message = "Test Log"
         });
+    }
+    public void AddAsset(MyAsset asset)
+    {
+        assets.Add(asset);
+        onAssetsChange?.Invoke();
     }
     public void ReloadAssets()
     {
@@ -71,7 +79,7 @@ public class EditorSceneManager : MonoBehaviour
                 continue;
             }
         }
-        onAssetsReload?.Invoke();
+        onAssetsChange?.Invoke();
     }
     public T GetAsset<T>(ulong uid) where T : MyAsset
     {
@@ -154,3 +162,20 @@ public class ProjectSave
     public MySceneSave scene = new();
     public List<MyAssetSave> assets = new();
 }
+#if UNITY_EDITOR
+[CustomEditor(typeof(EditorSceneManager))]
+public class EditorSceneManager_Editor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        EditorSceneManager target = (this.target as EditorSceneManager);
+        if (GUILayout.Button("Test Prefab"))
+        {
+            var tmp = new PrefabAsset() { name = "Test Prefab" };
+            tmp.Set(Instantiate(target.IDToGameObject("Sprite")));
+            target.AddAsset(tmp);
+        }
+    }
+}
+#endif

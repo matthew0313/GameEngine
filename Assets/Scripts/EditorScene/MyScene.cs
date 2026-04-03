@@ -27,6 +27,22 @@ public class MyScene : MonoBehaviour
         else gameObject.transform.SetParent(objectAnchor, true);
         topGameObjects.Add(gameObject);
     }
+    public void RemoveObject(MyGameObject gameObject)
+    {
+        if (!ContainsObject(gameObject)) return;
+        if (gameObject.parent != null) gameObject.parent.children.Remove(gameObject);
+        else topGameObjects.Remove(gameObject);
+        gameObject.transform.SetParent(null, true);
+    }
+    public bool ContainsObject(MyGameObject obj) => FindObject((o) => o == obj) != null;
+    public MyGameObject FindObject(Func<MyGameObject, bool> predicate)
+    {
+        foreach(var obj in GetObjects())
+        {
+            if (predicate.Invoke(obj)) return obj;
+        }
+        return null;
+    }
     public IEnumerable<MyGameObject> GetObjects()
     {
         foreach(var obj in topGameObjects)
