@@ -73,52 +73,29 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
     }
     void Update()
     {
-        if(DeviceManager.deviceType == DeviceType.Desktop)
+        if (mouseOver && Input.GetMouseButton(2)) dragging = true;
+        else if (!Input.GetMouseButton(2)) dragging = false;
+        if (dragging)
         {
-            if (mouseOver && InputManager.PC_MiddleMouseHeld()) dragging = true;
-            else if (!InputManager.PC_MiddleMouseHeld()) dragging = false;
-            if (dragging)
+            Vector2 delta = Input.mousePositionDelta;
+            if (delta.sqrMagnitude > 0f)
             {
-                Vector2 delta = InputManager.PC_MouseDelta();
-                if (delta.sqrMagnitude > 0f)
-                {
-                    panOffset += delta;
-                    anchor.localPosition = panOffset;
-                    if (editing != null) editing.lastOffset = panOffset;
-                    grid.offset = panOffset;
-                    grid.SetVerticesDirty();
-                }
-            }
-            if (mouseOver)
-            {
-                float scroll = InputManager.PC_ScrollDelta().y / 120f;
-                if (scroll != 0f)
-                {
-                    zoom = Mathf.Clamp(zoom * (1f + scroll * scrollSensitivity), 0.1f, 10f);
-                    grid.spacing = baseSpacing * zoom;
-                    anchor.localScale = Vector2.one * zoom;
-                    grid.SetVerticesDirty();
-                }
+                panOffset += delta;
+                anchor.localPosition = panOffset;
+                if (editing != null) editing.lastOffset = panOffset;
+                grid.offset = panOffset;
+                grid.SetVerticesDirty();
             }
         }
-        else if(DeviceManager.deviceType == DeviceType.Handheld)
+        if (mouseOver)
         {
-            if (dragging && !InputManager.Mobile_Touch0Hold()) dragging = false;
-            if (dragging)
+            float scroll = Input.mouseScrollDelta.y;
+            if (scroll != 0f)
             {
-                if (InputManager.Mobile_Touch1Hold())
-                {
-                    return;
-                }
-                Vector2 delta = InputManager.Mobile_Touch0Delta();
-                if (delta.sqrMagnitude > 0f)
-                {
-                    panOffset += delta;
-                    anchor.localPosition = panOffset;
-                    if (editing != null) editing.lastOffset = panOffset;
-                    grid.offset = panOffset;
-                    grid.SetVerticesDirty();
-                }
+                zoom = Mathf.Clamp(zoom * (1f + scroll * scrollSensitivity), 0.1f, 10f);
+                grid.spacing = baseSpacing * zoom;
+                anchor.localScale = Vector2.one * zoom;
+                grid.SetVerticesDirty();
             }
         }
     }

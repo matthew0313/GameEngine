@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AssetsTabFilterList : MonoBehaviour
@@ -35,10 +36,10 @@ public class AssetsTabFilterList : MonoBehaviour
         {
             skipFrame = false; return;
         }
-        if (InputManager.LeftClickInput())
+        if (Input.GetMouseButtonDown(0))
         {
             bool clicked = false;
-            foreach(var hit in UIScanner.ScanUI(InputManager.MousePosInput()))
+            foreach(var hit in UIScanner.ScanUI(Input.mousePosition))
             {
                 if (hit.gameObject == gameObject) clicked = true;
             }

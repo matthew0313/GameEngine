@@ -33,9 +33,9 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     }
     void HandleDrag()
     {
-        if (InputManager.LeftClickHoldInput())
+        if (Input.GetMouseButton(0))
         {
-            Vector2 pos = InputManager.MousePosInput() + dragOffset;
+            Vector2 pos = (Vector2)Input.mousePosition + dragOffset;
             if (snappedPoint != null)
             {
                 if (Vector2.Distance(snappedPoint.GetSnapPosition(), pos) > snapDistance)
