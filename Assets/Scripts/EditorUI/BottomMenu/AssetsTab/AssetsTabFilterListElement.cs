@@ -18,7 +18,7 @@ public class AssetsTabFilterListElement : MonoBehaviour
         set
         {
             if (value) tab.SetFilter(tab.filter | filter);
-            else tab.SetFilter(~(tab.filter & filter));
+            else tab.SetFilter(tab.filter & ~filter);
         }
     }
     public void Set(AssetsTab tab, AssetType filter)

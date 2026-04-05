@@ -17,9 +17,10 @@ public class PrefabAsset : MyAsset, ICodeable
         if (prefabOrigin == gameObject) return;
         if (prefabOrigin != null) MonoBehaviour.Destroy(prefabOrigin);
         prefabOrigin = gameObject;
-        if (prefabOrigin != null)
+        if (prefabOrigin != null && EditorSceneManager.Instance.myScene.ContainsObject(prefabOrigin))
         {
-            prefabOrigin.parent.RemoveChild(prefabOrigin);
+            if(prefabOrigin.parent != null) prefabOrigin.parent.RemoveChild(prefabOrigin);
+            else EditorSceneManager.Instance.myScene.RemoveTopObject(prefabOrigin);
         }
     }
 }
