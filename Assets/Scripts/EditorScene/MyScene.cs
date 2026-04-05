@@ -6,6 +6,7 @@ public class MyScene : MonoBehaviour
 {
     [SerializeField] Transform objectAnchor, UIAnchor;
     public List<MyGameObject> topGameObjects = new();
+    public event Action onHierarchyChange;
     public MySceneSave Save(bool prettyPrint = false)
     {
         MySceneSave save = new();
@@ -14,26 +15,33 @@ public class MyScene : MonoBehaviour
     }
     public void Load(MySceneSave save)
     {
+        Dictionary<MyGameObject, MyGameObjectSave> saves = new();
         foreach(var i in save.topGameObjects)
         {
             MyGameObject obj = Instantiate(EditorSceneManager.Instance.IDToGameObject(i.id));
-            obj.Load(i);
+            obj.EarlyLoad(i);
             AddTopObject(obj);
+            saves.Add(obj, i);
         }
+        foreach (var i in saves) i.Key.Load(i.Value);
     }
     public void AddTopObject(MyGameObject gameObject)
     {
         if (gameObject is MyGameObject_UI) gameObject.transform.SetParent(UIAnchor, true);
         else gameObject.transform.SetParent(objectAnchor, true);
         topGameObjects.Add(gameObject);
+        gameObject.onChildrenChange += OnChildrenChange;
+        onHierarchyChange?.Invoke();
     }
-    public void RemoveObject(MyGameObject gameObject)
+
+    public void RemoveTopObject(MyGameObject gameObject)
     {
-        if (!ContainsObject(gameObject)) return;
-        if (gameObject.parent != null) gameObject.parent.children.Remove(gameObject);
-        else topGameObjects.Remove(gameObject);
-        gameObject.transform.SetParent(null, true);
+        if (!topGameObjects.Contains(gameObject)) return;
+        topGameObjects.Remove(gameObject);
+        gameObject.onChildrenChange -= OnChildrenChange;
+        onHierarchyChange?.Invoke();
     }
+    private void OnChildrenChange() => onHierarchyChange?.Invoke();
     public bool ContainsObject(MyGameObject obj) => FindObject((o) => o == obj) != null;
     public MyGameObject FindObject(Func<MyGameObject, bool> predicate)
     {

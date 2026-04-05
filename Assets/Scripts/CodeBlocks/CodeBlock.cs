@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 {
+    public ulong uid { get; private set; }
+
     [HideInInspector] public SnapPoint snappedPoint;
     [HideInInspector] public MyGameObject owner;
     public abstract string id { get; }
@@ -12,9 +14,18 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     {
         CodeBlockSave save = new();
         save.id = id;
+        save.uid = uid;
+        save.position = transform.position;
         return save;
     }
-    public virtual void Load(CodeBlockSave save) { }
+    public virtual void EarlyLoad(CodeBlockSave save)
+    {
+        uid = save.uid;
+    }
+    public virtual void Load(CodeBlockSave save)
+    {
+        transform.position = save.position;
+    }
 
     bool dragging = false;
     Vector2 dragOffset;
@@ -26,6 +37,10 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         dragOffset = (Vector2)transform.position - eventData.position;
         transform.SetAsLastSibling();
         eventData.Use();
+    }
+    protected virtual void Awake()
+    {
+        uid = MathUtilities.GenerateRandomID();
     }
     protected virtual void Update()
     {
@@ -81,6 +96,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 public class CodeBlockSave
 {
     public string id;
+    public ulong uid;
     public Vector2 position;
     public DataUnit data = new();   
 }

@@ -13,11 +13,11 @@ public class ExecutableSnapPoint : SnapPoint
     {
         if(layoutElement != null) layoutElement.minHeight = GetHeight();
     }
-    public async UniTask Execute()
+    public async UniTask Execute(ulong hash)
     {
         if (snapped is ExecutableCodeBlock executableCodeBlock)
         {
-            await executableCodeBlock.Execute();
+            await executableCodeBlock.Execute(hash);
         }
     }
     public float GetHeight()

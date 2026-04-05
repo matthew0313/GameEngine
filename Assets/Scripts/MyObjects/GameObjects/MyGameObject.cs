@@ -2,23 +2,52 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
+public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable, ISelectable
 {
-    [HideInInspector] public ulong uid;
+    public ulong uid { get; private set; }
+
     [HideInInspector] public bool dirty = false;
     public abstract string id { get; }
 
-    public MyGameObject parent;
-    public readonly List<MyGameObject> children = new();
+    public MyGameObject parent { get; private set; }
+    readonly List<MyGameObject> children = new();
+    public event Action onChildrenChange;
     public List<CodeBlock> codeBlocks { get; } = new();
     public Vector2 lastOffset { get; set; } = Vector2.zero;
 
+    [field:SerializeField] public Sprite icon { get; private set; }
     [SerializeField] List<CodeBlockList> availableCodeBlockLists;
     [SerializeField] List<CodeBlock> availableCodeBlocks;
-    void Start()
+    public event Action onPropertyChange;
+    protected virtual void Awake()
     {
-        if (!loaded) uid = MathUtilities.GenerateRandomID();
+        uid = MathUtilities.GenerateRandomID();
     }
+    public void AddChild(MyGameObject obj)
+    {
+        if (children.Contains(obj)) return;
+        if (obj.parent != null) obj.parent.RemoveChild(obj);
+        obj.transform.SetParent(transform);
+        obj.parent = this;
+        children.Add(obj);
+        onChildrenChange?.Invoke();
+    }
+    public void RemoveChild(MyGameObject obj)
+    {
+        if (!children.Contains(obj)) return;
+        obj.parent = null;
+        children.Remove(obj);
+        onChildrenChange?.Invoke();
+    }
+    public void ReorderChild(MyGameObject obj, int index)
+    {
+        if (!children.Contains(obj)) return;
+        children.Remove(obj);
+        children.Insert(index, obj);
+        obj.transform.SetSiblingIndex(index);
+        onChildrenChange?.Invoke();
+    }
+    public IEnumerable<MyGameObject> GetChildren() => children;
     public virtual IEnumerable<CodeBlock> GetAvailableBlocks()
     {
         foreach (var list in availableCodeBlockLists)
@@ -33,12 +62,13 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
             yield return block;
         }
     }
+    protected virtual void OnPropertyChange() => onPropertyChange?.Invoke();
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
             "Name",
             (self) => name,
-            (self, value) => name = value);
+            (self, value) => { name = value; OnPropertyChange(); });
         yield return new ExposedVector2(
             "Position",
             (self) => transform.localPosition,
@@ -50,7 +80,6 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
     }
 
     public readonly Dictionary<string, float> numericVariables = new();
-    bool loaded = false;
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {
         MyGameObjectSave save = new();
@@ -75,10 +104,12 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
         }
         return save;
     }
+    public virtual void EarlyLoad(MyGameObjectSave save)
+    {
+        uid = save.uid;
+    }
     public virtual void Load(MyGameObjectSave save)
     {
-        loaded = true;
-        uid = save.uid;
         codeBlocks.Clear();
         lastOffset = save.data.LoadVector2("lastOffset");
         if (save.data.strings.ContainsKey("CodeBlocks"))
@@ -112,6 +143,10 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable
             foreach (var i in child.GetHierarchy()) yield return i;
         }
     }
+
+    public virtual void OnSelect() { }
+
+    public virtual void OnDeselect() { }
 }
 [System.Serializable]
 public class MyGameObjectSave

@@ -10,10 +10,10 @@ public class Codeblock_If : ExecutableCodeBlock
     [SerializeField] RectTransform rectTransform;
     [SerializeField] ConditionSnapPoint condition;
     [SerializeField] ExecutableSnapPoint onTrue, onFinish;
-    public override async UniTask Execute()
+    public override async UniTask Execute(ulong hash)
     {
-        if (condition.GetCondition()) await onTrue.Execute();
-        await onFinish.Execute();
+        if (condition.GetCondition()) await onTrue.Execute(hash);
+        await onFinish.Execute(hash);
     }
 
     public override float GetHeight()

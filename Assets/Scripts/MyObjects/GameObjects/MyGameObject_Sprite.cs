@@ -5,18 +5,17 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MyGameObject_Sprite : MyGameObject
 {
-    SpriteRenderer m_spriteRenderer;
-    public SpriteRenderer spriteRenderer
-    {
-        get
-        {
-            m_spriteRenderer ??= GetComponent<SpriteRenderer>();
-            return m_spriteRenderer;
-        }
-    }
+    public SpriteRenderer spriteRenderer { get; private set; }
     public override string id => "Sprite";
     public int imageIndex { get; private set; } = -1;
     public readonly List<ImageAsset> images = new();
+    Sprite defaultSprite;
+    protected override void Awake()
+    {
+        base.Awake();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultSprite = spriteRenderer.sprite;
+    }
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
@@ -81,7 +80,7 @@ public class MyGameObject_Sprite : MyGameObject
     {
         if(index < 0 || index >= images.Count)
         {
-            spriteRenderer.sprite = null;
+            spriteRenderer.sprite = defaultSprite;
             imageIndex = -1;
             EditorSceneManager.Instance.AddLog(new MyLog(
                 MyLogType.Warning, $"Invalid image index {index} for Sprite GameObject {name}"
@@ -91,10 +90,9 @@ public class MyGameObject_Sprite : MyGameObject
         ImageAsset imageAsset = images[index];
         if (imageAsset == null)
         {
-            spriteRenderer.sprite = null;
-            imageIndex = -1;
+            spriteRenderer.sprite = defaultSprite;
             EditorSceneManager.Instance.AddLog(new MyLog(
-                MyLogType.Warning, $"Image asset not found for path {images[index]} in Sprite GameObject {name}"
+                MyLogType.Warning, $"Image asset is null in index {index} for Sprite GameObject {name}"
             ));
             return;
         }

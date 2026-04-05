@@ -4,15 +4,11 @@ using UnityEngine;
 
 public abstract class MyAsset : ISelectable, IInspectable
 {
-    public ulong uid { get; private set; }
+    public ulong uid { get; private set; } = MathUtilities.GenerateRandomID();
     public abstract AssetType type { get; }
 
     public string name;
     public event Action onUpdate;
-    public MyAsset()
-    {
-        uid = MathUtilities.GenerateRandomID();
-    }
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
@@ -29,9 +25,12 @@ public abstract class MyAsset : ISelectable, IInspectable
         save.uid = uid;
         return save;
     }
-    public virtual void Load(MyAssetSave save)
+    public virtual void EarlyLoad(MyAssetSave save)
     {
         uid = save.uid;
+    }
+    public virtual void Load(MyAssetSave save)
+    {
         name = save.name;
     }
 

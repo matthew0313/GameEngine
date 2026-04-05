@@ -49,6 +49,10 @@ public class EditorSceneManager : MonoBehaviour
             message = "Test Log"
         });
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) Select(null);
+    }
     public void AddAsset(MyAsset asset)
     {
         assets.Add(asset);
@@ -118,6 +122,7 @@ public class EditorSceneManager : MonoBehaviour
     {
         projectName = save.projectName;
         myScene.Load(save.scene);
+        Dictionary<MyAsset, MyAssetSave> saves = new();
         foreach(var assetSave in save.assets)
         {
             MyAsset added = null;
@@ -132,9 +137,11 @@ public class EditorSceneManager : MonoBehaviour
                 });
                 continue;
             }
-            added.Load(assetSave);
+            added.EarlyLoad(assetSave);
             assets.Add(added);
+            saves.Add(added, assetSave);
         }
+        foreach(var i in saves) i.Key.Load(i.Value);
     }
 }
 public enum MyLogType
@@ -170,11 +177,25 @@ public class EditorSceneManager_Editor : Editor
     {
         base.OnInspectorGUI();
         EditorSceneManager target = (this.target as EditorSceneManager);
+        GUILayout.Space(10);
+        GUILayout.Label("Debug");
         if (GUILayout.Button("Test Prefab"))
         {
             var tmp = new PrefabAsset() { name = "Test Prefab" };
             tmp.Set(Instantiate(target.IDToGameObject("Sprite")));
             target.AddAsset(tmp);
+        }
+        if(GUILayout.Button("Test Top GO"))
+        {
+            var tmp = Instantiate(target.IDToGameObject("Sprite"));
+            target.myScene.AddTopObject(tmp);
+        }
+        if(GUILayout.Button("Test Child GO"))
+        {
+            var tmp = Instantiate(target.IDToGameObject("Sprite"));
+            var tmp2 = Instantiate(target.IDToGameObject("Sprite"));
+            tmp.AddChild(tmp2);
+            target.myScene.AddTopObject(tmp);
         }
     }
 }

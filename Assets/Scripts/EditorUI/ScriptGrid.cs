@@ -9,7 +9,7 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
 
     [SerializeField] GridGraphic grid;
     [SerializeField] RectTransform anchor;
-    [SerializeField] float scrollSensitivity = 10.0f;
+    [SerializeField] float scrollSensitivity = 1.0f, dragSensitivity = 5.0f;
 
     ICodeable editing;
 
@@ -18,7 +18,7 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
     [SerializeField] List<CodeBlock> debugBlocks;
     public void Add(CodeBlock block)
     {
-        if (debugMode)
+        if (debugMode && editing == null)
         {
             block.transform.SetParent(anchor, true);
             debugBlocks.Add(block);
@@ -66,10 +66,6 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
                 block.gameObject.SetActive(true);
             }
         }
-        if(selected == null)
-        {
-            if (debugMode) foreach (var block in debugBlocks) block.gameObject.SetActive(true);
-        }
     }
     void Update()
     {
@@ -80,7 +76,7 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
             Vector2 delta = Input.mousePositionDelta;
             if (delta.sqrMagnitude > 0f)
             {
-                panOffset += delta;
+                panOffset += delta * dragSensitivity;
                 anchor.localPosition = panOffset;
                 if (editing != null) editing.lastOffset = panOffset;
                 grid.offset = panOffset;
