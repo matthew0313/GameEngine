@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class HierarchyUI : MonoBehaviour
+public class HierarchyUI : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] Transform elementAnchor;
     [SerializeField] HierarchyUIElement elementPrefab;
@@ -9,7 +10,7 @@ public class HierarchyUI : MonoBehaviour
     readonly List<HierarchyUIElement> elements = new();
     Pooler<HierarchyUIElement> elementPool;
 
-    InputOverride movingLeftClickOverride, movingDownKeyOverride, movingUpKeyOverride, movingESCOverride;
+    InputOverride movingDownKeyOverride, movingUpKeyOverride, movingESCOverride;
     private void Awake()
     {
         elementPool = new(() =>
@@ -18,11 +19,6 @@ public class HierarchyUI : MonoBehaviour
             element.Init(this, elementPool);
             return element;
         });
-        movingLeftClickOverride = new()
-        {
-            priority = 100,
-            onTrigger = OnMovingLeftClick
-        };
         movingDownKeyOverride = new()
         {
             priority = 100,
@@ -45,42 +41,31 @@ public class HierarchyUI : MonoBehaviour
         Refresh();
     }
     public MyGameObject moving { get; private set; } = null;
-    readonly ControlElement<bool> raycastDisable = new(() => false, 0);
     public void EnterMoveMode(MyGameObject obj)
     {
-        if (moving != null) return;
+        if (moving != null)
+        {
+            moving = obj; return;
+        }
         moving = obj;
-        EditorSceneManager.Instance.raycastControl.AddControl(raycastDisable);
-        InputManager.Instance.AddOverride(0, movingLeftClickOverride);
         InputManager.Instance.AddOverride(KeyCode.DownArrow, movingDownKeyOverride);
         InputManager.Instance.AddOverride(KeyCode.UpArrow, movingUpKeyOverride);
+        InputManager.Instance.AddOverride(KeyCode.Escape, movingESCOverride);
     }
-    void OnMovingLeftClick()
+    public void Reparent(MyGameObject newParent)
     {
-        if (moving == null) return;
-        HierarchyUIElement element = null;
-        bool hierarchyHit = false;
-        foreach (var hit in EditorSceneManager.Instance.RaycastUI(Input.mousePosition))
+        if (moving == null || newParent == moving) return;
+        if(newParent == null)
         {
-            if (element == null && hit.gameObject.TryGetComponentInParents(out element)) { if (element == this) element = null; }
-            if (hit.gameObject.TryGetComponentInParents(out HierarchyUI hierarchy)) hierarchyHit = true;
-        }
-        if (element != null)
-        {
-            MyGameObject other = element.target;
-            if (!other.IsChildOf(moving))
-            {
-                other.foldedInInspector = false;
-                moving.parent?.RemoveChild(moving);
-                other.AddChild(moving);
-            }
-        }
-        else if (hierarchyHit)
-        {
-            moving.parent?.RemoveChild(moving);
             EditorSceneManager.Instance.myScene.AddChild(moving);
+            ExitMoveMode();
         }
-        ExitMoveMode();
+        else if (!newParent.IsChildOf(moving))
+        {
+            newParent.foldedInInspector = false;
+            newParent.AddChild(moving);
+            ExitMoveMode();
+        }
     }
     void OnMovingDownKey()
     {
@@ -90,7 +75,7 @@ public class HierarchyUI : MonoBehaviour
     void OnMovingUpKey()
     {
         if (moving == null || moving.parent == null) return;
-        moving.SetSiblingIndex(-moving.GetSiblingIndex() - 1);
+        moving.SetSiblingIndex(moving.GetSiblingIndex() - 1);
     }
     void OnMovingESC()
     {
@@ -100,10 +85,9 @@ public class HierarchyUI : MonoBehaviour
     {
         if (moving == null) return;
         moving = null;
-        EditorSceneManager.Instance.raycastControl.RemoveControl(raycastDisable);
-        InputManager.Instance.RemoveOverride(0, movingLeftClickOverride);
         InputManager.Instance.RemoveOverride(KeyCode.DownArrow, movingDownKeyOverride);
         InputManager.Instance.RemoveOverride(KeyCode.UpArrow, movingUpKeyOverride);
+        InputManager.Instance.RemoveOverride(KeyCode.Escape, movingESCOverride);
     }
     public void Refresh()
     {
@@ -120,5 +104,11 @@ public class HierarchyUI : MonoBehaviour
             elementPool.ReleaseObject(elements[i]);
             elements.RemoveAt(i--);
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.used) return;
+        if (eventData.button == PointerEventData.InputButton.Left && moving != null) Reparent(null);
     }
 }

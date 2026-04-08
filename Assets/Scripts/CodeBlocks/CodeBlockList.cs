@@ -31,7 +31,7 @@ public class CodeBlockList : ScriptableObject
     {
         foreach (var block in GetBlocks())
         {
-            if (block.id == id) return block;
+            if (block.blockID == id) return block;
         }
         return null;
     }

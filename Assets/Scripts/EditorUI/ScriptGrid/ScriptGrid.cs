@@ -1,22 +1,25 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
 public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float zoom = 1f;
-    public Vector2 panOffset = Vector2.zero;
+    public float zoom { get; private set; } = 1f;
+    public Vector2 panOffset { get; private set; } = Vector2.zero;
 
     [SerializeField] GridGraphic grid;
     [SerializeField] RectTransform anchor;
     [SerializeField] float scrollSensitivity = 1.0f, dragSensitivity = 5.0f;
+    [SerializeField] ScriptGridBlockMenu blockMenu;
 
-    ICodeable editing;
+    public ICodeable editing { get; private set; }
+    public event Action<ICodeable> onEditingChange;
 
     [Header("Debug")]
     [SerializeField] bool debugMode = false;
     [SerializeField] List<CodeBlock> debugBlocks;
-    public void Add(CodeBlock block)
+    public void Add(CodeBlock block, bool center = false)
     {
         if (debugMode && editing == null)
         {
@@ -27,6 +30,7 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (editing == null) return;
         block.transform.SetParent(anchor, true);
+        if (center) block.transform.localPosition = -panOffset;
         editing.codeBlocks.Add(block);
     }
     public void Remove(CodeBlock block)
@@ -57,6 +61,7 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if(debugMode) foreach(var block in debugBlocks) block.gameObject.SetActive(false);
             if (editing != null) foreach (var block in editing.codeBlocks) block.gameObject.SetActive(false);
             editing = codeable;
+            onEditingChange?.Invoke(editing);
             panOffset = editing.lastOffset;
             grid.offset = panOffset;
             anchor.localPosition = panOffset;
@@ -93,9 +98,9 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 anchor.localScale = Vector2.one * zoom;
                 grid.SetVerticesDirty();
             }
+            if (Input.GetMouseButtonDown(1) && !blockMenu.open) blockMenu.Open(Input.mousePosition);
         }
     }
-
     public void OnPointerEnter(PointerEventData eventData) => mouseOver = true;
     public void OnPointerExit(PointerEventData eventData) => mouseOver = false;
 }

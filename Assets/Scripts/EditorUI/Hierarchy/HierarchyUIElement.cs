@@ -80,7 +80,11 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.used) return;
-        if (eventData.button == PointerEventData.InputButton.Left) EditorSceneManager.Instance.Select(target);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (origin.moving != null) origin.Reparent(target);
+            else EditorSceneManager.Instance.Select(target);
+        }
         if (eventData.button == PointerEventData.InputButton.Middle) origin.EnterMoveMode(target);
     }
 }

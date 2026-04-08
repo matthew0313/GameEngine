@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_TestNumeric
   snappedPoint: {fileID: 0}
   owner: {fileID: 0}
+  <blockID>k__BackingField: TestNumeric
+  <blockColor>k__BackingField: {r: 1, g: 0.3647059, b: 0, a: 1}
   rectTransform: {fileID: 6779858812949479522}
   value: 10
 --- !u!222 &7447036809106610396

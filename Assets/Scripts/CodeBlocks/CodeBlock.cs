@@ -9,11 +9,12 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 
     [HideInInspector] public SnapPoint snappedPoint;
     [HideInInspector] public MyGameObject owner;
-    public abstract string id { get; }
+    [field:SerializeField] public string blockID { get; private set; }
+    [field:SerializeField] public Color blockColor { get; private set; }
     public virtual CodeBlockSave Save()
     {
         CodeBlockSave save = new();
-        save.id = id;
+        save.id = blockID;
         save.uid = uid;
         save.position = transform.position;
         return save;

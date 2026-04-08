@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Codeblock_If : ExecutableCodeBlock
 {
-    public override string id => "If";
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] ConditionSnapPoint condition;
