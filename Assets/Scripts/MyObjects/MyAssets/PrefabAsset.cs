@@ -14,13 +14,26 @@ public class PrefabAsset : MyAsset, ICodeable
 
     public void Set(MyGameObject gameObject)
     {
-        if (prefabOrigin == gameObject) return;
-        if (prefabOrigin != null) MonoBehaviour.Destroy(prefabOrigin);
         prefabOrigin = gameObject;
-        if (prefabOrigin != null && EditorSceneManager.Instance.myScene.ContainsObject(prefabOrigin))
-        {
-            if(prefabOrigin.parent != null) prefabOrigin.parent.RemoveChild(prefabOrigin);
-            else EditorSceneManager.Instance.myScene.RemoveTopObject(prefabOrigin);
-        }
+        if (prefabOrigin.parent != null) prefabOrigin.parent.RemoveChild(prefabOrigin);
+    }
+    public override MyAssetSave Save()
+    {
+        var save = base.Save();
+        save.data.strings["prefabOrigin"] = JsonUtility.ToJson(prefabOrigin.Save());
+        return save;
+    }
+    MyGameObjectSave prefabOriginSave;
+    public override void EarlyLoad(MyAssetSave save)
+    {
+        base.EarlyLoad(save);
+        prefabOriginSave = JsonUtility.FromJson<MyGameObjectSave>(save.data.strings["prefabOrigin"]);
+        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.IDToGameObject(prefabOriginSave.id));
+        prefabOrigin.EarlyLoad(prefabOriginSave);
+    }
+    public override void Load(MyAssetSave save)
+    {
+        base.Load(save);
+        prefabOrigin.Load(prefabOriginSave);
     }
 }

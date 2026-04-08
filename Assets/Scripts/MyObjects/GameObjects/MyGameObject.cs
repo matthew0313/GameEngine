@@ -2,20 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable, ISelectable
+public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspectable, ISelectable
 {
     public ulong uid { get; private set; }
 
     [HideInInspector] public bool dirty = false;
+    [HideInInspector] public bool foldedInInspector = false;
     public abstract string id { get; }
 
-    public MyGameObject parent { get; private set; }
-    readonly List<MyGameObject> children = new();
+    public IParent parent;
+    public readonly List<MyGameObject> children = new();
     public event Action onChildrenChange;
     public List<CodeBlock> codeBlocks { get; } = new();
     public Vector2 lastOffset { get; set; } = Vector2.zero;
 
     [field:SerializeField] public Sprite icon { get; private set; }
+    [SerializeField] int childrenOffset = 0;
     [SerializeField] List<CodeBlockList> availableCodeBlockLists;
     [SerializeField] List<CodeBlock> availableCodeBlocks;
     public event Action onPropertyChange;
@@ -23,30 +25,47 @@ public abstract class MyGameObject : MonoBehaviour, ICodeable, IInspectable, ISe
     {
         uid = MathUtilities.GenerateRandomID();
     }
-    public void AddChild(MyGameObject obj)
+    public bool IsChildOf(IParent obj)
     {
-        if (children.Contains(obj)) return;
-        if (obj.parent != null) obj.parent.RemoveChild(obj);
-        obj.transform.SetParent(transform);
-        obj.parent = this;
-        children.Add(obj);
+        IParent search = parent;
+        while(search != null)
+        {
+            if (search == obj) return true;
+            search = search is MyGameObject go ? go.parent : null;
+        }
+        return false;
+    }
+    public void AddChild(MyGameObject child)
+    {
+        if (children.Contains(child)) return;
+        if (child.parent != null && child.parent != this) child.parent.RemoveChild(child);
+        child.transform.SetParent(transform, true);
+        child.parent = this;
+        children.Add(child);
+        child.onChildrenChange += OnChildrenChange;
         onChildrenChange?.Invoke();
     }
-    public void RemoveChild(MyGameObject obj)
+    public void RemoveChild(MyGameObject child)
     {
-        if (!children.Contains(obj)) return;
-        obj.parent = null;
-        children.Remove(obj);
+        if (!children.Contains(child)) return;
+        child.transform.SetParent(null, true);
+        child.parent = null;
+        children.Remove(child);
+        child.onChildrenChange -= OnChildrenChange;
         onChildrenChange?.Invoke();
     }
-    public void ReorderChild(MyGameObject obj, int index)
+    public bool HasChild(MyGameObject child) => children.Contains(child);
+    public int GetChildIndex(MyGameObject obj) => children.IndexOf(obj);
+    public void SetChildIndex(MyGameObject child, int index)
     {
-        if (!children.Contains(obj)) return;
-        children.Remove(obj);
-        children.Insert(index, obj);
-        obj.transform.SetSiblingIndex(index);
+        if (!children.Contains(child) || index < 0 || index >= children.Count) return;
+        children.Remove(child); children.Insert(index, child);
+        child.transform.SetSiblingIndex(index + childrenOffset);
         onChildrenChange?.Invoke();
     }
+    public void SetSiblingIndex(int index) => parent.SetChildIndex(this, index);
+    public int GetSiblingIndex() => parent.GetChildIndex(this);
+    void OnChildrenChange() => onChildrenChange?.Invoke();
     public IEnumerable<MyGameObject> GetChildren() => children;
     public virtual IEnumerable<CodeBlock> GetAvailableBlocks()
     {

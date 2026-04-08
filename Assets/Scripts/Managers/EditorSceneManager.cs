@@ -3,6 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Threading;
+
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -19,6 +25,7 @@ public class EditorSceneManager : MonoBehaviour
     public string projectSavePath => Path.Combine(savePath, projectName);
 
     [Header("Screen")]
+    [SerializeField] GraphicRaycaster raycaster;
     [field:SerializeField] public Vector2Int screenSize { get; private set; }
     [field:SerializeField] public ScriptGrid scriptGrid { get; private set; }
 
@@ -31,6 +38,9 @@ public class EditorSceneManager : MonoBehaviour
 
     public readonly List<MyLog> logs = new();
     public event Action onLogsChange;
+
+    public ControlMachine<bool> raycastControl { get; private set; }
+    EventSystem eventSystem;
     public void Select(ISelectable selectable)
     {
         selected = selectable;
@@ -39,6 +49,8 @@ public class EditorSceneManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        eventSystem = EventSystem.current;
+        raycastControl = new(value => raycaster.enabled = value, true);
     }
     private void Start()
     {
@@ -51,7 +63,15 @@ public class EditorSceneManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) Select(null);
+        if (InputManager.GetKeyDown(KeyCode.Escape)) Select(null);
+    }
+    readonly List<RaycastResult> raycastResults = new();
+    public List<RaycastResult> RaycastUI(Vector2 position)
+    {
+        PointerEventData pointerData = new PointerEventData(eventSystem) { position = position };
+        raycastResults.Clear();
+        raycaster.Raycast(pointerData, raycastResults);
+        return raycastResults;
     }
     public void AddAsset(MyAsset asset)
     {
@@ -173,6 +193,7 @@ public class ProjectSave
 [CustomEditor(typeof(EditorSceneManager))]
 public class EditorSceneManager_Editor : Editor
 {
+    int count = 0;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -188,14 +209,15 @@ public class EditorSceneManager_Editor : Editor
         if(GUILayout.Button("Test Top GO"))
         {
             var tmp = Instantiate(target.IDToGameObject("Sprite"));
-            target.myScene.AddTopObject(tmp);
+            tmp.name = $"Sprite{count++}";
+            target.myScene.AddChild(tmp);
         }
         if(GUILayout.Button("Test Child GO"))
         {
             var tmp = Instantiate(target.IDToGameObject("Sprite"));
             var tmp2 = Instantiate(target.IDToGameObject("Sprite"));
             tmp.AddChild(tmp2);
-            target.myScene.AddTopObject(tmp);
+            target.myScene.AddChild(tmp);
         }
     }
 }

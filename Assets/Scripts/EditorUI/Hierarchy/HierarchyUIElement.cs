@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,21 +13,25 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     [SerializeField] GameObject childrenContainer;
     [SerializeField] HierarchyUIElement elementPrefab;
     [SerializeField] Image background;
-    [SerializeField] Color idleColor, selectedColor;
+    [SerializeField] Color idleColor, selectedColor, movingColor;
 
-    MyGameObject target;
-    bool folded = true;
+    public MyGameObject target { get; private set; }
+    bool folded { get => target != null && target.foldedInInspector; set { if (target != null) target.foldedInInspector = value; } }
     readonly List<HierarchyUIElement> childElements = new();
     private void OnEnable()
     {
         foldoutButton.onClick.AddListener(ToggleFoldout);
-        EditorSceneManager.Instance.onSelect += OnSelect;
-        OnSelect(EditorSceneManager.Instance.selected);
     }
     private void OnDisable()
     {
         foldoutButton.onClick.RemoveListener(ToggleFoldout);
-        EditorSceneManager.Instance.onSelect -= OnSelect;
+    }
+    HierarchyUI origin;
+    Pooler<HierarchyUIElement> elementPool;
+    public void Init(HierarchyUI origin, Pooler<HierarchyUIElement> pool)
+    {
+        this.origin = origin;
+        elementPool = pool;
     }
     public void Set(MyGameObject obj)
     {
@@ -38,15 +43,16 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         childrenContainer.SetActive(!folded);
         RefreshChildren();
     }
-
+    private void Update()
+    {
+        if(target == origin.moving) background.color = movingColor;
+        else if (EditorSceneManager.Instance.selected != null && EditorSceneManager.Instance.selected == target) background.color = selectedColor;
+        else background.color = idleColor;
+    }
     void OnPropertyChange()
     {
         nameText.text = target.name;
         icon.sprite = target.icon;
-    }
-    void OnSelect(ISelectable selectable)
-    {
-        background.color = (selectable != null && target == selectable) ? selectedColor : idleColor;
     }
     void RefreshChildren()
     {
@@ -54,13 +60,15 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         foreach (var child in target.GetChildren())
         {
             hasChild = true;
-            if (childElements.Count <= i)
-                childElements.Add(Instantiate(elementPrefab, childrenContainer.transform));
+            if (childElements.Count <= i) childElements.Add(elementPool.GetObject(childrenContainer.transform));
             childElements[i].gameObject.SetActive(true);
             childElements[i++].Set(child);
         }
         for (; i < childElements.Count; i++)
-            childElements[i].gameObject.SetActive(false);
+        {
+            elementPool.ReleaseObject(childElements[i]);
+            childElements.RemoveAt(i--);
+        }
         foldoutButton.gameObject.SetActive(hasChild);
     }
 
@@ -69,10 +77,10 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         folded = !folded;
         childrenContainer.SetActive(!folded);
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.used) return;
-        EditorSceneManager.Instance.Select(target);
+        if (eventData.button == PointerEventData.InputButton.Left) EditorSceneManager.Instance.Select(target);
+        if (eventData.button == PointerEventData.InputButton.Middle) origin.EnterMoveMode(target);
     }
 }

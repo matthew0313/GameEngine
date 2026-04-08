@@ -495,7 +495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyScene
   objectAnchor: {fileID: 94390210}
   UIAnchor: {fileID: 1085400389}
-  topGameObjects: []
 --- !u!4 &94390210
 Transform:
   m_ObjectHideFlags: 0

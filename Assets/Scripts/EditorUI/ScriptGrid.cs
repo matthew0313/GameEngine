@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public float zoom = 1f;
     public Vector2 panOffset = Vector2.zero;
@@ -98,9 +98,4 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
 
     public void OnPointerEnter(PointerEventData eventData) => mouseOver = true;
     public void OnPointerExit(PointerEventData eventData) => mouseOver = false;
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if(DeviceManager.deviceType == DeviceType.Handheld) dragging = true;
-    }
 }

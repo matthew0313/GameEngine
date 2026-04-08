@@ -32,6 +32,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     public const float snapDistance = 20.0f;
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
         if (eventData.used) return;
         dragging = true;
         dragOffset = (Vector2)transform.position - eventData.position;

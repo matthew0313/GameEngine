@@ -47,6 +47,8 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if(eventData.button != PointerEventData.InputButton.Left) return;
+        if (eventData.used) return;
         EditorSceneManager.Instance.Select(asset);
     }
 }

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyScene : MonoBehaviour
+public class MyScene : MonoBehaviour, IParent
 {
     [SerializeField] Transform objectAnchor, UIAnchor;
-    public List<MyGameObject> topGameObjects = new();
+    public readonly List<MyGameObject> topGameObjects = new();
     public event Action onHierarchyChange;
     public MySceneSave Save(bool prettyPrint = false)
     {
@@ -20,25 +20,39 @@ public class MyScene : MonoBehaviour
         {
             MyGameObject obj = Instantiate(EditorSceneManager.Instance.IDToGameObject(i.id));
             obj.EarlyLoad(i);
-            AddTopObject(obj);
+            AddChild(obj);
             saves.Add(obj, i);
         }
         foreach (var i in saves) i.Key.Load(i.Value);
     }
-    public void AddTopObject(MyGameObject gameObject)
+    public void AddChild(MyGameObject child)
     {
-        if (gameObject is MyGameObject_UI) gameObject.transform.SetParent(UIAnchor, true);
-        else gameObject.transform.SetParent(objectAnchor, true);
-        topGameObjects.Add(gameObject);
-        gameObject.onChildrenChange += OnChildrenChange;
+        if (topGameObjects.Contains(child)) return;
+        if (child.parent != null && child.parent != this) child.parent.RemoveChild(child);
+        if (child is MyGameObject_UI) child.transform.SetParent(UIAnchor, true);
+        else child.transform.SetParent(objectAnchor, true);
+        child.parent = this;
+        topGameObjects.Add(child);
+        child.onChildrenChange += OnChildrenChange;
         onHierarchyChange?.Invoke();
     }
 
-    public void RemoveTopObject(MyGameObject gameObject)
+    public void RemoveChild(MyGameObject child)
     {
-        if (!topGameObjects.Contains(gameObject)) return;
-        topGameObjects.Remove(gameObject);
-        gameObject.onChildrenChange -= OnChildrenChange;
+        if (!topGameObjects.Contains(child)) return;
+        child.transform.SetParent(null, true);
+        child.parent = null;
+        topGameObjects.Remove(child);
+        child.onChildrenChange -= OnChildrenChange;
+        onHierarchyChange?.Invoke();
+    }
+    public bool HasChild(MyGameObject child) => topGameObjects.Contains(child);
+    public int GetChildIndex(MyGameObject obj) => topGameObjects.IndexOf(obj);
+    public void SetChildIndex(MyGameObject child, int index)
+    {
+        if (!topGameObjects.Contains(child) || index < 0 || index >= topGameObjects.Count) return;
+        topGameObjects.Remove(child); topGameObjects.Insert(index, child);
+        child.transform.SetSiblingIndex(index);
         onHierarchyChange?.Invoke();
     }
     private void OnChildrenChange() => onHierarchyChange?.Invoke();
