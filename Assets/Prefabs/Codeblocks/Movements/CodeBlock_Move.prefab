@@ -194,7 +194,7 @@ MonoBehaviour:
   rectTransform: {fileID: 4884221520590488080}
   moveX: {fileID: 6115605677743381035}
   moveY: {fileID: 2695978598117456834}
-  onFinish: {fileID: 5565614791616963547}
+  <onFinish>k__BackingField: {fileID: 5565614791616963547}
 --- !u!1 &4224929979385874349
 GameObject:
   m_ObjectHideFlags: 0

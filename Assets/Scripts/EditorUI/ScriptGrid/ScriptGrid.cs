@@ -19,18 +19,19 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [Header("Debug")]
     [SerializeField] bool debugMode = false;
     [SerializeField] List<CodeBlock> debugBlocks;
-    public void Add(CodeBlock block, bool center = false)
+    public void Add(CodeBlock block)
     {
         if (debugMode && editing == null)
         {
             block.transform.SetParent(anchor, true);
+            block.transform.localScale = Vector3.one;
             debugBlocks.Add(block);
             return;
         }
 
         if (editing == null) return;
         block.transform.SetParent(anchor, true);
-        if (center) block.transform.localPosition = -panOffset;
+        block.transform.localScale = Vector3.one;
         editing.codeBlocks.Add(block);
     }
     public void Remove(CodeBlock block)
@@ -98,7 +99,7 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 anchor.localScale = Vector2.one * zoom;
                 grid.SetVerticesDirty();
             }
-            if (Input.GetMouseButtonDown(1) && !blockMenu.open) blockMenu.Open(Input.mousePosition);
+            if (Input.GetMouseButtonDown(1) && !blockMenu.open) blockMenu.Open(transform.InverseTransformPoint(Input.mousePosition));
         }
     }
     public void OnPointerEnter(PointerEventData eventData) => mouseOver = true;

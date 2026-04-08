@@ -779,7 +779,7 @@ MonoBehaviour:
   rectTransform: {fileID: 9009849328756168441}
   condition: {fileID: 4519187389971259857}
   onTrue: {fileID: 1044255642255435475}
-  onFinish: {fileID: 5177895141276169817}
+  <onFinish>k__BackingField: {fileID: 5177895141276169817}
 --- !u!1 &6250430261369122449
 GameObject:
   m_ObjectHideFlags: 0

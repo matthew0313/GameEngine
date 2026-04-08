@@ -287,7 +287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &42195161
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   anchor: {fileID: 592607297}
   scrollSensitivity: 0.1
   dragSensitivity: 5
-  blockMenu: {fileID: 0}
+  blockMenu: {fileID: 42195164}
   debugMode: 1
   debugBlocks:
   - {fileID: 2003116942}
@@ -4027,7 +4027,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0

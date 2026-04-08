@@ -3,12 +3,13 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Codeblock_If : ExecutableCodeBlock
+public class Codeblock_If : ExecutableCodeBlock, IOnFinish
 {
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] ConditionSnapPoint condition;
-    [SerializeField] ExecutableSnapPoint onTrue, onFinish;
+    [SerializeField] ExecutableSnapPoint onTrue;
+    [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask Execute(ulong hash)
     {
         if (condition.GetCondition()) await onTrue.Execute(hash);

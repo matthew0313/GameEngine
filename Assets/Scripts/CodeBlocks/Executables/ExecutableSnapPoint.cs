@@ -13,6 +13,29 @@ public class ExecutableSnapPoint : SnapPoint
     {
         if(layoutElement != null) layoutElement.minHeight = GetHeight();
     }
+    public override void Snap(CodeBlock codeBlock)
+    {
+        if (codeBlock == null || !IsSnappable(codeBlock)) return;
+        if (codeBlock.snappedPoint != null) codeBlock.snappedPoint.Detach();
+        if (snapped != null)
+        {
+            if(codeBlock is IOnFinish onFinish)
+            {
+                onFinish.onFinish.Snap(snapped);
+            }
+            else
+            {
+                snapped.transform.position += Vector3.right * 30.0f;
+                Detach();
+            }
+        }
+        snapped = codeBlock;
+        snapped.snappedPoint = this;
+        EditorSceneManager.Instance.scriptGrid.Remove(snapped);
+        snapped.transform.SetParent(snapAnchor);
+        snapped.transform.localPosition = Vector3.zero;
+        OnSnappedChange();
+    }
     public async UniTask Execute(ulong hash)
     {
         if (snapped is ExecutableCodeBlock executableCodeBlock)

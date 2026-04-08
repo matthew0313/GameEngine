@@ -3,13 +3,19 @@ using UnityEngine;
 
 public abstract class SnapPoint : MonoBehaviour
 {
-    [SerializeField] CodeBlock owner;
-    [SerializeField] Transform snapAnchor;
+    [SerializeField] protected CodeBlock owner;
+    [SerializeField] protected Transform snapAnchor;
     public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != owner;
-    public CodeBlock snapped { get; private set; }
-    public void Snap(CodeBlock codeBlock)
+    public CodeBlock snapped { get; protected set; }
+    public virtual void Snap(CodeBlock codeBlock)
     {
-        if(snapped != null || codeBlock == null || !IsSnappable(codeBlock)) return;
+        if(codeBlock == null || !IsSnappable(codeBlock)) return;
+        if (codeBlock.snappedPoint != null) codeBlock.snappedPoint.Detach();
+        if (snapped != null)
+        {
+            snapped.transform.position += Vector3.right * 30.0f;
+            Detach();
+        }
         snapped = codeBlock;
         snapped.snappedPoint = this;
         EditorSceneManager.Instance.scriptGrid.Remove(snapped);

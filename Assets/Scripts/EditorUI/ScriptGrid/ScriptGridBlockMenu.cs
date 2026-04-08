@@ -52,7 +52,8 @@ public class ScriptGridBlockMenu : MonoBehaviour
     }
     public void AddBlock(CodeBlock codeBlock)
     {
-        scriptGrid.Add(Instantiate(codeBlock), true);
+        scriptGrid.Add(Instantiate(codeBlock, rectTransform.position, Quaternion.identity));
+        Close();
     }
     void Refresh(ICodeable codeable)
     {
