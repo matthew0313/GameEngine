@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
 
-public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
 {
     public float zoom { get; private set; } = 1f;
     public Vector2 panOffset { get; private set; } = Vector2.zero;
@@ -11,7 +11,7 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] GridGraphic grid;
     [SerializeField] RectTransform anchor;
     [SerializeField] float scrollSensitivity = 1.0f, dragSensitivity = 5.0f;
-    [SerializeField] ScriptGridBlockMenu blockMenu;
+    [SerializeField] BlockAddMenu blockMenu;
 
     public ICodeable editing { get; private set; }
     public event Action<ICodeable> onEditingChange;
@@ -47,7 +47,6 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     float baseSpacing;
-    bool mouseOver;
     bool dragging;
 
     void Awake()
@@ -75,8 +74,7 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     void Update()
     {
-        if (mouseOver && Input.GetMouseButton(2)) dragging = true;
-        else if (!Input.GetMouseButton(2)) dragging = false;
+        if (dragging && !Input.GetMouseButton(2)) dragging = false;
         if (dragging)
         {
             Vector2 delta = Input.mousePositionDelta;
@@ -89,19 +87,33 @@ public class ScriptGrid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 grid.SetVerticesDirty();
             }
         }
-        if (mouseOver)
+    }
+
+    public void OnScroll(PointerEventData eventData)
+    {
+        if (eventData.used) return;
+        float scroll = eventData.scrollDelta.y;
+        if (scroll != 0f)
         {
-            float scroll = Input.mouseScrollDelta.y;
-            if (scroll != 0f)
-            {
-                zoom = Mathf.Clamp(zoom * (1f + scroll * scrollSensitivity), 0.1f, 10f);
-                grid.spacing = baseSpacing * zoom;
-                anchor.localScale = Vector2.one * zoom;
-                grid.SetVerticesDirty();
-            }
-            if (Input.GetMouseButtonDown(1) && !blockMenu.open) blockMenu.Open(transform.InverseTransformPoint(Input.mousePosition));
+            zoom = Mathf.Clamp(zoom * (1f + scroll * scrollSensitivity), 0.1f, 10f);
+            grid.spacing = baseSpacing * zoom;
+            anchor.localScale = Vector2.one * zoom;
+            grid.SetVerticesDirty();
         }
     }
-    public void OnPointerEnter(PointerEventData eventData) => mouseOver = true;
-    public void OnPointerExit(PointerEventData eventData) => mouseOver = false;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if(eventData.used) return;
+        if(eventData.button == PointerEventData.InputButton.Right && !blockMenu.open)
+        {
+            eventData.Use();
+            blockMenu.Open(transform.InverseTransformPoint(Input.mousePosition));
+        }
+        if (eventData.button == PointerEventData.InputButton.Middle)
+        {
+            eventData.Use();
+            dragging = true;
+        }
+    }
 }

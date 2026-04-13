@@ -2,11 +2,12 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ScriptGridBlockMenuElement : MonoBehaviour
+public class BlockAddMenuElement : MonoBehaviour
 {
     [SerializeField] TMP_Text text;
     [SerializeField] Button button;
-    ScriptGridBlockMenu menu;
+    Pooler<BlockAddMenuElement> elementPool;
+    BlockAddMenu menu;
     CodeBlock target;
     private void OnEnable()
     {
@@ -16,7 +17,7 @@ public class ScriptGridBlockMenuElement : MonoBehaviour
     {
         button.onClick.RemoveListener(OnClick);
     }
-    public void Init(ScriptGridBlockMenu menu)
+    public void Init(BlockAddMenu menu)
     {
         this.menu = menu;
     }

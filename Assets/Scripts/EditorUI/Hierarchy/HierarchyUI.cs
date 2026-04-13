@@ -81,7 +81,7 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     {
         ExitMoveMode();
     }
-    void ExitMoveMode()
+    public void ExitMoveMode()
     {
         if (moving == null) return;
         moving = null;

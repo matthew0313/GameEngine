@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     [HideInInspector] public MyGameObject owner;
     [field:SerializeField] public string blockID { get; private set; }
     [field:SerializeField] public Color blockColor { get; private set; }
+    [field:SerializeField] public CodeBlockCategory category { get; private set; }
     public virtual CodeBlockSave Save()
     {
         CodeBlockSave save = new();
@@ -93,6 +95,13 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
             dragging = false;
         }
     }
+}
+[System.Serializable]
+public enum CodeBlockCategory
+{
+    Movement,
+    Logic,
+    Other
 }
 [System.Serializable]
 public class CodeBlockSave

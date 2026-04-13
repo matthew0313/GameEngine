@@ -27,7 +27,9 @@ public class EditorSceneManager : MonoBehaviour
     [Header("Screen")]
     [SerializeField] GraphicRaycaster raycaster;
     [field:SerializeField] public Vector2Int screenSize { get; private set; }
+    [field:SerializeField] public RightClickMenu rightClickMenu { get; private set; }
     [field:SerializeField] public ScriptGrid scriptGrid { get; private set; }
+    [field:SerializeField] public HierarchyUI hierarchy { get; private set; }
 
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();
