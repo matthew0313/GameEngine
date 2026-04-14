@@ -105,15 +105,31 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if(eventData.used) return;
-        if(eventData.button == PointerEventData.InputButton.Right && !blockMenu.open)
+        if(eventData.button == PointerEventData.InputButton.Right)
         {
             eventData.Use();
-            blockMenu.Open(transform.InverseTransformPoint(Input.mousePosition));
+            EditorSceneManager.Instance.rightClickMenu.Open(Input.mousePosition, MakeRightClickMenu());
         }
         if (eventData.button == PointerEventData.InputButton.Middle)
         {
             eventData.Use();
             dragging = true;
         }
+    }
+    IEnumerable<RCMenuElement> MakeRightClickMenu()
+    {
+        yield return new RCMenuElement_Button(
+            "Add Block...",
+            (ctx) => { blockMenu.Open(transform.InverseTransformPoint(ctx.position)); });
+        yield return new RCMenuElement_Button(
+            "Move to Center",
+            (ctx) =>
+            {
+                panOffset = Vector2.zero;
+                anchor.localPosition = panOffset;
+                if (editing != null) editing.lastOffset = panOffset;
+                grid.offset = panOffset;
+                grid.SetVerticesDirty();
+            });
     }
 }
