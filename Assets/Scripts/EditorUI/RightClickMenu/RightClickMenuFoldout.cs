@@ -9,6 +9,7 @@ public class RightClickMenuFoldout : RightClickMenuElement
     [SerializeField] TMP_Text text;
     [SerializeField] Button button;
     [SerializeField] Transform elementAnchor;
+    RightClickMenu menu;
     Pooler<RightClickMenuButton> buttonPool;
     Pooler<RightClickMenuFoldout> foldoutPool;
     private void OnEnable()
@@ -21,9 +22,9 @@ public class RightClickMenuFoldout : RightClickMenuElement
     }
     void OnClick()
     {
-
+        
     }
-    public void Init(Pooler<RightClickMenuButton> buttonPool, Pooler<RightClickMenuFoldout> foldoutPool)
+    public void Init(RightClickMenu menu, Pooler<RightClickMenuButton> buttonPool, Pooler<RightClickMenuFoldout> foldoutPool)
     {
 
     }

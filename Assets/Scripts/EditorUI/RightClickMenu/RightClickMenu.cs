@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RightClickMenu : MonoBehaviour
 {
-    [SerializeField] RectTransform area;
+    [SerializeField] RectTransform area, rectTransform;
     [SerializeField] Transform elementAnchor;
     [SerializeField] RightClickMenuButton buttonElement;
     [SerializeField] RightClickMenuFoldout foldoutElement;
@@ -15,10 +15,14 @@ public class RightClickMenu : MonoBehaviour
     bool initialized = false;
     void Init()
     {
-        buttonPool = new(buttonElement);
+        buttonPool = new(() =>
+        {
+            var tmp = Instantiate(buttonElement); tmp.Init(this);
+            return tmp;
+        });
         foldoutPool = new(() =>
         {
-            var tmp = Instantiate(foldoutElement); tmp.Init(buttonPool, foldoutPool);
+            var tmp = Instantiate(foldoutElement); tmp.Init(this, buttonPool, foldoutPool);
             return tmp;
         });
     }
@@ -29,6 +33,23 @@ public class RightClickMenu : MonoBehaviour
         {
             open = true;
             gameObject.SetActive(true);
+        }
+        Vector2 center = area.rect.center;
+        rectTransform.pivot = new Vector2(pos.x < center.x ? 0 : 1, pos.y < center.y ? 0 : 1);
+        rectTransform.anchoredPosition = pos;
+        foreach(var i in this.elements)
+        {
+            if (i is RightClickMenuButton button) buttonPool.ReleaseObject(button);
+            if (i is RightClickMenuFoldout foldout) foldoutPool.ReleaseObject(foldout);
+        }
+        foreach(var i in elements)
+        {
+            if(i is RCMenuElement_Button button)
+            {
+                var tmp = buttonPool.GetObject(elementAnchor);
+                tmp.Set(button);
+                this.elements.Add(tmp);
+            }
         }
     }
     public void Close()
