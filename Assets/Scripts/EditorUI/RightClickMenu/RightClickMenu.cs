@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RightClickMenu : MonoBehaviour
 {
+    [SerializeField] RectTransform area;
     [SerializeField] Transform elementAnchor;
     [SerializeField] RightClickMenuButton buttonElement;
     [SerializeField] RightClickMenuFoldout foldoutElement;
@@ -22,11 +23,12 @@ public class RightClickMenu : MonoBehaviour
         });
     }
     bool open = false;
-    public void Open(IEnumerable<RCMenuElement> elements)
+    public void Open(Vector2 pos, IEnumerable<RCMenuElement> elements)
     {
         if (!open)
         {
             open = true;
+            gameObject.SetActive(true);
         }
     }
     public void Close()
