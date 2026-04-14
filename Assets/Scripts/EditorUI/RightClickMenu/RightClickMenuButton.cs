@@ -15,7 +15,7 @@ public class RightClickMenuButton : RightClickMenuElement, IPointerEnterHandler,
     {
         this.menu = menu;
     }
-    Action onClick;
+    Action<RCMenuContext> onClick;
     public void Set(RCMenuElement_Button content)
     {
         text.text = content.name;
@@ -39,7 +39,7 @@ public class RightClickMenuButton : RightClickMenuElement, IPointerEnterHandler,
         {
             eventData.Use();
             menu.Close();
-            onClick?.Invoke();
+            onClick?.Invoke(menu.context);
         }
     }
 }
