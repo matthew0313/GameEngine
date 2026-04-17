@@ -18,11 +18,11 @@ public class ConditionSnapPoint : SnapPoint
     {
         layoutElement.minWidth = GetWidth();
     }
-    public bool GetCondition()
+    public bool GetCondition(ulong hash)
     {
         if (snapped is ConditionCodeBlock conditionCodeBlock)
         {
-            return conditionCodeBlock.GetCondition();
+            return conditionCodeBlock.GetCondition(hash);
         }
         else return toggle.isOn;
     }

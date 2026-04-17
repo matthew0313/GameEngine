@@ -108,12 +108,10 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         List<CodeBlockSave> codeBlockSaves = new();
         foreach (var block in codeBlocks)
         {
-            if (block.snappedPoint == null)
-            {
-                var tmp = block.Save();
-                tmp.position = block.transform.position;
-                codeBlockSaves.Add(tmp);
-            }
+            if (block.snappedPoint != null) continue;
+            var tmp = block.Save();
+            tmp.position = block.transform.position;
+            codeBlockSaves.Add(tmp);
         }
         save.data.SaveVector2("lastOffset", lastOffset);
         save.data.strings["CodeBlocks"] = JsonUtility.ToJson(codeBlockSaves, prettyPrint);
@@ -123,14 +121,10 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         }
         return save;
     }
+    readonly Dictionary<CodeBlock, CodeBlockSave> blockSaves = new();
     public virtual void EarlyLoad(MyGameObjectSave save)
     {
         uid = save.uid;
-    }
-    public virtual void Load(MyGameObjectSave save)
-    {
-        codeBlocks.Clear();
-        lastOffset = save.data.LoadVector2("lastOffset");
         if (save.data.strings.ContainsKey("CodeBlocks"))
         {
             List<CodeBlockSave> codeBlockSaves = JsonUtility.FromJson<List<CodeBlockSave>>(save.data.strings["CodeBlocks"]);
@@ -140,13 +134,20 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
                 if (blockPrefab != null)
                 {
                     CodeBlock block = Instantiate(blockPrefab, transform);
-                    block.Load(blockSave);
-                    block.transform.position = blockSave.position;
-                    block.gameObject.SetActive(false);
+                    block.owner = this;
                     codeBlocks.Add(block);
+                    block.EarlyLoad(blockSave);
+                    block.gameObject.SetActive(false);
+                    blockSaves[block] = blockSave;
                 }
             }
         }
+    }
+    public virtual void Load(MyGameObjectSave save)
+    {
+        codeBlocks.Clear();
+        lastOffset = save.data.LoadVector2("lastOffset");
+        foreach (var i in blockSaves) i.Key.Load(i.Value);
         foreach(var childSave in save.children)
         {
             MyGameObject child = Instantiate(EditorSceneManager.Instance.IDToGameObject(childSave.id), transform);

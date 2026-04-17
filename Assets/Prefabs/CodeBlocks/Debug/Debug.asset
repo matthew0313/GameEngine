@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e46fb8a8d25b02e40ba7b38be87a0a4e, type: 3}
-  m_Name: CodeBlocks
+  m_Name: Debug
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlockList
   elements:
-  - type: 1
-    item: {fileID: 0}
-    list: {fileID: 11400000, guid: ad1b85651f140604592be6406d7376e3, type: 2}
-  - type: 1
-    item: {fileID: 0}
-    list: {fileID: 11400000, guid: f281c4d11f3183a4b8962f927e83d005, type: 2}
-  - type: 1
-    item: {fileID: 0}
-    list: {fileID: 11400000, guid: ecb692ca54026ae4db7acf7ddd9814ac, type: 2}
+  - type: 0
+    item: {fileID: 3600119291709130627, guid: f4cab777fdf43784f82f75b92a1d6b25, type: 3}
+    list: {fileID: 0}

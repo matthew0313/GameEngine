@@ -29,7 +29,7 @@ public class RightClickMenu : MonoBehaviour
             var tmp = Instantiate(foldoutElement); tmp.Init(this, buttonPool, foldoutPool);
             return tmp;
         });
-        foldoutPool.onRelease = item => { item.Clear(); };
+        foldoutPool.onRelease = item => { item.gameObject.SetActive(false); item.Clear(); };
     }
     bool skipFrame = false;
     bool open = false;
@@ -44,8 +44,6 @@ public class RightClickMenu : MonoBehaviour
         }
         this.pos = pos;
         pos = area.InverseTransformPoint(pos);
-        Vector2 center = area.rect.center;
-        rectTransform.pivot = new Vector2(pos.x < center.x ? 0 : 1, pos.y < center.y ? 0 : 1);
         rectTransform.anchoredPosition = pos;
         foreach(var i in this.elements)
         {

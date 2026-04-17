@@ -15,35 +15,11 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
 
     public ICodeable editing { get; private set; }
     public event Action<ICodeable> onEditingChange;
-
-    [Header("Debug")]
-    [SerializeField] bool debugMode = false;
-    [SerializeField] List<CodeBlock> debugBlocks;
-    public void Add(CodeBlock block)
+    public void BindToGrid(CodeBlock block)
     {
-        if (debugMode && editing == null)
-        {
-            block.transform.SetParent(anchor, true);
-            block.transform.localScale = Vector3.one;
-            debugBlocks.Add(block);
-            return;
-        }
-
         if (editing == null) return;
         block.transform.SetParent(anchor, true);
         block.transform.localScale = Vector3.one;
-        editing.codeBlocks.Add(block);
-    }
-    public void Remove(CodeBlock block)
-    {
-        if (debugMode)
-        {
-            debugBlocks.Remove(block);
-            return;
-        }
-
-        if (editing == null) return;
-        editing.codeBlocks.Remove(block);
     }
 
     float baseSpacing;
@@ -58,7 +34,6 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
     {
         if (selected is ICodeable codeable && codeable != editing)
         {
-            if(debugMode) foreach(var block in debugBlocks) block.gameObject.SetActive(false);
             if (editing != null) foreach (var block in editing.codeBlocks) block.gameObject.SetActive(false);
             editing = codeable;
             onEditingChange?.Invoke(editing);

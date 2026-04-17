@@ -1,5 +1,5 @@
-using JetBrains.Annotations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,7 +9,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     public ulong uid { get; private set; }
 
     [HideInInspector] public SnapPoint snappedPoint;
-    [HideInInspector] public MyGameObject owner;
+    [HideInInspector] public ICodeable owner;
     [field:SerializeField] public string blockID { get; private set; }
     [field:SerializeField] public Color blockColor { get; private set; }
     [field:SerializeField] public CodeBlockCategory category { get; private set; }
@@ -35,12 +35,29 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     public const float snapDistance = 20.0f;
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left) return;
         if (eventData.used) return;
-        dragging = true;
-        dragOffset = (Vector2)transform.position - eventData.position;
-        transform.SetAsLastSibling();
-        eventData.Use();
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            dragging = true;
+            dragOffset = (Vector2)transform.position - eventData.position;
+            transform.SetAsLastSibling();
+            eventData.Use();
+        }
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            EditorSceneManager.Instance.rightClickMenu.Open(eventData.position, MakeRightClickMenu());
+            eventData.Use();
+        }
+    }
+    protected virtual IEnumerable<RCMenuElement> MakeRightClickMenu()
+    {
+        yield return new RCMenuElement_Button(
+            "Delete",
+            ctx =>
+            {
+                if (owner != null) owner.codeBlocks.Remove(this);
+                Destroy(gameObject);
+            });
     }
     protected virtual void Awake()
     {
@@ -101,6 +118,8 @@ public enum CodeBlockCategory
 {
     Movement,
     Logic,
+    Calculation,
+    Debug,
     Other
 }
 [System.Serializable]

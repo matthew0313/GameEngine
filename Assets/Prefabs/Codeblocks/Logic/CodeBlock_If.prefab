@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d9bdb477ccf5847a10cf3c1bb64d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExecutableSnapPoint
-  owner: {fileID: 1697550080885042356}
+  ownerBlock: {fileID: 1697550080885042356}
   snapAnchor: {fileID: 1630707687202799545}
   layoutElement: {fileID: 4397990210356726290}
   defaultHeight: 50
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6bfbaaf42ea264abd5ac81a2406800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConditionSnapPoint
-  owner: {fileID: 1697550080885042356}
+  ownerBlock: {fileID: 0}
   snapAnchor: {fileID: 2434326031146447489}
   layoutElement: {fileID: 1146110952897802431}
   defaultWidth: 100
@@ -773,7 +773,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_If
   snappedPoint: {fileID: 0}
-  owner: {fileID: 0}
   <blockID>k__BackingField: If
   <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   <category>k__BackingField: 1
@@ -1301,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d9bdb477ccf5847a10cf3c1bb64d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExecutableSnapPoint
-  owner: {fileID: 1697550080885042356}
+  ownerBlock: {fileID: 1697550080885042356}
   snapAnchor: {fileID: 52723785528483351}
   layoutElement: {fileID: 0}
   defaultHeight: 0

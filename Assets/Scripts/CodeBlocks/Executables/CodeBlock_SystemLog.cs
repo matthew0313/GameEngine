@@ -3,16 +3,15 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Codeblock_If : ExecutableCodeBlock, IOnFinish
+public class Codeblock_SystemLog : ExecutableCodeBlock, IOnFinish
 {
-
     [SerializeField] RectTransform rectTransform;
-    [SerializeField] ConditionSnapPoint condition;
-    [SerializeField] ExecutableSnapPoint onTrue;
+    [SerializeField] TMP_Dropdown logType;
+    [SerializeField] StringSnapPoint message;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask Execute(ulong hash)
     {
-        if (condition.GetCondition(hash)) await onTrue.Execute(hash);
+        EditorSceneManager.Instance.AddLog(new MyLog((MyLogType)logType.value, message.GetValue(hash)));
         await onFinish.Execute(hash);
     }
 

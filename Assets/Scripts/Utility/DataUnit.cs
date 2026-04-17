@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class DataUnit
 {
     public SerializableDictionary<string, int> integers = new();
+    public SerializableDictionary<string, ulong> ulongs = new();
     public SerializableDictionary<string, float> floats = new();
     public SerializableDictionary<string, string> strings = new();
     public SerializableDictionary<string, bool> bools = new();

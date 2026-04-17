@@ -7,6 +7,6 @@ public class CodeBlock_TestCondition : ConditionCodeBlock
 {
     [SerializeField] RectTransform rectTransform;
     [SerializeField] bool condition = true;
-    public override bool GetCondition() => condition;
+    public override bool GetCondition(ulong hash) => condition;
     public override float GetWidth() => rectTransform.rect.width;
 }

@@ -54,8 +54,6 @@ public class BlockAddMenu : MonoBehaviour
     {
         if (open) return;
         open = true;
-        Vector2 center = area.rect.center;
-        rectTransform.pivot = new Vector2(pos.x < center.x ? 0 : 1, pos.y < center.y ? 0 : 1);
         rectTransform.anchoredPosition = pos;
         gameObject.SetActive(true);
     }
@@ -67,7 +65,11 @@ public class BlockAddMenu : MonoBehaviour
     }
     public void AddBlock(CodeBlock codeBlock)
     {
-        scriptGrid.Add(Instantiate(codeBlock, rectTransform.position, Quaternion.identity));
+        if(scriptGrid.editing == null) return;
+        var tmp = Instantiate(codeBlock, rectTransform.position, Quaternion.identity);
+        tmp.owner = scriptGrid.editing;
+        scriptGrid.editing.codeBlocks.Add(tmp);
+        scriptGrid.BindToGrid(tmp);
         Close();
     }
     void Refresh()

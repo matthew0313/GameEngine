@@ -14,7 +14,9 @@ public class PrefabAsset : MyAsset, ICodeable
 
     public void Set(MyGameObject gameObject)
     {
+        name = gameObject.name;
         prefabOrigin = gameObject;
+        gameObject.gameObject.SetActive(false);
         if (prefabOrigin.parent != null) prefabOrigin.parent.RemoveChild(prefabOrigin);
     }
     public override MyAssetSave Save()

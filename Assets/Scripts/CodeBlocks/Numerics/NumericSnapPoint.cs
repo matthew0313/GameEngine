@@ -18,11 +18,11 @@ public class NumericSnapPoint : SnapPoint
     {
         layoutElement.minWidth = GetWidth();
     }
-    public float GetValue()
+    public float GetValue(ulong hash)
     {
         if (snapped is NumericCodeBlock numericCodeBlock)
         {
-            return numericCodeBlock.GetValue();
+            return numericCodeBlock.GetValue(hash);
         }
         else if (float.TryParse(inputField.text, out float value))
         {
@@ -30,6 +30,7 @@ public class NumericSnapPoint : SnapPoint
         }
         return 0.0f;
     }
+    public int GetIntValue(ulong hash) => Mathf.FloorToInt(GetValue(hash));
     public float GetWidth()
     {
         if (snapped is NumericCodeBlock numericCodeBlock)

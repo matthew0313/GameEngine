@@ -20,6 +20,7 @@ public class RightClickMenuButton : RightClickMenuElement, IPointerEnterHandler,
     {
         text.text = content.name;
         onClick = content.onClick;
+        image.color = normalColor;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -55,21 +55,10 @@ public class RightClickMenuFoldout : RightClickMenuElement, IPointerEnterHandler
                 this.elements.Add(tmp);
             }
         }
+        image.color = normalColor;
+        if (open) Close();
     }
-    bool hover = false, open = false;
-    float hoverCounter = 0.0f;
-    const float hoverTime = 0.5f;
-    private void Update()
-    {
-        if (hover && !open)
-        {
-            if (hoverCounter < hoverTime)
-            {
-                hoverCounter += Time.deltaTime;
-                if (hoverCounter >= hoverTime) Open();
-            }
-        }
-    }
+    bool open = false;
     void Open()
     {
         if (open) return;
@@ -85,14 +74,12 @@ public class RightClickMenuFoldout : RightClickMenuElement, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.color = hoverColor;
-        hover = true;
+        if (!open) Open();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         image.color = normalColor;
-        hover = false;
-        hoverCounter = 0.0f;
         if (open) Close();
     }
 

@@ -31,7 +31,7 @@ public class ExecutableSnapPoint : SnapPoint
         }
         snapped = codeBlock;
         snapped.snappedPoint = this;
-        EditorSceneManager.Instance.scriptGrid.Remove(snapped);
+        EditorSceneManager.Instance.scriptGrid.BindToGrid(snapped);
         snapped.transform.SetParent(snapAnchor);
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();

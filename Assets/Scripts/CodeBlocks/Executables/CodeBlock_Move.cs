@@ -11,7 +11,8 @@ public class Codeblock_Move : ExecutableCodeBlock, IOnFinish
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask Execute(ulong hash)
     {
-        owner.transform.position += new Vector3(moveX.GetValue(), moveY.GetValue());
+        if(owner is MyGameObject go) go.transform.position += new Vector3(moveX.GetValue(hash), moveY.GetValue(hash));
+        await onFinish.Execute(hash);
     }
     public override float GetHeight()
     {

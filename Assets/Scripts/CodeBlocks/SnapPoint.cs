@@ -3,9 +3,9 @@ using UnityEngine;
 
 public abstract class SnapPoint : MonoBehaviour
 {
-    [SerializeField] protected CodeBlock owner;
+    [SerializeField] protected CodeBlock ownerBlock;
     [SerializeField] protected Transform snapAnchor;
-    public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != owner;
+    public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != ownerBlock;
     public CodeBlock snapped { get; protected set; }
     public virtual void Snap(CodeBlock codeBlock)
     {
@@ -18,7 +18,6 @@ public abstract class SnapPoint : MonoBehaviour
         }
         snapped = codeBlock;
         snapped.snappedPoint = this;
-        EditorSceneManager.Instance.scriptGrid.Remove(snapped);
         snapped.transform.SetParent(snapAnchor);
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();
@@ -26,7 +25,7 @@ public abstract class SnapPoint : MonoBehaviour
     public void Detach()
     {
         if (snapped == null) return;
-        EditorSceneManager.Instance.scriptGrid.Add(snapped);
+        EditorSceneManager.Instance.scriptGrid.BindToGrid(snapped);
         snapped.snappedPoint = null;
         snapped = null;
         OnSnappedChange();

@@ -18,8 +18,8 @@ public class EditorSceneManager : MonoBehaviour
     public static EditorSceneManager Instance { get; private set; }
     public string projectName { get; private set; } = "DebugProject";
 
-    [SerializeField] MyGameObjectList myGameObjectList;
-    [SerializeField] CodeBlockList codeBlockList;
+    [field:SerializeField] public MyGameObjectList myGameObjectList { get; private set; }
+    [field:SerializeField] public CodeBlockList codeBlockList { get; private set; }
     [SerializeField] string savePath = "Saves";
     [field:SerializeField] public MyScene myScene { get; private set; }
     public string projectSavePath => Path.Combine(savePath, projectName);
@@ -30,6 +30,7 @@ public class EditorSceneManager : MonoBehaviour
     [field:SerializeField] public RightClickMenu rightClickMenu { get; private set; }
     [field:SerializeField] public ScriptGrid scriptGrid { get; private set; }
     [field:SerializeField] public HierarchyUI hierarchy { get; private set; }
+    [field:SerializeField] public SceneScreenController sceneScreen { get; private set; }
 
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();
@@ -168,9 +169,9 @@ public class EditorSceneManager : MonoBehaviour
 }
 public enum MyLogType
 {
-    Info,
-    Warning,
-    Error
+    Info = 0,
+    Warning = 1,
+    Error = 2
 }
 public struct MyLog
 {

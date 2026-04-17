@@ -109,6 +109,56 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.used) return;
-        if (eventData.button == PointerEventData.InputButton.Left && moving != null) Reparent(null);
+        if (eventData.button == PointerEventData.InputButton.Left && moving != null)
+        {
+            eventData.Use();
+            Reparent(null);
+        }
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            eventData.Use();
+            RightClickMenu(null);
+        }
+    }
+    public void RightClickMenu(MyGameObject target)
+    {
+        EditorSceneManager.Instance.rightClickMenu.Open(Input.mousePosition, MakeRightClickMenu(target));
+    }
+    IEnumerable<RCMenuElement> MakeRightClickMenu(MyGameObject target)
+    {
+        if (target != null)
+        {
+            yield return new RCMenuElement_Button(
+                "Move To Object",
+                ctx =>
+                {
+                    EditorSceneManager.Instance.sceneScreen.MoveTo(target.transform.position);
+                });
+            yield return new RCMenuElement_Button(
+                "Make Prefab",
+                ctx =>
+                {
+                    PrefabAsset tmp = new();
+                    tmp.Set(target);
+                    EditorSceneManager.Instance.AddAsset(tmp);
+                });
+        }
+        yield return new RCMenuElement_Foldout(
+            target != null ? "Create Child Object" : "Create Object",
+            MakeRightClickMenu_CreateObject(target));
+    }
+    IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(MyGameObject target)
+    {
+        foreach(var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
+        {
+            yield return new RCMenuElement_Button(
+                obj.name,
+                ctx =>
+                {
+                    MyGameObject newObj = Instantiate(obj);
+                    if (target == null) EditorSceneManager.Instance.myScene.AddChild(newObj);
+                    else target.AddChild(newObj);
+                });
+        }
     }
 }
