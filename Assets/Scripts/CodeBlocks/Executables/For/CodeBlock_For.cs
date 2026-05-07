@@ -17,16 +17,17 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
         if (loopIndices.TryGetValue(hash, out int index)) return index;
         return -1;
     }
-    public override async UniTask Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
         int count = loopCount.GetIntValue(hash);
         for(int i = 0; i < count; i++)
         {
             loopIndices[hash] = i;
-            await onLoop.Execute(hash);
+            var info = await onLoop.Execute(hash);
+            if (info.breaked) break;
         }
         loopIndices.Remove(hash);
-        await onFinish.Execute(hash);
+        return await onFinish.Execute(hash);
     }
 
     public override float GetHeight()

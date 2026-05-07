@@ -13,6 +13,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     [SerializeField] GameObject childrenContainer;
     [SerializeField] HierarchyUIElement elementPrefab;
     [SerializeField] Image background;
+    [SerializeField] TMP_InputField renameInput;
     [SerializeField] Color idleColor, selectedColor, movingColor;
 
     public MyGameObject target { get; private set; }
@@ -21,6 +22,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     private void OnEnable()
     {
         foldoutButton.onClick.AddListener(ToggleFoldout);
+        renameInput.onDeselect.AddListener(OnRenameEnd);
     }
     private void OnDisable()
     {
@@ -96,5 +98,15 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
             eventData.Use();
             origin.RightClickMenu(target);
         }
+    }
+    public void Rename()
+    {
+        renameInput.gameObject.SetActive(true);
+        renameInput.Select();
+    }
+    void OnRenameEnd()
+    {
+        renameInput.gameObject.SetActive(false);
+        target.name = renameInput.text;
     }
 }

@@ -9,10 +9,10 @@ public class Codeblock_SystemLog : ExecutableCodeBlock, IOnFinish
     [SerializeField] TMP_Dropdown logType;
     [SerializeField] StringSnapPoint message;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
-    public override async UniTask Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
         EditorSceneManager.Instance.AddLog(new MyLog((MyLogType)logType.value, message.GetValue(hash)));
-        await onFinish.Execute(hash);
+        return await onFinish.Execute(hash);
     }
 
     public override float GetHeight()

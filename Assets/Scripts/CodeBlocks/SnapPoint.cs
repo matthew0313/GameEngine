@@ -6,7 +6,7 @@ public abstract class SnapPoint : MonoBehaviour
     [SerializeField] protected CodeBlock ownerBlock;
     [SerializeField] protected Transform snapAnchor;
     public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != ownerBlock;
-    public CodeBlock snapped { get; protected set; }
+    [field:SerializeField] public CodeBlock snapped { get; protected set; }
     public virtual void Snap(CodeBlock codeBlock)
     {
         if(codeBlock == null || !IsSnappable(codeBlock)) return;

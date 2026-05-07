@@ -8,6 +8,7 @@ public class CodeBlock_ForIndex : NumericCodeBlock
 {
     [SerializeField] RectTransform rectTransform;
     public CodeBlock_For target;
+    public override bool addable => false;
     public override float GetValue(ulong hash) => target != null ? target.GetLoopIndex(hash) : -1;
     public override float GetWidth() => rectTransform.rect.width;
     public override CodeBlockSave Save()

@@ -36,12 +36,13 @@ public class ExecutableSnapPoint : SnapPoint
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();
     }
-    public async UniTask Execute(ulong hash)
+    public async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
         if (snapped is ExecutableCodeBlock executableCodeBlock)
         {
-            await executableCodeBlock.Execute(hash);
+            return await executableCodeBlock.Execute(hash);
         }
+        return new();
     }
     public float GetHeight()
     {

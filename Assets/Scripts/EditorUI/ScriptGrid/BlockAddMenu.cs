@@ -106,6 +106,7 @@ public class BlockAddMenu : MonoBehaviour
         if (codeable == null) yield break;
         foreach (var block in codeable.GetAvailableBlocks())
         {
+            if (!block.addable) continue;
             if (!block.blockID.StartsWith(searchBar.text)) continue;
             yield return block;
         }

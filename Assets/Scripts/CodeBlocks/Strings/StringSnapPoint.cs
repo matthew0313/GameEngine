@@ -40,6 +40,10 @@ public class StringSnapPoint : SnapPoint
         {
             return stringCodeBlock.GetWidth();
         }
+        else if(snapped is NumericCodeBlock numericCodeBlock)
+        {
+            return numericCodeBlock.GetWidth();
+        }
         else return defaultWidth;
     }
 }

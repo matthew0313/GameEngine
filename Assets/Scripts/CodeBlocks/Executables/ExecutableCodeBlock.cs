@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public abstract class ExecutableCodeBlock : CodeBlock
 {
-    public abstract UniTask Execute(ulong hash);
+    public abstract UniTask<ExecutionFinishedInfo> Execute(ulong hash);
     public abstract float GetHeight();
     ulong testHash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
@@ -18,4 +18,8 @@ public abstract class ExecutableCodeBlock : CodeBlock
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
+}
+public struct ExecutionFinishedInfo
+{
+    public bool breaked;
 }

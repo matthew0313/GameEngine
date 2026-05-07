@@ -13,6 +13,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     [field:SerializeField] public string blockID { get; private set; }
     [field:SerializeField] public Color blockColor { get; private set; }
     [field:SerializeField] public CodeBlockCategory category { get; private set; }
+    public virtual bool addable => true;
     public virtual CodeBlockSave Save()
     {
         CodeBlockSave save = new();
