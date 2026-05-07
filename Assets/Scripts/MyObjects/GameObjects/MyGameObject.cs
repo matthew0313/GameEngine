@@ -81,7 +81,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             yield return block;
         }
     }
-    protected virtual void OnPropertyChange() => onPropertyChange?.Invoke();
+    public virtual void OnPropertyChange() => onPropertyChange?.Invoke();
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(

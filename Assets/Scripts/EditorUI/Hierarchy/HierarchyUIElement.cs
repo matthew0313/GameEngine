@@ -104,9 +104,10 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         renameInput.gameObject.SetActive(true);
         renameInput.Select();
     }
-    void OnRenameEnd()
+    void OnRenameEnd(string text)
     {
         renameInput.gameObject.SetActive(false);
-        target.name = renameInput.text;
+        target.name = text;
+        target.OnPropertyChange();
     }
 }
