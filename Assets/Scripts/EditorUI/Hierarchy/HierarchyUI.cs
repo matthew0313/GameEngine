@@ -120,34 +120,40 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
             RightClickMenu(null);
         }
     }
-    public void RightClickMenu(MyGameObject target)
+    public void RightClickMenu(HierarchyUIElement element)
     {
-        EditorSceneManager.Instance.rightClickMenu.Open(Input.mousePosition, MakeRightClickMenu(target));
+        EditorSceneManager.Instance.rightClickMenu.Open(Input.mousePosition, MakeRightClickMenu(element));
     }
-    IEnumerable<RCMenuElement> MakeRightClickMenu(MyGameObject target)
+    IEnumerable<RCMenuElement> MakeRightClickMenu(HierarchyUIElement element)
     {
-        if (target != null)
+        if (element != null)
         {
             yield return new RCMenuElement_Button(
                 "Move To Object",
                 ctx =>
                 {
-                    EditorSceneManager.Instance.sceneScreen.MoveTo(target.transform.position);
+                    EditorSceneManager.Instance.sceneScreen.MoveTo(element.transform.position);
                 });
             yield return new RCMenuElement_Button(
                 "Make Prefab",
                 ctx =>
                 {
                     PrefabAsset tmp = new();
-                    tmp.Set(target);
+                    tmp.Set(element.target);
                     EditorSceneManager.Instance.AddAsset(tmp);
+                });
+            yield return new RCMenuElement_Button(
+                "Rename",
+                ctx =>
+                {
+                    element.Rename();
                 });
         }
         yield return new RCMenuElement_Foldout(
-            target != null ? "Create Child Object" : "Create Object",
-            MakeRightClickMenu_CreateObject(target));
+            element != null ? "Create Child Object" : "Create Object",
+            MakeRightClickMenu_CreateObject(element));
     }
-    IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(MyGameObject target)
+    IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(HierarchyUIElement element)
     {
         foreach(var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
         {
@@ -156,8 +162,8 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
                 ctx =>
                 {
                     MyGameObject newObj = Instantiate(obj);
-                    if (target == null) EditorSceneManager.Instance.myScene.AddChild(newObj);
-                    else target.AddChild(newObj);
+                    if (element == null) EditorSceneManager.Instance.myScene.AddChild(newObj);
+                    else element.target.AddChild(newObj);
                 });
         }
     }

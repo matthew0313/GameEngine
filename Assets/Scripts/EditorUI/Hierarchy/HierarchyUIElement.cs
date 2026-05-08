@@ -96,7 +96,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         if(eventData.button == PointerEventData.InputButton.Right)
         {
             eventData.Use();
-            origin.RightClickMenu(target);
+            origin.RightClickMenu(this);
         }
     }
     public void Rename()
