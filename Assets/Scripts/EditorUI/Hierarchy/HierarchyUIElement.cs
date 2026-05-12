@@ -22,11 +22,12 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     private void OnEnable()
     {
         foldoutButton.onClick.AddListener(ToggleFoldout);
-        renameInput.onDeselect.AddListener(OnRenameEnd);
+        renameInput.onEndEdit.AddListener(OnRenameEnd);
     }
     private void OnDisable()
     {
         foldoutButton.onClick.RemoveListener(ToggleFoldout);
+        renameInput.onEndEdit.RemoveListener(OnRenameEnd);
     }
     HierarchyUI origin;
     Pooler<HierarchyUIElement> elementPool;
@@ -101,6 +102,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
     }
     public void Rename()
     {
+        renameInput.text = target.name;
         renameInput.gameObject.SetActive(true);
         renameInput.Select();
     }

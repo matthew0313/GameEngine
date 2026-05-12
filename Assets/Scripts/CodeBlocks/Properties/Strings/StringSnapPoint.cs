@@ -8,7 +8,7 @@ public class StringSnapPoint : SnapPoint
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] TMP_InputField inputField;
-    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && (codeBlock is StringCodeBlock || codeBlock is NumericCodeBlock);
+    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is PropertyCodeBlock propertyBlock && (propertyBlock.propertyType == PropertyType.String || propertyBlock.propertyType == PropertyType.Number);
     protected override void OnSnappedChange()
     {
         inputField.gameObject.SetActive(snapped == null);
@@ -20,13 +20,10 @@ public class StringSnapPoint : SnapPoint
     }
     public string GetValue(ulong hash)
     {
-        if (snapped is StringCodeBlock stringCodeBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
-            return stringCodeBlock.GetValue(hash);
-        }
-        else if(snapped is NumericCodeBlock numericCodeBlock)
-        {
-            return numericCodeBlock.GetValue(hash).ToString();
+            if(propertyBlock.propertyType == PropertyType.Number) return propertyBlock.GetNumber(hash).ToString();
+            return propertyBlock.GetString(hash);
         }
         else if (!string.IsNullOrEmpty(inputField.text))
         {

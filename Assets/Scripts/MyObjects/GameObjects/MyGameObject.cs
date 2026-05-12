@@ -14,6 +14,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public readonly List<MyGameObject> children = new();
     public event Action onChildrenChange;
     public List<CodeBlock> codeBlocks { get; } = new();
+    public float lastZoom { get; set; } = 1.0f;
     public Vector2 lastOffset { get; set; } = Vector2.zero;
 
     [field:SerializeField] public Sprite icon { get; private set; }
@@ -176,4 +177,9 @@ public class MyGameObjectSave
     public Vector2 position;
     public DataUnit data = new();
     public List<MyGameObjectSave> children = new();
+}
+public enum MyPropertyType
+{
+    Number,
+    
 }

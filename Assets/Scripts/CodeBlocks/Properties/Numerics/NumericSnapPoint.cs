@@ -8,7 +8,12 @@ public class NumericSnapPoint : SnapPoint
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] TMP_InputField inputField;
-    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is NumericCodeBlock;
+    public override bool IsSnappable(CodeBlock codeBlock)
+    {
+        return base.IsSnappable(codeBlock) && 
+            codeBlock is PropertyCodeBlock propertyBlock && 
+            (propertyBlock.propertyType & PropertyType.Number) > 0;
+    }
     protected override void OnSnappedChange()
     {
         inputField.gameObject.SetActive(snapped == null);
@@ -18,11 +23,11 @@ public class NumericSnapPoint : SnapPoint
     {
         layoutElement.minWidth = GetWidth();
     }
-    public float GetValue(ulong hash)
+    public float GetNumber(ulong hash)
     {
-        if (snapped is NumericCodeBlock numericCodeBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
-            return numericCodeBlock.GetValue(hash);
+            return propertyBlock.GetNumber(hash);
         }
         else if (float.TryParse(inputField.text, out float value))
         {
@@ -30,12 +35,12 @@ public class NumericSnapPoint : SnapPoint
         }
         return 0.0f;
     }
-    public int GetIntValue(ulong hash) => Mathf.FloorToInt(GetValue(hash));
+    public int GetIntNumber(ulong hash) => Mathf.FloorToInt(GetNumber(hash));
     public float GetWidth()
     {
-        if (snapped is NumericCodeBlock numericCodeBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
-            return numericCodeBlock.GetWidth();
+            return propertyBlock.GetWidth();
         }
         else return defaultWidth;
     }

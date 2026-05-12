@@ -7,7 +7,11 @@ using UnityEngine;
 public class SnapPoint_ForIndex : SnapPoint
 {
     [SerializeField] CodeBlock_ForIndex blockPrefab;
-    public override bool IsSnappable(CodeBlock codeBlock) => false;
+    public override bool IsSnappable(CodeBlock codeBlock) => codeBlock is CodeBlock_ForIndex block && block.target == ownerBlock;
+    public override void Snap(CodeBlock codeBlock)
+    {
+        codeBlock.Delete();
+    }
     protected override void OnSnappedChange()
     {
         base.OnSnappedChange();
@@ -17,7 +21,7 @@ public class SnapPoint_ForIndex : SnapPoint
             tmp.target = ownerBlock as CodeBlock_For;
             tmp.owner = ownerBlock.owner;
             ownerBlock.owner.codeBlocks.Add(tmp);
-            Snap(tmp);
+            base.Snap(tmp);
         }
     }
 }

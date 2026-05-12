@@ -1,3 +1,4 @@
+using PrimeTween;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -39,14 +40,28 @@ public class SceneScreenController : MonoBehaviour, IPointerDownHandler
             "Move to Center",
             ctx =>
             {
-                MoveTo(Vector2.zero);
+                MoveTo(Vector2.zero, true);
             });
     }
-    public void MoveTo(Vector2 pos)
+    const float lerpTime = 0.3f;
+    Tween moveTween;
+    public void MoveTo(Vector2 pos, bool lerp = false)
     {
-        sceneCamera.transform.position = new Vector3(pos.x, pos.y, sceneCamera.transform.position.z);
-        grid.offset = -sceneCamera.transform.position * grid.spacing;
-        grid.SetVerticesDirty();
+        if (lerp)
+        {
+            moveTween.Stop();
+            moveTween = Tween.Position(sceneCamera.transform, new Vector3(pos.x, pos.y, sceneCamera.transform.position.z), lerpTime, Ease.OutCirc).OnUpdate(sceneCamera.transform, (cam, tween) =>
+            {
+                grid.offset = -sceneCamera.transform.position * grid.spacing;
+                grid.SetVerticesDirty();
+            });
+        }
+        else
+        {
+            sceneCamera.transform.position = new Vector3(pos.x, pos.y, sceneCamera.transform.position.z);
+            grid.offset = -sceneCamera.transform.position * grid.spacing;
+            grid.SetVerticesDirty();
+        }
     }
     void Update()
     {
@@ -77,6 +92,7 @@ public class SceneScreenController : MonoBehaviour, IPointerDownHandler
         if (dragging && !Input.GetMouseButton(2)) dragging = false;
         if (dragging)
         {
+            moveTween.Stop();
             Vector2 delta = Input.mousePositionDelta;
             float sensitivity = sceneCamera.orthographicSize * 0.01f;
             float moveX = -delta.x * moveSpeed * sensitivity;

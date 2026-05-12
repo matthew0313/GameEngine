@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StringCodeBlock : CodeBlock
+public abstract class ConditionCodeBlock : PropertyCodeBlock
 {
-    public abstract string GetValue(ulong hash);
-    public abstract float GetWidth();
+    public override PropertyType propertyType => PropertyType.Condition;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
         yield return new RCMenuElement_Button(
-            "Log Value",
+            "Log Condition",
             ctx =>
             {
                 EditorSceneManager.Instance.AddLog(new()
                 {
                     type = MyLogType.Info,
-                    message = GetValue(ulong.MaxValue)
+                    message = GetCondition(ulong.MaxValue).ToString()
                 });
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;

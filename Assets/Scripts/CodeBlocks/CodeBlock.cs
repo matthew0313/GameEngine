@@ -50,15 +50,16 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
             eventData.Use();
         }
     }
+    public void Delete()
+    {
+        if (owner != null) owner.codeBlocks.Remove(this);
+        Destroy(gameObject);
+    }
     protected virtual IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
         yield return new RCMenuElement_Button(
             "Delete",
-            ctx =>
-            {
-                if (owner != null) owner.codeBlocks.Remove(this);
-                Destroy(gameObject);
-            });
+            ctx => { Delete(); });
     }
     protected virtual void Awake()
     {

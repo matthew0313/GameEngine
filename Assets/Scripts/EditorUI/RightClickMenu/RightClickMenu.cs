@@ -56,12 +56,14 @@ public class RightClickMenu : MonoBehaviour
             if(i is RCMenuElement_Button button)
             {
                 var tmp = buttonPool.GetObject(elementAnchor);
+                tmp.transform.SetAsLastSibling();
                 tmp.Set(button);
                 this.elements.Add(tmp);
             }
             if(i is RCMenuElement_Foldout foldout)
             {
                 var tmp = foldoutPool.GetObject(elementAnchor);
+                tmp.transform.SetAsLastSibling();
                 tmp.Set(foldout);
                 this.elements.Add(tmp);
             }

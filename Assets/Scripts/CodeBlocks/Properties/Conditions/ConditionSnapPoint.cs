@@ -8,7 +8,12 @@ public class ConditionSnapPoint : SnapPoint
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] Toggle toggle;
-    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is ConditionCodeBlock;
+    public override bool IsSnappable(CodeBlock codeBlock)
+    {
+        return base.IsSnappable(codeBlock) && 
+            codeBlock is PropertyCodeBlock propertyBlock && 
+            propertyBlock.propertyType == PropertyType.Condition;
+    }
     protected override void OnSnappedChange()
     {
         toggle.gameObject.SetActive(snapped == null);
@@ -20,17 +25,17 @@ public class ConditionSnapPoint : SnapPoint
     }
     public bool GetCondition(ulong hash)
     {
-        if (snapped is ConditionCodeBlock conditionCodeBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
-            return conditionCodeBlock.GetCondition(hash);
+            return propertyBlock.GetCondition(hash);
         }
         else return toggle.isOn;
     }
     public float GetWidth()
     {
-        if (snapped is ConditionCodeBlock conditionCodeBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
-            return conditionCodeBlock.GetWidth();
+            return propertyBlock.GetWidth();
         }
         else return defaultWidth;
     }

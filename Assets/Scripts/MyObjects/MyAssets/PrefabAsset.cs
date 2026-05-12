@@ -7,7 +7,7 @@ public class PrefabAsset : MyAsset, ICodeable
 {
     public MyGameObject prefabOrigin { get; private set; }
     public override AssetType type => AssetType.Prefab;
-
+    public float lastZoom { get => prefabOrigin.lastZoom; set => prefabOrigin.lastZoom = value; }
     public Vector2 lastOffset { get => prefabOrigin.lastOffset; set => prefabOrigin.lastOffset = value; }
     public List<CodeBlock> codeBlocks => prefabOrigin.codeBlocks;
     public IEnumerable<CodeBlock> GetAvailableBlocks() => prefabOrigin.GetAvailableBlocks();

@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NumericCodeBlock : CodeBlock
+public abstract class NumericCodeBlock : PropertyCodeBlock
 {
-    public abstract float GetValue(ulong hash);
-    public abstract float GetWidth();
+    public override PropertyType propertyType => PropertyType.Number;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
         yield return new RCMenuElement_Button(
-            "Log Value",
+            "Log Number",
             ctx =>
             {
                 EditorSceneManager.Instance.AddLog(new()
                 {
                     type = MyLogType.Info,
-                    message = GetValue(ulong.MaxValue).ToString()
+                    message = GetNumber(ulong.MaxValue).ToString()
                 });
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;

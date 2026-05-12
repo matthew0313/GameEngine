@@ -103,3 +103,10 @@ public class ExposedList : ExposedProperty
         this.swapper = swapper;
     }
 }
+public class ExposedVariable : ExposedProperty
+{
+    public ExposedVariable(string name) : base(name)
+    {
+
+    }
+}

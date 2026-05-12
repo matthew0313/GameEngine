@@ -6,10 +6,10 @@ public abstract class SnapPoint : MonoBehaviour
     [SerializeField] protected CodeBlock ownerBlock;
     [SerializeField] protected Transform snapAnchor;
     public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != ownerBlock;
-    [field:SerializeField] public CodeBlock snapped { get; protected set; }
+    public CodeBlock snapped { get; protected set; }
     public virtual void Snap(CodeBlock codeBlock)
     {
-        if(codeBlock == null || !IsSnappable(codeBlock)) return;
+        if (codeBlock == null) return;
         if (codeBlock.snappedPoint != null) codeBlock.snappedPoint.Detach();
         if (snapped != null)
         {
@@ -19,6 +19,7 @@ public abstract class SnapPoint : MonoBehaviour
         snapped = codeBlock;
         snapped.snappedPoint = this;
         snapped.transform.SetParent(snapAnchor);
+        snapped.transform.localScale = Vector3.one;
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();
     }
@@ -37,9 +38,12 @@ public abstract class SnapPoint : MonoBehaviour
     {
         onSnappedChange?.Invoke();
     }
-    private void OnEnable()
+    protected virtual void Start()
     {
         OnSnappedChange();
+    }
+    private void OnEnable()
+    {
         EditorSceneManager.Instance.snapPoints.Add(this);
     }
     private void OnDisable()

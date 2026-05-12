@@ -132,7 +132,7 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
                 "Move To Object",
                 ctx =>
                 {
-                    EditorSceneManager.Instance.sceneScreen.MoveTo(element.transform.position);
+                    EditorSceneManager.Instance.sceneScreen.MoveTo(element.target.transform.position, true);
                 });
             yield return new RCMenuElement_Button(
                 "Make Prefab",

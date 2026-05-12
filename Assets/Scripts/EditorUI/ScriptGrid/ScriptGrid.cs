@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
+using PrimeTween;
 
 public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
 {
@@ -38,13 +39,40 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
             editing = codeable;
             onEditingChange?.Invoke(editing);
             panOffset = editing.lastOffset;
+            zoom = editing.lastZoom;
             grid.offset = panOffset;
             anchor.localPosition = panOffset;
+            grid.spacing = baseSpacing * zoom;
+            anchor.localScale = Vector2.one * zoom;
+            grid.SetVerticesDirty();
             foreach (var block in editing.codeBlocks)
             {
                 block.transform.SetParent(anchor, true);
                 block.gameObject.SetActive(true);
             }
+        }
+    }
+    const float lerpTime = 0.3f;
+    public void MoveTo(Vector2 pos, bool lerp = false)
+    {
+        pos = grid.transform.InverseTransformPoint(pos);
+        if (lerp)
+        {
+            Tween.Custom(panOffset, panOffset - pos, lerpTime, val => panOffset = val, Ease.OutCirc).OnUpdate<ScriptGrid>(this, (self, tween) =>
+            {
+                anchor.localPosition = panOffset;
+                if (editing != null) editing.lastOffset = panOffset;
+                grid.offset = panOffset;
+                grid.SetVerticesDirty();
+            });
+        }
+        else
+        {
+            panOffset -= pos;
+            anchor.localPosition = panOffset;
+            if (editing != null) editing.lastOffset = panOffset;
+            grid.offset = panOffset;
+            grid.SetVerticesDirty();
         }
     }
     void Update()
@@ -70,7 +98,12 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
         float scroll = eventData.scrollDelta.y;
         if (scroll != 0f)
         {
+            float prev = zoom;
             zoom = Mathf.Clamp(zoom * (1f + scroll * scrollSensitivity), 0.1f, 10f);
+            panOffset *= zoom / prev;
+            anchor.localPosition = panOffset;
+            if (editing != null) editing.lastOffset = panOffset;
+            grid.offset = panOffset;
             grid.spacing = baseSpacing * zoom;
             anchor.localScale = Vector2.one * zoom;
             grid.SetVerticesDirty();
@@ -100,11 +133,7 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
             "Move to Center",
             (ctx) =>
             {
-                panOffset = Vector2.zero;
-                anchor.localPosition = panOffset;
-                if (editing != null) editing.lastOffset = panOffset;
-                grid.offset = panOffset;
-                grid.SetVerticesDirty();
+                MoveTo(anchor.position, true);
             });
     }
 }

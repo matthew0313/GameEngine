@@ -35,9 +35,14 @@ public class MyGameObject_Camera : MyGameObject
             "OrthographicSize",
             (self) => cam.orthographicSize,
             (self, value) => cam.orthographicSize = value);
-        yield return new ExposedFloat(
-            "Priority",
-            (self) => priority,
-            (self, value) => priority = value);
+        yield return new ExposedVector2(
+            "Size",
+            (self) => size,
+            (self, value) =>
+            {
+                size = new Vector2Int(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
+                renderTexture = new RenderTexture(size.x, size.y, 24);
+                cam.targetTexture = renderTexture;
+            });
     }
 }
