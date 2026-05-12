@@ -25,13 +25,13 @@ public class NumericSnapPoint : SnapPoint
     }
     public float GetNumber(ulong hash)
     {
-        if (snapped is PropertyCodeBlock propertyBlock)
+        if (snapped == null)
+        {
+            if (float.TryParse(inputField.text, out float value)) return value;
+        }
+        else if (snapped is PropertyCodeBlock propertyBlock)
         {
             return propertyBlock.GetNumber(hash);
-        }
-        else if (float.TryParse(inputField.text, out float value))
-        {
-            return value;
         }
         return 0.0f;
     }

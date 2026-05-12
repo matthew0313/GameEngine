@@ -19,7 +19,7 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
     }
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
-        int count = loopCount.GetIntValue(hash);
+        int count = loopCount.GetIntNumber(hash);
         for(int i = 0; i < count; i++)
         {
             loopIndices[hash] = i;
