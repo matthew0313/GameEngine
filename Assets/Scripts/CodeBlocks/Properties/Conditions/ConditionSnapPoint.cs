@@ -12,7 +12,7 @@ public class ConditionSnapPoint : SnapPoint
     {
         return base.IsSnappable(codeBlock) && 
             codeBlock is PropertyCodeBlock propertyBlock && 
-            propertyBlock.propertyType == PropertyType.Condition;
+            (propertyBlock.propertyType & PropertyType.Condition) > 0;
     }
     protected override void OnSnappedChange()
     {
@@ -25,11 +25,15 @@ public class ConditionSnapPoint : SnapPoint
     }
     public bool GetCondition(ulong hash)
     {
-        if (snapped is PropertyCodeBlock propertyBlock)
+        if (snapped == null)
+        {
+            return toggle.isOn;
+        }
+        else if (snapped is PropertyCodeBlock propertyBlock)
         {
             return propertyBlock.GetCondition(hash);
         }
-        else return toggle.isOn;
+        else return false;
     }
     public float GetWidth()
     {

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
+public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] Button foldoutButton;
     [SerializeField] Image icon;
@@ -111,5 +112,18 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler
         renameInput.gameObject.SetActive(false);
         target.name = text;
         target.OnPropertyChange();
+    }
+    public void OnDrag(PointerEventData eventData) { }
+    public void OnBeginDrag(PointerEventData eventData) { }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        foreach(var hit in UIScanner.ScanUI(eventData.position))
+        {
+            if(hit.gameObject.TryGetComponentInParents(out IObjectDraggable target))
+            {
+                target.OnObjectDrag(this.target);
+                break;
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ public class Codeblock_Wait : ExecutableCodeBlock, IOnFinish
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
-        float waitTime = duration.GetValue(hash);
+        float waitTime = duration.GetNumber(hash);
         switch (unit.value)
         {
             case 0:

@@ -164,6 +164,13 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             foreach (var i in child.GetHierarchy()) yield return i;
         }
     }
+    public event Action onDelete;
+    public void Delete()
+    {
+        if (parent != null) parent.RemoveChild(this);
+        onDelete?.Invoke();
+        Destroy(gameObject);
+    }
 
     public virtual void OnSelect() { }
 

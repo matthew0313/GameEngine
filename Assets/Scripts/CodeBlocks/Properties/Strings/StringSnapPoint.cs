@@ -8,7 +8,12 @@ public class StringSnapPoint : SnapPoint
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] TMP_InputField inputField;
-    public override bool IsSnappable(CodeBlock codeBlock) => base.IsSnappable(codeBlock) && codeBlock is PropertyCodeBlock propertyBlock && (propertyBlock.propertyType == PropertyType.String || propertyBlock.propertyType == PropertyType.Number);
+    public override bool IsSnappable(CodeBlock codeBlock)
+    {
+        return base.IsSnappable(codeBlock) && 
+            codeBlock is PropertyCodeBlock propertyBlock && 
+            ((propertyBlock.propertyType & PropertyType.String) > 0 || (propertyBlock.propertyType & PropertyType.Number) > 0);
+    }
     protected override void OnSnappedChange()
     {
         inputField.gameObject.SetActive(snapped == null);
@@ -20,14 +25,14 @@ public class StringSnapPoint : SnapPoint
     }
     public string GetValue(ulong hash)
     {
-        if (snapped is PropertyCodeBlock propertyBlock)
-        {
-            if(propertyBlock.propertyType == PropertyType.Number) return propertyBlock.GetNumber(hash).ToString();
-            return propertyBlock.GetString(hash);
-        }
-        else if (!string.IsNullOrEmpty(inputField.text))
+        if(snapped == null)
         {
             return inputField.text;
+        }
+        else if (snapped is PropertyCodeBlock propertyBlock)
+        {
+            if ((propertyBlock.propertyType & PropertyType.String) > 0) return propertyBlock.GetString(hash);
+            if ((propertyBlock.propertyType & PropertyType.Number) > 0) return propertyBlock.GetNumber(hash).ToString();
         }
         return string.Empty;
     }
@@ -37,7 +42,7 @@ public class StringSnapPoint : SnapPoint
         {
             return stringCodeBlock.GetWidth();
         }
-        else if(snapped is NumericCodeBlock numericCodeBlock)
+        else if (snapped is NumericCodeBlock numericCodeBlock)
         {
             return numericCodeBlock.GetWidth();
         }
