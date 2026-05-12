@@ -3,12 +3,12 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class Codeblock_MoveInTime : ExecutableCodeBlock, IOnFinish
+public class Codeblock_MoveToInTime : ExecutableCodeBlock, IOnFinish
 {
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint time;
-    [SerializeField] NumericSnapPoint moveX, moveY;
+    [SerializeField] NumericSnapPoint targetX, targetY;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
 
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
@@ -22,11 +22,11 @@ public class Codeblock_MoveInTime : ExecutableCodeBlock, IOnFinish
         float counter = time.GetNumber(hash);
         if (counter <= 0)
         {
-            owner.transform.position += new Vector3(moveX.GetNumber(hash), moveY.GetNumber(hash));
+            owner.transform.position += new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash));
         }
         else
         {
-            Vector3 move = new Vector3(moveX.GetNumber(hash), moveY.GetNumber(hash)) / counter;
+            Vector3 move = (new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash)) - owner.transform.position) / counter;
             while (counter > 0)
             {
                 await UniTask.Yield();

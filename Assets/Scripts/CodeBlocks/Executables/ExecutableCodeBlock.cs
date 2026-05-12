@@ -22,4 +22,5 @@ public abstract class ExecutableCodeBlock : CodeBlock
 public struct ExecutionFinishedInfo
 {
     public bool breaked;
+    public bool exception;
 }
