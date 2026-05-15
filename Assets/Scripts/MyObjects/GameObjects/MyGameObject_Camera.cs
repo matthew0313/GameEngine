@@ -25,20 +25,20 @@ public class MyGameObject_Camera : MyGameObject
         foreach (var i in base.GetElements()) yield return i;
         yield return new ExposedVector2(
             "Position",
-            (self) => transform.localPosition,
-            (self, value) => transform.localPosition = value);
+            () => transform.localPosition,
+            (value) => transform.localPosition = value);
         yield return new ExposedFloat(
             "Rotation",
-            (self) => transform.localEulerAngles.z,
-            (self, value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
+            () => transform.localEulerAngles.z,
+            (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
         yield return new ExposedFloat(
             "OrthographicSize",
-            (self) => cam.orthographicSize,
-            (self, value) => cam.orthographicSize = value);
+            () => cam.orthographicSize,
+            (value) => cam.orthographicSize = value);
         yield return new ExposedVector2(
             "Size",
-            (self) => size,
-            (self, value) =>
+            () => size,
+            (value) =>
             {
                 size = new Vector2Int(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
                 renderTexture = new RenderTexture(size.x, size.y, 24);

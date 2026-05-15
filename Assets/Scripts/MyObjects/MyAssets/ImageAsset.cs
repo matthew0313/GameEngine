@@ -32,12 +32,12 @@ public class ImageAsset : MyAsset, IFileAsset
         foreach(var i in base.GetElements()) yield return i;
         yield return new ExposedString(
             "FilePath",
-            (self) => filePath,
-            (self, value) => LoadFile(value));
+            () => filePath,
+            (value) => LoadFile(value));
         yield return new ExposedVector2(
             "Pivot",
-            (self) => pivot,
-            (self, value) => { pivot = value; if(sprite != null) sprite = Sprite.Create(sprite.texture, new Rect(sprite.rect), pivot); });
+            () => pivot,
+            (value) => { pivot = value; if(sprite != null) sprite = Sprite.Create(sprite.texture, new Rect(sprite.rect), pivot); });
     }
     public override MyAssetSave Save()
     {

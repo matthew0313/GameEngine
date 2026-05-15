@@ -13,8 +13,8 @@ public abstract class ExposedElement
 public class ExposedButton : ExposedElement
 {
     public readonly string name;
-    public readonly Action<ExposedButton> onClick;
-    public ExposedButton(string name, Action<ExposedButton> onClick)
+    public readonly Action onClick;
+    public ExposedButton(string name, Action onClick)
     {
         this.name = name;
         this.onClick = onClick;
@@ -30,9 +30,9 @@ public abstract class ExposedProperty : ExposedElement
 }
 public class ExposedVector2 : ExposedProperty
 {
-    public readonly Func<ExposedVector2, Vector2> getter;
-    public readonly Action<ExposedVector2, Vector2> setter;
-    public ExposedVector2(string name, Func<ExposedVector2, Vector2> getter, Action<ExposedVector2, Vector2> setter) : base(name)
+    public readonly Func<Vector2> getter;
+    public readonly Action<Vector2> setter;
+    public ExposedVector2(string name, Func<Vector2> getter, Action<Vector2> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
@@ -40,9 +40,9 @@ public class ExposedVector2 : ExposedProperty
 }
 public class ExposedFloat : ExposedProperty
 {
-    public readonly Func<ExposedFloat, float> getter;
-    public readonly Action<ExposedFloat, float> setter;
-    public ExposedFloat(string name, Func<ExposedFloat, float> getter, Action<ExposedFloat, float> setter) : base(name)
+    public readonly Func<float> getter;
+    public readonly Action<float> setter;
+    public ExposedFloat(string name, Func<float> getter, Action<float> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
@@ -50,9 +50,9 @@ public class ExposedFloat : ExposedProperty
 }
 public class ExposedBool : ExposedProperty
 {
-    public readonly Func<ExposedBool, bool> getter;
-    public readonly Action<ExposedBool, bool> setter;
-    public ExposedBool(string name, Func<ExposedBool, bool> getter, Action<ExposedBool, bool> setter) : base(name)
+    public readonly Func<bool> getter;
+    public readonly Action<bool> setter;
+    public ExposedBool(string name, Func<bool> getter, Action<bool> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
@@ -60,9 +60,9 @@ public class ExposedBool : ExposedProperty
 }
 public class ExposedString : ExposedProperty
 {
-    public readonly Func<ExposedString, string> getter;
-    public readonly Action<ExposedString, string> setter;
-    public ExposedString(string name, Func<ExposedString, string> getter, Action<ExposedString, string> setter) : base(name)
+    public readonly Func<string> getter;
+    public readonly Action<string> setter;
+    public ExposedString(string name, Func<string> getter, Action<string> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
@@ -70,10 +70,10 @@ public class ExposedString : ExposedProperty
 }
 public class ExposedAsset : ExposedProperty
 {
-    public readonly Func<ExposedAsset, MyAsset> getter;
-    public readonly Action<ExposedAsset, MyAsset> setter;
+    public readonly Func<MyAsset> getter;
+    public readonly Action<MyAsset> setter;
     public readonly Func<MyAsset, bool> condition;
-    public ExposedAsset(string name, Func<ExposedAsset, MyAsset> getter, Action<ExposedAsset, MyAsset> setter, Func<MyAsset, bool> condition) : base(name)
+    public ExposedAsset(string name, Func<MyAsset> getter, Action<MyAsset> setter, Func<MyAsset, bool> condition) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
@@ -82,9 +82,9 @@ public class ExposedAsset : ExposedProperty
 }
 public class ExposedObject : ExposedProperty
 {
-    public readonly Func<ExposedObject, MyGameObject> getter;
-    public readonly Action<ExposedObject, MyGameObject> setter;
-    public ExposedObject(string name, Func<ExposedObject, MyGameObject> getter, Action<ExposedObject, MyGameObject> setter) : base(name)
+    public readonly Func<MyGameObject> getter;
+    public readonly Action<MyGameObject> setter;
+    public ExposedObject(string name, Func<MyGameObject> getter, Action<MyGameObject> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;

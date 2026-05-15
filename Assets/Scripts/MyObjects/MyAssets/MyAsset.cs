@@ -13,8 +13,8 @@ public abstract class MyAsset : ISelectable, IInspectable
     {
         yield return new ExposedString(
             "Name",
-            (self) => name,
-            (self, value) => { name = value; onUpdate?.Invoke(); });
+            () => name,
+            (value) => { name = value; onUpdate?.Invoke(); });
     }
     protected virtual void OnUpdate() => onUpdate?.Invoke();
     public virtual MyAssetSave Save()

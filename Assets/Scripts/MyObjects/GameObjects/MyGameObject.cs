@@ -87,16 +87,16 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     {
         yield return new ExposedString(
             "Name",
-            (self) => name,
-            (self, value) => { name = value; OnPropertyChange(); });
+            () => name,
+            (value) => { name = value; OnPropertyChange(); });
         yield return new ExposedVector2(
             "Position",
-            (self) => transform.localPosition,
-            (self, value) => transform.localPosition = value);
+            () => transform.localPosition,
+            (value) => transform.localPosition = value);
         yield return new ExposedFloat(
             "Rotation",
-            (self) => transform.localEulerAngles.z,
-            (self, value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
+            () => transform.localEulerAngles.z,
+            (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
     }
 
     public readonly Dictionary<string, float> numericVariables = new();

@@ -21,13 +21,13 @@ public class MyGameObject_Sprite : MyGameObject
         foreach (var i in base.GetElements()) yield return i;
         yield return new ExposedFloat(
             "Image Index",
-            (self) => imageIndex,
-            (self, value) => SetImageIndex(Mathf.FloorToInt(value))
+            () => imageIndex,
+            (value) => SetImageIndex(Mathf.FloorToInt(value))
         );
         yield return new ExposedFloat(
             "Order in Layer",
-            (self) => spriteRenderer.sortingOrder,
-            (self, value) => spriteRenderer.sortingOrder = Mathf.FloorToInt(value));
+            () => spriteRenderer.sortingOrder,
+            (value) => spriteRenderer.sortingOrder = Mathf.FloorToInt(value));
     }
     public void SetImageIndex(int index)
     {
