@@ -148,6 +148,12 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
                 {
                     element.Rename();
                 });
+            yield return new RCMenuElement_Button(
+                "Delete",
+                ctx =>
+                {
+                    element.target.Delete();
+                });
         }
         yield return new RCMenuElement_Foldout(
             element != null ? "Create Child Object" : "Create Object",
@@ -155,15 +161,78 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     }
     IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(HierarchyUIElement element)
     {
+        bool UI = false;
         foreach(var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
         {
+            if (obj is MyGameObject_UI)
+            {
+                UI = true; break;
+            }
             yield return new RCMenuElement_Button(
                 obj.name,
                 ctx =>
                 {
                     MyGameObject newObj = Instantiate(obj);
-                    if (element == null) EditorSceneManager.Instance.myScene.AddChild(newObj);
-                    else element.target.AddChild(newObj);
+                    if (element == null)
+                    {
+                        int index = 0;
+                        while (true)
+                        {
+                            if (EditorSceneManager.Instance.myScene.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                            else break;
+                        }
+                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+                        EditorSceneManager.Instance.myScene.AddChild(newObj);
+                    }
+                    else
+                    {
+                        int index = 0;
+                        while (true)
+                        {
+                            if (element.target.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                            else break;
+                        }
+                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+                        element.target.AddChild(newObj);
+                    }
+                });
+        }
+        if(UI) yield return new RCMenuElement_Foldout(
+            "UI Objects",
+            MakeRightClickMenu_CreateObject_UI(element));
+    }
+    IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject_UI(HierarchyUIElement element)
+    {
+        foreach (var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
+        {
+            if (!(obj is MyGameObject_UI)) continue;
+            yield return new RCMenuElement_Button(
+                obj.name,
+                ctx =>
+                {
+                    MyGameObject newObj = Instantiate(obj);
+                    if (element == null)
+                    {
+                        int index = 0;
+                        while (true)
+                        {
+                            if (EditorSceneManager.Instance.myScene.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                            else break;
+                        }
+                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+                        EditorSceneManager.Instance.myScene.AddChild(newObj);
+                    }
+                    else
+                    {
+                        int index = 0;
+                        while (true)
+                        {
+                            if (element.target.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                            else break;
+                        }
+                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+                        element.target.AddChild(newObj);
+                    }
                 });
         }
     }

@@ -55,6 +55,7 @@ public class MyScene : MonoBehaviour, IParent
         child.transform.SetSiblingIndex(index);
         onHierarchyChange?.Invoke();
     }
+    public IEnumerable<MyGameObject> GetChildren() => topGameObjects;
     private void OnChildrenChange() => onHierarchyChange?.Invoke();
     public bool ContainsObject(MyGameObject obj) => FindObject((o) => o == obj) != null;
     public MyGameObject FindObject(Func<MyGameObject, bool> predicate)

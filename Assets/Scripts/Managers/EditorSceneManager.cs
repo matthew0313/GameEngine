@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading;
+using Cysharp.Threading.Tasks;
+
 
 
 
@@ -67,6 +69,14 @@ public class EditorSceneManager : MonoBehaviour
     private void Update()
     {
         if (InputManager.GetKeyDown(KeyCode.Escape)) Select(null);
+        if (InputManager.GetKeyDown(KeyCode.Delete))
+        {
+            if(selected != null)
+            {
+                if(selected is MyGameObject myGameObject) myGameObject.Delete();
+                else if(selected is MyAsset myAsset) RemoveAsset(myAsset);
+            }
+        }
     }
     readonly List<RaycastResult> raycastResults = new();
     public List<RaycastResult> RaycastUI(Vector2 position)
@@ -78,7 +88,14 @@ public class EditorSceneManager : MonoBehaviour
     }
     public void AddAsset(MyAsset asset)
     {
+        if (assets.Contains(asset)) return;
         assets.Add(asset);
+        onAssetsChange?.Invoke();
+    }
+    public void RemoveAsset(MyAsset asset)
+    {
+        if (!assets.Contains(asset)) return;
+        assets.Remove(asset);
         onAssetsChange?.Invoke();
     }
     public void ReloadAssets()
