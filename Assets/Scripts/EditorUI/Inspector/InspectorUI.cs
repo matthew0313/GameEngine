@@ -20,11 +20,11 @@ public class InspectorUI : MonoBehaviour
     {
         foreach (var element in inspectable.GetElements())
         {
-            if (element is ExposedButton button)
+            if (element is ExposedButton exposedButton)
             {
 
             }
-            else if (element is ExposedVector2 vector2)
+            else if (element is ExposedVector2 exposedVector2)
             {
 
             }
@@ -44,7 +44,11 @@ public class InspectorUI : MonoBehaviour
             {
 
             }
-            else if (element is ExposedAnchor anchor)
+            else if(element is ExposedAsset exposedAsset)
+            {
+
+            }
+            else if (element is ExposedAnchor exposedAnchor)
             {
 
             }

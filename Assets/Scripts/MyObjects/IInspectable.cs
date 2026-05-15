@@ -68,14 +68,16 @@ public class ExposedString : ExposedProperty
         this.setter = setter;
     }
 }
-public class ExposedAsset<T> : ExposedProperty where T : MyAsset
+public class ExposedAsset : ExposedProperty
 {
-    public readonly Func<ExposedAsset<T>, T> getter;
-    public readonly Action<ExposedAsset<T>, T> setter;
-    public ExposedAsset(string name, Func<ExposedAsset<T>, T> getter, Action<ExposedAsset<T>, T> setter) : base(name)
+    public readonly Func<ExposedAsset, MyAsset> getter;
+    public readonly Action<ExposedAsset, MyAsset> setter;
+    public readonly Func<MyAsset, bool> condition;
+    public ExposedAsset(string name, Func<ExposedAsset, MyAsset> getter, Action<ExposedAsset, MyAsset> setter, Func<MyAsset, bool> condition) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
+        this.condition = condition;
     }
 }
 public class ExposedObject : ExposedProperty
