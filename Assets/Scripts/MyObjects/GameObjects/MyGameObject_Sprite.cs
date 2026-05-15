@@ -19,53 +19,6 @@ public class MyGameObject_Sprite : MyGameObject
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
-        yield return new ExposedList(
-            "Images",
-            (self) =>
-            {
-                List<ExposedProperty> exposedAssets = new();
-                int index = 0;
-                foreach (var i in images)
-                {
-                    ExposedAsset<ImageAsset> exposedAsset = new(
-                        $"Image {index}",
-                        (self) => i,
-                        (self, value) =>
-                        {
-                            if(self.listIndex < 0 || self.listIndex >= images.Count)
-                            {
-                                EditorSceneManager.Instance.AddLog(new MyLog(
-                                    MyLogType.Error, $"Invalid image index in gameObject {name}"
-                                ));
-                                return;
-                            }
-                            images[self.listIndex] = value;
-                        }
-                    )
-                    {
-                        listIndex = index++
-                    };
-                    exposedAssets.Add(exposedAsset);
-                }
-                return exposedAssets;
-            },
-            (index) =>
-            {
-                if (index < 0 || index > images.Count) return;
-                images.Insert(index, null);
-            },
-            (index) =>
-            {
-                if (index < 0 || index >= images.Count) return;
-                images.RemoveAt(index);
-            },
-            (index1, index2) =>
-            {
-                if (index1 < 0 || index1 >= images.Count || index2 < 0 || index2 >= images.Count) return;
-                var temp = images[index1];
-                images[index1] = images[index2];
-                images[index2] = temp;
-            });
         yield return new ExposedFloat(
             "Image Index",
             (self) => imageIndex,

@@ -29,7 +29,7 @@ public class MyScene : MonoBehaviour, IParent
     {
         if (topGameObjects.Contains(child)) return;
         if (child.parent != null && child.parent != this) child.parent.RemoveChild(child);
-        if (child is MyGameObject_UI) child.transform.SetParent(UIAnchor, true);
+        if (child is MyGameObject_UI) child.transform.SetParent(UIAnchor, false);
         else child.transform.SetParent(objectAnchor, true);
         child.parent = this;
         topGameObjects.Add(child);

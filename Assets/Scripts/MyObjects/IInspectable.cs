@@ -23,7 +23,6 @@ public class ExposedButton : ExposedElement
 public abstract class ExposedProperty : ExposedElement
 {
     public readonly string name;
-    public int listIndex = -1;
     public ExposedProperty(string name)
     {
         this.name = name;
@@ -87,26 +86,5 @@ public class ExposedObject : ExposedProperty
     {
         this.getter = getter;
         this.setter = setter;
-    }
-}
-public class ExposedList : ExposedProperty
-{
-    public readonly Func<ExposedList, List<ExposedProperty>> getter;
-    public readonly Action<int> adder;
-    public readonly Action<int> remover;
-    public readonly Action<int, int> swapper;
-    public ExposedList(string name, Func<ExposedList, List<ExposedProperty>> getter, Action<int> adder, Action<int> remover, Action<int, int> swapper) : base(name)
-    {
-        this.getter = getter;
-        this.adder = adder;
-        this.remover = remover;
-        this.swapper = swapper;
-    }
-}
-public class ExposedVariable : ExposedProperty
-{
-    public ExposedVariable(string name) : base(name)
-    {
-
     }
 }
