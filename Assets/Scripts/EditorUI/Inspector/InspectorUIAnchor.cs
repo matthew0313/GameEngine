@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class InspectorUIAnchor : InspectorUIElement
 {
     [SerializeField] Button openMenuButton;
-    [SerializeField] GameObject menu;
+    [SerializeField] Transform menuAnchor;
+    [SerializeField] InspectorUIAnchorMenu menu;
     [SerializeField] Image currentPresetIcon;
     [SerializeField] AnchorPreset[] presets;
 
@@ -49,7 +50,8 @@ public class InspectorUIAnchor : InspectorUIElement
     void OpenMenu()
     {
         if (menuOpen) return;
-        menu.gameObject.SetActive(true);
+        menu.Show(this);
+        menu.transform.position = menuAnchor.position;
         menuOpen = true;
         exitMenuInput ??= new() { priority = 9999, onTrigger = CloseMenu };
         InputManager.Instance.AddOverride(KeyCode.Escape, exitMenuInput);
@@ -57,7 +59,7 @@ public class InspectorUIAnchor : InspectorUIElement
     void CloseMenu()
     {
         if (!menuOpen) return;
-        menu.gameObject.SetActive(false);
+        menu.Hide();
         menuOpen = false;
         InputManager.Instance.RemoveOverride(KeyCode.Escape, exitMenuInput);
     }
@@ -79,9 +81,10 @@ public class InspectorUIAnchor : InspectorUIElement
                 }
             }
         }
-        if(menuOpen && Input.GetMouseButtonDown(0))
+        if(menuOpen)
         {
-            if (!UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(menu.transform)) CloseMenu();
+            menu.transform.position = menuAnchor.position;
+            if (Input.GetMouseButtonDown(0) && !UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(menu.transform)) CloseMenu();
         }
     }
 
