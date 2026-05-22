@@ -17,50 +17,50 @@ public abstract class MyGameObject_UI : MyGameObject
             () => name,
             (value) => name = value);
         yield return new ExposedAnchor(
-            (self) => rectTransform.anchorMin,
-            (self) => rectTransform.anchorMax,
-            (self, value) => rectTransform.anchorMin = value,
-            (self, value) => rectTransform.anchorMax = value);
+            () => rectTransform.anchorMin,
+            () => rectTransform.anchorMax,
+            (value) => rectTransform.anchorMin = value,
+            (value) => rectTransform.anchorMax = value);
         if (rectTransform.anchorMin.x == rectTransform.anchorMax.x)
         {
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Pos X",
                 () => rectTransform.anchoredPosition.x,
                 (value) => rectTransform.anchoredPosition = new Vector2(value, rectTransform.anchoredPosition.y));
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Width",
                 () => rectTransform.rect.width,
                 (value) => rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value));
         }
         else
         {
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Left",
                 () => rectTransform.offsetMin.x,
                 (value) => rectTransform.offsetMin = new Vector2(value, rectTransform.offsetMin.y));
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Right",
                 () => -rectTransform.offsetMax.x,
                 (value) => rectTransform.offsetMax = new Vector2(-value, rectTransform.offsetMax.y));
         }
         if (rectTransform.anchorMin.y == rectTransform.anchorMax.y)
         {
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Pos Y",
                 () => rectTransform.anchoredPosition.y,
                 (value) => rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, value));
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Height",
                 () => rectTransform.rect.height,
                 (value) => rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, value));
         }
         else
         {
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Top",
                 () => -rectTransform.offsetMax.y,
                 (value) => rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, -value));
-            yield return new ExposedFloat(
+            yield return new ExposedNumber(
                 "Bottom",
                 () => rectTransform.offsetMin.y,
                 (value) => rectTransform.offsetMin = new Vector2(rectTransform.offsetMin.x, value));
@@ -69,7 +69,7 @@ public abstract class MyGameObject_UI : MyGameObject
             "Pivot",
             () => rectTransform.pivot,
             (value) => rectTransform.pivot = value);
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "Rotation",
             () => transform.localEulerAngles.z,
             (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
@@ -77,13 +77,13 @@ public abstract class MyGameObject_UI : MyGameObject
 }
 public class ExposedAnchor : ExposedElement
 {
-    readonly Func<ExposedAnchor, Vector2> minGetter, maxGetter;
-    readonly Action<ExposedAnchor, Vector2> minSetter, maxSetter;
+    public readonly Func<Vector2> minGetter, maxGetter;
+    public readonly Action<Vector2> minSetter, maxSetter;
     public ExposedAnchor(
-        Func<ExposedAnchor, Vector2> minGetter,
-        Func<ExposedAnchor, Vector2> maxGetter,
-        Action<ExposedAnchor, Vector2> minSetter,
-        Action<ExposedAnchor, Vector2> maxSetter)
+        Func<Vector2> minGetter,
+        Func<Vector2> maxGetter,
+        Action<Vector2> minSetter,
+        Action<Vector2> maxSetter)
     {
         this.minGetter = minGetter;
         this.maxGetter = maxGetter;

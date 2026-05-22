@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IInspectable
 {
     public IEnumerable<ExposedElement> GetElements();
+    public event Action onInspectorChange;
 }
 public abstract class ExposedElement
 {
@@ -38,11 +39,11 @@ public class ExposedVector2 : ExposedProperty
         this.setter = setter;
     }
 }
-public class ExposedFloat : ExposedProperty
+public class ExposedNumber : ExposedProperty
 {
     public readonly Func<float> getter;
     public readonly Action<float> setter;
-    public ExposedFloat(string name, Func<float> getter, Action<float> setter) : base(name)
+    public ExposedNumber(string name, Func<float> getter, Action<float> setter) : base(name)
     {
         this.getter = getter;
         this.setter = setter;

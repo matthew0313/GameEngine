@@ -19,12 +19,12 @@ public class MyGameObject_Sprite : MyGameObject
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "Image Index",
             () => imageIndex,
             (value) => SetImageIndex(Mathf.FloorToInt(value))
         );
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "Order in Layer",
             () => spriteRenderer.sortingOrder,
             (value) => spriteRenderer.sortingOrder = Mathf.FloorToInt(value));

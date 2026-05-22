@@ -27,11 +27,11 @@ public class MyGameObject_Camera : MyGameObject
             "Position",
             () => transform.localPosition,
             (value) => transform.localPosition = value);
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "Rotation",
             () => transform.localEulerAngles.z,
             (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "OrthographicSize",
             () => cam.orthographicSize,
             (value) => cam.orthographicSize = value);

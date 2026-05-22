@@ -1,10 +1,32 @@
+using TMPro;
 using UnityEngine;
 
-public class InspectorUIObject : InspectorUIElement
+public class InspectorUIObject : InspectorUIElement, IObjectDraggable
 {
+    [SerializeField] TMP_Text objectName;
+
     ExposedObject element;
+    MyGameObject obj;
+
+    public void OnObjectDrag(MyGameObject obj)
+    {
+        if (element == null) return;
+        element.setter(obj);
+    }
     public void Set(ExposedObject element)
     {
         this.element = element;
+        this.obj = element.getter();
+        objectName.text = obj != null ? obj.name : "None";
+    }
+    private void Update()
+    {
+        if (element == null) return;
+        MyGameObject tmp = element.getter();
+        if (tmp != obj)
+        {
+            obj = tmp;
+            objectName.text = obj != null ? obj.name : "None";
+        }
     }
 }

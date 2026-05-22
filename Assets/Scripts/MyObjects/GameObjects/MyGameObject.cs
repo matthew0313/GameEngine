@@ -21,7 +21,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     [SerializeField] int childrenOffset = 0;
     [SerializeField] List<CodeBlockList> availableCodeBlockLists;
     [SerializeField] List<CodeBlock> availableCodeBlocks;
-    public event Action onPropertyChange;
+    public event Action onDisplayChange;
     protected virtual void Awake()
     {
         uid = MathUtilities.GenerateRandomID();
@@ -82,22 +82,23 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             yield return block;
         }
     }
-    public virtual void OnPropertyChange() => onPropertyChange?.Invoke();
+    public virtual void OnDisplayChange() => onDisplayChange?.Invoke();
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
             "Name",
             () => name,
-            (value) => { name = value; OnPropertyChange(); });
+            (value) => { name = value; OnDisplayChange(); });
         yield return new ExposedVector2(
             "Position",
             () => transform.localPosition,
             (value) => transform.localPosition = value);
-        yield return new ExposedFloat(
+        yield return new ExposedNumber(
             "Rotation",
             () => transform.localEulerAngles.z,
             (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
     }
+    public event Action onInspectorChange;
 
     public readonly Dictionary<string, float> numericVariables = new();
     public virtual MyGameObjectSave Save(bool prettyPrint = true)

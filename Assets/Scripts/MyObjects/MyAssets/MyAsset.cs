@@ -8,15 +8,16 @@ public abstract class MyAsset : ISelectable, IInspectable
     public abstract AssetType type { get; }
 
     public string name;
-    public event Action onUpdate;
+    public event Action onDisplayUpdate;
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
             "Name",
             () => name,
-            (value) => { name = value; onUpdate?.Invoke(); });
+            (value) => { name = value; OnDisplayUpdate(); });
     }
-    protected virtual void OnUpdate() => onUpdate?.Invoke();
+    public event Action onInspectorChange;
+    protected virtual void OnDisplayUpdate() => onDisplayUpdate?.Invoke();
     public virtual MyAssetSave Save()
     {
         MyAssetSave save = new();

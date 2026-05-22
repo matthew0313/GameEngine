@@ -16,7 +16,6 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
     [SerializeField] Image background;
     [SerializeField] TMP_InputField renameInput;
     [SerializeField] Color idleColor, selectedColor, movingColor;
-
     public MyGameObject target { get; private set; }
     bool folded { get => target != null && target.foldedInInspector; set { if (target != null) target.foldedInInspector = value; } }
     readonly List<HierarchyUIElement> childElements = new();
@@ -39,9 +38,9 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
     }
     public void Set(MyGameObject obj)
     {
-        if (target != null) target.onPropertyChange -= OnPropertyChange;
+        if (target != null) target.onDisplayChange -= OnDisplayChange;
         target = obj;
-        target.onPropertyChange += OnPropertyChange;
+        target.onDisplayChange += OnDisplayChange;
         nameText.text = target.name;
         icon.sprite = target.icon;
         childrenContainer.SetActive(!folded);
@@ -53,7 +52,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
         else if (EditorSceneManager.Instance.selected != null && EditorSceneManager.Instance.selected == target) background.color = selectedColor;
         else background.color = idleColor;
     }
-    void OnPropertyChange()
+    void OnDisplayChange()
     {
         nameText.text = target.name;
         icon.sprite = target.icon;
@@ -111,10 +110,18 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
     {
         renameInput.gameObject.SetActive(false);
         target.name = text;
-        target.OnPropertyChange();
+        target.OnDisplayChange();
     }
-    public void OnDrag(PointerEventData eventData) { }
-    public void OnBeginDrag(PointerEventData eventData) { }
+    static ObjectDragIcon dragIcon;
+    public void OnDrag(PointerEventData eventData)
+    {
+        dragIcon.transform.position = eventData.position;
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragIcon ??= Instantiate(Resources.Load<ObjectDragIcon>("ObjectDragIcon"), EditorSceneManager.Instance.canvas.transform);
+        dragIcon.Show(target);
+    }
     public void OnEndDrag(PointerEventData eventData)
     {
         foreach(var hit in UIScanner.ScanUI(eventData.position))
@@ -125,5 +132,6 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
                 break;
             }
         }
+        dragIcon.Hide();
     }
 }

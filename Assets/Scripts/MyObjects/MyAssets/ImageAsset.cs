@@ -25,7 +25,7 @@ public class ImageAsset : MyAsset, IFileAsset
         texture.LoadImage(bytes);
         sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), pivot);
         this.filePath = filePath;
-        OnUpdate();
+        OnDisplayUpdate();
     }
     public override IEnumerable<ExposedElement> GetElements()
     {

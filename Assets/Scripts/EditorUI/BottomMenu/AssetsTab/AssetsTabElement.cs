@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AssetsTabElement : MonoBehaviour, IPointerDownHandler
+public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] Image icon;
     [SerializeField] TMP_Text text;
@@ -12,10 +12,10 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler
     MyAsset asset;
     public void Set(MyAsset asset)
     {
-        if (this.asset != null) this.asset.onUpdate -= OnAssetUpdate;
+        if (this.asset != null) this.asset.onDisplayUpdate -= OnDisplayUpdate;
         this.asset = asset;
-        this.asset.onUpdate += OnAssetUpdate;
-        OnAssetUpdate();
+        this.asset.onDisplayUpdate += OnDisplayUpdate;
+        OnDisplayUpdate();
     }
     private void OnEnable()
     {
@@ -29,9 +29,9 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler
     }
     private void OnDestroy()
     {
-        if(asset != null) asset.onUpdate -= OnAssetUpdate;
+        if(asset != null) asset.onDisplayUpdate -= OnDisplayUpdate;
     }
-    private void OnAssetUpdate()
+    private void OnDisplayUpdate()
     {
         if (asset is ImageAsset imageAsset)
         {
@@ -50,5 +50,28 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler
         if(eventData.button != PointerEventData.InputButton.Left) return;
         if (eventData.used) return;
         EditorSceneManager.Instance.Select(asset);
+    }
+
+    static AssetDragIcon dragIcon;
+    public void OnDrag(PointerEventData eventData)
+    {
+        dragIcon.transform.position = eventData.position;
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragIcon ??= Instantiate(Resources.Load<AssetDragIcon>("AssetDragIcon"), EditorSceneManager.Instance.canvas.transform);
+        dragIcon.Show(asset);
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        foreach (var hit in UIScanner.ScanUI(eventData.position))
+        {
+            if (hit.gameObject.TryGetComponentInParents(out IAssetDraggable target))
+            {
+                target.OnAssetDrag(asset);
+                break;
+            }
+        }
+        dragIcon.Hide();
     }
 }

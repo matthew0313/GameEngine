@@ -9,7 +9,7 @@ public class InspectorUI : MonoBehaviour
     [Header("UI Prefabs")]
     [SerializeField] InspectorUIButton buttonPrefab;
     [SerializeField] InspectorUIVector2 vector2Prefab;
-    [SerializeField] InspectorUIFloat floatPrefab;
+    [SerializeField] InspectorUINumber numberPrefab;
     [SerializeField] InspectorUIBool boolPrefab;
     [SerializeField] InspectorUIString stringPrefab;
     [SerializeField] InspectorUIObject objectPrefab;
@@ -18,7 +18,7 @@ public class InspectorUI : MonoBehaviour
 
     Pooler<InspectorUIButton> buttonPool;
     Pooler<InspectorUIVector2> vector2Pool;
-    Pooler<InspectorUIFloat> floatPool;
+    Pooler<InspectorUINumber> numberPool;
     Pooler<InspectorUIBool> boolPool;
     Pooler<InspectorUIString> stringPool;
     Pooler<InspectorUIObject> objectPool;
@@ -38,7 +38,7 @@ public class InspectorUI : MonoBehaviour
     {
         buttonPool ??= MakePool(buttonPrefab);
         vector2Pool ??= MakePool(vector2Prefab);
-        floatPool ??= MakePool(floatPrefab);
+        numberPool ??= MakePool(numberPrefab);
         boolPool ??= MakePool(boolPrefab);
         stringPool ??= MakePool(stringPrefab);
         objectPool ??= MakePool(objectPrefab);
@@ -56,9 +56,11 @@ public class InspectorUI : MonoBehaviour
         if (selected is IInspectable inspectable) Inspect(inspectable);
         else Clear();
     }
+    IInspectable inspecting;
     void Inspect(IInspectable inspectable)
     {
         Clear();
+        if (inspectable == null) return;
         foreach (var element in inspectable.GetElements())
         {
             if (element is ExposedButton exposedButton)
@@ -73,10 +75,10 @@ public class InspectorUI : MonoBehaviour
                 ui.Set(exposedVector2);
                 active.Add(ui);
             }
-            else if (element is ExposedFloat exposedFloat)
+            else if (element is ExposedNumber exposedNumber)
             {
-                var ui = floatPool.GetObject(container);
-                ui.Set(exposedFloat);
+                var ui = numberPool.GetObject(container);
+                ui.Set(exposedNumber);
                 active.Add(ui);
             }
             else if (element is ExposedBool exposedBool)
@@ -110,6 +112,12 @@ public class InspectorUI : MonoBehaviour
                 active.Add(ui);
             }
         }
+        inspecting = inspectable;
+        inspecting.onInspectorChange += Reload;
+    }
+    void Reload()
+    {
+        if (inspecting != null) Inspect(inspecting);
     }
     void Clear()
     {
@@ -117,7 +125,7 @@ public class InspectorUI : MonoBehaviour
         {
             if (ui is InspectorUIButton btn) buttonPool.ReleaseObject(btn);
             else if (ui is InspectorUIVector2 v2) vector2Pool.ReleaseObject(v2);
-            else if (ui is InspectorUIFloat f) floatPool.ReleaseObject(f);
+            else if (ui is InspectorUINumber n) numberPool.ReleaseObject(n);
             else if (ui is InspectorUIBool b) boolPool.ReleaseObject(b);
             else if (ui is InspectorUIString s) stringPool.ReleaseObject(s);
             else if (ui is InspectorUIObject o) objectPool.ReleaseObject(o);
@@ -125,5 +133,7 @@ public class InspectorUI : MonoBehaviour
             else if (ui is InspectorUIAnchor anchor) anchorPool.ReleaseObject(anchor);
         }
         active.Clear();
+        if (inspecting != null) inspecting.onInspectorChange -= Reload;
+        inspecting = null;
     }
 }

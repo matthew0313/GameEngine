@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InspectorUIButton : InspectorUIElement
 {
+    [SerializeField] TMP_Text label;
     [SerializeField] Button button;
-    [SerializeField] Text label;
 
     public void Set(ExposedButton element)
     {
-        if (label != null) label.text = element.name;
+        label.text = element.name;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => element.onClick());
     }

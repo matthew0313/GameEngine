@@ -22,8 +22,10 @@ public class EditorSceneManager : MonoBehaviour
 
     [field:SerializeField] public MyGameObjectList myGameObjectList { get; private set; }
     [field:SerializeField] public CodeBlockList codeBlockList { get; private set; }
-    [SerializeField] string savePath = "Saves";
+    [field:SerializeField] public Canvas canvas { get; private set; }
     [field:SerializeField] public MyScene myScene { get; private set; }
+
+    [SerializeField] string savePath = "Saves";
     public string projectSavePath => Path.Combine(savePath, projectName);
 
     [Header("Screen")]
