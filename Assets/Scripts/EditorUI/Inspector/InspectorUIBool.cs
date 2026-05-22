@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UI;
 
