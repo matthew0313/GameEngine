@@ -11,38 +11,47 @@ public class MyGameObject_Camera : MyGameObject
     public float priority = 0;
     public override string id => "Camera";
 
-    public Vector2Int size { get; private set; } = new Vector2Int(600, 600);
+    Vector2Int m_size = new Vector2Int(600, 600);
+    public Vector2 size
+    {
+        get => m_size;
+        set
+        {
+            m_size = new Vector2Int(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
+            renderTexture = new RenderTexture(m_size.x, m_size.y, 24);
+            cam.targetTexture = renderTexture;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
         cam = GetComponent<Camera>();
-        renderTexture = new RenderTexture(size.x, size.y, 24);
-        cam.targetTexture = renderTexture;
+        size = m_size;
     }
 
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
-        yield return new ExposedVector2(
-            "Position",
-            () => transform.localPosition,
-            (value) => transform.localPosition = value);
         yield return new ExposedNumber(
-            "Rotation",
-            () => transform.localEulerAngles.z,
-            (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
-        yield return new ExposedNumber(
-            "OrthographicSize",
+            "Orthographic Size",
             () => cam.orthographicSize,
             (value) => cam.orthographicSize = value);
         yield return new ExposedVector2(
             "Size",
             () => size,
-            (value) =>
-            {
-                size = new Vector2Int(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
-                renderTexture = new RenderTexture(size.x, size.y, 24);
-                cam.targetTexture = renderTexture;
-            });
+            (value) => size = value);
+    }
+    public override MyGameObjectSave Save(bool prettyPrint = true)
+    {
+        var save = base.Save(prettyPrint);
+        save.data.floats["orthographicSize"] = cam.orthographicSize;
+        save.data.SaveVector2("size", size);
+        return save;
+    }
+    public override void Load(MyGameObjectSave save)
+    {
+        base.Load(save);
+        cam.orthographicSize = save.data.floats["orthographicSize"];
+        size = save.data.LoadVector2("size");
     }
 }

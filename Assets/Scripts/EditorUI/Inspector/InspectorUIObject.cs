@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InspectorUIObject : InspectorUIElement, IObjectDraggable
 {
+    [SerializeField] TMP_Text label;
     [SerializeField] TMP_Text objectName;
 
     ExposedObject element;
@@ -15,8 +16,9 @@ public class InspectorUIObject : InspectorUIElement, IObjectDraggable
     }
     public void Set(ExposedObject element)
     {
+        label.text = element.name;
         this.element = element;
-        this.obj = element.getter();
+        obj = element.getter();
         objectName.text = obj != null ? obj.name : "None";
     }
     private void Update()

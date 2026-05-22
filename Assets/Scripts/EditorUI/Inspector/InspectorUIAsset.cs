@@ -1,8 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class InspectorUIAsset : InspectorUIElement, IAssetDraggable
 {
+    [SerializeField] TMP_Text label;
     [SerializeField] TMP_Text assetName;
 
     ExposedAsset element;
@@ -11,13 +13,14 @@ public class InspectorUIAsset : InspectorUIElement, IAssetDraggable
     public void OnAssetDrag(MyAsset asset)
     {
         if (element == null) return;
-        if (element.condition != null && !element.condition(asset)) return;
+        if ((asset.type | element.assetType) == 0) return;
         element.setter(asset);
     }
     public void Set(ExposedAsset element)
     {
         this.element = element;
-        this.asset = element.getter();
+        label.text = element.name + $" ({Enum.GetName(typeof(AssetType), element.assetType)})";
+        asset = element.getter();
         assetName.text = asset != null ? asset.name : "None";
     }
     private void Update()

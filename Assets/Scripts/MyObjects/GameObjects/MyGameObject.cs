@@ -99,6 +99,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
     }
     public event Action onInspectorChange;
+    protected virtual void OnInspectorChange() => onInspectorChange?.Invoke();
 
     public readonly Dictionary<string, float> numericVariables = new();
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
@@ -107,6 +108,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         save.id = id;
         save.uid = uid;
         save.position = transform.position;
+        save.lastOffset = lastOffset;
         List<CodeBlockSave> codeBlockSaves = new();
         foreach (var block in codeBlocks)
         {
@@ -115,7 +117,6 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             tmp.position = block.transform.position;
             codeBlockSaves.Add(tmp);
         }
-        save.data.SaveVector2("lastOffset", lastOffset);
         save.data.strings["CodeBlocks"] = JsonUtility.ToJson(codeBlockSaves, prettyPrint);
         foreach(var child in children)
         {
@@ -148,7 +149,8 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual void Load(MyGameObjectSave save)
     {
         codeBlocks.Clear();
-        lastOffset = save.data.LoadVector2("lastOffset");
+        transform.position = save.position;
+        lastOffset = save.lastOffset;
         foreach (var i in blockSaves) i.Key.Load(i.Value);
         foreach(var childSave in save.children)
         {
@@ -182,12 +184,7 @@ public class MyGameObjectSave
 {
     public string id;
     public ulong uid;
-    public Vector2 position;
+    public Vector2 position, lastOffset;
     public DataUnit data = new();
     public List<MyGameObjectSave> children = new();
-}
-public enum MyPropertyType
-{
-    Number,
-    
 }

@@ -19,8 +19,16 @@ public abstract class MyGameObject_UI : MyGameObject
         yield return new ExposedAnchor(
             () => rectTransform.anchorMin,
             () => rectTransform.anchorMax,
-            (value) => rectTransform.anchorMin = value,
-            (value) => rectTransform.anchorMax = value);
+            (value) =>
+            {
+                rectTransform.anchorMin = value;
+                OnInspectorChange();
+            },
+            (value) =>
+            {
+                rectTransform.anchorMax = value;
+                OnInspectorChange();
+            });
         if (rectTransform.anchorMin.x == rectTransform.anchorMax.x)
         {
             yield return new ExposedNumber(

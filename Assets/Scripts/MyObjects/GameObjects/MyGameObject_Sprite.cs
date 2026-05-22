@@ -7,8 +7,8 @@ public class MyGameObject_Sprite : MyGameObject
 {
     public SpriteRenderer spriteRenderer { get; private set; }
     public override string id => "Sprite";
-    public int imageIndex { get; private set; } = -1;
-    public readonly List<ImageAsset> images = new();
+
+    public ImageAsset image { get; private set; }
     Sprite defaultSprite;
     protected override void Awake()
     {
@@ -19,72 +19,37 @@ public class MyGameObject_Sprite : MyGameObject
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
-        yield return new ExposedNumber(
-            "Image Index",
-            () => imageIndex,
-            (value) => SetImageIndex(Mathf.FloorToInt(value))
-        );
+        yield return new ExposedAsset(
+            "Image",
+            () => image,
+            (value) => SetImage(value as ImageAsset),
+            AssetType.Image);
         yield return new ExposedNumber(
             "Order in Layer",
             () => spriteRenderer.sortingOrder,
             (value) => spriteRenderer.sortingOrder = Mathf.FloorToInt(value));
     }
-    public void SetImageIndex(int index)
+    public void SetImage(ImageAsset image)
     {
-        if(index < 0 || index >= images.Count)
+        this.image = image;
+        if (image == null)
         {
             spriteRenderer.sprite = defaultSprite;
-            imageIndex = -1;
-            EditorSceneManager.Instance.AddLog(new MyLog(
-                MyLogType.Warning, $"Invalid image index {index} for Sprite GameObject {name}"
-            ));
             return;
         }
-        ImageAsset imageAsset = images[index];
-        if (imageAsset == null)
-        {
-            spriteRenderer.sprite = defaultSprite;
-            EditorSceneManager.Instance.AddLog(new MyLog(
-                MyLogType.Warning, $"Image asset is null in index {index} for Sprite GameObject {name}"
-            ));
-            return;
-        }
-
-        spriteRenderer.sprite = imageAsset.sprite;
-        imageIndex = index;
+        spriteRenderer.sprite = image.sprite;
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {
         var save = base.Save(prettyPrint);
-        List<ulong> images = new();
-        foreach(var i in this.images)
-        {
-            images.Add(i.uid);
-        }
-        save.data.strings["images"] = JsonUtility.ToJson(images, prettyPrint);
-        save.data.integers["imageIndex"] = imageIndex;
+        save.data.ulongs["image"] = image != null ? image.uid : 0;
+        save.data.integers["orderInLayer"] = spriteRenderer.sortingOrder;
         return save;
     }
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        if(save.data.strings.ContainsKey("images"))
-        {
-            List<ulong> images = JsonUtility.FromJson<List<ulong>>(save.data.strings["images"]);
-            images.Clear();
-            foreach(var i in images)
-            {
-                ImageAsset imageAsset = EditorSceneManager.Instance.GetAsset<ImageAsset>(i);
-                if(imageAsset == null)
-                {
-                    EditorSceneManager.Instance.AddLog(new MyLog(
-                        MyLogType.Warning, $"Image asset not found for path {i} in Sprite GameObject {name}"
-                    ));
-                    continue;
-                }
-                this.images.Add(imageAsset);
-            }
-        }
-        if (save.data.integers.TryGetValue("imageIndex", out int imageIndex)) SetImageIndex(imageIndex);
+        SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(save.data.ulongs["image"]));
+        spriteRenderer.sortingOrder = save.data.integers["orderInLayer"];
     }
 }

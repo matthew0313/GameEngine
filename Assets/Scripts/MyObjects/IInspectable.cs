@@ -73,12 +73,12 @@ public class ExposedAsset : ExposedProperty
 {
     public readonly Func<MyAsset> getter;
     public readonly Action<MyAsset> setter;
-    public readonly Func<MyAsset, bool> condition;
-    public ExposedAsset(string name, Func<MyAsset> getter, Action<MyAsset> setter, Func<MyAsset, bool> condition) : base(name)
+    public readonly AssetType assetType;
+    public ExposedAsset(string name, Func<MyAsset> getter, Action<MyAsset> setter, AssetType assetType) : base(name)
     {
         this.getter = getter;
         this.setter = setter;
-        this.condition = condition;
+        this.assetType = assetType;
     }
 }
 public class ExposedObject : ExposedProperty
