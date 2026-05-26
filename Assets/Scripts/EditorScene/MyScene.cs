@@ -7,6 +7,10 @@ public class MyScene : MonoBehaviour, IParent
     [SerializeField] Transform objectAnchor, UIAnchor;
     public readonly List<MyGameObject> topGameObjects = new();
     public event Action onHierarchyChange;
+    public void Clear()
+    {
+        while (topGameObjects.Count > 0) topGameObjects[0].Delete();
+    }
     public MySceneSave Save(bool prettyPrint = false)
     {
         MySceneSave save = new();
@@ -15,6 +19,7 @@ public class MyScene : MonoBehaviour, IParent
     }
     public void Load(MySceneSave save)
     {
+        Clear();
         Dictionary<MyGameObject, MyGameObjectSave> saves = new();
         foreach(var i in save.topGameObjects)
         {

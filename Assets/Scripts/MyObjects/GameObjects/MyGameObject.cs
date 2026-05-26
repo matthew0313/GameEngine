@@ -102,6 +102,16 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     protected virtual void OnInspectorChange() => onInspectorChange?.Invoke();
 
     public readonly Dictionary<string, float> numericVariables = new();
+
+    public event Action onStart, onUpdate;
+    public virtual void OnStart()
+    {
+        onStart?.Invoke();
+    }
+    public virtual void OnUpdate()
+    {
+        onUpdate?.Invoke();
+    }
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {
         MyGameObjectSave save = new();
@@ -170,6 +180,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public event Action onDelete;
     public void Delete()
     {
+        foreach (var child in children) child.Delete();
         if (parent != null) parent.RemoveChild(this);
         if (EditorSceneManager.Instance.selected == this) EditorSceneManager.Instance.Select(null);
         onDelete?.Invoke();

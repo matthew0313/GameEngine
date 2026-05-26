@@ -7,13 +7,18 @@ using UnityEngine.EventSystems;
 public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 {
     public ulong uid { get; private set; }
+    public ICodeable owner { get; private set; }
 
     [HideInInspector] public SnapPoint snappedPoint;
-    [HideInInspector] public ICodeable owner;
     [field:SerializeField] public string blockID { get; private set; }
     [field:SerializeField] public Color blockColor { get; private set; }
     [field:SerializeField] public CodeBlockCategory category { get; private set; }
     public virtual bool addable => true;
+
+    public virtual void Set(ICodeable owner)
+    {
+        this.owner = owner;
+    }
     public virtual CodeBlockSave Save()
     {
         CodeBlockSave save = new();

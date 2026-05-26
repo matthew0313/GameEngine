@@ -79,6 +79,13 @@ public class EditorSceneManager : MonoBehaviour
                 else if(selected is MyAsset myAsset) RemoveAsset(myAsset);
             }
         }
+        if (playMode)
+        {
+            foreach(var i in myScene.GetObjects())
+            {
+
+            }
+        }
     }
     readonly List<RaycastResult> raycastResults = new();
     public List<RaycastResult> RaycastUI(Vector2 position)
@@ -151,6 +158,24 @@ public class EditorSceneManager : MonoBehaviour
             if(obj.id == id) return obj;
         }
         return null;
+    }
+
+    public event Action<bool> onPlayModeToggle;
+    MySceneSave sceneSave;
+    bool playMode = false;
+    public void EnterPlayMode()
+    {
+        if (playMode) return;
+        sceneSave = myScene.Save();
+        playMode = true;
+        onPlayModeToggle?.Invoke(true);
+    }
+    public void ExitPlayMode()
+    {
+        if (!playMode) return;
+        playMode = false;
+        myScene.Load(sceneSave);
+        onPlayModeToggle?.Invoke(false);
     }
     public ProjectSave Save()
     {
