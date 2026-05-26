@@ -19,20 +19,23 @@ public class Codeblock_MoveToInTime : ExecutableCodeBlock, IOnFinish
             EditorSceneManager.Instance.AddLog(new MyLog(MyLogType.Error, "Movement block executed in non-object."));
             return new() { exception = true };
         }
-        float counter = time.GetNumber(hash);
-        if (counter <= 0)
+        float time2 = time.GetNumber(hash);
+        if (time2 <= 0)
         {
-            owner.transform.position += new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash));
+            owner.transform.position = new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash));
         }
         else
         {
-            Vector3 move = (new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash)) - owner.transform.position) / counter;
-            while (counter > 0)
+            float counter = 0.0f;
+            Vector3 startPos = owner.transform.position;
+            Vector3 targetPos = new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash));
+            while (counter < time2)
             {
                 await UniTask.Yield();
-                owner.transform.position += move * Mathf.Max(counter, Time.deltaTime);
-                counter -= Time.deltaTime;
+                owner.transform.position = Vector3.Lerp(startPos, targetPos, counter / time2);
+                counter += Time.deltaTime;
             }
+            owner.transform.position = targetPos;
         }
         return await onFinish.Execute(hash);
     }
