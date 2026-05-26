@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move X:'
+  m_text: 'Move To X:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -146,9 +146,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2170987032181540456}
-  - component: {fileID: 4791365743860516290}
+  - component: {fileID: 2558688250472144679}
   m_Layer: 5
-  m_Name: CodeBlock_MoveXY
+  m_Name: CodeBlock_MoveTo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &4791365743860516290
+--- !u!114 &2558688250472144679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,16 +184,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2363942674048757600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a230ec8a321362e4784ba4b2307bebf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fd6ade616b7477449bbee29b2447b64, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Codeblock_Move
+  m_EditorClassIdentifier: Assembly-CSharp::Codeblock_MoveTo
   snappedPoint: {fileID: 0}
-  <blockID>k__BackingField: MoveXY
-  <blockColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <blockID>k__BackingField: MoveTo
+  <blockColor>k__BackingField: {r: 0, g: 0.58431375, b: 1, a: 1}
   <category>k__BackingField: 0
   rectTransform: {fileID: 4884221520590488080}
-  moveX: {fileID: 6115605677743381035}
-  moveY: {fileID: 2695978598117456834}
+  targetX: {fileID: 6115605677743381035}
+  targetY: {fileID: 2695978598117456834}
   <onFinish>k__BackingField: {fileID: 5565614791616963547}
 --- !u!1 &4465941481491373922
 GameObject:
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d9bdb477ccf5847a10cf3c1bb64d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExecutableSnapPoint
-  ownerBlock: {fileID: 4791365743860516290}
+  ownerBlock: {fileID: 2558688250472144679}
   snapAnchor: {fileID: 3414415597929905338}
   layoutElement: {fileID: 0}
   defaultHeight: 0
@@ -796,12 +796,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 462812775122958667, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Name
-      value: MoveY
+      value: TargetY
       objectReference: {fileID: 0}
     - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
-      propertyPath: owner
+      propertyPath: ownerBlock
       value: 
-      objectReference: {fileID: 4791365743860516290}
+      objectReference: {fileID: 2558688250472144679}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -913,16 +913,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 462812775122958667, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Name
-      value: MoveX
+      value: TargetX
       objectReference: {fileID: 0}
     - target: {fileID: 2350212413959447032, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
-      propertyPath: owner
+      propertyPath: ownerBlock
       value: 
-      objectReference: {fileID: 4791365743860516290}
+      objectReference: {fileID: 2558688250472144679}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
