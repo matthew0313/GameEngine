@@ -9,17 +9,31 @@ public class ScreenUI : MonoBehaviour
     [SerializeField] Button sceneButton, gameButton, playButton, stopButton;
     private void OnEnable()
     {
-        EditorSceneManager.Instance.onPlayModeEnter += OnPlayModeEnter;
+        EditorSceneManager.Instance.onPlayModeToggle += OnPlayModeToggle;
+        OnPlayModeToggle(EditorSceneManager.Instance.playMode);
+        sceneButton.onClick.AddListener(OpenSceneScreen);
+        gameButton.onClick.AddListener(OpenGameScreen);
+        playButton.onClick.AddListener(EnterPlayMode);
+        stopButton.onClick.AddListener(ExitPlayMode);
+    }
+    private void OnDisable()
+    {
+        sceneButton.onClick.RemoveListener(OpenSceneScreen);
+        gameButton.onClick.RemoveListener(OpenGameScreen);
+        playButton.onClick.RemoveListener(EnterPlayMode);
+        stopButton.onClick.RemoveListener(ExitPlayMode);
     }
 
-    private void OnPlayModeEnter()
+    private void OnPlayModeToggle(bool playMode)
     {
-        throw new NotImplementedException();
+        playButton.gameObject.SetActive(!playMode);
+        stopButton.gameObject.SetActive(playMode);
     }
 
     void OpenSceneScreen() => SetScreenMode(ScreenMode.Scene);
     void OpenGameScreen() => SetScreenMode(ScreenMode.Game);
     void EnterPlayMode() => EditorSceneManager.Instance.EnterPlayMode();
+    void ExitPlayMode() => EditorSceneManager.Instance.ExitPlayMode();
     public void SetScreenMode(ScreenMode mode)
     {
         sceneScreen.SetActive(mode == ScreenMode.Scene);

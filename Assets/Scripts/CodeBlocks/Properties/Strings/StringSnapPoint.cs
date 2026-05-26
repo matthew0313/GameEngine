@@ -48,4 +48,15 @@ public class StringSnapPoint : SnapPoint
         }
         else return defaultWidth;
     }
+    public override SnapPointSave Save()
+    {
+        var tmp = base.Save();
+        tmp.data.strings["value"] = inputField.text;
+        return tmp;
+    }
+    public override void Load(SnapPointSave save)
+    {
+        base.Load(save);
+        inputField.text = save.data.strings["value"];
+    }
 }

@@ -67,7 +67,7 @@ public class BlockAddMenu : MonoBehaviour
     {
         if(scriptGrid.editing == null) return;
         var tmp = Instantiate(codeBlock, rectTransform.position, Quaternion.identity);
-        tmp.owner = scriptGrid.editing;
+        tmp.Set(scriptGrid.editing);
         scriptGrid.editing.codeBlocks.Add(tmp);
         scriptGrid.BindToGrid(tmp);
         Close();

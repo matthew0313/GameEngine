@@ -35,6 +35,7 @@ public class EditorSceneManager : MonoBehaviour
     [field:SerializeField] public ScriptGrid scriptGrid { get; private set; }
     [field:SerializeField] public HierarchyUI hierarchy { get; private set; }
     [field:SerializeField] public SceneScreenController sceneScreen { get; private set; }
+    [field:SerializeField] public ScreenUI screen { get; private set; }
 
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();
@@ -162,7 +163,7 @@ public class EditorSceneManager : MonoBehaviour
 
     public event Action<bool> onPlayModeToggle;
     MySceneSave sceneSave;
-    bool playMode = false;
+    public bool playMode { get; private set; } = false;
     public void EnterPlayMode()
     {
         if (playMode) return;

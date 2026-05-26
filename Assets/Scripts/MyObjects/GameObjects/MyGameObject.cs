@@ -147,7 +147,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
                 if (blockPrefab != null)
                 {
                     CodeBlock block = Instantiate(blockPrefab, transform);
-                    block.owner = this;
+                    block.Set(this);
                     codeBlocks.Add(block);
                     block.EarlyLoad(blockSave);
                     block.gameObject.SetActive(false);

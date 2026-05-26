@@ -9695,7 +9695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 1}
+  m_Color: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15194,8 +15194,9 @@ GameObject:
   - component: {fileID: 1726360576}
   - component: {fileID: 1726360578}
   - component: {fileID: 1726360577}
+  - component: {fileID: 1726360579}
   m_Layer: 5
-  m_Name: Screen
+  m_Name: ScreenUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15260,6 +15261,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726360575}
   m_CullTransparentMesh: 1
+--- !u!114 &1726360579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726360575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769c462722ea9554891500c06e1fc955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenUI
+  sceneScreen: {fileID: 2075387608}
+  gameScreen: {fileID: 1085400388}
+  sceneButton: {fileID: 0}
+  gameButton: {fileID: 0}
+  playButton: {fileID: 0}
+  stopButton: {fileID: 0}
 --- !u!1 &1748688874
 GameObject:
   m_ObjectHideFlags: 0
@@ -17081,6 +17100,7 @@ MonoBehaviour:
   <scriptGrid>k__BackingField: {fileID: 383197828}
   <hierarchy>k__BackingField: {fileID: 1288860078}
   <sceneScreen>k__BackingField: {fileID: 2075387612}
+  <screen>k__BackingField: {fileID: 0}
 --- !u!4 &1871536257
 Transform:
   m_ObjectHideFlags: 0

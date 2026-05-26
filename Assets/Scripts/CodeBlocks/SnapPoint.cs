@@ -51,3 +51,8 @@ public abstract class SnapPoint : MonoBehaviour
         EditorSceneManager.Instance.snapPoints.Remove(this);
     }
 }
+[System.Serializable]
+public class SnapPointSave
+{
+    public DataUnit data;
+}

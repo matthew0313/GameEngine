@@ -38,4 +38,12 @@ public class PrefabAsset : MyAsset, ICodeable
         base.Load(save);
         prefabOrigin.Load(prefabOriginSave);
     }
+    public MyGameObject Instantiate()
+    {
+        MyGameObjectSave save = prefabOrigin.Save();
+        MyGameObject obj = MonoBehaviour.Instantiate(prefabOrigin);
+        obj.Load(save);
+        obj.gameObject.SetActive(true);
+        return obj;
+    }
 }

@@ -135,5 +135,6 @@ public class CodeBlockSave
     public string id;
     public ulong uid;
     public Vector2 position;
-    public DataUnit data = new();   
+    public DataUnit data = new();
+    public SerializableDictionary<string, SnapPointSave> snapPoints = new();
 }

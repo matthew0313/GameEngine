@@ -5,5 +5,10 @@ using UnityEngine;
 
 public class Codeblock_OnStart : CodeBlock
 {
-
+    [SerializeField] ExecutableSnapPoint onStart;
+    public override void Set(ICodeable owner)
+    {
+        base.Set(owner);
+        
+    }
 }
