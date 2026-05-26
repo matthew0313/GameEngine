@@ -50,6 +50,14 @@ public abstract class SnapPoint : MonoBehaviour
     {
         EditorSceneManager.Instance.snapPoints.Remove(this);
     }
+    public virtual SnapPointSave Save()
+    {
+        return new();
+    }
+    public virtual void Load(SnapPointSave save)
+    {
+
+    }
 }
 [System.Serializable]
 public class SnapPointSave

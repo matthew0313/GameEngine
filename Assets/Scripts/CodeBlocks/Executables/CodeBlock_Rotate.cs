@@ -1,10 +1,12 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class CodeBlock_Rotate : ExecutableCodeBlock
+public class CodeBlock_Rotate : ExecutableCodeBlock, IOnFinish
 {
+    [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint angle;
-
-    public override Unitask<ExecutionFinishedInfo> Execute(ulong hash)
+    [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
         MyGameObject owner = this.owner as MyGameObject;
         if(owner == null)
@@ -14,5 +16,9 @@ public class CodeBlock_Rotate : ExecutableCodeBlock
         }
         owner.transform.Rotate(Vector3.forward, angle.GetNumber(hash));
         return new();
+    }
+    public override float GetHeight()
+    {
+        return rectTransform.rect.height + onFinish.GetHeight();
     }
 }
