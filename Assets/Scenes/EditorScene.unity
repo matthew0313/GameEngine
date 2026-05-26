@@ -346,8 +346,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -576,8 +576,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -1086,8 +1086,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -2955,8 +2955,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -3799,8 +3799,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -6650,8 +6650,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -7436,8 +7436,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -7647,6 +7647,7 @@ GameObject:
   - component: {fileID: 869462883}
   - component: {fileID: 869462885}
   - component: {fileID: 869462884}
+  - component: {fileID: 869462886}
   m_Layer: 5
   m_Name: InspectorUIAnchorMenu
   m_TagString: Untagged
@@ -7716,6 +7717,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869462882}
   m_CullTransparentMesh: 1
+--- !u!114 &869462886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869462882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a73a3bac07e29d4c9cad45122df4892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InspectorUIAnchorMenu
 --- !u!1 &882274676
 GameObject:
   m_ObjectHideFlags: 0
@@ -9133,8 +9146,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -9498,7 +9511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1085400389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10109,7 +10122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InspectorUIAnchor
   openMenuButton: {fileID: 493721980}
   menuAnchor: {fileID: 1206510988}
-  menu: {fileID: 869462882}
+  menu: {fileID: 869462886}
   currentPresetIcon: {fileID: 493721981}
   presets:
   - anchorMin: {x: 0.5, y: 0.5}
@@ -11942,8 +11955,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -13458,8 +13471,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -17255,8 +17268,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -17524,8 +17537,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -19013,8 +19026,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -19236,8 +19249,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -19505,8 +19518,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:
@@ -19750,8 +19763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125855686}
-        m_TargetAssemblyTypeName: InspectorUIAnchor, Assembly-CSharp
+      - m_Target: {fileID: 869462886}
+        m_TargetAssemblyTypeName: InspectorUIAnchorMenu, Assembly-CSharp
         m_MethodName: SetAnchor
         m_Mode: 3
         m_Arguments:

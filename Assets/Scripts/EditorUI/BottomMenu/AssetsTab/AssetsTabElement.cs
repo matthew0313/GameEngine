@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] Image icon;
     [SerializeField] TMP_Text text;
@@ -44,12 +44,20 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         selected.SetActive(asset != null && asset == obj);
     }
-
+    bool selectQueued = false;
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(eventData.button != PointerEventData.InputButton.Left) return;
+        selectQueued = true;
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!selectQueued || eventData.button != PointerEventData.InputButton.Left) return;
         if (eventData.used) return;
         EditorSceneManager.Instance.Select(asset);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        selectQueued = false;
     }
 
     static AssetDragIcon dragIcon;

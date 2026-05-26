@@ -11,6 +11,7 @@ public class Codeblock_Move : ExecutableCodeBlock, IOnFinish
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
+        Debug.Log("Move");
         MyGameObject owner = this.owner as MyGameObject;
         if (owner == null)
         {

@@ -21,12 +21,20 @@ public abstract class MyGameObject_UI : MyGameObject
             () => rectTransform.anchorMax,
             (value) =>
             {
+                var oMin = rectTransform.offsetMin;
+                var oMax = rectTransform.offsetMax;
                 rectTransform.anchorMin = value;
+                rectTransform.offsetMin = oMin;
+                rectTransform.offsetMax = oMax;
                 OnInspectorChange();
             },
             (value) =>
             {
+                var oMin = rectTransform.offsetMin;
+                var oMax = rectTransform.offsetMax;
                 rectTransform.anchorMax = value;
+                rectTransform.offsetMin = oMin;
+                rectTransform.offsetMax = oMax;
                 OnInspectorChange();
             });
         if (rectTransform.anchorMin.x == rectTransform.anchorMax.x)

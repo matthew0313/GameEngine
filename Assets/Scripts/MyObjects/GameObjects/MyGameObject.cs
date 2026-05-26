@@ -171,6 +171,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public void Delete()
     {
         if (parent != null) parent.RemoveChild(this);
+        if (EditorSceneManager.Instance.selected == this) EditorSceneManager.Instance.Select(null);
         onDelete?.Invoke();
         Destroy(gameObject);
     }

@@ -31,6 +31,10 @@ public class MyGameObject_Sprite : MyGameObject
     }
     public void SetImage(ImageAsset image)
     {
+        if(this.image != null)
+        {
+
+        }
         this.image = image;
         if (image == null)
         {
