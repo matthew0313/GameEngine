@@ -1,10 +1,12 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Codeblock_IfElse : ExecutableCodeBlock, IOnFinish
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Logic;
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] ConditionSnapPoint condition;
@@ -21,5 +23,12 @@ public class Codeblock_IfElse : ExecutableCodeBlock, IOnFinish
     public override float GetHeight()
     {
         return rectTransform.rect.height + onFinish.GetHeight();
+    }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return condition;
+        yield return onTrue;
+        yield return onFalse;
+        yield return onFinish;
     }
 }

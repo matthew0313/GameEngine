@@ -104,9 +104,9 @@ public class BlockAddMenu : MonoBehaviour
     {
         ICodeable codeable = scriptGrid.editing;
         if (codeable == null) yield break;
-        foreach (var block in codeable.GetAvailableBlocks())
+        foreach (var block in EditorSceneManager.Instance.codeBlockList.GetBlocks())
         {
-            if (!block.addable) continue;
+            if (!block.IsAddable(codeable)) continue;
             if (!block.blockID.StartsWith(searchBar.text)) continue;
             yield return block;
         }

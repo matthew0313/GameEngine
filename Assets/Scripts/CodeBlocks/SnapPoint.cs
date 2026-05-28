@@ -5,6 +5,7 @@ public abstract class SnapPoint : MonoBehaviour
 {
     [SerializeField] protected CodeBlock ownerBlock;
     [SerializeField] protected Transform snapAnchor;
+    [SerializeField] GameObject highlight;
     public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != ownerBlock;
     public CodeBlock snapped { get; protected set; }
     public virtual void Snap(CodeBlock codeBlock)
@@ -50,17 +51,40 @@ public abstract class SnapPoint : MonoBehaviour
     {
         EditorSceneManager.Instance.snapPoints.Remove(this);
     }
+    public virtual void Highlight()
+    {
+        if(highlight != null) highlight.SetActive(true);
+    }
+    public virtual void UnHighlight()
+    {
+        if(highlight != null) highlight.SetActive(false);
+    }
     public virtual SnapPointSave Save()
     {
-        return new();
+        SnapPointSave save = new();
+        if (snapped != null) save.snapped = snapped.Save();
+        return save;
+    }
+    public virtual void EarlyLoad(SnapPointSave save)
+    {
+        if (save.snapped != null)
+        {
+            var block = Instantiate(EditorSceneManager.Instance.IDToBlockPrefab(save.snapped.id));
+            block.EarlyLoad(save.snapped);
+            Snap(block);
+        }
     }
     public virtual void Load(SnapPointSave save)
     {
-
+        if(snapped != null)
+        {
+            snapped.Load(save.snapped);
+        }
     }
 }
 [System.Serializable]
 public class SnapPointSave
 {
+    public CodeBlockSave snapped;
     public DataUnit data;
 }

@@ -12,29 +12,13 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     [HideInInspector] public SnapPoint snappedPoint;
     [field:SerializeField] public string blockID { get; private set; }
     [field:SerializeField] public Color blockColor { get; private set; }
-    [field:SerializeField] public CodeBlockCategory category { get; private set; }
-    public virtual bool addable => true;
+    public abstract CodeBlockCategory category { get; }
 
     public virtual void Set(ICodeable owner)
     {
         this.owner = owner;
     }
-    public virtual CodeBlockSave Save()
-    {
-        CodeBlockSave save = new();
-        save.id = blockID;
-        save.uid = uid;
-        save.position = transform.position;
-        return save;
-    }
-    public virtual void EarlyLoad(CodeBlockSave save)
-    {
-        uid = save.uid;
-    }
-    public virtual void Load(CodeBlockSave save)
-    {
-        transform.position = save.position;
-    }
+    public virtual bool IsAddable(ICodeable codeable) => true;
 
     bool dragging = false;
     Vector2 dragOffset;
@@ -74,6 +58,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     {
         if (dragging) HandleDrag();
     }
+    SnapPoint highlighted = null;
     void HandleDrag()
     {
         if (Input.GetMouseButton(0))
@@ -86,12 +71,9 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
                     snappedPoint.Detach();
                 }
             }
-            else transform.position = pos;
-        }
-        else
-        {
-            if (snappedPoint == null)
+            else
             {
+                transform.position = pos;
                 var snapPoints = EditorSceneManager.Instance.snapPoints.ToList();
                 snapPoints.Sort((a, b) =>
                 {
@@ -111,18 +93,54 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
                         else return 0;
                     }
                 });
-                if (snapPoints.Count > 0 && snapPoints[0].IsSnappable(this) && Vector2.Distance(snapPoints[0].GetSnapPosition(), transform.position) <= snapDistance)
+                var tmp = (snapPoints.Count > 0 && snapPoints[0].IsSnappable(this) && Vector2.Distance(snapPoints[0].GetSnapPosition(), transform.position) <= snapDistance) ? snapPoints[0] : null;
+                if(highlighted != tmp)
                 {
-                    snapPoints[0].Snap(this);
+                    if (highlighted != null) highlighted.UnHighlight();
+                    highlighted = tmp;
+                    if (highlighted != null) highlighted.Highlight();
+                }
+            }
+        }
+        else
+        {
+            if (snappedPoint == null)
+            {
+                if (highlighted != null)
+                {
+                    highlighted.UnHighlight();
+                    highlighted.Snap(this);
+                    highlighted = null;
                 }
             }
             dragging = false;
         }
     }
+    protected virtual IEnumerable<SnapPoint> GetSnapPoints() { yield break; }
+    public virtual CodeBlockSave Save()
+    {
+        CodeBlockSave save = new();
+        save.id = blockID;
+        save.uid = uid;
+        save.position = transform.position;
+        foreach (var snapPoint in GetSnapPoints()) save.snapPoints.Add(snapPoint.Save());
+        return save;
+    }
+    public virtual void EarlyLoad(CodeBlockSave save)
+    {
+        uid = save.uid;
+    }
+    public virtual void Load(CodeBlockSave save)
+    {
+        transform.position = save.position;
+        int index = 0;
+        foreach (var snapPoint in GetSnapPoints()) snapPoint.Load(save.snapPoints[index++]);
+    }
 }
 [System.Serializable]
 public enum CodeBlockCategory
 {
+    Starter,
     Movement,
     Logic,
     Calculation,
@@ -136,5 +154,5 @@ public class CodeBlockSave
     public ulong uid;
     public Vector2 position;
     public DataUnit data = new();
-    public SerializableDictionary<string, SnapPointSave> snapPoints = new();
+    public List<SnapPointSave> snapPoints = new();
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MyGameObject_Point : MyGameObject
 {
-    public override string id => "Point";
+    public override MyGameObjectType type => MyGameObjectType.Point;
 }

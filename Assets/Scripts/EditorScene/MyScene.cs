@@ -23,7 +23,7 @@ public class MyScene : MonoBehaviour, IParent
         Dictionary<MyGameObject, MyGameObjectSave> saves = new();
         foreach(var i in save.topGameObjects)
         {
-            MyGameObject obj = Instantiate(EditorSceneManager.Instance.IDToGameObject(i.id));
+            MyGameObject obj = Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(i.type));
             obj.EarlyLoad(i);
             AddChild(obj);
             saves.Add(obj, i);

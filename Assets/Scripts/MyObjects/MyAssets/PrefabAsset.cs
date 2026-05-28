@@ -10,7 +10,6 @@ public class PrefabAsset : MyAsset, ICodeable
     public float lastZoom { get => prefabOrigin.lastZoom; set => prefabOrigin.lastZoom = value; }
     public Vector2 lastOffset { get => prefabOrigin.lastOffset; set => prefabOrigin.lastOffset = value; }
     public List<CodeBlock> codeBlocks => prefabOrigin.codeBlocks;
-    public IEnumerable<CodeBlock> GetAvailableBlocks() => prefabOrigin.GetAvailableBlocks();
 
     public void Set(MyGameObject gameObject)
     {
@@ -30,7 +29,7 @@ public class PrefabAsset : MyAsset, ICodeable
     {
         base.EarlyLoad(save);
         prefabOriginSave = JsonUtility.FromJson<MyGameObjectSave>(save.data.strings["prefabOrigin"]);
-        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.IDToGameObject(prefabOriginSave.id));
+        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(prefabOriginSave.type));
         prefabOrigin.EarlyLoad(prefabOriginSave);
     }
     public override void Load(MyAssetSave save)

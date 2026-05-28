@@ -1,16 +1,19 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Codeblock_MoveInTime : ExecutableCodeBlock, IOnFinish
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Movement;
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint time;
     [SerializeField] NumericSnapPoint moveX, moveY;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
 
+    public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject;
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
         MyGameObject owner = this.owner as MyGameObject;
@@ -42,5 +45,12 @@ public class Codeblock_MoveInTime : ExecutableCodeBlock, IOnFinish
     public override float GetHeight()
     {
         return rectTransform.rect.height + onFinish.GetHeight();
+    }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return time;
+        yield return moveX;
+        yield return moveY;
+        yield return onFinish;
     }
 }

@@ -8,7 +8,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
 
     [HideInInspector] public bool dirty = false;
     [HideInInspector] public bool foldedInInspector = false;
-    public abstract string id { get; }
+    public abstract MyGameObjectType type { get; }
 
     public IParent parent;
     public readonly List<MyGameObject> children = new();
@@ -19,8 +19,6 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
 
     [field:SerializeField] public Sprite icon { get; private set; }
     [SerializeField] int childrenOffset = 0;
-    [SerializeField] List<CodeBlockList> availableCodeBlockLists;
-    [SerializeField] List<CodeBlock> availableCodeBlocks;
     public event Action onDisplayChange;
     protected virtual void Awake()
     {
@@ -68,20 +66,6 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public int GetSiblingIndex() => parent.GetChildIndex(this);
     void OnChildrenChange() => onChildrenChange?.Invoke();
     public IEnumerable<MyGameObject> GetChildren() => children;
-    public virtual IEnumerable<CodeBlock> GetAvailableBlocks()
-    {
-        foreach (var list in availableCodeBlockLists)
-        {
-            foreach (var block in list.GetBlocks())
-            {
-                yield return block;
-            }
-        }
-        foreach (var block in availableCodeBlocks)
-        {
-            yield return block;
-        }
-    }
     public virtual void OnDisplayChange() => onDisplayChange?.Invoke();
     public virtual IEnumerable<ExposedElement> GetElements()
     {
@@ -97,13 +81,21 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             "Rotation",
             () => transform.localEulerAngles.z,
             (value) => transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, value));
+        yield return new ExposedVector2(
+            "Scale",
+            () => transform.localScale,
+            (value) => transform.localScale = new Vector3(value.x, value.y, 1.0f));
     }
     public event Action onInspectorChange;
     protected virtual void OnInspectorChange() => onInspectorChange?.Invoke();
 
     public readonly Dictionary<string, float> numericVariables = new();
 
-    public event Action onStart, onUpdate;
+    public event Action onAwake, onStart, onUpdate;
+    public virtual void OnAwake()
+    {
+        onAwake?.Invoke();
+    }
     public virtual void OnStart()
     {
         onStart?.Invoke();
@@ -115,9 +107,11 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {
         MyGameObjectSave save = new();
-        save.id = id;
+        save.type = type;
         save.uid = uid;
-        save.position = transform.position;
+        save.position = transform.localPosition;
+        save.rotation = transform.localRotation.z;
+        save.scale = transform.localScale;
         save.lastOffset = lastOffset;
         List<CodeBlockSave> codeBlockSaves = new();
         foreach (var block in codeBlocks)
@@ -125,9 +119,8 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             if (block.snappedPoint != null) continue;
             var tmp = block.Save();
             tmp.position = block.transform.position;
-            codeBlockSaves.Add(tmp);
+            save.codeBlocks.Add(tmp);
         }
-        save.data.strings["CodeBlocks"] = JsonUtility.ToJson(codeBlockSaves, prettyPrint);
         foreach(var child in children)
         {
             save.children.Add(child.Save(prettyPrint));
@@ -135,39 +128,41 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         return save;
     }
     readonly Dictionary<CodeBlock, CodeBlockSave> blockSaves = new();
+    readonly Dictionary<MyGameObject, MyGameObjectSave> childSaves = new();
     public virtual void EarlyLoad(MyGameObjectSave save)
     {
         uid = save.uid;
-        if (save.data.strings.ContainsKey("CodeBlocks"))
+        foreach (var blockSave in save.codeBlocks)
         {
-            List<CodeBlockSave> codeBlockSaves = JsonUtility.FromJson<List<CodeBlockSave>>(save.data.strings["CodeBlocks"]);
-            foreach (var blockSave in codeBlockSaves)
+            CodeBlock blockPrefab = EditorSceneManager.Instance.IDToBlockPrefab(blockSave.id);
+            if (blockPrefab != null)
             {
-                CodeBlock blockPrefab = EditorSceneManager.Instance.IDToBlock(blockSave.id);
-                if (blockPrefab != null)
-                {
-                    CodeBlock block = Instantiate(blockPrefab, transform);
-                    block.Set(this);
-                    codeBlocks.Add(block);
-                    block.EarlyLoad(blockSave);
-                    block.gameObject.SetActive(false);
-                    blockSaves[block] = blockSave;
-                }
+                CodeBlock block = Instantiate(blockPrefab, transform);
+                block.Set(this);
+                EditorSceneManager.Instance.scriptGrid.BindToGrid(block);
+                codeBlocks.Add(block);
+                block.EarlyLoad(blockSave);
+                block.gameObject.SetActive(false);
+                blockSaves[block] = blockSave;
+                Debug.Log(blockSave.id);
             }
+        }
+        foreach (var childSave in save.children)
+        {
+            MyGameObject child = Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(childSave.type), transform);
+            child.EarlyLoad(childSave);
+            children.Add(child);
+            childSaves[child] = childSave;
         }
     }
     public virtual void Load(MyGameObjectSave save)
     {
-        codeBlocks.Clear();
-        transform.position = save.position;
+        transform.localPosition = save.position;
+        transform.localRotation = Quaternion.Euler(0, 0, save.rotation);
+        transform.localScale = save.scale;
         lastOffset = save.lastOffset;
         foreach (var i in blockSaves) i.Key.Load(i.Value);
-        foreach(var childSave in save.children)
-        {
-            MyGameObject child = Instantiate(EditorSceneManager.Instance.IDToGameObject(childSave.id), transform);
-            child.Load(childSave);
-            children.Add(child);
-        }
+        foreach (var i in childSaves) i.Key.Load(i.Value);
     }
     public IEnumerable<MyGameObject> GetHierarchy()
     {
@@ -183,6 +178,11 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         foreach (var child in children) child.Delete();
         if (parent != null) parent.RemoveChild(this);
         if (EditorSceneManager.Instance.selected == this) EditorSceneManager.Instance.Select(null);
+        while(codeBlocks.Count > 0)
+        {
+            Destroy(codeBlocks[0].gameObject);
+            codeBlocks.RemoveAt(0);
+        }
         onDelete?.Invoke();
         Destroy(gameObject);
     }
@@ -192,11 +192,25 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual void OnDeselect() { }
 }
 [System.Serializable]
+public enum MyGameObjectType
+{
+    Point,
+    Sprite,
+    Camera,
+    Canvas,
+    Image,
+    Screen
+}
+[System.Serializable]
 public class MyGameObjectSave
 {
-    public string id;
+    public MyGameObjectType type;
     public ulong uid;
-    public Vector2 position, lastOffset;
+    public Vector2 position;
+    public float rotation;
+    public Vector2 scale;
+    public Vector2 lastOffset;
     public DataUnit data = new();
+    public List<CodeBlockSave> codeBlocks = new();
     public List<MyGameObjectSave> children = new();
 }

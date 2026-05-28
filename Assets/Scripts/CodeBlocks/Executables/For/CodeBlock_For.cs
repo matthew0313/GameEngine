@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Logic;
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint loopCount;

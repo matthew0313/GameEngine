@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class ImageAsset : MyAsset, IFileAsset
     public string filePath { get; private set; }
     public override AssetType type => AssetType.Image;
     public Sprite sprite { get; private set; }
+    public event Action<Sprite> onSpriteChange;
 
     Vector2 pivot = new Vector2(0.5f, 0.5f);
     public void LoadFile(string filePath)
@@ -19,11 +21,15 @@ public class ImageAsset : MyAsset, IFileAsset
                 type = MyLogType.Warning,
                 message = $"Failed to load image asset: {filePath}"
             });
+            sprite = null;
+            onSpriteChange?.Invoke(null);
+            return;
         }
         byte[] bytes = File.ReadAllBytes(filePath);
         Texture2D texture = new(2, 2);
         texture.LoadImage(bytes);
         sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), pivot);
+        onSpriteChange?.Invoke(sprite);
         this.filePath = filePath;
         OnDisplayUpdate();
     }
@@ -37,7 +43,15 @@ public class ImageAsset : MyAsset, IFileAsset
         yield return new ExposedVector2(
             "Pivot",
             () => pivot,
-            (value) => { pivot = value; if(sprite != null) sprite = Sprite.Create(sprite.texture, new Rect(sprite.rect), pivot); });
+            (value) => 
+            { 
+                pivot = value; 
+                if (sprite != null)
+                {
+                    sprite = Sprite.Create(sprite.texture, new Rect(sprite.rect), pivot);
+                    onSpriteChange?.Invoke(sprite);
+                }
+            });
     }
     public override MyAssetSave Save()
     {

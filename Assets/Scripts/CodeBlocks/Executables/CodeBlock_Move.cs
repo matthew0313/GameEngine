@@ -1,17 +1,19 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Codeblock_Move : ExecutableCodeBlock, IOnFinish
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Movement;
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint moveX, moveY;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
+    public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject;
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
-        Debug.Log("Move");
         MyGameObject owner = this.owner as MyGameObject;
         if (owner == null)
         {
@@ -24,5 +26,11 @@ public class Codeblock_Move : ExecutableCodeBlock, IOnFinish
     public override float GetHeight()
     {
         return rectTransform.rect.height + onFinish.GetHeight();
+    }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return moveX;
+        yield return moveY;
+        yield return onFinish;
     }
 }

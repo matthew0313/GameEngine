@@ -43,4 +43,15 @@ public class ConditionSnapPoint : SnapPoint
         }
         else return defaultWidth;
     }
+    public override SnapPointSave Save()
+    {
+        var save = base.Save();
+        save.data.bools["value"] = toggle.isOn;
+        return save;
+    }
+    public override void Load(SnapPointSave save)
+    {
+        base.Load(save);
+        toggle.isOn = save.data.bools["value"];
+    }
 }

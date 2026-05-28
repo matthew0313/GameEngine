@@ -27,7 +27,7 @@ public class CodeBlockList : ScriptableObject
             }
         }
     }
-    public CodeBlock IDToBlock(string id)
+    public CodeBlock IDToBlockPrefab(string id)
     {
         foreach (var block in GetBlocks())
         {

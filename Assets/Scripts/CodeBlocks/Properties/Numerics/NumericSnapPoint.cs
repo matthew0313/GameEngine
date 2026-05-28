@@ -44,4 +44,15 @@ public class NumericSnapPoint : SnapPoint
         }
         else return defaultWidth;
     }
+    public override SnapPointSave Save()
+    {
+        var save = base.Save();
+        save.data.floats["value"] = float.TryParse(inputField.text, out float value) ? value : 0.0f;
+        return save;
+    }
+    public override void Load(SnapPointSave save)
+    {
+        base.Load(save);
+        inputField.text = save.data.floats["value"].ToString();
+    }
 }

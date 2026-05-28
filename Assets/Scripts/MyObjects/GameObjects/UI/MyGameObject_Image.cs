@@ -6,8 +6,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class MyGameObject_Image : MyGameObject_UI
 {
+    public override MyGameObjectType type => MyGameObjectType.Image;
     public Image imageComp { get; private set; }
-    public override string id => "Image";
 
     public ImageAsset image { get; private set; }
     Sprite defaultSprite;
@@ -35,6 +35,7 @@ public class MyGameObject_Image : MyGameObject_UI
             return;
         }
         imageComp.sprite = image.sprite;
+        Debug.Log(rectTransform.rect.width);
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {

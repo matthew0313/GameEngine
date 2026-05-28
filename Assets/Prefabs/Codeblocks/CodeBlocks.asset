@@ -15,6 +15,9 @@ MonoBehaviour:
   elements:
   - type: 1
     item: {fileID: 0}
+    list: {fileID: 11400000, guid: caab12d555fe1e84099ca9abd15c1cf0, type: 2}
+  - type: 1
+    item: {fileID: 0}
     list: {fileID: 11400000, guid: ad1b85651f140604592be6406d7376e3, type: 2}
   - type: 1
     item: {fileID: 0}

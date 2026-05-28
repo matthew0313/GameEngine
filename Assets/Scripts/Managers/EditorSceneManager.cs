@@ -84,7 +84,7 @@ public class EditorSceneManager : MonoBehaviour
         {
             foreach(var i in myScene.GetObjects())
             {
-
+                i.OnUpdate();
             }
         }
     }
@@ -128,7 +128,7 @@ public class EditorSceneManager : MonoBehaviour
                 AddLog(new()
                 {
                     type = MyLogType.Warning,
-                    message = $"Unsupported fileAsset type: {filePath}"
+                    message = $"Unsupported file extension found while loading Assets: {Path.GetExtension(filePath)}"
                 });
                 continue;
             }
@@ -151,12 +151,20 @@ public class EditorSceneManager : MonoBehaviour
         logs.Clear();
         onLogsChange?.Invoke();
     }
-    public CodeBlock IDToBlock(string id) => codeBlockList.IDToBlock(id);
-    public MyGameObject IDToGameObject(string id)
+    public CodeBlock IDToBlockPrefab(string id) => codeBlockList.IDToBlockPrefab(id);
+    public MyGameObject TypeToObjectPrefab(MyGameObjectType type)
     {
         foreach(var obj in myGameObjectList.myGameObjects)
         {
-            if(obj.id == id) return obj;
+            if(obj.type == type) return obj;
+        }
+        return null;
+    }
+    public MyGameObject FindObjectWithUID(ulong uid)
+    {
+        foreach(var obj in myScene.GetObjects())
+        {
+            if (obj.uid == uid) return obj;
         }
         return null;
     }
@@ -169,6 +177,14 @@ public class EditorSceneManager : MonoBehaviour
         if (playMode) return;
         sceneSave = myScene.Save();
         playMode = true;
+        foreach (var i in myScene.GetObjects())
+        {
+            i.OnAwake();
+        }
+        foreach (var i in myScene.GetObjects())
+        {
+            i.OnStart();
+        }
         onPlayModeToggle?.Invoke(true);
     }
     public void ExitPlayMode()
@@ -237,36 +253,3 @@ public class ProjectSave
     public MySceneSave scene = new();
     public List<MyAssetSave> assets = new();
 }
-#if UNITY_EDITOR
-[CustomEditor(typeof(EditorSceneManager))]
-public class EditorSceneManager_Editor : Editor
-{
-    int count = 0;
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        EditorSceneManager target = (this.target as EditorSceneManager);
-        GUILayout.Space(10);
-        GUILayout.Label("Debug");
-        if (GUILayout.Button("Test Prefab"))
-        {
-            var tmp = new PrefabAsset() { name = "Test Prefab" };
-            tmp.Set(Instantiate(target.IDToGameObject("Sprite")));
-            target.AddAsset(tmp);
-        }
-        if(GUILayout.Button("Test Top GO"))
-        {
-            var tmp = Instantiate(target.IDToGameObject("Sprite"));
-            tmp.name = $"Sprite{count++}";
-            target.myScene.AddChild(tmp);
-        }
-        if(GUILayout.Button("Test Child GO"))
-        {
-            var tmp = Instantiate(target.IDToGameObject("Sprite"));
-            var tmp2 = Instantiate(target.IDToGameObject("Sprite"));
-            tmp.AddChild(tmp2);
-            target.myScene.AddChild(tmp);
-        }
-    }
-}
-#endif

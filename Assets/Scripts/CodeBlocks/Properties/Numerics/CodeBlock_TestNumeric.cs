@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CodeBlock_TestNumeric : NumericCodeBlock
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Other;
     [SerializeField] RectTransform rectTransform;
     [SerializeField] float value = 10.0f;
 

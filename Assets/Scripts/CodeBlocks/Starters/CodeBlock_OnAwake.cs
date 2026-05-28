@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Codeblock_OnStart : CodeBlock, IOnFinish
+public class Codeblock_OnAwake : CodeBlock, IOnFinish
 {
     public override CodeBlockCategory category => CodeBlockCategory.Starter;
-    [SerializeField] ExecutableSnapPoint onStart;
-    public ExecutableSnapPoint onFinish => onStart;
+    [SerializeField] ExecutableSnapPoint onAwake;
+    public ExecutableSnapPoint onFinish => onAwake;
 
     public override void Set(ICodeable owner)
     {
@@ -19,10 +19,10 @@ public class Codeblock_OnStart : CodeBlock, IOnFinish
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = "OnStart block added in a non-object. Block will not function."
+                message = "OnAwake block added in a non-object. Block will not function."
             });
         }
-        obj.onStart += OnStart;
+        obj.onAwake += OnAwake;
     }
     ulong testHash = 0, hash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
@@ -31,16 +31,16 @@ public class Codeblock_OnStart : CodeBlock, IOnFinish
             "Execute",
             ctx =>
             {
-                onStart.Execute(testHash++);
+                onAwake.Execute(testHash++);
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
-    private void OnStart()
+    private void OnAwake()
     {
-        onStart.Execute(hash++);
+        onAwake.Execute(hash++);
     }
     private void OnDestroy()
     {
-        if (owner is MyGameObject obj) obj.onStart -= OnStart;
+        if (owner is MyGameObject obj) obj.onAwake -= OnAwake;
     }
 }

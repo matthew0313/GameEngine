@@ -50,4 +50,16 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
             SetObject(null);
         }
     }
+    public override SnapPointSave Save()
+    {
+        var save = base.Save();
+        save.data.ulongs["setObject"] = setObject != null ? setObject.uid : 0;
+        return save;
+    }
+    public override void Load(SnapPointSave save)
+    {
+        base.Load(save);
+        ulong objID = save.data.ulongs["setObject"];
+        SetObject(EditorSceneManager.Instance.FindObjectWithUID(objID));
+    }
 }

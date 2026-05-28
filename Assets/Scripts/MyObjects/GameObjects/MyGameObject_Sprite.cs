@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MyGameObject_Sprite : MyGameObject
 {
+    public override MyGameObjectType type => MyGameObjectType.Sprite;
     public SpriteRenderer spriteRenderer { get; private set; }
-    public override string id => "Sprite";
 
     public ImageAsset image { get; private set; }
     Sprite defaultSprite;
@@ -33,7 +33,7 @@ public class MyGameObject_Sprite : MyGameObject
     {
         if(this.image != null)
         {
-
+            this.image.onSpriteChange -= OnSpriteChange;
         }
         this.image = image;
         if (image == null)
@@ -41,7 +41,12 @@ public class MyGameObject_Sprite : MyGameObject
             spriteRenderer.sprite = defaultSprite;
             return;
         }
-        spriteRenderer.sprite = image.sprite;
+        else image.onSpriteChange += OnSpriteChange;
+        OnSpriteChange(image.sprite);
+    }
+    void OnSpriteChange(Sprite sprite)
+    {
+        spriteRenderer.sprite = sprite;
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {

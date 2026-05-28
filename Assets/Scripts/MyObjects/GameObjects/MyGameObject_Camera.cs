@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MyGameObject_Camera : MyGameObject
 {
+    public override MyGameObjectType type => MyGameObjectType.Camera;
     public Camera cam { get; private set; }
     public RenderTexture renderTexture { get; private set; }
+    public event Action<RenderTexture> onTextureChange;
 
     public float priority = 0;
-    public override string id => "Camera";
 
     Vector2Int m_size = new Vector2Int(600, 600);
     public Vector2 size
@@ -20,6 +21,7 @@ public class MyGameObject_Camera : MyGameObject
             m_size = new Vector2Int(Mathf.FloorToInt(value.x), Mathf.FloorToInt(value.y));
             renderTexture = new RenderTexture(m_size.x, m_size.y, 24);
             cam.targetTexture = renderTexture;
+            onTextureChange?.Invoke(renderTexture);
         }
     }
     protected override void Awake()

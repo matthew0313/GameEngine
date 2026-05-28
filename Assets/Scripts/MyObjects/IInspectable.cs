@@ -85,6 +85,8 @@ public class ExposedObject : ExposedProperty
 {
     public readonly Func<MyGameObject> getter;
     public readonly Action<MyGameObject> setter;
+    public bool typeSpecific = false;
+    public MyGameObjectType type;
     public ExposedObject(string name, Func<MyGameObject> getter, Action<MyGameObject> setter) : base(name)
     {
         this.getter = getter;

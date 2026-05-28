@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class CodeBlock_ForIndex : NumericCodeBlock
 {
+    public override CodeBlockCategory category => CodeBlockCategory.Other;
     [SerializeField] RectTransform rectTransform;
     public CodeBlock_For target;
-    public override bool addable => false;
+    public override bool IsAddable(ICodeable codeable) => false;
     public override float GetNumber(ulong hash) => target != null ? target.GetLoopIndex(hash) : -1;
     public override float GetWidth() => rectTransform.rect.width;
     public override CodeBlockSave Save()

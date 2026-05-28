@@ -159,6 +159,34 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
             element != null ? "Create Child Object" : "Create Object",
             MakeRightClickMenu_CreateObject(element));
     }
+    void CreateObject(HierarchyUIElement element, MyGameObject obj)
+    {
+        MyGameObject newObj = Instantiate(obj);
+        Vector3 localScale = newObj.transform.localScale;
+        if (element == null)
+        {
+            int index = 0;
+            while (true)
+            {
+                if (EditorSceneManager.Instance.myScene.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                else break;
+            }
+            newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+            EditorSceneManager.Instance.myScene.AddChild(newObj);
+        }
+        else
+        {
+            int index = 0;
+            while (true)
+            {
+                if (element.target.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
+                else break;
+            }
+            newObj.name = obj.name + (index > 0 ? $"{index}" : "");
+            element.target.AddChild(newObj);
+        }
+        newObj.transform.localScale = localScale;
+    }
     IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(HierarchyUIElement element)
     {
         bool UI = false;
@@ -170,32 +198,7 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
             }
             yield return new RCMenuElement_Button(
                 obj.name,
-                ctx =>
-                {
-                    MyGameObject newObj = Instantiate(obj);
-                    if (element == null)
-                    {
-                        int index = 0;
-                        while (true)
-                        {
-                            if (EditorSceneManager.Instance.myScene.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
-                            else break;
-                        }
-                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
-                        EditorSceneManager.Instance.myScene.AddChild(newObj);
-                    }
-                    else
-                    {
-                        int index = 0;
-                        while (true)
-                        {
-                            if (element.target.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
-                            else break;
-                        }
-                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
-                        element.target.AddChild(newObj);
-                    }
-                });
+                ctx => CreateObject(element, obj));
         }
         if(UI) yield return new RCMenuElement_Foldout(
             "UI Objects",
@@ -208,32 +211,7 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
             if (!(obj is MyGameObject_UI)) continue;
             yield return new RCMenuElement_Button(
                 obj.name,
-                ctx =>
-                {
-                    MyGameObject newObj = Instantiate(obj);
-                    if (element == null)
-                    {
-                        int index = 0;
-                        while (true)
-                        {
-                            if (EditorSceneManager.Instance.myScene.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
-                            else break;
-                        }
-                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
-                        EditorSceneManager.Instance.myScene.AddChild(newObj);
-                    }
-                    else
-                    {
-                        int index = 0;
-                        while (true)
-                        {
-                            if (element.target.GetChildren().Find(item => item.name == obj.name + (index > 0 ? $"{index}" : ""))) index++;
-                            else break;
-                        }
-                        newObj.name = obj.name + (index > 0 ? $"{index}" : "");
-                        element.target.AddChild(newObj);
-                    }
-                });
+                ctx => CreateObject(element, obj));
         }
     }
 }
