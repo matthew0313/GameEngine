@@ -14,14 +14,14 @@ public class MyScene : MonoBehaviour, IParent
     public MySceneSave Save(bool prettyPrint = false)
     {
         MySceneSave save = new();
-        foreach(var i in topGameObjects) save.topGameObjects.Add(i.Save(prettyPrint));
+        foreach (var i in topGameObjects) save.topGameObjects.Add(i.Save(prettyPrint));
         return save;
     }
     public void Load(MySceneSave save)
     {
         Clear();
         Dictionary<MyGameObject, MyGameObjectSave> saves = new();
-        foreach(var i in save.topGameObjects)
+        foreach (var i in save.topGameObjects)
         {
             MyGameObject obj = Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(i.type));
             obj.EarlyLoad(i);
@@ -29,6 +29,7 @@ public class MyScene : MonoBehaviour, IParent
             saves.Add(obj, i);
         }
         foreach (var i in saves) i.Key.Load(i.Value);
+        onHierarchyChange?.Invoke();
     }
     public void AddChild(MyGameObject child)
     {

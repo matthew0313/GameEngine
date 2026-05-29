@@ -47,6 +47,11 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     protected virtual IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
         yield return new RCMenuElement_Button(
+            "Copy",
+            ctx => {
+                EditorSceneManager.Instance.CopyBlock(this);
+            });
+        yield return new RCMenuElement_Button(
             "Delete",
             ctx => { Delete(); });
     }
@@ -126,9 +131,9 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         foreach (var snapPoint in GetSnapPoints()) save.snapPoints.Add(snapPoint.Save());
         return save;
     }
-    public virtual void EarlyLoad(CodeBlockSave save)
+    public virtual void EarlyLoad(CodeBlockSave save, bool resetUID = false)
     {
-        uid = save.uid;
+        uid = resetUID ? MathUtilities.GenerateRandomID() : save.uid;
         int index = 0;
         foreach (var snapPoint in GetSnapPoints())
         {

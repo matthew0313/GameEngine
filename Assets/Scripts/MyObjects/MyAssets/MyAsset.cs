@@ -26,13 +26,22 @@ public abstract class MyAsset : ISelectable, IInspectable
         save.uid = uid;
         return save;
     }
-    public virtual void EarlyLoad(MyAssetSave save)
+    public virtual void EarlyLoad(MyAssetSave save, bool resetUID = false)
     {
-        uid = save.uid;
+        uid = resetUID ? MathUtilities.GenerateRandomID() : save.uid;
     }
     public virtual void Load(MyAssetSave save)
     {
         name = save.name;
+    }
+    public static MyAsset TypeToAsset(AssetType type)
+    {
+        return type switch
+        {
+            AssetType.Image => new ImageAsset(),
+            AssetType.Prefab => new PrefabAsset(),
+            _ => null
+        };
     }
 
     public virtual void OnSelect() { }

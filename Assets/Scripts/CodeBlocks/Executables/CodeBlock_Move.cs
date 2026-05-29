@@ -17,6 +17,7 @@ public class Codeblock_Move : ExecutableCodeBlock, IOnFinish
         MyGameObject owner = this.owner as MyGameObject;
         if (owner == null)
         {
+            Debug.Log("EEEEEEE");
             EditorSceneManager.Instance.AddLog(new MyLog(MyLogType.Error, "Movement block executed in non-object."));
             return new() { exception = true };
         }

@@ -49,6 +49,9 @@ public class EditorSceneManager : MonoBehaviour
 
     public ControlMachine<bool> raycastControl { get; private set; }
     EventSystem eventSystem;
+
+    public CopyBufferItemType copyBufferItemType = CopyBufferItemType.None;
+    public string copyBuffer;
     public void Select(ISelectable selectable)
     {
         selected = selectable;
@@ -80,14 +83,68 @@ public class EditorSceneManager : MonoBehaviour
                 else if(selected is MyAsset myAsset) RemoveAsset(myAsset);
             }
         }
+        if (InputManager.GetKeyDown(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.C))
+        {
+            if (selected is MyGameObject myGameObject)
+            {
+                copyBufferItemType = CopyBufferItemType.MyGameObject;
+                copyBuffer = JsonUtility.ToJson(myGameObject.Save());
+            }
+            else if (selected is MyAsset myAsset)
+            {
+                copyBufferItemType = CopyBufferItemType.MyAsset;
+                copyBuffer = JsonUtility.ToJson(myAsset.Save());
+            }
+        }
+        if (InputManager.GetKeyDown(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.V)) Paste();
         if (playMode)
         {
-            foreach(var i in myScene.GetObjects())
+            foreach (var i in myScene.GetObjects())
             {
                 i.OnUpdate();
             }
         }
     }
+    public void CopyBlock(CodeBlock block)
+    {
+        copyBufferItemType = CopyBufferItemType.CodeBlock;
+        copyBuffer = JsonUtility.ToJson(block.Save());
+    }
+    public void Paste()
+    {
+        if (copyBufferItemType == CopyBufferItemType.MyGameObject)
+        {
+            MyGameObjectSave save = JsonUtility.FromJson<MyGameObjectSave>(copyBuffer);
+            MyGameObject obj = Instantiate(TypeToObjectPrefab(save.type));
+            obj.EarlyLoad(save, true);
+            myScene.AddChild(obj);
+            obj.Load(save);
+        }
+        else if (copyBufferItemType == CopyBufferItemType.MyAsset)
+        {
+            MyAssetSave save = JsonUtility.FromJson<MyAssetSave>(copyBuffer);
+            MyAsset asset = MyAsset.TypeToAsset(save.type);
+            if (asset != null)
+            {
+                asset.EarlyLoad(save, true);
+                AddAsset(asset);
+                asset.Load(save);
+            }
+        }
+        else if (copyBufferItemType == CopyBufferItemType.CodeBlock && scriptGrid.editing != null)
+        {
+            CodeBlockSave save = JsonUtility.FromJson<CodeBlockSave>(copyBuffer);
+            CodeBlock blockPrefab = IDToBlockPrefab(save.id);
+            if (blockPrefab != null)
+            {
+                CodeBlock block = Instantiate(blockPrefab, scriptGrid.transform);
+                block.EarlyLoad(save, true);
+                scriptGrid.BindToGrid(block);
+                block.Load(save);
+            }
+        }
+    }
+
     readonly List<RaycastResult> raycastResults = new();
     public List<RaycastResult> RaycastUI(Vector2 position)
     {
@@ -191,7 +248,9 @@ public class EditorSceneManager : MonoBehaviour
     {
         if (!playMode) return;
         playMode = false;
+        ulong selectedUID = selected is MyGameObject myGameObject ? myGameObject.uid : 0;
         myScene.Load(sceneSave);
+        if (selectedUID != 0) Select(FindObjectWithUID(selectedUID));
         onPlayModeToggle?.Invoke(false);
     }
     public ProjectSave Save()
@@ -209,10 +268,8 @@ public class EditorSceneManager : MonoBehaviour
         Dictionary<MyAsset, MyAssetSave> saves = new();
         foreach(var assetSave in save.assets)
         {
-            MyAsset added = null;
-            if (assetSave.type == AssetType.Image) added = new ImageAsset();
-            else if (assetSave.type == AssetType.Prefab) added = new PrefabAsset();
-            else
+            MyAsset added = MyAsset.TypeToAsset(assetSave.type);
+            if (added == null)
             {
                 AddLog(new()
                 {
@@ -252,4 +309,11 @@ public class ProjectSave
     public string projectName;
     public MySceneSave scene = new();
     public List<MyAssetSave> assets = new();
+}
+public enum CopyBufferItemType
+{
+    None,
+    CodeBlock,
+    MyGameObject,
+    MyAsset
 }

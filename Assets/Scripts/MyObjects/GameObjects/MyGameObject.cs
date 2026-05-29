@@ -130,9 +130,9 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     }
     readonly Dictionary<CodeBlock, CodeBlockSave> blockSaves = new();
     readonly Dictionary<MyGameObject, MyGameObjectSave> childSaves = new();
-    public virtual void EarlyLoad(MyGameObjectSave save)
+    public virtual void EarlyLoad(MyGameObjectSave save, bool resetUID = false)
     {
-        uid = save.uid;
+        uid = resetUID ? MathUtilities.GenerateRandomID() : save.uid;
         foreach (var blockSave in save.codeBlocks)
         {
             CodeBlock blockPrefab = EditorSceneManager.Instance.IDToBlockPrefab(blockSave.id);
@@ -142,7 +142,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
                 block.Set(this);
                 EditorSceneManager.Instance.scriptGrid.BindToGrid(block);
                 codeBlocks.Add(block);
-                block.EarlyLoad(blockSave);
+                block.EarlyLoad(blockSave, resetUID);
                 block.gameObject.SetActive(false);
                 blockSaves[block] = blockSave;
                 Debug.Log(blockSave.id);
@@ -151,7 +151,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         foreach (var childSave in save.children)
         {
             MyGameObject child = Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(childSave.type), transform);
-            child.EarlyLoad(childSave);
+            child.EarlyLoad(childSave, resetUID);
             children.Add(child);
             childSaves[child] = childSave;
         }
@@ -165,6 +165,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         lastOffset = save.lastOffset;
         foreach (var i in blockSaves) i.Key.Load(i.Value);
         foreach (var i in childSaves) i.Key.Load(i.Value);
+        OnDisplayChange();
     }
     public IEnumerable<MyGameObject> GetHierarchy()
     {

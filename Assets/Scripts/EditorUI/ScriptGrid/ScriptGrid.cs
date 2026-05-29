@@ -135,5 +135,14 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
             {
                 MoveTo(anchor.position, true);
             });
+        if(EditorSceneManager.Instance.copyBufferItemType == CopyBufferItemType.CodeBlock && editing != null)
+        {
+            yield return new RCMenuElement_Button(
+                "Paste Block",
+                (ctx) =>
+                {
+                    EditorSceneManager.Instance.Paste();
+                });
+        }
     }
 }

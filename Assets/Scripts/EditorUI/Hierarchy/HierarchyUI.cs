@@ -18,7 +18,13 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
             var element = Instantiate(elementPrefab);
             element.Init(this, elementPool);
             return element;
-        });
+        })
+        {
+            onTakeout = element =>
+            {
+                element.transform.SetAsLastSibling();
+            }
+        };
         movingDownKeyOverride = new()
         {
             priority = 100,
