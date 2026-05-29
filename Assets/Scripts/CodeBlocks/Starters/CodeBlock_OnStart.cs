@@ -43,4 +43,8 @@ public class Codeblock_OnStart : CodeBlock, IOnFinish
     {
         if (owner is MyGameObject obj) obj.onStart -= OnStart;
     }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return onStart;
+    }
 }

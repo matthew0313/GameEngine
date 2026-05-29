@@ -5,10 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public abstract class MyGameObject_UI : MyGameObject
 {
-    protected RectTransform rectTransform;
-    private void OnEnable()
+    public RectTransform rectTransform { get; private set; }
+    protected override void Awake()
     {
-        rectTransform ??= GetComponent<RectTransform>();
+        base.Awake();
+        rectTransform = GetComponent<RectTransform>();
     }
     public override IEnumerable<ExposedElement> GetElements()
     {

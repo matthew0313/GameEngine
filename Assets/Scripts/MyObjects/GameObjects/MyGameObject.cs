@@ -107,6 +107,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {
         MyGameObjectSave save = new();
+        save.name = gameObject.name;
         save.type = type;
         save.uid = uid;
         save.position = transform.localPosition;
@@ -157,6 +158,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     }
     public virtual void Load(MyGameObjectSave save)
     {
+        gameObject.name = save.name;
         transform.localPosition = save.position;
         transform.localRotation = Quaternion.Euler(0, 0, save.rotation);
         transform.localScale = save.scale;
@@ -198,12 +200,14 @@ public enum MyGameObjectType
     Sprite,
     Camera,
     Canvas,
+    Rigidbody,
     Image,
     Screen
 }
 [System.Serializable]
 public class MyGameObjectSave
 {
+    public string name;
     public MyGameObjectType type;
     public ulong uid;
     public Vector2 position;

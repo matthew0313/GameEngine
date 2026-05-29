@@ -7,7 +7,7 @@ public class MyGameObject_Canvas : MyGameObject
 {
     Canvas canvas;
     RectTransform rectTransform;
-    public override MyGameObjectType type => throw new NotImplementedException();
+    public override MyGameObjectType type => MyGameObjectType.Canvas;
     protected override void Awake()
     {
         base.Awake();
@@ -25,5 +25,18 @@ public class MyGameObject_Canvas : MyGameObject
             "Height",
             () => rectTransform.rect.height,
             (value) => rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, value));
+    }
+    public override MyGameObjectSave Save(bool prettyPrint = true)
+    {
+        var save = base.Save(prettyPrint);
+        save.data.floats["width"] = rectTransform.rect.width;
+        save.data.floats["height"] = rectTransform.rect.height;
+        return save;
+    }
+    public override void Load(MyGameObjectSave save)
+    {
+        base.Load(save);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, save.data.floats["width"]);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, save.data.floats["height"]);
     }
 }

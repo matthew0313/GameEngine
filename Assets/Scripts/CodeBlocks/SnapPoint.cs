@@ -65,20 +65,23 @@ public abstract class SnapPoint : MonoBehaviour
         if (snapped != null) save.snapped = snapped.Save();
         return save;
     }
+    CodeBlock snapQueued = null;
     public virtual void EarlyLoad(SnapPointSave save)
     {
         if (save.snapped != null)
         {
             var block = Instantiate(EditorSceneManager.Instance.IDToBlockPrefab(save.snapped.id));
             block.EarlyLoad(save.snapped);
-            Snap(block);
+            snapQueued = block;
         }
     }
     public virtual void Load(SnapPointSave save)
     {
-        if(snapped != null)
+        if(snapQueued != null)
         {
-            snapped.Load(save.snapped);
+            snapQueued.Load(save.snapped);
+            Snap(snapQueued);
+            snapQueued = null;
         }
     }
 }
@@ -86,5 +89,5 @@ public abstract class SnapPoint : MonoBehaviour
 public class SnapPointSave
 {
     public CodeBlockSave snapped;
-    public DataUnit data;
+    public DataUnit data = new();
 }

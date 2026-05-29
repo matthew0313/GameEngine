@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] Button foldoutButton;
     [SerializeField] Image icon;
@@ -87,7 +87,7 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
         {
             eventData.Use();
             if (origin.moving != null) origin.Reparent(target);
-            else EditorSceneManager.Instance.Select(target);
+            else selectQueued = true;
         }
         if (eventData.button == PointerEventData.InputButton.Middle)
         {
@@ -111,6 +111,17 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IDragHandl
         renameInput.gameObject.SetActive(false);
         target.name = text;
         target.OnDisplayChange();
+    }
+    bool selectQueued = false;
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!selectQueued || eventData.button != PointerEventData.InputButton.Left) return;
+        if (eventData.used) return;
+        EditorSceneManager.Instance.Select(target);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        selectQueued = false;
     }
     static ObjectDragIcon dragIcon;
     public void OnDrag(PointerEventData eventData)

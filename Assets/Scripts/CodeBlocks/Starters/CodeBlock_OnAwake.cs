@@ -43,4 +43,8 @@ public class Codeblock_OnAwake : CodeBlock, IOnFinish
     {
         if (owner is MyGameObject obj) obj.onAwake -= OnAwake;
     }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return onAwake;
+    }
 }

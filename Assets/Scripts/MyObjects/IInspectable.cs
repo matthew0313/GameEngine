@@ -49,6 +49,18 @@ public class ExposedNumber : ExposedProperty
         this.setter = setter;
     }
 }
+public class ExposedDropdown : ExposedProperty
+{
+    public readonly Func<int> getter;
+    public readonly Action<int> setter;
+    public readonly string[] options;
+    public ExposedDropdown(string name, Func<int> getter, Action<int> setter, string[] options) : base(name)
+    {
+        this.getter = getter;
+        this.setter = setter;
+        this.options = options;
+    }
+}
 public class ExposedBool : ExposedProperty
 {
     public readonly Func<bool> getter;

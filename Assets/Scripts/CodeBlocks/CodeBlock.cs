@@ -129,12 +129,20 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     public virtual void EarlyLoad(CodeBlockSave save)
     {
         uid = save.uid;
+        int index = 0;
+        foreach (var snapPoint in GetSnapPoints())
+        {
+            snapPoint.EarlyLoad(save.snapPoints[index++]);
+        }
     }
     public virtual void Load(CodeBlockSave save)
     {
         transform.position = save.position;
         int index = 0;
-        foreach (var snapPoint in GetSnapPoints()) snapPoint.Load(save.snapPoints[index++]);
+        foreach (var snapPoint in GetSnapPoints())
+        {
+            snapPoint.Load(save.snapPoints[index++]);
+        }
     }
 }
 [System.Serializable]
@@ -144,6 +152,7 @@ public enum CodeBlockCategory
     Movement,
     Logic,
     Calculation,
+    Condition,
     Debug,
     Other
 }

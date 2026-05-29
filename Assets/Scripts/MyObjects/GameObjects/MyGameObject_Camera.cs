@@ -2,15 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 public class MyGameObject_Camera : MyGameObject
 {
     public override MyGameObjectType type => MyGameObjectType.Camera;
-    public Camera cam { get; private set; }
+    [field:SerializeField] public Camera cam { get; private set; }
     public RenderTexture renderTexture { get; private set; }
     public event Action<RenderTexture> onTextureChange;
-
-    public float priority = 0;
 
     Vector2Int m_size = new Vector2Int(600, 600);
     public Vector2 size
@@ -27,7 +24,6 @@ public class MyGameObject_Camera : MyGameObject
     protected override void Awake()
     {
         base.Awake();
-        cam = GetComponent<Camera>();
         size = m_size;
     }
 

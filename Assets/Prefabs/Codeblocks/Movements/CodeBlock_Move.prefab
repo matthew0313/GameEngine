@@ -190,7 +190,6 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Move
   <blockColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
-  <category>k__BackingField: 0
   rectTransform: {fileID: 4884221520590488080}
   moveX: {fileID: 6115605677743381035}
   moveY: {fileID: 2695978598117456834}
@@ -784,6 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExecutableSnapPoint
   ownerBlock: {fileID: 4791365743860516290}
   snapAnchor: {fileID: 3414415597929905338}
+  highlight: {fileID: 0}
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &725934829616173187
@@ -800,6 +800,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: owner
+      value: 
+      objectReference: {fileID: 4791365743860516290}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4791365743860516290}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
@@ -921,6 +925,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: owner
+      value: 
+      objectReference: {fileID: 4791365743860516290}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4791365743860516290}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}

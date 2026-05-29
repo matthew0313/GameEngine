@@ -43,4 +43,8 @@ public class Codeblock_OnUpdate : CodeBlock, IOnFinish
     {
         if (owner is MyGameObject obj) obj.onUpdate -= OnUpdate;
     }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return onUpdate;
+    }
 }
