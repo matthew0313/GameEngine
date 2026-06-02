@@ -4,15 +4,14 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ImageAsset : MyAsset, IFileAsset
+public class ImageAsset : FileAsset
 {
-    public string filePath { get; private set; }
     public override AssetType type => AssetType.Image;
     public Sprite sprite { get; private set; }
     public event Action<Sprite> onSpriteChange;
 
     Vector2 pivot = new Vector2(0.5f, 0.5f);
-    public void LoadFile(string filePath)
+    public override void LoadFile(string filePath)
     {
         if(!File.Exists(filePath) || !filePath.EndsWith(".png"))
         {
@@ -36,10 +35,6 @@ public class ImageAsset : MyAsset, IFileAsset
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach(var i in base.GetElements()) yield return i;
-        yield return new ExposedString(
-            "FilePath",
-            () => filePath,
-            (value) => LoadFile(value));
         yield return new ExposedVector2(
             "Pivot",
             () => pivot,
@@ -56,7 +51,6 @@ public class ImageAsset : MyAsset, IFileAsset
     public override MyAssetSave Save()
     {
         var save = base.Save();
-        save.data.strings["filePath"] = filePath;
         save.data.floats["pivotX"] = pivot.x;
         save.data.floats["pivotY"] = pivot.y;
         return save;
@@ -65,6 +59,5 @@ public class ImageAsset : MyAsset, IFileAsset
     {
         base.Load(save);
         pivot = new Vector2(save.data.floats["pivotX"], save.data.floats["pivotY"]);
-        LoadFile(save.data.strings["filePath"]);
     }
 }

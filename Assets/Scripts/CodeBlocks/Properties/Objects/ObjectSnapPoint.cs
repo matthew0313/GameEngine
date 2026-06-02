@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
 {
+    [SerializeField] LayoutElement layoutElement;
+    [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] TMP_Text setObjectText;
     MyGameObject setObject = null;
     public override bool IsSnappable(CodeBlock codeBlock)
@@ -14,6 +16,10 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
         return base.IsSnappable(codeBlock) &&
             codeBlock is PropertyCodeBlock propertyBlock &&
             (propertyBlock.propertyType & PropertyType.Object) > 0;
+    }
+    private void Update()
+    {
+        if (layoutElement != null) layoutElement.minWidth = GetWidth();
     }
     public MyGameObject GetObject(ulong hash)
     {
@@ -29,10 +35,18 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
     }
     void SetObject(MyGameObject obj)
     {
-        if (setObject != null) setObject.onDelete -= OnSetObjectDelete;
+        if (setObject != null)
+        {
+            setObject.onDelete -= OnSetObjectDelete;
+            setObject.onDisplayChange -= OnSetObjectDisplayChange;
+        }
         setObject = obj;
-        setObjectText.text = setObject != null ? setObject.name : "None";
-        if(setObject != null) setObject.onDelete += OnSetObjectDelete;
+        OnSetObjectDisplayChange();
+        if(setObject != null)
+        {
+            setObject.onDelete += OnSetObjectDelete;
+            setObject.onDisplayChange += OnSetObjectDisplayChange;
+        }
     }
     public void OnObjectDrag(MyGameObject obj)
     {
@@ -40,6 +54,15 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
         SetObject(obj);
     }
     void OnSetObjectDelete() => SetObject(null);
+    void OnSetObjectDisplayChange() => setObjectText.text = setObject != null ? setObject.name : "None";
+    public float GetWidth()
+    {
+        if (snapped is PropertyCodeBlock propertyBlock)
+        {
+            return propertyBlock.GetWidth();
+        }
+        else return defaultWidth;
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {

@@ -21,7 +21,7 @@ public class ConditionSnapPoint : SnapPoint
     }
     private void Update()
     {
-        layoutElement.minWidth = GetWidth();
+        if(layoutElement != null) layoutElement.minWidth = GetWidth();
     }
     public bool GetCondition(ulong hash)
     {

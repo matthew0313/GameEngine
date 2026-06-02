@@ -5,11 +5,11 @@ using UnityEngine;
 public interface IInspectable
 {
     public IEnumerable<ExposedElement> GetElements();
-    public event Action onInspectorChange;
+    public Action onInspectorChange { get; set; }
 }
 public abstract class ExposedElement
 {
-
+    public bool visible = true;
 }
 public class ExposedButton : ExposedElement
 {

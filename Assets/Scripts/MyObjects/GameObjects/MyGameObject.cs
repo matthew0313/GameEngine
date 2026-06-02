@@ -86,8 +86,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
             () => transform.localScale,
             (value) => transform.localScale = new Vector3(value.x, value.y, 1.0f));
     }
-    public event Action onInspectorChange;
-    protected virtual void OnInspectorChange() => onInspectorChange?.Invoke();
+    public Action onInspectorChange { get; set; }
 
     public readonly Dictionary<string, float> numericVariables = new();
 

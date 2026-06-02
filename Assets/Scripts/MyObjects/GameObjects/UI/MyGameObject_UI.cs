@@ -25,14 +25,14 @@ public abstract class MyGameObject_UI : MyGameObject
                 Rect tmp = rectTransform.rect;
                 rectTransform.anchorMin = value;
                 rectTransform.rect.Set(tmp.x, tmp.y, tmp.width, tmp.height);
-                OnInspectorChange();
+                onInspectorChange?.Invoke();
             },
             (value) =>
             {
                 Rect tmp = rectTransform.rect;
                 rectTransform.anchorMax = value;
                 rectTransform.rect.Set(tmp.x, tmp.y, tmp.width, tmp.height);
-                OnInspectorChange();
+                onInspectorChange?.Invoke();
             });
         if (rectTransform.anchorMin.x == rectTransform.anchorMax.x)
         {

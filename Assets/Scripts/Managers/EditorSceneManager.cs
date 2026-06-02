@@ -83,7 +83,7 @@ public class EditorSceneManager : MonoBehaviour
                 else if(selected is MyAsset myAsset) RemoveAsset(myAsset);
             }
         }
-        if (InputManager.GetKeyDown(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.C))
         {
             if (selected is MyGameObject myGameObject)
             {
@@ -96,7 +96,7 @@ public class EditorSceneManager : MonoBehaviour
                 copyBuffer = JsonUtility.ToJson(myAsset.Save());
             }
         }
-        if (InputManager.GetKeyDown(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.V)) Paste();
+        if (Input.GetKey(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.V)) Paste();
         if (playMode)
         {
             foreach (var i in myScene.GetObjects())
@@ -108,7 +108,8 @@ public class EditorSceneManager : MonoBehaviour
     public void CopyBlock(CodeBlock block)
     {
         copyBufferItemType = CopyBufferItemType.CodeBlock;
-        copyBuffer = JsonUtility.ToJson(block.Save());
+        copyBuffer = JsonUtility.ToJson(block.Save(), true);
+        Debug.Log(copyBuffer);
     }
     public void Paste()
     {
@@ -163,6 +164,7 @@ public class EditorSceneManager : MonoBehaviour
     {
         if (!assets.Contains(asset)) return;
         assets.Remove(asset);
+        asset.OnRemove();
         onAssetsChange?.Invoke();
     }
     public void ReloadAssets()
@@ -170,7 +172,7 @@ public class EditorSceneManager : MonoBehaviour
         string assetsPath = Path.Combine(projectSavePath, "Assets");
         foreach(string filePath in Directory.GetFiles(assetsPath))
         {
-            if(assets.Find(a => a is IFileAsset fileAsset && fileAsset.filePath == filePath) != null) continue;
+            if(assets.Find(a => a is FileAsset fileAsset && fileAsset.filePath == filePath) != null) continue;
             if (filePath.EndsWith(".png"))
             {
                 var tmp = new ImageAsset()

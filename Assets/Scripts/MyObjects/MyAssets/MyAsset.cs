@@ -9,6 +9,7 @@ public abstract class MyAsset : ISelectable, IInspectable
 
     public string name;
     public event Action onDisplayUpdate;
+    public Action onInspectorChange { get; set; }
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
@@ -16,7 +17,6 @@ public abstract class MyAsset : ISelectable, IInspectable
             () => name,
             (value) => { name = value; OnDisplayUpdate(); });
     }
-    public event Action onInspectorChange;
     protected virtual void OnDisplayUpdate() => onDisplayUpdate?.Invoke();
     public virtual MyAssetSave Save()
     {
@@ -43,7 +43,11 @@ public abstract class MyAsset : ISelectable, IInspectable
             _ => null
         };
     }
-
+    public event Action onRemove;
+    public virtual void OnRemove()
+    {
+        onRemove?.Invoke();
+    }
     public virtual void OnSelect() { }
     public virtual void OnDeselect() { }
 }

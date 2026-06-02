@@ -33,7 +33,7 @@ public class MyGameObject_Rigidbody : MyGameObject
             {
                 setType = (RigidbodyType2D)value;
                 if(EditorSceneManager.Instance.playMode) rb.bodyType = setType;
-                OnInspectorChange();
+                onInspectorChange?.Invoke();
             },
             new string[] { "Dynamic", "Kinematic", "Static" });
         if(setType == RigidbodyType2D.Dynamic)
@@ -44,7 +44,7 @@ public class MyGameObject_Rigidbody : MyGameObject
                 (value) =>
                 {
                     rb.useAutoMass = value;
-                    OnInspectorChange();
+                    onInspectorChange?.Invoke();
                 });
             if (!rb.useAutoMass)
             {

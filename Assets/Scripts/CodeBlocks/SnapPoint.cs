@@ -68,7 +68,7 @@ public abstract class SnapPoint : MonoBehaviour
     CodeBlock snapQueued = null;
     public virtual void EarlyLoad(SnapPointSave save)
     {
-        if (save.snapped != null)
+        if (save.snapped != null && save.snapped.id != string.Empty)
         {
             var block = Instantiate(EditorSceneManager.Instance.IDToBlockPrefab(save.snapped.id));
             block.Set(ownerBlock.owner);
