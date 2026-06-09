@@ -177,7 +177,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public event Action onDelete;
     public void Delete()
     {
-        foreach (var child in children) child.Delete();
+        while(children.Count > 0) children[0].Delete();
         if (parent != null) parent.RemoveChild(this);
         if (EditorSceneManager.Instance.selected == this) EditorSceneManager.Instance.Select(null);
         while(codeBlocks.Count > 0)
