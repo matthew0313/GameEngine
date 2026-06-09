@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using static Unity.Burst.Intrinsics.X86.Avx;
+
 
 
 
@@ -139,8 +141,10 @@ public class EditorSceneManager : MonoBehaviour
             if (blockPrefab != null)
             {
                 CodeBlock block = Instantiate(blockPrefab, scriptGrid.transform);
-                block.EarlyLoad(save, true);
+                block.Set(scriptGrid.editing);
+                scriptGrid.editing.codeBlocks.Add(block);
                 scriptGrid.BindToGrid(block);
+                block.EarlyLoad(save, true);
                 block.Load(save);
             }
         }

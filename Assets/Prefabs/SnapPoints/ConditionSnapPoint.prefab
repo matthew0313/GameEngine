@@ -300,7 +300,7 @@ MonoBehaviour:
   snapAnchor: {fileID: 2348649141601419935}
   highlight: {fileID: 6121970571687158901}
   layoutElement: {fileID: 8382512504862096258}
-  defaultWidth: 50
+  defaultWidth: 100
   toggle: {fileID: 8662998941874184494}
 --- !u!1 &8478219243984246119
 GameObject:

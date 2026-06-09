@@ -8,7 +8,7 @@ public class CodeBlock_KeyUp : ConditionCodeBlock
     public override CodeBlockCategory category => CodeBlockCategory.Condition;
 
     [SerializeField] RectTransform rectTransform;
-    [SerializeField] InputField key;
+    [SerializeField] TMP_InputField key;
     KeyCode setKey = KeyCode.None;
     private void OnEnable()
     {

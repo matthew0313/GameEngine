@@ -36,35 +36,30 @@ public class MyGameObject_Rigidbody : MyGameObject
                 onInspectorChange?.Invoke();
             },
             new string[] { "Dynamic", "Kinematic", "Static" });
-        if(setType == RigidbodyType2D.Dynamic)
-        {
-            yield return new ExposedBool(
-                "Use Auto Mass",
-                () => rb.useAutoMass,
-                (value) =>
-                {
-                    rb.useAutoMass = value;
-                    onInspectorChange?.Invoke();
-                });
-            if (!rb.useAutoMass)
+        bool isDynamic = setType == RigidbodyType2D.Dynamic;
+        yield return new ExposedBool(
+            "Use Auto Mass",
+            () => rb.useAutoMass,
+            (value) =>
             {
-                yield return new ExposedNumber(
-                    "Mass",
-                    () => rb.mass,
-                    (value) => rb.mass = value);
-            }
-            yield return new ExposedNumber(
-                "Linear Damping",
-                () => rb.linearDamping,
-                (value) => rb.linearDamping = value);
-            yield return new ExposedNumber(
-                "Angular Damping",
-                () => rb.angularDamping,
-                (value) => rb.angularDamping = value);
-            yield return new ExposedNumber(
-                "Gravity Scale",
-                () => rb.gravityScale,
-                (value) => rb.gravityScale = value);
-        }
+                rb.useAutoMass = value;
+                onInspectorChange?.Invoke();
+            }) { visible = isDynamic };
+        yield return new ExposedNumber(
+            "Mass",
+            () => rb.mass,
+            (value) => rb.mass = value) { visible = isDynamic && !rb.useAutoMass };
+        yield return new ExposedNumber(
+            "Linear Damping",
+            () => rb.linearDamping,
+            (value) => rb.linearDamping = value) { visible = isDynamic };
+        yield return new ExposedNumber(
+            "Angular Damping",
+            () => rb.angularDamping,
+            (value) => rb.angularDamping = value) { visible = isDynamic };
+        yield return new ExposedNumber(
+            "Gravity Scale",
+            () => rb.gravityScale,
+            (value) => rb.gravityScale = value) { visible = isDynamic };
     }
 }

@@ -10,20 +10,6 @@ public abstract class PropertyCodeBlock : CodeBlock
     public virtual MyGameObject GetObject(ulong hash) => null;
     public virtual MyAsset GetAsset(ulong hash) => null;
     public abstract float GetWidth();
-    protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
-    {
-        yield return new RCMenuElement_Button(
-            "Log Condition",
-            ctx =>
-            {
-                EditorSceneManager.Instance.AddLog(new()
-                {
-                    type = MyLogType.Info,
-                    message = GetCondition(ulong.MaxValue).ToString()
-                });
-            });
-        foreach (var i in base.MakeRightClickMenu()) yield return i;
-    }
 }
 public class MyArray
 {

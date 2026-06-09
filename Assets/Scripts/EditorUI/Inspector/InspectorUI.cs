@@ -63,6 +63,7 @@ public class InspectorUI : MonoBehaviour
         if (inspectable == null) return;
         foreach (var element in inspectable.GetElements())
         {
+            if (!element.visible) continue;
             if (element is ExposedButton exposedButton)
             {
                 var ui = buttonPool.GetObject(container);
