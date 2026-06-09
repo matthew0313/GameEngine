@@ -34,26 +34,6 @@ public abstract class MyGameObject_UI : MyGameObject
                 rectTransform.rect.Set(tmp.x, tmp.y, tmp.width, tmp.height);
                 onInspectorChange?.Invoke();
             });
-        yield return new ExposedNumber(
-            "AnchorMinX",
-            () => rectTransform.anchorMin.x,
-            value => rectTransform.anchorMin = new Vector2(value, rectTransform.anchorMin.y)) 
-        { visible = false };
-        yield return new ExposedNumber(
-            "AnchorMinY",
-            () => rectTransform.anchorMin.y,
-            value => rectTransform.anchorMin = new Vector2(rectTransform.anchorMin.x, value))
-        { visible = false };
-        yield return new ExposedNumber(
-            "AnchorMaxX",
-            () => rectTransform.anchorMax.x,
-            value => rectTransform.anchorMax = new Vector2(value, rectTransform.anchorMax.y))
-        { visible = false };
-        yield return new ExposedNumber(
-            "AnchorMaxY",
-            () => rectTransform.anchorMax.y,
-            value => rectTransform.anchorMax = new Vector2(rectTransform.anchorMax.x, value))
-        { visible = false };
         bool xPointAnchor = rectTransform.anchorMin.x == rectTransform.anchorMax.x;
         bool yPointAnchor = rectTransform.anchorMin.y == rectTransform.anchorMax.y;
         yield return new ExposedNumber(
