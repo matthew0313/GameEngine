@@ -43,11 +43,11 @@ public abstract class SnapPoint : MonoBehaviour
     {
         OnSnappedChange();
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         EditorSceneManager.Instance.snapPoints.Add(this);
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         EditorSceneManager.Instance.snapPoints.Remove(this);
     }

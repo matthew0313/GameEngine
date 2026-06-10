@@ -23,13 +23,15 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         return base.IsSnappable(codeBlock) && codeBlock is PropertyCodeBlock;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         typeDropdown.onValueChanged.AddListener(OnTypeChange);
         OnTypeChange(typeDropdown.value);
     }
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         typeDropdown.onValueChanged.RemoveListener(OnTypeChange);
     }
     public void SetType(TypeIndex type)
