@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CodeBlock_Add : NumericCodeBlock
+public class CodeBlock_Subtract : NumericCodeBlock
 {
     public override CodeBlockCategory category => CodeBlockCategory.Calculation;
     [SerializeField] RectTransform rectTransform;
