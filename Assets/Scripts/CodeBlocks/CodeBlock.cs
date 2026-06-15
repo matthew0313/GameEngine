@@ -39,8 +39,12 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
             eventData.Use();
         }
     }
-    public void Delete()
+    public virtual void Delete()
     {
+        foreach(var snapPoint in GetSnapPoints())
+        {
+            if (snapPoint.snapped != null) snapPoint.snapped.Delete();
+        }
         if (owner != null) owner.codeBlocks.Remove(this);
         Destroy(gameObject);
     }
@@ -153,13 +157,13 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 [System.Serializable]
 public enum CodeBlockCategory
 {
-    Starter,
-    Movement,
-    Logic,
-    Calculation,
-    Condition,
-    Debug,
-    Other
+    Starter = 0,
+    Movement = 1,
+    Logic = 2,
+    Calculation = 3,
+    Condition = 4,
+    Other = 5,
+    Debug = 6
 }
 [System.Serializable]
 public class CodeBlockSave

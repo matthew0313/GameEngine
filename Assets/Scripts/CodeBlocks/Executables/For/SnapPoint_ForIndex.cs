@@ -18,7 +18,7 @@ public class SnapPoint_ForIndex : SnapPoint
         if(snapped == null)
         {
             var tmp = Instantiate(blockPrefab);
-            tmp.target = ownerBlock as CodeBlock_For;
+            tmp.BindTarget(ownerBlock as CodeBlock_For);
             tmp.Set(ownerBlock.owner);
             ownerBlock.owner.codeBlocks.Add(tmp);
             base.Snap(tmp);

@@ -41,8 +41,15 @@ public class PrefabAsset : MyAsset, ICodeable
     {
         MyGameObjectSave save = prefabOrigin.Save();
         MyGameObject obj = MonoBehaviour.Instantiate(prefabOrigin);
+        obj.EarlyLoad(save, true);
         obj.Load(save);
         obj.gameObject.SetActive(true);
+        EditorSceneManager.Instance.myScene.AddChild(obj);
         return obj;
+    }
+    public override void OnRemove()
+    {
+        base.OnRemove();
+        prefabOrigin.Delete();
     }
 }

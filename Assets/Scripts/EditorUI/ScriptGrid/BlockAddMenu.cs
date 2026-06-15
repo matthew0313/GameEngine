@@ -54,7 +54,7 @@ public class BlockAddMenu : MonoBehaviour
     {
         if (open) return;
         open = true;
-        rectTransform.anchoredPosition = pos;
+        rectTransform.anchoredPosition = area.InverseTransformPoint(pos);
         gameObject.SetActive(true);
     }
     public void Close()

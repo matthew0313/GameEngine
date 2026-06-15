@@ -72,7 +72,6 @@ public class RightClickMenu : MonoBehaviour
     public void Close()
     {
         if (!open) return;
-        Debug.Log("Closes");
         open = false;
         gameObject.SetActive(false);
     }

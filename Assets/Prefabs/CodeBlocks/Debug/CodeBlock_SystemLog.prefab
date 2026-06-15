@@ -358,7 +358,6 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SystemLog
   <blockColor>k__BackingField: {r: 0.5882353, g: 0.47058824, b: 1, a: 1}
-  <category>k__BackingField: 3
   rectTransform: {fileID: 4884221520590488080}
   logType: {fileID: 7513374178556771100}
   message: {fileID: 1549996764327460538}
@@ -1903,6 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExecutableSnapPoint
   ownerBlock: {fileID: 3600119291709130627}
   snapAnchor: {fileID: 3414415597929905338}
+  highlight: {fileID: 0}
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &3036021658805954154

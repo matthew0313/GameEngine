@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CodeBlock_Divide : NumericCodeBlock
@@ -8,4 +9,9 @@ public class CodeBlock_Divide : NumericCodeBlock
     [SerializeField] NumericSnapPoint inputB;
     public override float GetNumber(ulong hash) => inputA.GetNumber(hash) / inputB.GetNumber(hash);
     public override float GetWidth() => rectTransform.rect.width;
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return inputA;
+        yield return inputB;
+    }
 }

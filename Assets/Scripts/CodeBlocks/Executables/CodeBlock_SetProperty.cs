@@ -11,7 +11,7 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
 
     [SerializeField] RectTransform rectTransform;
     [SerializeField] TMP_Dropdown propertyDropdown;
-    [SerializeField] WildcardSnapPoint valueSnapPoint;
+    [SerializeField] WildcardSnapPoint value;
     [field: SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override bool IsAddable(ICodeable codeable)
     {
@@ -19,7 +19,7 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
         {
             foreach(var i in inspectable.GetElements())
             {
-                if(i is ExposedProperty)
+                if(i is ExposedProperty || i is ExposedAnchor)
                 {
                     return true;
                 }
@@ -27,9 +27,11 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
         }
         return false;
     }
+    readonly List<Action<WildcardSnapPoint, ulong>> cache = new();
     public override void Set(ICodeable owner)
     {
         base.Set(owner);
+        cache.Clear();
         IInspectable inspectable = owner as IInspectable;
         propertyDropdown.ClearOptions();
         foreach(var i in inspectable.GetElements())
@@ -39,80 +41,55 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
                 if(i is ExposedVector2 vector2)
                 {
                     propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name + ".x"));
+                    cache.Add((snap, hash) => vector2.setter(new Vector2(snap.GetNumber(hash), vector2.getter().y)));
                     propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name + ".y"));
+                    cache.Add((snap, hash) => vector2.setter(new Vector2(vector2.getter().x, snap.GetNumber(hash))));
                 }
-                else propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
+                else
+                {
+                    propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
+                    if (i is ExposedNumber number) cache.Add((snap, hash) => number.setter(snap.GetNumber(hash)));
+                    else if (i is ExposedBool boolean) cache.Add((snap, hash) => boolean.setter(snap.GetCondition(hash)));
+                    else if (i is ExposedString str) cache.Add((snap, hash) => str.setter(snap.GetString(hash)));
+                    else if (i is ExposedDropdown dropdown) cache.Add((snap, hash) => dropdown.setter((int)snap.GetNumber(hash)));
+                    else if (i is ExposedObject obj) cache.Add((snap, hash) => obj.setter(snap.GetObject(hash)));
+                    else if (i is ExposedAsset asset) cache.Add((snap, hash) => asset.setter(snap.GetAsset(hash)));
+                }
             }
             else if(i is ExposedAnchor anchor)
             {
                 propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin.x"));
+                cache.Add((snap, hash) => { Vector2 min = anchor.minGetter(); anchor.minSetter(new Vector2(snap.GetNumber(hash), min.y)); });
                 propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin.y"));
+                cache.Add((snap, hash) => { Vector2 min = anchor.minGetter(); anchor.minSetter(new Vector2(min.x, snap.GetNumber(hash))); });
                 propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax.x"));
+                cache.Add((snap, hash) => { Vector2 max = anchor.maxGetter(); anchor.maxSetter(new Vector2(snap.GetNumber(hash), max.y)); });
                 propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax.y"));
+                cache.Add((snap, hash) => { Vector2 max = anchor.maxGetter(); anchor.maxSetter(new Vector2(max.x, snap.GetNumber(hash))); });
             }
         }
         propertyDropdown.RefreshShownValue();
     }
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
     {
-        int index = propertyDropdown.value;
-        IInspectable inspectable = owner as IInspectable;
-        foreach (var i in inspectable.GetElements())
-        {
-            if (i is ExposedProperty property)
-            {
-                if(property is ExposedVector2 vector2)
-                {
-                    if (index == 0) vector2.setter(new Vector2(valueSnapPoint.GetNumber(hash), vector2.getter().y));
-                    else if (index == 1) vector2.setter(new Vector2(vector2.getter().x, valueSnapPoint.GetNumber(hash)));
-                    index -= 2;
-                }
-                else if (property is ExposedNumber number)
-                {
-                    if (index == 0) number.setter(valueSnapPoint.GetNumber(hash));
-                    index--;
-                }
-                else if (property is ExposedBool boolean)
-                {
-                    if (index == 0) boolean.setter(valueSnapPoint.GetCondition(hash));
-                    index--;
-                }
-                else if (property is ExposedString str)
-                {
-                    if (index == 0) str.setter(valueSnapPoint.GetString(hash));
-                    index--;
-                }
-                else if (property is ExposedDropdown dropdown)
-                {
-                    if (index == 0) dropdown.setter((int)valueSnapPoint.GetNumber(hash));
-                    index--;
-                }
-                else if (property is ExposedObject obj)
-                {
-                    if (index == 0) obj.setter(valueSnapPoint.GetObject(hash));
-                    index--;
-                }
-                else if (property is ExposedAsset asset)
-                {
-                    if (index == 0) asset.setter(valueSnapPoint.GetAsset(hash));
-                    index--;
-                }
-            }
-            else if(i is ExposedAnchor anchor)
-            {
-                float value = valueSnapPoint.GetNumber(hash);
-                Vector2 anchorMin = anchor.minGetter(), anchorMax = anchor.maxGetter();
-
-                if (index == 0) anchor.minSetter(new Vector2(value, anchorMin.y));
-                else if (index == 1) anchor.minSetter(new Vector2(anchorMin.x, value));
-                else if (index == 2) anchor.maxSetter(new Vector2(value, anchorMax.y));
-                else if (index == 3) anchor.maxSetter(new Vector2(anchorMax.x, value));
-                index -= 4;
-            }
-            if (index < 0) break;
-        }
-        inspectable.onInspectorChange?.Invoke();
+        cache[propertyDropdown.value].Invoke(value, hash);
+        (owner as IInspectable).onInspectorChange?.Invoke();
         return await onFinish.Execute(hash);
+    }
+    public override CodeBlockSave Save()
+    {
+        var save = base.Save();
+        save.data.integers["property"] = propertyDropdown.value;
+        return save;
+    }
+    public override void Load(CodeBlockSave save)
+    {
+        base.Load(save);
+        propertyDropdown.value = save.data.integers["property"];
+    }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return value;
     }
     public override float GetHeight()
     {

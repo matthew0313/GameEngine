@@ -67,6 +67,7 @@ public class EditorSceneManager : MonoBehaviour
     }
     private void Start()
     {
+        Debug.Log((PropertyType.String & PropertyType.Wildcard) > 0);
         ReloadAssets();
         AddLog(new()
         {

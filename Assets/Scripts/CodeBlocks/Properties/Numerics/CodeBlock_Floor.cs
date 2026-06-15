@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class CodeBlock_Floor : NumericCodeBlock
 {
@@ -7,4 +9,8 @@ public class CodeBlock_Floor : NumericCodeBlock
     [SerializeField] NumericSnapPoint input;
     public override float GetNumber(ulong hash) => Mathf.Floor(input.GetNumber(hash));
     public override float GetWidth() => rectTransform.rect.width;
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return input;
+    }
 }

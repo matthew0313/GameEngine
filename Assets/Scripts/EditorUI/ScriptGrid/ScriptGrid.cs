@@ -128,7 +128,7 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
     {
         yield return new RCMenuElement_Button(
             "Add Block...",
-            (ctx) => { blockMenu.Open(transform.InverseTransformPoint(ctx.position)); });
+            (ctx) => { blockMenu.Open(ctx.position); });
         yield return new RCMenuElement_Button(
             "Move to Center",
             (ctx) =>

@@ -11,6 +11,7 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint loopCount;
     [SerializeField] ExecutableSnapPoint onLoop;
+    [SerializeField] SnapPoint_ForIndex index;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     readonly Dictionary<ulong, int> loopIndices = new();
     public int GetLoopIndex(ulong hash)
@@ -30,7 +31,10 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
         loopIndices.Remove(hash);
         return await onFinish.Execute(hash);
     }
-
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return index;
+    }
     public override float GetHeight()
     {
         return rectTransform.rect.height + onFinish.GetHeight();

@@ -338,6 +338,7 @@ MonoBehaviour:
   highlight: {fileID: 6121970571687158901}
   layoutElement: {fileID: 8382512504862096258}
   defaultWidth: 100
+  unSnapped: {fileID: 8478219243984246119}
   toggle: {fileID: 8662998941874184494}
 --- !u!1 &8478219243984246119
 GameObject:
@@ -371,10 +372,10 @@ RectTransform:
   - {fileID: 1428622516251265118}
   m_Father: {fileID: 2348649141601419935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8662998941874184494
 MonoBehaviour:

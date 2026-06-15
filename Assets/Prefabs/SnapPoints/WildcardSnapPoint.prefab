@@ -1495,7 +1495,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 250, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7193903275464812138
 MonoBehaviour:
@@ -1534,6 +1534,7 @@ MonoBehaviour:
   highlight: {fileID: 4456702448023249758}
   layoutElement: {fileID: 7193903275464812138}
   defaultWidth: 250
+  unSnapped: {fileID: 4954696641468466270}
   typeDropdown: {fileID: 2979520788762491405}
   inputField: {fileID: 6451944655429363657}
   toggle: {fileID: 6042761440640266139}

@@ -2,18 +2,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, IPointerDownHandler
 {
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
+    [SerializeField] GameObject unSnapped;
     [SerializeField] TMP_Dropdown typeDropdown;
     [SerializeField] TMP_InputField inputField;
     [SerializeField] Toggle toggle;
     [SerializeField] TMP_Text setObjectText;
     [SerializeField] TMP_Text setAssetText;
 
-    public enum TypeIndex { Number = 0, Condition = 1, String = 2, Object = 3, Asset = 4 }
+    public enum TypeIndex { Number = 0, Condition = 1, String = 2, Object = 3, Asset = 4, Array = 5 }
 
     MyGameObject setObject;
     MyAsset setAsset;
@@ -42,19 +44,18 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
     void OnTypeChange(int type) => UpdateDefaultUI();
     protected override void OnSnappedChange()
     {
+        unSnapped.SetActive(snapped == null);
         UpdateDefaultUI();
         base.OnSnappedChange();
     }
 
     void UpdateDefaultUI()
     {
-        bool free = snapped == null;
-        typeDropdown.gameObject.SetActive(free);
         var idx = (TypeIndex)typeDropdown.value;
-        inputField.gameObject.SetActive(free && (idx == TypeIndex.Number || idx == TypeIndex.String));
-        toggle.gameObject.SetActive(free && idx == TypeIndex.Condition);
-        setObjectText.gameObject.SetActive(free && idx == TypeIndex.Object);
-        setAssetText.gameObject.SetActive(free && idx == TypeIndex.Asset);
+        inputField.gameObject.SetActive(idx == TypeIndex.Number || idx == TypeIndex.String);
+        toggle.gameObject.SetActive(idx == TypeIndex.Condition);
+        setObjectText.gameObject.SetActive(idx == TypeIndex.Object);
+        setAssetText.gameObject.SetActive(idx == TypeIndex.Asset);
     }
 
     private void Update()

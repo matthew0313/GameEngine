@@ -9,6 +9,7 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
 {
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
+    [SerializeField] GameObject unSnapped;
     [SerializeField] TMP_Text setObjectText;
     MyGameObject setObject = null;
     public override bool IsSnappable(CodeBlock codeBlock)
@@ -20,6 +21,11 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
     private void Update()
     {
         if (layoutElement != null) layoutElement.minWidth = GetWidth();
+    }
+    protected override void OnSnappedChange()
+    {
+        unSnapped.SetActive(snapped == null);
+        base.OnSnappedChange();
     }
     public MyGameObject GetObject(ulong hash)
     {
@@ -33,7 +39,7 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
         }
         return null;
     }
-    void SetObject(MyGameObject obj)
+    public void SetObject(MyGameObject obj)
     {
         if (setObject != null)
         {

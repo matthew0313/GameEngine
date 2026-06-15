@@ -712,4 +712,5 @@ MonoBehaviour:
   highlight: {fileID: 8369738382737042062}
   layoutElement: {fileID: 2678347461262009110}
   defaultWidth: 100
+  unSnapped: {fileID: 2202753304982232922}
   inputField: {fileID: 3122417909288684817}

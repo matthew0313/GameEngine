@@ -8,10 +8,14 @@ public class CodeBlock_ForIndex : NumericCodeBlock
 {
     public override CodeBlockCategory category => CodeBlockCategory.Other;
     [SerializeField] RectTransform rectTransform;
-    public CodeBlock_For target;
+    public CodeBlock_For target { get; private set; }
     public override bool IsAddable(ICodeable codeable) => false;
     public override float GetNumber(ulong hash) => target != null ? target.GetLoopIndex(hash) : -1;
     public override float GetWidth() => rectTransform.rect.width;
+    public void BindTarget(CodeBlock_For target)
+    {
+        this.target = target;
+    }
     public override CodeBlockSave Save()
     {
         var save = base.Save();
@@ -30,6 +34,11 @@ public class CodeBlock_ForIndex : NumericCodeBlock
             }
         }
     }
+    protected override void Update()
+    {
+        base.Update();
+        if (target == null) Delete();
+    }
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
         foreach (var i in base.MakeRightClickMenu()) yield return i;
@@ -37,6 +46,7 @@ public class CodeBlock_ForIndex : NumericCodeBlock
             "Move to Origin",
             ctx =>
             {
+                if (target == null) return;
                 EditorSceneManager.Instance.scriptGrid.MoveTo(target.transform.position, true);
             });
     }

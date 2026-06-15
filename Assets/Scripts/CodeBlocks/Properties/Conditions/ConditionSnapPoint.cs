@@ -7,6 +7,7 @@ public class ConditionSnapPoint : SnapPoint
 {
     [SerializeField] LayoutElement layoutElement;
     [SerializeField] float defaultWidth = 50.0f;
+    [SerializeField] GameObject unSnapped;
     [SerializeField] Toggle toggle;
     public override bool IsSnappable(CodeBlock codeBlock)
     {
@@ -16,7 +17,7 @@ public class ConditionSnapPoint : SnapPoint
     }
     protected override void OnSnappedChange()
     {
-        toggle.gameObject.SetActive(snapped == null);
+        unSnapped.SetActive(snapped == null);
         base.OnSnappedChange();
     }
     private void Update()

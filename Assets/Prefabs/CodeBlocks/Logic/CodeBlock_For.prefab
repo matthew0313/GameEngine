@@ -556,6 +556,7 @@ MonoBehaviour:
   rectTransform: {fileID: 9009849328756168441}
   loopCount: {fileID: 7286836597423317308}
   onLoop: {fileID: 1044255642255435475}
+  index: {fileID: 8836491826184797220}
   <onFinish>k__BackingField: {fileID: 5177895141276169817}
 --- !u!1 &6250430261369122449
 GameObject:
