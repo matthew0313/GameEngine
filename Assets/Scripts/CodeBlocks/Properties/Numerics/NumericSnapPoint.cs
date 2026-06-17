@@ -26,14 +26,11 @@ public class NumericSnapPoint : SnapPoint
     }
     public float GetNumber(ulong hash)
     {
-        if (snapped == null)
-        {
-            if (float.TryParse(inputField.text, out float value)) return value;
-        }
-        else if (snapped is PropertyCodeBlock propertyBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
             return propertyBlock.GetNumber(hash);
         }
+        if (float.TryParse(inputField.text, out float value)) return value;
         return 0.0f;
     }
     public int GetIntNumber(ulong hash) => Mathf.FloorToInt(GetNumber(hash));
@@ -44,6 +41,11 @@ public class NumericSnapPoint : SnapPoint
             return propertyBlock.GetWidth();
         }
         else return defaultWidth;
+    }
+    public override void Clear()
+    {
+        base.Clear();
+        inputField.text = string.Empty;
     }
     public override SnapPointSave Save()
     {

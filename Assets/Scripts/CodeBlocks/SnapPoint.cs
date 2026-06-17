@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class SnapPoint : MonoBehaviour
 {
@@ -59,6 +61,11 @@ public abstract class SnapPoint : MonoBehaviour
     {
         if(highlight != null) highlight.SetActive(false);
     }
+    public virtual void Clear()
+    {
+        var tmp = snapped;
+        Detach(); tmp?.Delete();
+    }
     public virtual SnapPointSave Save()
     {
         SnapPointSave save = new();
@@ -66,13 +73,13 @@ public abstract class SnapPoint : MonoBehaviour
         return save;
     }
     CodeBlock snapQueued = null;
-    public virtual void EarlyLoad(SnapPointSave save)
+    public virtual void EarlyLoad(SnapPointSave save, bool resetUID = false)
     {
         if (save.snapped != null && save.snapped.id != string.Empty)
         {
             var block = Instantiate(EditorSceneManager.Instance.IDToBlockPrefab(save.snapped.id));
             block.Set(ownerBlock.owner);
-            block.EarlyLoad(save.snapped);
+            block.EarlyLoad(save.snapped, resetUID);
             snapQueued = block;
         }
     }

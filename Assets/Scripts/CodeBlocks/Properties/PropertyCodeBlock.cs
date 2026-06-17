@@ -9,6 +9,7 @@ public abstract class PropertyCodeBlock : CodeBlock
     public virtual string GetString(ulong hash) => "";
     public virtual MyGameObject GetObject(ulong hash) => null;
     public virtual MyAsset GetAsset(ulong hash) => null;
+    public virtual Vector2 GetVector2(ulong hash) => new();
     public virtual List<Wildcard> GetArray(ulong hash) => null;
     public Wildcard GetWildcard(ulong hash) => new()
     {
@@ -17,6 +18,7 @@ public abstract class PropertyCodeBlock : CodeBlock
         str = GetString(hash),
         obj = GetObject(hash),
         asset = GetAsset(hash),
+        vector2 = GetVector2(hash),
         array = GetArray(hash)
     };
     public abstract float GetWidth();
@@ -30,7 +32,8 @@ public enum PropertyType
     String = 1<<2,
     Object = 1<<3,
     Asset = 1<<4,
-    Array = 1<<5,
+    Vector2 = 1<<5,
+    Array = 1<<6,
     Wildcard = Number + Condition + String + Object + Asset + Array
 }
 [System.Serializable]
@@ -41,5 +44,6 @@ public struct Wildcard
     public string str;
     public MyGameObject obj;
     public MyAsset asset;
+    public Vector2 vector2;
     public List<Wildcard> array;
 }

@@ -26,15 +26,11 @@ public class ConditionSnapPoint : SnapPoint
     }
     public bool GetCondition(ulong hash)
     {
-        if (snapped == null)
-        {
-            return toggle.isOn;
-        }
-        else if (snapped is PropertyCodeBlock propertyBlock)
+        if (snapped is PropertyCodeBlock propertyBlock)
         {
             return propertyBlock.GetCondition(hash);
         }
-        else return false;
+        return toggle.isOn;
     }
     public float GetWidth()
     {

@@ -8,9 +8,12 @@ public class SnapPoint_FunctionParam : SnapPoint
 {
     [SerializeField] CodeBlock_FunctionParam blockPrefab;
     public string parameterName;
-    public override bool IsSnappable(CodeBlock codeBlock) => codeBlock is CodeBlock_FunctionParam block && block.target == ownerBlock && block.parameterName == parameterName;
+    public override bool IsSnappable(CodeBlock codeBlock) => codeBlock is CodeBlock_FunctionParam block && block.target == ownerBlock;
     public override void Snap(CodeBlock codeBlock)
     {
+        var tmp = codeBlock as CodeBlock_FunctionParam;
+        var owner = ownerBlock as CodeBlock_Function;
+        owner.SwapParameter(parameterName, tmp.parameterName);
         codeBlock.Delete();
     }
     protected override void OnSnappedChange()

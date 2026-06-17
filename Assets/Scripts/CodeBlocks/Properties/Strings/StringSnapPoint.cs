@@ -45,6 +45,11 @@ public class StringSnapPoint : SnapPoint
         }
         else return defaultWidth;
     }
+    public override void Clear()
+    {
+        base.Clear();
+        inputField.text = string.Empty;
+    }
     public override SnapPointSave Save()
     {
         var tmp = base.Save();

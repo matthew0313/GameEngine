@@ -14,15 +14,7 @@ public class Codeblock_OnAwake : CodeBlock, IOnFinish
     {
         base.Set(owner);
         MyGameObject obj = owner as MyGameObject;
-        if(obj == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = "OnAwake block added in a non-object. Block will not function."
-            });
-        }
-        obj.onAwake += OnAwake;
+        if(obj != null) obj.onAwake += OnAwake;
     }
     ulong testHash = 0, hash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
@@ -39,9 +31,10 @@ public class Codeblock_OnAwake : CodeBlock, IOnFinish
     {
         onAwake.Execute(hash++);
     }
-    private void OnDestroy()
+    public override void Delete()
     {
         if (owner is MyGameObject obj) obj.onAwake -= OnAwake;
+        base.Delete();
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {

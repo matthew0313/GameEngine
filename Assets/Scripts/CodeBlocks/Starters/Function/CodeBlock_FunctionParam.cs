@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CodeBlock_FunctionParam : PropertyCodeBlock
 {
-    public override CodeBlockCategory category => CodeBlockCategory.Other;
+    public override CodeBlockCategory category => CodeBlockCategory.Starter;
     public override PropertyType propertyType => PropertyType.Wildcard;
     [SerializeField] RectTransform rectTransform;
     [SerializeField] TMP_Text parameterNameText;

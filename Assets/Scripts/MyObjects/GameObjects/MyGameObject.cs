@@ -91,7 +91,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
 
     public readonly Dictionary<string, MyVariable> variables = new();
     public readonly List<CodeBlock_Function> functions = new();
-    public event Action onAwake, onStart, onUpdate;
+    public event Action onAwake, onStart, onUpdate, onFixedUpdate;
     public virtual void OnAwake()
     {
         onAwake?.Invoke();
@@ -103,6 +103,10 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual void OnUpdate()
     {
         onUpdate?.Invoke();
+    }
+    public virtual void OnFixedUpdate()
+    {
+        onFixedUpdate?.Invoke();
     }
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {

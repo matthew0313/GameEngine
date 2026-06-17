@@ -38,40 +38,21 @@ public class Codeblock_GetProperty : PropertyCodeBlock
         {
             if (i is ExposedProperty property)
             {
-                if (i is ExposedVector2 vector2)
-                {
-                    propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name + ".x"));
-                    cache.Add(_ => new()
-                    {
-                        number = vector2.getter().x
-                    });
-                    propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name + ".y"));
-                    cache.Add(_ => new()
-                    {
-                        number = vector2.getter().y
-                    });
-                }
-                else
-                {
-                    propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
-                    if (i is ExposedNumber number) cache.Add(_ => new() { number = number.getter() });
-                    else if (i is ExposedBool boolean) cache.Add(_ => new() { condition = boolean.getter() });
-                    else if (i is ExposedString str) cache.Add(_ => new() { str = str.getter() });
-                    else if (i is ExposedDropdown dropdown) cache.Add(_ => new() { number = (float)dropdown.getter() });
-                    else if (i is ExposedObject obj) cache.Add(_ => new() { obj = obj.getter() });
-                    else if (i is ExposedAsset asset) cache.Add(_ => new() { asset = asset.getter() });
-                }
+                propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
+                if (i is ExposedNumber number) cache.Add(_ => new() { number = number.getter() });
+                else if (i is ExposedBool boolean) cache.Add(_ => new() { condition = boolean.getter() });
+                else if (i is ExposedString str) cache.Add(_ => new() { str = str.getter() });
+                else if (i is ExposedDropdown dropdown) cache.Add(_ => new() { number = (float)dropdown.getter() });
+                else if (i is ExposedObject obj) cache.Add(_ => new() { obj = obj.getter() });
+                else if (i is ExposedAsset asset) cache.Add(_ => new() { asset = asset.getter() });
+                else if (i is ExposedVector2 vector2) cache.Add(_ => new() { vector2 = vector2.getter() });
             }
             else if (i is ExposedAnchor anchor)
             {
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin.x"));
-                cache.Add(_ => new() { number = anchor.minGetter().x });
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin.y"));
-                cache.Add(_ => new() { number = anchor.minGetter().y });
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax.x"));
-                cache.Add(_ => new() { number = anchor.maxGetter().x });
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax.y"));
-                cache.Add(_ => new() { number = anchor.maxGetter().y });
+                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin"));
+                cache.Add(_ => new() { vector2 = anchor.minGetter() });
+                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax"));
+                cache.Add(_ => new() { vector2 = anchor.maxGetter() });
             }
         }
         propertyDropdown.RefreshShownValue();
@@ -81,6 +62,7 @@ public class Codeblock_GetProperty : PropertyCodeBlock
     public override string GetString(ulong hash) => cache[propertyDropdown.value].Invoke(hash).str;
     public override MyGameObject GetObject(ulong hash) => cache[propertyDropdown.value].Invoke(hash).obj;
     public override MyAsset GetAsset(ulong hash) => cache[propertyDropdown.value].Invoke(hash).asset;
+    public override Vector2 GetVector2(ulong hash) => cache[propertyDropdown.value].Invoke(hash).vector2;
     public override CodeBlockSave Save()
     {
         var save = base.Save();

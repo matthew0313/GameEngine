@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CodeBlock_Function : CodeBlock, IOnFinish
 {
-    public override CodeBlockCategory category => CodeBlockCategory.Other;
+    public override CodeBlockCategory category => CodeBlockCategory.Starter;
 
     [SerializeField] Transform parameterElementAnchor;
     [SerializeField] SnapPoint_FunctionParam parameterElementPrefab;
@@ -21,7 +21,7 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     public event Action<string, string> onParameterRename;
     public readonly Dictionary<ulong, Dictionary<string, Wildcard>> executionParams = new();
     ulong hash = 0;
-    public string functionName => functionNameField.name;
+    public string functionName => functionNameField.text;
     public override bool IsAddable(ICodeable codeable)
     {
         return base.IsAddable(codeable) && (codeable is MyGameObject || codeable is PrefabAsset);
@@ -52,6 +52,15 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
         onParameterRename?.Invoke(paramName, newName);
         OnParameterUpdate();
     }
+    public void SwapParameter(string param1, string param2)
+    {
+        if(!parameters.Contains(param1) || !parameters.Contains(param2)) return;
+        int index1 = parameters.IndexOf(param1);
+        int index2 = parameters.IndexOf(param2);
+        parameters[index1] = param2;
+        parameters[index2] = param1;
+        OnParameterUpdate();
+    }
     void OnParameterUpdate()
     {
         int i = 0;
@@ -60,6 +69,7 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
             if (parameterElements.Count <= i) parameterElements.Add(Instantiate(parameterElementPrefab, parameterElementAnchor));
             parameterElements[i].gameObject.SetActive(true);
             parameterElements[i].parameterName = parameters[i];
+            parameterElements[i].Clear();
         }
         for(; i < parameterElements.Count; i++)
         {
@@ -69,10 +79,10 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     }
     public async UniTask Execute(Dictionary<string, Wildcard> parameters)
     {
-        ulong hash = this.hash++;
         executionParams[hash] = parameters;
         await onExecute.Execute(hash);
         executionParams.Remove(hash);
+        hash++;
     }
     public Wildcard GetParameter(ulong hash, string name)
     {
@@ -83,6 +93,7 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     {
         var save = base.Save();
         save.data.strings["parameters"] = JsonUtility.ToJson(new ParametersWrapper() { parameters = parameters });
+        save.data.strings["functionName"] = functionName;
         return save;
     }
     public override void Load(CodeBlockSave save)
@@ -90,6 +101,7 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
         base.Load(save);
         parameters.Clear();
         foreach (var i in JsonUtility.FromJson<ParametersWrapper>(save.data.strings["parameters"]).parameters) parameters.Add(i);
+        functionNameField.text = save.data.strings["functionName"];
         OnParameterUpdate();
     }
     public override void Delete()
@@ -97,15 +109,23 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
         base.Delete();
         if (owner is MyGameObject obj) obj.functions.Remove(this);
     }
+
+    ulong testHash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
     {
-        foreach (var i in base.MakeRightClickMenu()) yield return i;
         yield return new RCMenuElement_Button(
             "Add Parameter",
             ctx =>
             {
                 AddParameter();
             });
+        yield return new RCMenuElement_Button(
+            "Execute with default params",
+            ctx =>
+            {
+                onExecute.Execute(testHash++);
+            });
+        foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
     [System.Serializable]
     struct ParametersWrapper

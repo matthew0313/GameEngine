@@ -26,6 +26,10 @@ public class MyGameObject_Camera : MyGameObject
         base.Awake();
         size = m_size;
     }
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10.0f);
+    }
 
     public override IEnumerable<ExposedElement> GetElements()
     {

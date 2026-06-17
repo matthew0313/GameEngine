@@ -10,12 +10,12 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
     [SerializeField] float defaultWidth = 50.0f;
     [SerializeField] GameObject unSnapped;
     [SerializeField] TMP_Dropdown typeDropdown;
-    [SerializeField] TMP_InputField inputField;
+    [SerializeField] TMP_InputField inputField, vectorXInput, vectorYInput;
     [SerializeField] Toggle toggle;
     [SerializeField] TMP_Text setObjectText;
     [SerializeField] TMP_Text setAssetText;
 
-    public enum TypeIndex { Number = 0, Condition = 1, String = 2, Object = 3, Asset = 4, Array = 5 }
+    public enum TypeIndex { Number = 0, Condition = 1, String = 2, Object = 3, Asset = 4, Vector2 = 5, Array = 6 }
 
     MyGameObject setObject;
     MyAsset setAsset;
@@ -56,6 +56,8 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         toggle.gameObject.SetActive(idx == TypeIndex.Condition);
         setObjectText.gameObject.SetActive(idx == TypeIndex.Object);
         setAssetText.gameObject.SetActive(idx == TypeIndex.Asset);
+        vectorXInput.gameObject.SetActive(idx == TypeIndex.Vector2);
+        vectorYInput.gameObject.SetActive(idx == TypeIndex.Vector2);
     }
 
     private void Update()
@@ -65,43 +67,57 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
 
     public float GetNumber(ulong hash)
     {
-        if (snapped is PropertyCodeBlock p && (p.propertyType & PropertyType.Number) > 0)
-            return p.GetNumber(hash);
+        if (snapped is PropertyCodeBlock p) return p.GetNumber(hash);
         if (snapped == null && float.TryParse(inputField.text, out float v))
             return v;
         return 0f;
     }
+    public Vector2 GetVector2(ulong hash)
+    {
+        if (snapped is PropertyCodeBlock p) return p.GetVector2(hash);
+        if (snapped == null &&
+            float.TryParse(vectorXInput.text, out float x) &&
+            float.TryParse(vectorYInput.text, out float y)) return new Vector2(x, y);
+        return new();
+    }
 
     public bool GetCondition(ulong hash)
     {
-        if (snapped is PropertyCodeBlock p && (p.propertyType & PropertyType.Condition) > 0)
-            return p.GetCondition(hash);
+        if (snapped is PropertyCodeBlock p) return p.GetCondition(hash);
         if (snapped == null) return toggle.isOn;
         return false;
     }
 
     public string GetString(ulong hash)
     {
-        if (snapped is PropertyCodeBlock p && (p.propertyType & PropertyType.String) > 0)
-            return p.GetString(hash);
+        if (snapped is PropertyCodeBlock p) return p.GetString(hash);
         if (snapped == null) return inputField.text;
         return string.Empty;
     }
 
     public MyGameObject GetObject(ulong hash)
     {
-        if (snapped is PropertyCodeBlock p && (p.propertyType & PropertyType.Object) > 0)
-            return p.GetObject(hash);
+        if (snapped is PropertyCodeBlock p) return p.GetObject(hash);
         if (snapped == null) return setObject;
         return null;
     }
 
     public MyAsset GetAsset(ulong hash)
     {
-        if (snapped is PropertyCodeBlock p && (p.propertyType & PropertyType.Asset) > 0)
-            return p.GetAsset(hash);
+        if (snapped is PropertyCodeBlock p) return p.GetAsset(hash);
         if (snapped == null) return setAsset;
         return null;
+    }
+    public Wildcard GetWildcard(ulong hash)
+    {
+        return new()
+        {
+            number = GetNumber(hash),
+            condition = GetCondition(hash),
+            str = GetString(hash),
+            obj = GetObject(hash),
+            asset = GetAsset(hash),
+        };
     }
 
     public float GetWidth()
@@ -147,7 +163,7 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         setAssetText.text = setAsset != null ? setAsset.name : "None";
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.used || snapped != null) return;
         if (eventData.button == PointerEventData.InputButton.Middle)
@@ -156,6 +172,14 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
             if (idx == TypeIndex.Object) { eventData.Use(); SetObject(null); }
             else if (idx == TypeIndex.Asset) { eventData.Use(); SetAsset(null); }
         }
+    }
+    public override void Clear()
+    {
+        base.Clear();
+        typeDropdown.value = 0;
+        inputField.text = string.Empty;
+        toggle.isOn = false;
+        SetObject(null); SetAsset(null);
     }
 
     public override SnapPointSave Save()

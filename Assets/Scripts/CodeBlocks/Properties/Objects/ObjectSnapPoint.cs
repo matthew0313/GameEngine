@@ -79,6 +79,11 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
             SetObject(null);
         }
     }
+    public override void Clear()
+    {
+        base.Clear();
+        SetObject(null);
+    }
     public override SnapPointSave Save()
     {
         var save = base.Save();

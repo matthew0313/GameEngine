@@ -13,6 +13,11 @@ public class MyGameObject_Rigidbody : MyGameObject
     private void OnCollisionEnter2D(Collision2D collision) => onCollisionEnter?.Invoke(collision);
     private void OnCollisionStay2D(Collision2D collision) => onCollisionStay?.Invoke(collision);
     private void OnCollisionExit2D(Collision2D collision) => onCollisionExit?.Invoke(collision);
+
+    public event Action<Collider2D> onTriggerEnter, onTriggerStay, onTriggerExit;
+    private void OnTriggerEnter2D(Collider2D collision) => onTriggerEnter?.Invoke(collision);
+    private void OnTriggerStay2D(Collider2D collision) => onTriggerStay?.Invoke(collision);
+    private void OnTriggerExit2D(Collider2D collision) => onTriggerExit?.Invoke(collision);
     protected override void Awake()
     {
         base.Awake();
@@ -44,22 +49,37 @@ public class MyGameObject_Rigidbody : MyGameObject
             {
                 rb.useAutoMass = value;
                 onInspectorChange?.Invoke();
-            }) { visible = isDynamic };
+            }) 
+        { visible = isDynamic };
         yield return new ExposedNumber(
             "Mass",
             () => rb.mass,
-            (value) => rb.mass = value) { visible = isDynamic && !rb.useAutoMass };
+            (value) => rb.mass = value) 
+        { visible = isDynamic && !rb.useAutoMass };
         yield return new ExposedNumber(
             "Linear Damping",
             () => rb.linearDamping,
-            (value) => rb.linearDamping = value) { visible = isDynamic };
+            (value) => rb.linearDamping = value) 
+        { visible = isDynamic };
         yield return new ExposedNumber(
             "Angular Damping",
             () => rb.angularDamping,
-            (value) => rb.angularDamping = value) { visible = isDynamic };
+            (value) => rb.angularDamping = value) 
+        { visible = isDynamic };
         yield return new ExposedNumber(
             "Gravity Scale",
             () => rb.gravityScale,
-            (value) => rb.gravityScale = value) { visible = isDynamic };
+            (value) => rb.gravityScale = value) 
+        { visible = isDynamic };
+        yield return new ExposedVector2(
+            "Linear Velocity",
+            () => rb.linearVelocity,
+            (value) => rb.linearVelocity = value)
+        { visible = isDynamic };
+        yield return new ExposedNumber(
+            "Angular Velocity",
+            () => rb.angularVelocity,
+            (value) => rb.angularVelocity = value)
+        { visible = isDynamic };
     }
 }
