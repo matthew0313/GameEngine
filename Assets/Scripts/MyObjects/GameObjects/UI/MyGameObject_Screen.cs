@@ -6,13 +6,17 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RawImage))]
 public class MyGameObject_Screen : MyGameObject_UI
 {
-    public override MyGameObjectType type => MyGameObjectType.Screen;
+    public override string id => "Screen";
     public RawImage rawImage { get; private set; }
     MyGameObject_Camera boundCamera;
     protected override void Awake()
     {
         base.Awake();
         rawImage = GetComponent<RawImage>();
+    }
+    private void Update()
+    {
+        Debug.Log($"{Input.mousePosition}, {rectTransform.rect.min}, {rectTransform.rect.max}");
     }
     void SetCamera(MyGameObject_Camera cam)
     {
@@ -38,7 +42,7 @@ public class MyGameObject_Screen : MyGameObject_UI
             (value) =>
             {
                 if (value is MyGameObject_Camera cam) SetCamera(cam);
-            }) { typeSpecific = true, type = MyGameObjectType.Camera };
+            }) { IDSpecific = true, id = "Camera" };
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {

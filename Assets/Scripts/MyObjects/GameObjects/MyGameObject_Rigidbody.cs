@@ -6,7 +6,7 @@ using UnityEngine;
 public class MyGameObject_Rigidbody : MyGameObject
 {
     Rigidbody2D rb;
-    public override MyGameObjectType type => MyGameObjectType.Rigidbody;
+    public override string id => "Rigidbody";
     RigidbodyType2D setType = RigidbodyType2D.Dynamic;
 
     public event Action<Collision2D> onCollisionEnter, onCollisionStay, onCollisionExit;

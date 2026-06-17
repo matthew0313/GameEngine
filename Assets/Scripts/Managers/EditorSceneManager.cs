@@ -119,7 +119,7 @@ public class EditorSceneManager : MonoBehaviour
         if (copyBufferItemType == CopyBufferItemType.MyGameObject)
         {
             MyGameObjectSave save = JsonUtility.FromJson<MyGameObjectSave>(copyBuffer);
-            MyGameObject obj = Instantiate(TypeToObjectPrefab(save.type));
+            MyGameObject obj = Instantiate(IDToObjectPrefab(save.id));
             obj.EarlyLoad(save, true);
             myScene.AddChild(obj);
             obj.Load(save);
@@ -216,11 +216,11 @@ public class EditorSceneManager : MonoBehaviour
         onLogsChange?.Invoke();
     }
     public CodeBlock IDToBlockPrefab(string id) => codeBlockList.IDToBlockPrefab(id);
-    public MyGameObject TypeToObjectPrefab(MyGameObjectType type)
+    public MyGameObject IDToObjectPrefab(string id)
     {
         foreach(var obj in myGameObjectList.myGameObjects)
         {
-            if(obj.type == type) return obj;
+            if(obj.id == id) return obj;
         }
         return null;
     }

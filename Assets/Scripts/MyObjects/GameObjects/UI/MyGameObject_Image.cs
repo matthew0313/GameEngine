@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class MyGameObject_Image : MyGameObject_UI
 {
-    public override MyGameObjectType type => MyGameObjectType.Image;
+    public override string id => "Image";
     public Image imageComp { get; private set; }
 
     public ImageAsset image { get; private set; }

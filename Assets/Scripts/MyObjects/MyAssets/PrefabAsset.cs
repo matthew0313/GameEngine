@@ -29,7 +29,7 @@ public class PrefabAsset : MyAsset, ICodeable
     {
         base.EarlyLoad(save, resetUID);
         prefabOriginSave = JsonUtility.FromJson<MyGameObjectSave>(save.data.strings["prefabOrigin"]);
-        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(prefabOriginSave.type));
+        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.IDToObjectPrefab(prefabOriginSave.id));
         prefabOrigin.EarlyLoad(prefabOriginSave, resetUID);
     }
     public override void Load(MyAssetSave save)

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MyGameObject_Sprite : MyGameObject
 {
-    public override MyGameObjectType type => MyGameObjectType.Sprite;
+    public override string id => "Sprite";
     public SpriteRenderer spriteRenderer { get; private set; }
 
     public ImageAsset image { get; private set; }

@@ -7,7 +7,7 @@ public class MyGameObject_Canvas : MyGameObject
 {
     Canvas canvas;
     RectTransform rectTransform;
-    public override MyGameObjectType type => MyGameObjectType.Canvas;
+    public override string id => "Canvas";
     protected override void Awake()
     {
         base.Awake();

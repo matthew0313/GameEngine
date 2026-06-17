@@ -14,7 +14,7 @@ public class InspectorUIObject : InspectorUIElement, IObjectDraggable, IPointerD
     public void OnObjectDrag(MyGameObject obj)
     {
         if (element == null) return;
-        if (element.typeSpecific && element.type != obj.type) return;
+        if (element.IDSpecific && element.id != obj.id) return;
         element.setter(obj);
     }
 
@@ -40,7 +40,7 @@ public class InspectorUIObject : InspectorUIElement, IObjectDraggable, IPointerD
     public void Set(ExposedObject element)
     {
         label.text = element.name;
-        if (element.typeSpecific) label.text += $" ({element.type})";
+        if (element.IDSpecific) label.text += $" ({element.id})";
         this.element = element;
         obj = element.getter();
         objectName.text = obj != null ? obj.name : "None";

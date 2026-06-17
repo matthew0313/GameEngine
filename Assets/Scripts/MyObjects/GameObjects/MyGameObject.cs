@@ -5,11 +5,11 @@ using UnityEngine;
 
 public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspectable, ISelectable
 {
+    public abstract string id { get; }
     public ulong uid { get; private set; }
 
     [HideInInspector] public bool dirty = false;
     [HideInInspector] public bool foldedInInspector = false;
-    public abstract MyGameObjectType type { get; }
 
     public IParent parent;
     public readonly List<MyGameObject> children = new();
@@ -111,8 +111,8 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     public virtual MyGameObjectSave Save(bool prettyPrint = true)
     {
         MyGameObjectSave save = new();
+        save.id = id;
         save.name = gameObject.name;
-        save.type = type;
         save.uid = uid;
         save.position = transform.localPosition;
         save.rotation = transform.localRotation.z;
@@ -154,7 +154,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         }
         foreach (var childSave in save.children)
         {
-            MyGameObject child = Instantiate(EditorSceneManager.Instance.TypeToObjectPrefab(childSave.type), transform);
+            MyGameObject child = Instantiate(EditorSceneManager.Instance.IDToObjectPrefab(childSave.id), transform);
             child.EarlyLoad(childSave, resetUID);
             children.Add(child);
             childSaves[child] = childSave;
@@ -207,13 +207,14 @@ public enum MyGameObjectType
     Canvas,
     Rigidbody,
     Image,
-    Screen
+    Screen,
+    BoxCollider
 }
 [System.Serializable]
 public class MyGameObjectSave
 {
+    public string id;
     public string name;
-    public MyGameObjectType type;
     public ulong uid;
     public Vector2 position;
     public float rotation;

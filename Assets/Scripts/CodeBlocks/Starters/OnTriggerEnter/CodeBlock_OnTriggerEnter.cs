@@ -27,7 +27,7 @@ public class Codeblock_OnTriggerEnter : CodeBlock, IOnFinish
     public override void Set(ICodeable owner)
     {
         base.Set(owner);
-        if (owner is MyGameObject_Rigidbody rb) rb.onTriggerEnter += OnTriggerEnter;
+        if (owner is MyGameObject_Rigidbody rb) rb.onTriggerEnter += OnObjectTriggerEnter;
     }
     ulong testHash = 0, hash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
@@ -40,7 +40,7 @@ public class Codeblock_OnTriggerEnter : CodeBlock, IOnFinish
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
-    private void OnTriggerEnter(Collider2D collider)
+    private void OnObjectTriggerEnter(Collider2D collider)
     {
         Run(collider != null ? collider.GetComponentInParent<MyGameObject>() : null).Forget();
     }
@@ -53,7 +53,7 @@ public class Codeblock_OnTriggerEnter : CodeBlock, IOnFinish
     }
     public override void Delete()
     {
-        if (owner is MyGameObject_Rigidbody rb) rb.onTriggerEnter -= OnTriggerEnter;
+        if (owner is MyGameObject_Rigidbody rb) rb.onTriggerEnter -= OnObjectTriggerEnter;
         base.Delete();
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MyGameObject_Camera : MyGameObject
 {
-    public override MyGameObjectType type => MyGameObjectType.Camera;
+    public override string id => "Camera";
     [field:SerializeField] public Camera cam { get; private set; }
     public RenderTexture renderTexture { get; private set; }
     public event Action<RenderTexture> onTextureChange;
