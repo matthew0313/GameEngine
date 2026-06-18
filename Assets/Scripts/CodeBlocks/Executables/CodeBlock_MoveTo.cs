@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +14,7 @@ public class Codeblock_MoveTo : ExecutableCodeBlock, IOnFinish
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
 
     public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject;
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         MyGameObject owner = this.owner as MyGameObject;
         if (owner == null)
@@ -22,7 +23,7 @@ public class Codeblock_MoveTo : ExecutableCodeBlock, IOnFinish
             return new() { exception = true };
         }
         owner.transform.position = new Vector3(targetX.GetNumber(hash), targetY.GetNumber(hash));
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
     public override float GetHeight()
     {

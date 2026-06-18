@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using Mono.Cecil;
 using NUnit.Framework.Internal;
 using System;
@@ -50,10 +51,10 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
         argumentElements[arguments].gameObject.SetActive(true);
         arguments++;
     }
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         MyGameObject target = targetObject.GetObject(hash);
-        if (target == null) return await onFinish.Execute(hash);
+        if (target == null) return await onFinish.Execute(hash, token);
         var func = target.functions.Find(item => item.functionName == functionNameField.text);
         Debug.Log(target.functions[0].functionName);
         if (func != null)
@@ -63,14 +64,14 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
             {
                 arguments.Add(func.parameters[i], argumentElements.Count >= i ? argumentElements[i].GetWildcard(hash) : new());
             }
-            func.Execute(arguments);
+            func.Execute(arguments, token);
         }
         else EditorSceneManager.Instance.AddLog(new()
         {
             type = MyLogType.Warning,
             message = $"No function named {functionNameField.text} in object {target.name}"
         });
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
 
     public override float GetHeight()

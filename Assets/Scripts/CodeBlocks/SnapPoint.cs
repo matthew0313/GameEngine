@@ -21,7 +21,7 @@ public abstract class SnapPoint : MonoBehaviour
         }
         snapped = codeBlock;
         snapped.snappedPoint = this;
-        snapped.transform.SetParent(snapAnchor);
+        snapped.transform.SetParent(snapAnchor, true);
         snapped.transform.localScale = Vector3.one;
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();

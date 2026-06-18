@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -11,10 +12,10 @@ public class Codeblock_SystemLog : ExecutableCodeBlock, IOnFinish
     [SerializeField] TMP_Dropdown logType;
     [SerializeField] StringSnapPoint message;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         EditorSceneManager.Instance.AddLog(new MyLog((MyLogType)logType.value, message.GetValue(hash)));
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
 
     public override float GetHeight()

@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -12,10 +13,10 @@ public class Codeblock_If : ExecutableCodeBlock, IOnFinish
     [SerializeField] ConditionSnapPoint condition;
     [SerializeField] ExecutableSnapPoint onTrue;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
-        if (condition.GetCondition(hash)) await onTrue.Execute(hash);
-        return await onFinish.Execute(hash);
+        if (condition.GetCondition(hash)) await onTrue.Execute(hash, token);
+        return await onFinish.Execute(hash, token);
     }
 
     public override float GetHeight()

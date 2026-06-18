@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Serialization;
 public abstract class CodeBlock_OnTrigger : CodeBlock, IOnFinish
@@ -37,7 +38,7 @@ public abstract class CodeBlock_OnTrigger : CodeBlock, IOnFinish
     {
         yield return new RCMenuElement_Button(
             "Execute",
-            ctx => { onTrigger.Execute(testHash++); });
+            ctx => { onTrigger.Execute(testHash++, CancellationToken.None); });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
     protected void OnObjectTrigger(Collider2D collider)
@@ -47,7 +48,7 @@ public abstract class CodeBlock_OnTrigger : CodeBlock, IOnFinish
     async UniTaskVoid Run(MyGameObject other)
     {
         collidedObjects[hash] = other;
-        await onTrigger.Execute(hash);
+        await onTrigger.Execute(hash, EditorSceneManager.Instance.playToken);
         collidedObjects.Remove(hash);
         hash++;
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MyGameObject_Rigidbody : MyGameObject
@@ -70,6 +71,11 @@ public class MyGameObject_Rigidbody : MyGameObject
             "Gravity Scale",
             () => rb.gravityScale,
             (value) => rb.gravityScale = value) 
+        { visible = isDynamic };
+        yield return new ExposedBool(
+            "Freeze Rotation",
+            () => rb.freezeRotation,
+            (value) => rb.freezeRotation = value)
         { visible = isDynamic };
         yield return new ExposedVector2(
             "Linear Velocity",

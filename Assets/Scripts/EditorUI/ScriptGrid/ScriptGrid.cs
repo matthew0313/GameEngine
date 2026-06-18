@@ -18,7 +18,6 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
     public event Action<ICodeable> onEditingChange;
     public void BindToGrid(CodeBlock block)
     {
-        if (editing == null) return;
         block.transform.SetParent(anchor, true);
         block.transform.localScale = Vector3.one;
     }

@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class InspectorUIDropdown : InspectorUIElement
         this.element = element;
         label.text = element.name;
         dropdown.onValueChanged.RemoveAllListeners();
+        dropdown.ClearOptions();
+        dropdown.AddOptions(element.options.ToList());
         dropdown.value = element.getter();
         dropdown.onValueChanged.AddListener(value =>
         {

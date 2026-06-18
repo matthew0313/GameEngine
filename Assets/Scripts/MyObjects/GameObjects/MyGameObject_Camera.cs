@@ -43,6 +43,10 @@ public class MyGameObject_Camera : MyGameObject
             () => size,
             (value) => size = value);
     }
+    private void OnDestroy()
+    {
+        renderTexture.Release();
+    }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {
         var save = base.Save(prettyPrint);

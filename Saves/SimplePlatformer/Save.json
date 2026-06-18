@@ -5,7 +5,7 @@
             {
                 "id": "Rigidbody",
                 "name": "Player",
-                "uid": 18446744072374334087,
+                "uid": 18446744072489549447,
                 "position": {
                     "x": 0.0,
                     "y": 0.0
@@ -63,231 +63,12 @@
                         ]
                     }
                 },
-                "codeBlocks": [
-                    {
-                        "id": "OnAwake",
-                        "uid": 18446744071657296982,
-                        "position": {
-                            "x": 128.8170166015625,
-                            "y": 382.9584655761719
-                        },
-                        "data": {
-                            "integers": {
-                                "content": []
-                            },
-                            "ulongs": {
-                                "content": []
-                            },
-                            "floats": {
-                                "content": []
-                            },
-                            "strings": {
-                                "content": []
-                            },
-                            "bools": {
-                                "content": []
-                            }
-                        },
-                        "snapPoints": [
-                            {
-                                "snapped": {
-                                    "id": "If",
-                                    "uid": 18446744073470857797,
-                                    "position": {
-                                        "x": 128.8170166015625,
-                                        "y": 364.995361328125
-                                    },
-                                    "data": {
-                                        "integers": {
-                                            "content": []
-                                        },
-                                        "ulongs": {
-                                            "content": []
-                                        },
-                                        "floats": {
-                                            "content": []
-                                        },
-                                        "strings": {
-                                            "content": []
-                                        },
-                                        "bools": {
-                                            "content": []
-                                        }
-                                    },
-                                    "snapPoints": [
-                                        {
-                                            "snapped": {
-                                                "id": "KeyPressed",
-                                                "uid": 18446744072453142597,
-                                                "position": {
-                                                    "x": 192.1011505126953,
-                                                    "y": 356.0137634277344
-                                                },
-                                                "data": {
-                                                    "integers": {
-                                                        "content": [
-                                                            {
-                                                                "key": "setKey",
-                                                                "value": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "ulongs": {
-                                                        "content": []
-                                                    },
-                                                    "floats": {
-                                                        "content": []
-                                                    },
-                                                    "strings": {
-                                                        "content": []
-                                                    },
-                                                    "bools": {
-                                                        "content": []
-                                                    }
-                                                },
-                                                "snapPoints": []
-                                            },
-                                            "data": {
-                                                "integers": {
-                                                    "content": []
-                                                },
-                                                "ulongs": {
-                                                    "content": []
-                                                },
-                                                "floats": {
-                                                    "content": []
-                                                },
-                                                "strings": {
-                                                    "content": []
-                                                },
-                                                "bools": {
-                                                    "content": [
-                                                        {
-                                                            "key": "value",
-                                                            "value": true
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "snapped": {
-                                                "id": "",
-                                                "uid": 0,
-                                                "position": {
-                                                    "x": 0.0,
-                                                    "y": 0.0
-                                                },
-                                                "data": {
-                                                    "integers": {
-                                                        "content": []
-                                                    },
-                                                    "ulongs": {
-                                                        "content": []
-                                                    },
-                                                    "floats": {
-                                                        "content": []
-                                                    },
-                                                    "strings": {
-                                                        "content": []
-                                                    },
-                                                    "bools": {
-                                                        "content": []
-                                                    }
-                                                },
-                                                "snapPoints": []
-                                            },
-                                            "data": {
-                                                "integers": {
-                                                    "content": []
-                                                },
-                                                "ulongs": {
-                                                    "content": []
-                                                },
-                                                "floats": {
-                                                    "content": []
-                                                },
-                                                "strings": {
-                                                    "content": []
-                                                },
-                                                "bools": {
-                                                    "content": []
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "snapped": {
-                                                "id": "",
-                                                "uid": 0,
-                                                "position": {
-                                                    "x": 0.0,
-                                                    "y": 0.0
-                                                },
-                                                "data": {
-                                                    "integers": {
-                                                        "content": []
-                                                    },
-                                                    "ulongs": {
-                                                        "content": []
-                                                    },
-                                                    "floats": {
-                                                        "content": []
-                                                    },
-                                                    "strings": {
-                                                        "content": []
-                                                    },
-                                                    "bools": {
-                                                        "content": []
-                                                    }
-                                                },
-                                                "snapPoints": []
-                                            },
-                                            "data": {
-                                                "integers": {
-                                                    "content": []
-                                                },
-                                                "ulongs": {
-                                                    "content": []
-                                                },
-                                                "floats": {
-                                                    "content": []
-                                                },
-                                                "strings": {
-                                                    "content": []
-                                                },
-                                                "bools": {
-                                                    "content": []
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "data": {
-                                    "integers": {
-                                        "content": []
-                                    },
-                                    "ulongs": {
-                                        "content": []
-                                    },
-                                    "floats": {
-                                        "content": []
-                                    },
-                                    "strings": {
-                                        "content": []
-                                    },
-                                    "bools": {
-                                        "content": []
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                ],
+                "codeBlocks": [],
                 "children": [
                     {
                         "id": "Sprite",
                         "name": "Sprite",
-                        "uid": 1847933704,
+                        "uid": 18446744071900085978,
                         "position": {
                             "x": 0.0,
                             "y": 0.0
@@ -334,7 +115,7 @@
                     {
                         "id": "BoxCollider",
                         "name": "BoxCollider",
-                        "uid": 121513644,
+                        "uid": 18446744072889247475,
                         "position": {
                             "x": 0.0,
                             "y": 0.0
@@ -382,14 +163,14 @@
             {
                 "id": "BoxCollider",
                 "name": "Ground",
-                "uid": 18446744072978999085,
+                "uid": 1998521682,
                 "position": {
                     "x": 0.0,
                     "y": -10.0
                 },
                 "rotation": 0.0,
                 "scale": {
-                    "x": 100.0,
+                    "x": 200.0,
                     "y": 5.0
                 },
                 "lastOffset": {
@@ -427,7 +208,7 @@
                     {
                         "id": "Sprite",
                         "name": "Sprite",
-                        "uid": 18446744072196747153,
+                        "uid": 1774773952,
                         "position": {
                             "x": 0.0,
                             "y": 0.0

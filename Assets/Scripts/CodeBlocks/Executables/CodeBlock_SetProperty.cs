@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -57,11 +58,11 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
         }
         propertyDropdown.RefreshShownValue();
     }
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         cache[propertyDropdown.value].Invoke(value, hash);
         (owner as IInspectable).onInspectorChange?.Invoke();
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
     public override CodeBlockSave Save()
     {
@@ -77,6 +78,7 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
         yield return value;
+        yield return onFinish;
     }
     public override float GetHeight()
     {

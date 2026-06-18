@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -77,10 +78,10 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
         }
         onParameterUpdate?.Invoke();
     }
-    public async UniTask Execute(Dictionary<string, Wildcard> parameters)
+    public async UniTask Execute(Dictionary<string, Wildcard> parameters, CancellationToken token)
     {
         executionParams[hash] = parameters;
-        await onExecute.Execute(hash);
+        await onExecute.Execute(hash, token);
         executionParams.Remove(hash);
         hash++;
     }
@@ -124,7 +125,7 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
             "Execute with default params",
             ctx =>
             {
-                onExecute.Execute(testHash++);
+                onExecute.Execute(testHash++, CancellationToken.None);
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }

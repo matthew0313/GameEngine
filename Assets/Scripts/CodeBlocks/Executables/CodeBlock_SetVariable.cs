@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using NUnit.Framework.Constraints;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ public class Codeblock_SetVariable : ExecutableCodeBlock, IOnFinish
         base.Set(owner);
         targetObject.SetObject(owner as MyGameObject);
     }
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         MyGameObject target = targetObject.GetObject(hash);
         if(target == null)
@@ -43,13 +44,14 @@ public class Codeblock_SetVariable : ExecutableCodeBlock, IOnFinish
         variable.str = value.GetString(hash);
         variable.obj = value.GetObject(hash);
         variable.asset = value.GetAsset(hash);
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
         yield return targetObject;
         yield return variableName;
         yield return value;
+        yield return onFinish;
     }
     public override float GetHeight()
     {

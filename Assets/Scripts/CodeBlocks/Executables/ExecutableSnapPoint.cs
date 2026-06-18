@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public class ExecutableSnapPoint : SnapPoint
     }
     public override void Snap(CodeBlock codeBlock)
     {
-        if (codeBlock == null || !IsSnappable(codeBlock)) return;
+        if (codeBlock == null) return;
         if (codeBlock.snappedPoint != null) codeBlock.snappedPoint.Detach();
         if (snapped != null)
         {
@@ -31,16 +32,17 @@ public class ExecutableSnapPoint : SnapPoint
         }
         snapped = codeBlock;
         snapped.snappedPoint = this;
-        EditorSceneManager.Instance.scriptGrid.BindToGrid(snapped);
-        snapped.transform.SetParent(snapAnchor);
+        snapped.transform.SetParent(snapAnchor, true);
+        snapped.transform.localScale = Vector3.one;
         snapped.transform.localPosition = Vector3.zero;
         OnSnappedChange();
     }
-    public async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
+        if (token.IsCancellationRequested) return new() { breaked = true };
         if (snapped is ExecutableCodeBlock executableCodeBlock)
         {
-            return await executableCodeBlock.Execute(hash);
+            return await executableCodeBlock.Execute(hash, token);
         }
         return new();
     }

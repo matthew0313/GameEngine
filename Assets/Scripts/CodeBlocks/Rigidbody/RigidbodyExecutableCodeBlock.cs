@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public abstract class RigidbodyExecutableCodeBlock : ExecutableCodeBlock, IOnFin
         (codeable is MyGameObject_Rigidbody ||
         (codeable is PrefabAsset prefab && prefab.prefabOrigin is MyGameObject_Rigidbody));
 
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         if (owner is MyGameObject_Rigidbody rb) Apply(rb, hash);
         else
@@ -23,7 +24,7 @@ public abstract class RigidbodyExecutableCodeBlock : ExecutableCodeBlock, IOnFin
             EditorSceneManager.Instance.AddLog(new MyLog(MyLogType.Error, "Rigidbody block executed in non-rigidbody object."));
             return new() { exception = true };
         }
-        return await onFinish.Execute(hash);
+        return await onFinish.Execute(hash, token);
     }
     protected abstract void Apply(MyGameObject_Rigidbody rb, ulong hash);
 

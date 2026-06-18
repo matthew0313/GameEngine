@@ -15,6 +15,7 @@ public class InspectorUI : MonoBehaviour
     [SerializeField] InspectorUIObject objectPrefab;
     [SerializeField] InspectorUIAsset assetPrefab;
     [SerializeField] InspectorUIAnchor anchorPrefab;
+    [SerializeField] InspectorUIDropdown dropdownPrefab;
 
     Pooler<InspectorUIButton> buttonPool;
     Pooler<InspectorUIVector2> vector2Pool;
@@ -24,6 +25,7 @@ public class InspectorUI : MonoBehaviour
     Pooler<InspectorUIObject> objectPool;
     Pooler<InspectorUIAsset> assetPool;
     Pooler<InspectorUIAnchor> anchorPool;
+    Pooler<InspectorUIDropdown> dropdownPool;
 
     readonly List<InspectorUIElement> active = new();
 
@@ -44,6 +46,7 @@ public class InspectorUI : MonoBehaviour
         objectPool ??= MakePool(objectPrefab);
         assetPool ??= MakePool(assetPrefab);
         anchorPool ??= MakePool(anchorPrefab);
+        dropdownPool ??= MakePool(dropdownPrefab);
         EditorSceneManager.Instance.onSelect += OnSelect;
         OnSelect(EditorSceneManager.Instance.selected);
     }
@@ -112,6 +115,12 @@ public class InspectorUI : MonoBehaviour
                 ui.Set(exposedAnchor);
                 active.Add(ui);
             }
+            else if(element is ExposedDropdown exposedDropdown)
+            {
+                var ui = dropdownPool.GetObject(container);
+                ui.Set(exposedDropdown);
+                active.Add(ui);
+            }
         }
         inspecting = inspectable;
         inspecting.onInspectorChange += Reload;
@@ -132,6 +141,7 @@ public class InspectorUI : MonoBehaviour
             else if (ui is InspectorUIObject o) objectPool.ReleaseObject(o);
             else if (ui is InspectorUIAsset a) assetPool.ReleaseObject(a);
             else if (ui is InspectorUIAnchor anchor) anchorPool.ReleaseObject(anchor);
+            else if (ui is InspectorUIDropdown dropdown) dropdownPool.ReleaseObject(dropdown);
         }
         active.Clear();
         if (inspecting != null) inspecting.onInspectorChange -= Reload;

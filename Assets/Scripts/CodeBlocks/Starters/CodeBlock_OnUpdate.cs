@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -31,13 +32,13 @@ public class Codeblock_OnUpdate : CodeBlock, IOnFinish
             "Execute",
             ctx =>
             {
-                onUpdate.Execute(testHash++);
+                onUpdate.Execute(testHash++, CancellationToken.None);
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
     private void OnUpdate()
     {
-        onUpdate.Execute(hash++);
+        onUpdate.Execute(hash++, EditorSceneManager.Instance.playToken);
     }
     private void OnDestroy()
     {

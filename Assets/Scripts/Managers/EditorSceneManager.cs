@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -239,9 +240,13 @@ public class EditorSceneManager : MonoBehaviour
     public event Action<bool> onPlayModeToggle;
     MySceneSave sceneSave;
     public bool playMode { get; private set; } = false;
+    CancellationTokenSource playCts;
+    public CancellationToken playToken => playCts != null ? playCts.Token : CancellationToken.None;
     public void EnterPlayMode()
     {
         if (playMode) return;
+        playCts?.Dispose();
+        playCts = new CancellationTokenSource();
         sceneSave = myScene.Save();
         playMode = true;
         foreach (var i in myScene.GetObjects())
@@ -258,12 +263,12 @@ public class EditorSceneManager : MonoBehaviour
     {
         if (!playMode) return;
         playMode = false;
+        playCts?.Cancel();
         ulong selectedUID = selected is MyGameObject myGameObject ? myGameObject.uid : 0;
         myScene.Load(sceneSave);
         if (selectedUID != 0) Select(FindObjectWithUID(selectedUID));
         onPlayModeToggle?.Invoke(false);
     }
-    /// <summary>Persists the current project to disk via <see cref="GlobalManager"/> (Ctrl+S).</summary>
     public void SaveProject()
     {
         if (GlobalManager.Instance == null) return;

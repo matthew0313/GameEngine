@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -23,13 +24,13 @@ public class Codeblock_OnAwake : CodeBlock, IOnFinish
             "Execute",
             ctx =>
             {
-                onAwake.Execute(testHash++);
+                onAwake.Execute(testHash++, CancellationToken.None);
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }
     private void OnAwake()
     {
-        onAwake.Execute(hash++);
+        onAwake.Execute(hash++, EditorSceneManager.Instance.playToken);
     }
     public override void Delete()
     {

@@ -1,11 +1,12 @@
 using System;
+using System.Threading;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 
 public abstract class ExecutableCodeBlock : CodeBlock
 {
-    public abstract UniTask<ExecutionFinishedInfo> Execute(ulong hash);
+    public abstract UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token);
     public abstract float GetHeight();
     ulong testHash = 0;
     protected override IEnumerable<RCMenuElement> MakeRightClickMenu()
@@ -14,7 +15,7 @@ public abstract class ExecutableCodeBlock : CodeBlock
             "Execute",
             ctx =>
             {
-                Execute(testHash++);
+                Execute(testHash++, CancellationToken.None);
             });
         foreach (var i in base.MakeRightClickMenu()) yield return i;
     }

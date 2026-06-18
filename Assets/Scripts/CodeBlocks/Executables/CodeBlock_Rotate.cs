@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class CodeBlock_Rotate : ExecutableCodeBlock, IOnFinish
     [SerializeField] NumericSnapPoint angle;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject;
-    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash)
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
         MyGameObject owner = this.owner as MyGameObject;
         if(owner == null)

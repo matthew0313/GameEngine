@@ -156,7 +156,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         {
             MyGameObject child = Instantiate(EditorSceneManager.Instance.IDToObjectPrefab(childSave.id), transform);
             child.EarlyLoad(childSave, resetUID);
-            children.Add(child);
+            AddChild(child);
             childSaves[child] = childSave;
         }
     }
