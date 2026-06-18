@@ -13,10 +13,9 @@ public class InspectorUIVector2 : InspectorUIElement
         this.element = element;
         label.text = element.name;
         value = element.getter();
-        inputX.text = value.x.ToString();
-        inputY.text = value.y.ToString();
 
         inputX.onEndEdit.RemoveAllListeners();
+        inputX.text = value.x.ToString();
         inputX.onEndEdit.AddListener(val =>
         {
             if (float.TryParse(val, out float x)) element.setter(new Vector2(x, element.getter().y));
@@ -24,6 +23,7 @@ public class InspectorUIVector2 : InspectorUIElement
         });
 
         inputY.onEndEdit.RemoveAllListeners();
+        inputY.text = value.y.ToString();
         inputY.onEndEdit.AddListener(val =>
         {
             if (float.TryParse(val, out float y)) element.setter(new Vector2(element.getter().x, y));

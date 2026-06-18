@@ -1,13 +1,9 @@
-using GLTFast.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 
 
@@ -56,7 +52,9 @@ public class EditorSceneManager : MonoBehaviour
     public string copyBuffer;
     public void Select(ISelectable selectable)
     {
+        if (selected != null) selected.OnDeselect();
         selected = selectable;
+        if (selected != null) selected.OnSelect();
         onSelect?.Invoke(selectable);
     }
     private void Awake()
@@ -67,7 +65,11 @@ public class EditorSceneManager : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log((PropertyType.String & PropertyType.Wildcard) > 0);
+        if (!string.IsNullOrEmpty(GlobalManager.Instance.currentProjectName))
+        {
+            projectName = GlobalManager.Instance.currentProjectName;
+            Load(GlobalManager.Instance.LoadProject(projectName));
+        }
         ReloadAssets();
         AddLog(new()
         {
@@ -100,6 +102,7 @@ public class EditorSceneManager : MonoBehaviour
             }
         }
         if (Input.GetKey(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.V)) Paste();
+        if (Input.GetKey(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.S)) SaveProject();
         if (playMode)
         {
             foreach (var i in myScene.GetObjects())
@@ -259,6 +262,17 @@ public class EditorSceneManager : MonoBehaviour
         myScene.Load(sceneSave);
         if (selectedUID != 0) Select(FindObjectWithUID(selectedUID));
         onPlayModeToggle?.Invoke(false);
+    }
+    /// <summary>Persists the current project to disk via <see cref="GlobalManager"/> (Ctrl+S).</summary>
+    public void SaveProject()
+    {
+        if (GlobalManager.Instance == null) return;
+        GlobalManager.Instance.SaveProject(Save());
+        AddLog(new(MyLogType.Info, $"Project '{projectName}' saved."));
+    }
+    public void ProjectToTitle()
+    {
+        if (GlobalManager.Instance != null) GlobalManager.Instance.ReturnToTitle();
     }
     public ProjectSave Save()
     {

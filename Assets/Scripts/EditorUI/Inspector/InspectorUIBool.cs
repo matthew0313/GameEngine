@@ -11,8 +11,8 @@ public class InspectorUIBool : InspectorUIElement
     {
         this.element = element;
         label.text = element.name;
-        toggle.isOn = element.getter();
         toggle.onValueChanged.RemoveAllListeners();
+        toggle.isOn = element.getter();
         toggle.onValueChanged.AddListener(val => element.setter(val));
     }
     private void Update()

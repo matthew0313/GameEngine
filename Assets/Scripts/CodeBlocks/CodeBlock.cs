@@ -85,6 +85,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
             {
                 transform.position = pos;
                 var snapPoints = EditorSceneManager.Instance.snapPoints.ToList();
+                RemoveSnapPoints(snapPoints);
                 snapPoints.Sort((a, b) =>
                 {
                     if (a.IsSnappable(this))
@@ -124,6 +125,15 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
                 }
             }
             dragging = false;
+        }
+    }
+    void RemoveSnapPoints(List<SnapPoint> snapPoints)
+    {
+        if (snapPoints == null) return;
+        foreach(var i in GetSnapPoints())
+        {
+            if (snapPoints.Contains(i)) snapPoints.Remove(i);
+            if (i.snapped != null) i.snapped.RemoveSnapPoints(snapPoints);
         }
     }
     protected virtual IEnumerable<SnapPoint> GetSnapPoints() { yield break; }

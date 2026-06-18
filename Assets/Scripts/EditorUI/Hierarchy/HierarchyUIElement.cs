@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] Button foldoutButton;
+    [SerializeField] GameObject open, closed;
     [SerializeField] Image icon;
     [SerializeField] TMP_Text nameText;
     [SerializeField] GameObject childrenContainer;
@@ -79,6 +80,8 @@ public class HierarchyUIElement : MonoBehaviour, IPointerDownHandler, IPointerUp
     {
         folded = !folded;
         childrenContainer.SetActive(!folded);
+        open.SetActive(!folded);
+        closed.SetActive(folded);
     }
     public void OnPointerDown(PointerEventData eventData)
     {

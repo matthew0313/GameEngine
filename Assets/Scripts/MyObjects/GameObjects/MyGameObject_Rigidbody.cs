@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MyGameObject_Rigidbody : MyGameObject
 {
-    Rigidbody2D rb;
+    public Rigidbody2D rb { get; private set; }
     public override string id => "Rigidbody";
     RigidbodyType2D setType = RigidbodyType2D.Dynamic;
 
@@ -81,5 +81,26 @@ public class MyGameObject_Rigidbody : MyGameObject
             () => rb.angularVelocity,
             (value) => rb.angularVelocity = value)
         { visible = isDynamic };
+    }
+    public override MyGameObjectSave Save(bool prettyPrint = true)
+    {
+        var save = base.Save(prettyPrint);
+        save.data.integers["bodyType"] = (int)rb.bodyType;
+        save.data.bools["useAutoMass"] = rb.useAutoMass;
+        save.data.floats["mass"] = rb.mass;
+        save.data.floats["linearDamping"] = rb.linearDamping;
+        save.data.floats["angularDamping"] = rb.angularDamping;
+        save.data.floats["gravityScale"] = rb.gravityScale;
+        return save;
+    }
+    public override void Load(MyGameObjectSave save)
+    {
+        base.Load(save);
+        rb.bodyType = (RigidbodyType2D)save.data.integers["bodyType"];
+        rb.useAutoMass = save.data.bools["useAutoMass"];
+        rb.mass = save.data.floats["mass"];
+        rb.linearDamping = save.data.floats["linearDamping"];
+        rb.angularDamping = save.data.floats["angularDamping"];
+        rb.gravityScale = save.data.floats["gravityScale"];
     }
 }

@@ -106,8 +106,9 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     }
     public override void Delete()
     {
-        base.Delete();
+        foreach (var i in parameterElements) i.Clear();
         if (owner is MyGameObject obj) obj.functions.Remove(this);
+        base.Delete();
     }
 
     ulong testHash = 0;

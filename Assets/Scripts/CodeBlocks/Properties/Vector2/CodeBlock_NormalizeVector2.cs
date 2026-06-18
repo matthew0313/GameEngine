@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CodeBlock_NormalizeVector2 : NumericCodeBlock
+public class CodeBlock_NormalizeVector2 : Vector2CodeBlock
 {
     public override CodeBlockCategory category => CodeBlockCategory.Calculation;
     [SerializeField] RectTransform rectTransform;

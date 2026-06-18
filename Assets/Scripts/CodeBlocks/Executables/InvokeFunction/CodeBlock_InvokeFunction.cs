@@ -91,6 +91,11 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
     {
         yield return targetObject;
     }
+    public override void Delete()
+    {
+        foreach (var i in argumentElements) i.Clear();
+        base.Delete();
+    }
     public override CodeBlockSave Save()
     {
         var save = base.Save();

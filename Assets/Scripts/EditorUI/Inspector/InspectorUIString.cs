@@ -14,8 +14,8 @@ public class InspectorUIString : InspectorUIElement
         this.element = element;
         label.text = element.name;
         tmp = element.getter();
-        input.text = tmp;
         input.onEndEdit.RemoveAllListeners();
+        input.text = tmp;
         input.onEndEdit.AddListener(val => element.setter(val));
     }
     private void Update()

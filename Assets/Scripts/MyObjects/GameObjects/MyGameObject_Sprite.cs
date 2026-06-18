@@ -16,6 +16,10 @@ public class MyGameObject_Sprite : MyGameObject
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultSprite = spriteRenderer.sprite;
     }
+    private void Update()
+    {
+        spriteRenderer.sortingOrder = Mathf.Clamp(spriteRenderer.sortingOrder, -10000, 10000);
+    }
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;

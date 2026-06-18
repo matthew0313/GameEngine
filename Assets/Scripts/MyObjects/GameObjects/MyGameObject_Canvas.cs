@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Canvas))]
 public class MyGameObject_Canvas : MyGameObject
 {
-    Canvas canvas;
+    public Canvas canvas { get; private set; }
     RectTransform rectTransform;
     public override string id => "Canvas";
     protected override void Awake()
@@ -13,6 +13,10 @@ public class MyGameObject_Canvas : MyGameObject
         base.Awake();
         canvas = GetComponent<Canvas>();
         rectTransform = canvas.GetComponent<RectTransform>();
+    }
+    private void Update()
+    {
+        canvas.sortingOrder = Mathf.Clamp(canvas.sortingOrder, -10000, 10000);
     }
     public override IEnumerable<ExposedElement> GetElements()
     {
@@ -25,12 +29,17 @@ public class MyGameObject_Canvas : MyGameObject
             "Height",
             () => rectTransform.rect.height,
             (value) => rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, value));
+        yield return new ExposedNumber(
+            "Order in Layer",
+            () => canvas.sortingOrder,
+            (value) => canvas.sortingOrder = Mathf.FloorToInt(value));
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {
         var save = base.Save(prettyPrint);
         save.data.floats["width"] = rectTransform.rect.width;
         save.data.floats["height"] = rectTransform.rect.height;
+        save.data.integers["orderInLayer"] = canvas.sortingOrder;
         return save;
     }
     public override void Load(MyGameObjectSave save)
@@ -38,5 +47,6 @@ public class MyGameObject_Canvas : MyGameObject
         base.Load(save);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, save.data.floats["width"]);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, save.data.floats["height"]);
+        canvas.sortingOrder = save.data.integers["orderInLayer"];
     }
 }
