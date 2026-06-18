@@ -8,11 +8,11 @@ public class CodeBlock_CollidedObject : ObjectCodeBlock
 {
     public override CodeBlockCategory category => CodeBlockCategory.Other;
     [SerializeField] RectTransform rectTransform;
-    public Codeblock_OnTriggerEnter target { get; private set; }
+    public CodeBlock_OnTrigger target { get; private set; }
     public override bool IsAddable(ICodeable codeable) => false;
     public override MyGameObject GetObject(ulong hash) => target != null ? target.GetCollidedObject(hash) : null;
     public override float GetWidth() => rectTransform.rect.width;
-    public void BindTarget(Codeblock_OnTriggerEnter target)
+    public void BindTarget(CodeBlock_OnTrigger target)
     {
         this.target = target;
     }
@@ -28,7 +28,7 @@ public class CodeBlock_CollidedObject : ObjectCodeBlock
         if (save.data.ulongs.TryGetValue("target", out ulong targetUID))
         {
             var targetBlock = owner.codeBlocks.Find(block => block.uid == targetUID);
-            if (targetBlock is Codeblock_OnTriggerEnter triggerBlock)
+            if (targetBlock is CodeBlock_OnTrigger triggerBlock)
             {
                 target = triggerBlock;
             }

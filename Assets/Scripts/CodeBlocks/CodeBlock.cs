@@ -83,6 +83,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
             }
             else
             {
+                Vector2 mousePos = Input.mousePosition;
                 transform.position = pos;
                 var snapPoints = EditorSceneManager.Instance.snapPoints.ToList();
                 RemoveSnapPoints(snapPoints);
@@ -92,8 +93,8 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
                     {
                         if (b.IsSnappable(this))
                         {
-                            float distA = Vector2.Distance(a.GetSnapPosition(), pos);
-                            float distB = Vector2.Distance(b.GetSnapPosition(), pos);
+                            float distA = Vector2.Distance(a.GetSnapPosition(), mousePos);
+                            float distB = Vector2.Distance(b.GetSnapPosition(), mousePos);
                             return distA.CompareTo(distB);
                         }
                         else return -1;
@@ -104,7 +105,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
                         else return 0;
                     }
                 });
-                var tmp = (snapPoints.Count > 0 && snapPoints[0].IsSnappable(this) && Vector2.Distance(snapPoints[0].GetSnapPosition(), pos) <= snapDistance) ? snapPoints[0] : null;
+                var tmp = (snapPoints.Count > 0 && snapPoints[0].IsSnappable(this) && Vector2.Distance(snapPoints[0].GetSnapPosition(), mousePos) <= snapDistance) ? snapPoints[0] : null;
                 if(highlighted != tmp)
                 {
                     if (highlighted != null) highlighted.UnHighlight();

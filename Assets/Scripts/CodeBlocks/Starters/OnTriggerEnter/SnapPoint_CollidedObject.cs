@@ -18,7 +18,7 @@ public class SnapPoint_CollidedObject : SnapPoint
         if (snapped == null)
         {
             var tmp = Instantiate(blockPrefab);
-            tmp.BindTarget(ownerBlock as Codeblock_OnTriggerEnter);
+            tmp.BindTarget(ownerBlock as CodeBlock_OnTrigger);
             tmp.Set(ownerBlock.owner);
             ownerBlock.owner.codeBlocks.Add(tmp);
             base.Snap(tmp);

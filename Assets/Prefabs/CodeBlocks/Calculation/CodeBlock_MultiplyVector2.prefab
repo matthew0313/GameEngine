@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.627451, b: 0.47058824, a: 1}
+  m_Color: {r: 0.55, g: 0.4, b: 0.85, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_MultiplyVector2
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MultiplyVector2
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.47058824, a: 1}
+  <blockColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
   rectTransform: {fileID: 3177207089241545269}
   inputA: {fileID: 5829815900525738917}
   inputB: {fileID: 8749486159725788234}
