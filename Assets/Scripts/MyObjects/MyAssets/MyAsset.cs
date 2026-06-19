@@ -51,7 +51,6 @@ public abstract class MyAsset : ISelectable, IInspectable
     public virtual void OnSelect() { }
     public virtual void OnDeselect() { }
 }
-[System.Serializable]
 public class MyAssetSave
 {
     public AssetType type;

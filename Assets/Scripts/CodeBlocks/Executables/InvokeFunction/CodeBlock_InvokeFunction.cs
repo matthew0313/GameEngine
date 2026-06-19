@@ -51,13 +51,12 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
         MyGameObject target = targetObject.GetObject(hash);
         if (target == null) return await onFinish.Execute(hash, token);
         var func = target.functions.Find(item => item.functionName == functionNameField.text);
-        Debug.Log(target.functions[0].functionName);
         if (func != null)
         {
             Dictionary<string, Wildcard> arguments = new();
             for (int i = 0; i < func.parameters.Count; i++)
             {
-                arguments.Add(func.parameters[i], argumentElements.Count >= i ? argumentElements[i].GetWildcard(hash) : new());
+                arguments.Add(func.parameters[i], argumentElements.Count > i ? argumentElements[i].GetWildcard(hash) : new());
             }
             func.Execute(arguments, token);
         }
@@ -85,6 +84,7 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
+        yield return onFinish;
         yield return targetObject;
     }
     public override void Delete()
@@ -133,7 +133,6 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
         }
         if (save.data.strings.TryGetValue("functionName", out string functionName)) functionNameField.text = functionName;
     }
-    [System.Serializable]
     struct ArgumentsWrapper
     {
         public List<SnapPointSave> arguments;

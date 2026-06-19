@@ -148,7 +148,6 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
                 block.EarlyLoad(blockSave, resetUID);
                 block.gameObject.SetActive(false);
                 blockSaves[block] = blockSave;
-                Debug.Log(blockSave.id);
             }
         }
         foreach (var childSave in save.children)
@@ -209,7 +208,6 @@ public enum MyGameObjectType
     Screen,
     BoxCollider
 }
-[System.Serializable]
 public class MyGameObjectSave
 {
     public string id;

@@ -88,7 +88,6 @@ public class MyScene : MonoBehaviour, IParent
         return null;
     }
 }
-[System.Serializable]
 public class MySceneSave
 {
     public List<MyGameObjectSave> topGameObjects = new();

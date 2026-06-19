@@ -35,7 +35,6 @@ public class MyGameObject_Image : MyGameObject_UI
             return;
         }
         imageComp.sprite = image.sprite;
-        Debug.Log(rectTransform.rect.width);
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {

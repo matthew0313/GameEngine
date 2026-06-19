@@ -16,8 +16,8 @@
           "y": 1.0
         },
         "lastOffset": {
-          "x": -126.011971,
-          "y": -320.6495
+          "x": -507.266876,
+          "y": -25.5919037
         },
         "data": {
           "integers": {
@@ -41,8 +41,8 @@
             "id": "OnUpdate",
             "uid": 18446744072443787138,
             "position": {
-              "x": 5101.84863,
-              "y": -668.363831
+              "x": 302.3147,
+              "y": 1009.40442
             },
             "data": {
               "integers": {},
@@ -57,8 +57,8 @@
                   "id": "If",
                   "uid": 18446744073544700621,
                   "position": {
-                    "x": 5101.84863,
-                    "y": -682.052
+                    "x": 0.0,
+                    "y": 0.0
                   },
                   "data": {
                     "integers": {},
@@ -73,8 +73,8 @@
                         "id": "KeyPressed",
                         "uid": 18446744071803693949,
                         "position": {
-                          "x": 5150.072,
-                          "y": -688.896057
+                          "x": 0.0,
+                          "y": 0.0
                         },
                         "data": {
                           "integers": {
@@ -102,8 +102,8 @@
                         "id": "AddVelocityX",
                         "uid": 1744042582,
                         "position": {
-                          "x": 5115.53662,
-                          "y": -695.740051
+                          "x": 0.0,
+                          "y": 0.0
                         },
                         "data": {
                           "integers": {},
@@ -118,8 +118,8 @@
                               "id": "Multiply",
                               "uid": 1405158718,
                               "position": {
-                                "x": 5235.30225,
-                                "y": -701.8998
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -146,8 +146,8 @@
                                     "id": "DeltaTime",
                                     "uid": 18446744071838497060,
                                     "position": {
-                                      "x": 5251.936,
-                                      "y": -701.8998
+                                      "x": 0.0,
+                                      "y": 0.0
                                     },
                                     "data": {
                                       "integers": {},
@@ -205,8 +205,8 @@
                         "id": "If",
                         "uid": 18446744072945947615,
                         "position": {
-                          "x": 5101.84863,
-                          "y": -721.747559
+                          "x": 0.0,
+                          "y": 0.0
                         },
                         "data": {
                           "integers": {},
@@ -221,8 +221,8 @@
                               "id": "KeyPressed",
                               "uid": 18446744071803693949,
                               "position": {
-                                "x": 5150.072,
-                                "y": -728.591553
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {
@@ -250,8 +250,8 @@
                               "id": "AddVelocityX",
                               "uid": 1744042582,
                               "position": {
-                                "x": 5115.53662,
-                                "y": -735.4356
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -266,8 +266,8 @@
                                     "id": "Multiply",
                                     "uid": 1405158718,
                                     "position": {
-                                      "x": 5235.30225,
-                                      "y": -741.5953
+                                      "x": 0.0,
+                                      "y": 0.0
                                     },
                                     "data": {
                                       "integers": {},
@@ -294,8 +294,8 @@
                                           "id": "DeltaTime",
                                           "uid": 18446744071838497060,
                                           "position": {
-                                            "x": 5251.936,
-                                            "y": -741.5953
+                                            "x": 0.0,
+                                            "y": 0.0
                                           },
                                           "data": {
                                             "integers": {},
@@ -353,8 +353,8 @@
                               "id": "If",
                               "uid": 18446744072285818004,
                               "position": {
-                                "x": 5101.84863,
-                                "y": -761.443054
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -369,8 +369,8 @@
                                     "id": "KeyPressed",
                                     "uid": 18446744071803693949,
                                     "position": {
-                                      "x": 5150.072,
-                                      "y": -768.2871
+                                      "x": 0.0,
+                                      "y": 0.0
                                     },
                                     "data": {
                                       "integers": {
@@ -398,8 +398,8 @@
                                     "id": "If",
                                     "uid": 18446744071803893174,
                                     "position": {
-                                      "x": 5115.53662,
-                                      "y": -775.1312
+                                      "x": 0.0,
+                                      "y": 0.0
                                     },
                                     "data": {
                                       "integers": {},
@@ -414,8 +414,8 @@
                                           "id": "GetVariable",
                                           "uid": 263698767,
                                           "position": {
-                                            "x": 5192.50342,
-                                            "y": -781.9752
+                                            "x": 0.0,
+                                            "y": 0.0
                                           },
                                           "data": {
                                             "integers": {},
@@ -466,8 +466,8 @@
                                           "id": "SetVelocityY",
                                           "uid": 18446744072481563700,
                                           "position": {
-                                            "x": 5129.22461,
-                                            "y": -788.8192
+                                            "x": 0.0,
+                                            "y": 0.0
                                           },
                                           "data": {
                                             "integers": {},
@@ -575,8 +575,8 @@
             "id": "OnAwake",
             "uid": 18446744073447973634,
             "position": {
-              "x": -1572.86353,
-              "y": 22305.1914
+              "x": -3013.12,
+              "y": 11617.9063
             },
             "data": {
               "integers": {},
@@ -591,8 +591,8 @@
                   "id": "SetVariable",
                   "uid": 18446744071896880980,
                   "position": {
-                    "x": -1572.86353,
-                    "y": 22291.5039
+                    "x": 0.0,
+                    "y": 0.0
                   },
                   "data": {
                     "integers": {},
@@ -636,7 +636,10 @@
                           "setObject": 0,
                           "setAsset": 0
                         },
-                        "floats": {},
+                        "floats": {
+                          "vectorXInput": 0.0,
+                          "vectorYInput": 0.0
+                        },
                         "strings": {
                           "inputValue": ""
                         },
@@ -647,6 +650,661 @@
                     },
                     {
                       "snapped": null,
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      }
+                    }
+                  ]
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "Function",
+            "uid": 552078927,
+            "position": {
+              "x": 288.9758,
+              "y": 362.829132
+            },
+            "data": {
+              "integers": {},
+              "ulongs": {},
+              "floats": {},
+              "strings": {
+                "parameters": "{\"parameters\":[\"Amount\"]}",
+                "functionName": "GetDamage"
+              },
+              "bools": {}
+            },
+            "snapPoints": [
+              {
+                "snapped": {
+                  "id": "SetVariable",
+                  "uid": 18446744073455052139,
+                  "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                  },
+                  "data": {
+                    "integers": {},
+                    "ulongs": {},
+                    "floats": {},
+                    "strings": {},
+                    "bools": {}
+                  },
+                  "snapPoints": [
+                    {
+                      "snapped": null,
+                      "data": {
+                        "integers": {},
+                        "ulongs": {
+                          "setObject": 695548526
+                        },
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      }
+                    },
+                    {
+                      "snapped": null,
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {
+                          "value": "hp"
+                        },
+                        "bools": {}
+                      }
+                    },
+                    {
+                      "snapped": {
+                        "id": "Subtract",
+                        "uid": 549467012,
+                        "position": {
+                          "x": 0.0,
+                          "y": 0.0
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {},
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": {
+                              "id": "GetVariable",
+                              "uid": 1868736214,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {},
+                                "ulongs": {},
+                                "floats": {},
+                                "strings": {},
+                                "bools": {}
+                              },
+                              "snapPoints": [
+                                {
+                                  "snapped": null,
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {
+                                      "setObject": 695548526
+                                    },
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  }
+                                },
+                                {
+                                  "snapped": null,
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {},
+                                    "floats": {},
+                                    "strings": {
+                                      "value": "hp"
+                                    },
+                                    "bools": {}
+                                  }
+                                }
+                              ]
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {
+                                "value": 10.0
+                              },
+                              "strings": {},
+                              "bools": {}
+                            }
+                          },
+                          {
+                            "snapped": {
+                              "id": "FunctionParam",
+                              "uid": 1069579694,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {},
+                                "ulongs": {
+                                  "target": 552078927
+                                },
+                                "floats": {},
+                                "strings": {
+                                  "parameterName": "Amount"
+                                },
+                                "bools": {}
+                              },
+                              "snapPoints": []
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {
+                                "value": 10.0
+                              },
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      },
+                      "data": {
+                        "integers": {
+                          "typeIndex": 0
+                        },
+                        "ulongs": {
+                          "setObject": 0,
+                          "setAsset": 0
+                        },
+                        "floats": {
+                          "vectorXInput": 0.0,
+                          "vectorYInput": 0.0
+                        },
+                        "strings": {
+                          "inputValue": "1"
+                        },
+                        "bools": {
+                          "toggleValue": true
+                        }
+                      }
+                    },
+                    {
+                      "snapped": {
+                        "id": "InvokeFunction",
+                        "uid": 18446744072392922064,
+                        "position": {
+                          "x": 0.0,
+                          "y": 0.0
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {
+                            "arguments": "{\"arguments\":[]}",
+                            "functionName": "SetScale"
+                          },
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          },
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {
+                                "setObject": 117548268
+                              },
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      },
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      }
+                    }
+                  ]
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "OnAwake",
+            "uid": 183616044,
+            "position": {
+              "x": 313.377716,
+              "y": 1291.55151
+            },
+            "data": {
+              "integers": {},
+              "ulongs": {},
+              "floats": {},
+              "strings": {},
+              "bools": {}
+            },
+            "snapPoints": [
+              {
+                "snapped": {
+                  "id": "SetVariable",
+                  "uid": 18446744073076622050,
+                  "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                  },
+                  "data": {
+                    "integers": {},
+                    "ulongs": {},
+                    "floats": {},
+                    "strings": {},
+                    "bools": {}
+                  },
+                  "snapPoints": [
+                    {
+                      "snapped": null,
+                      "data": {
+                        "integers": {},
+                        "ulongs": {
+                          "setObject": 695548526
+                        },
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      }
+                    },
+                    {
+                      "snapped": null,
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {
+                          "value": "MaxHp"
+                        },
+                        "bools": {}
+                      }
+                    },
+                    {
+                      "snapped": null,
+                      "data": {
+                        "integers": {
+                          "typeIndex": 0
+                        },
+                        "ulongs": {
+                          "setObject": 0,
+                          "setAsset": 0
+                        },
+                        "floats": {
+                          "vectorXInput": 0.0,
+                          "vectorYInput": 0.0
+                        },
+                        "strings": {
+                          "inputValue": "100"
+                        },
+                        "bools": {
+                          "toggleValue": true
+                        }
+                      }
+                    },
+                    {
+                      "snapped": {
+                        "id": "SetVariable",
+                        "uid": 728323547,
+                        "position": {
+                          "x": 0.0,
+                          "y": 0.0
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {},
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {
+                                "setObject": 695548526
+                              },
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          },
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {
+                                "value": "hp"
+                              },
+                              "bools": {}
+                            }
+                          },
+                          {
+                            "snapped": {
+                              "id": "GetVariable",
+                              "uid": 1195217687,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {},
+                                "ulongs": {},
+                                "floats": {},
+                                "strings": {},
+                                "bools": {}
+                              },
+                              "snapPoints": [
+                                {
+                                  "snapped": null,
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {
+                                      "setObject": 695548526
+                                    },
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  }
+                                },
+                                {
+                                  "snapped": null,
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {},
+                                    "floats": {},
+                                    "strings": {
+                                      "value": "MaxHp"
+                                    },
+                                    "bools": {}
+                                  }
+                                }
+                              ]
+                            },
+                            "data": {
+                              "integers": {
+                                "typeIndex": 0
+                              },
+                              "ulongs": {
+                                "setObject": 0,
+                                "setAsset": 0
+                              },
+                              "floats": {
+                                "vectorXInput": 0.0,
+                                "vectorYInput": 0.0
+                              },
+                              "strings": {
+                                "inputValue": "100"
+                              },
+                              "bools": {
+                                "toggleValue": true
+                              }
+                            }
+                          },
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      },
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      }
+                    }
+                  ]
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "Function",
+            "uid": 1887433390,
+            "position": {
+              "x": 287.864227,
+              "y": -23.4993839
+            },
+            "data": {
+              "integers": {},
+              "ulongs": {},
+              "floats": {},
+              "strings": {
+                "parameters": "{\"parameters\":[\"Knockback\"]}",
+                "functionName": "GetKnockback"
+              },
+              "bools": {}
+            },
+            "snapPoints": [
+              {
+                "snapped": {
+                  "id": "AddVelocityX",
+                  "uid": 1242305852,
+                  "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                  },
+                  "data": {
+                    "integers": {},
+                    "ulongs": {},
+                    "floats": {},
+                    "strings": {},
+                    "bools": {}
+                  },
+                  "snapPoints": [
+                    {
+                      "snapped": {
+                        "id": "Vector2X",
+                        "uid": 18446744073256080957,
+                        "position": {
+                          "x": 0.0,
+                          "y": 0.0
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {},
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": {
+                              "id": "FunctionParam",
+                              "uid": 18446744073282905220,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {},
+                                "ulongs": {
+                                  "target": 1887433390
+                                },
+                                "floats": {},
+                                "strings": {
+                                  "parameterName": "Knockback"
+                                },
+                                "bools": {}
+                              },
+                              "snapPoints": []
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {
+                                "inputX": 0.0,
+                                "inputY": 0.0
+                              },
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      },
+                      "data": {
+                        "integers": {},
+                        "ulongs": {},
+                        "floats": {
+                          "value": 10.0
+                        },
+                        "strings": {},
+                        "bools": {}
+                      }
+                    },
+                    {
+                      "snapped": {
+                        "id": "SetVelocityY",
+                        "uid": 18446744072870905167,
+                        "position": {
+                          "x": 0.0,
+                          "y": 0.0
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {},
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": {
+                              "id": "Vector2Y",
+                              "uid": 18446744072747111670,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {},
+                                "ulongs": {},
+                                "floats": {},
+                                "strings": {},
+                                "bools": {}
+                              },
+                              "snapPoints": [
+                                {
+                                  "snapped": {
+                                    "id": "FunctionParam",
+                                    "uid": 520068444,
+                                    "position": {
+                                      "x": 0.0,
+                                      "y": 0.0
+                                    },
+                                    "data": {
+                                      "integers": {},
+                                      "ulongs": {
+                                        "target": 1887433390
+                                      },
+                                      "floats": {},
+                                      "strings": {
+                                        "parameterName": "Knockback"
+                                      },
+                                      "bools": {}
+                                    },
+                                    "snapPoints": []
+                                  },
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {},
+                                    "floats": {
+                                      "inputX": 0.0,
+                                      "inputY": 0.0
+                                    },
+                                    "strings": {},
+                                    "bools": {}
+                                  }
+                                }
+                              ]
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {
+                                "value": 10.0
+                              },
+                              "strings": {},
+                              "bools": {}
+                            }
+                          },
+                          {
+                            "snapped": null,
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      },
                       "data": {
                         "integers": {},
                         "ulongs": {},
@@ -775,8 +1433,8 @@
               "y": 1.0
             },
             "lastOffset": {
-              "x": 11382.8457,
-              "y": -2627.546
+              "x": -372.4845,
+              "y": -352.9776
             },
             "data": {
               "integers": {
@@ -800,8 +1458,8 @@
                 "id": "OnTriggerEnter",
                 "uid": 18446744071847660778,
                 "position": {
-                  "x": -55.4997864,
-                  "y": 325.185669
+                  "x": 156.7109,
+                  "y": 703.5412
                 },
                 "data": {
                   "integers": {},
@@ -813,16 +1471,14 @@
                 "snapPoints": [
                   {
                     "snapped": {
-                      "id": "SystemLog",
-                      "uid": 18446744073167618387,
+                      "id": "If",
+                      "uid": 373606000,
                       "position": {
-                        "x": -55.4997864,
-                        "y": 312.866364
+                        "x": 0.0,
+                        "y": 0.0
                       },
                       "data": {
-                        "integers": {
-                          "logType": 0
-                        },
+                        "integers": {},
                         "ulongs": {},
                         "floats": {},
                         "strings": {},
@@ -831,11 +1487,11 @@
                       "snapPoints": [
                         {
                           "snapped": {
-                            "id": "ObjectName",
-                            "uid": 18446744072440510710,
+                            "id": "IsChildOf",
+                            "uid": 1484611160,
                             "position": {
-                              "x": 91.2439,
-                              "y": 306.706757
+                              "x": 0.0,
+                              "y": 0.0
                             },
                             "data": {
                               "integers": {},
@@ -848,10 +1504,10 @@
                               {
                                 "snapped": {
                                   "id": "CollidedObject",
-                                  "uid": 1654079380,
+                                  "uid": 18446744073634327347,
                                   "position": {
-                                    "x": 73.31094,
-                                    "y": 306.706757
+                                    "x": 0.0,
+                                    "y": 0.0
                                   },
                                   "data": {
                                     "integers": {},
@@ -873,6 +1529,18 @@
                                   "strings": {},
                                   "bools": {}
                                 }
+                              },
+                              {
+                                "snapped": null,
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {
+                                    "setObject": 18446744073684602717
+                                  },
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
                               }
                             ]
                           },
@@ -880,19 +1548,19 @@
                             "integers": {},
                             "ulongs": {},
                             "floats": {},
-                            "strings": {
-                              "value": "Hello World!"
-                            },
-                            "bools": {}
+                            "strings": {},
+                            "bools": {
+                              "value": true
+                            }
                           }
                         },
                         {
                           "snapped": {
-                            "id": "If",
-                            "uid": 373606000,
+                            "id": "SetVariable",
+                            "uid": 18446744072669954595,
                             "position": {
-                              "x": -55.4997864,
-                              "y": 299.178223
+                              "x": 0.0,
+                              "y": 0.0
                             },
                             "data": {
                               "integers": {},
@@ -903,81 +1571,36 @@
                             },
                             "snapPoints": [
                               {
-                                "snapped": {
-                                  "id": "IsChildOf",
-                                  "uid": 1484611160,
-                                  "position": {
-                                    "x": 43.02478,
-                                    "y": 292.334167
+                                "snapped": null,
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {
+                                    "setObject": 18446744072282321593
                                   },
-                                  "data": {
-                                    "integers": {},
-                                    "ulongs": {},
-                                    "floats": {},
-                                    "strings": {},
-                                    "bools": {}
-                                  },
-                                  "snapPoints": [
-                                    {
-                                      "snapped": {
-                                        "id": "CollidedObject",
-                                        "uid": 18446744073634327347,
-                                        "position": {
-                                          "x": -0.5936279,
-                                          "y": 292.334167
-                                        },
-                                        "data": {
-                                          "integers": {},
-                                          "ulongs": {
-                                            "target": 18446744071847660778
-                                          },
-                                          "floats": {},
-                                          "strings": {},
-                                          "bools": {}
-                                        },
-                                        "snapPoints": []
-                                      },
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 0
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 18446744071746126695
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    }
-                                  ]
-                                },
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
+                              },
+                              {
+                                "snapped": null,
                                 "data": {
                                   "integers": {},
                                   "ulongs": {},
                                   "floats": {},
-                                  "strings": {},
-                                  "bools": {
-                                    "value": true
-                                  }
+                                  "strings": {
+                                    "value": "touchCount"
+                                  },
+                                  "bools": {}
                                 }
                               },
                               {
                                 "snapped": {
-                                  "id": "SetVariable",
-                                  "uid": 18446744072669954595,
+                                  "id": "Add",
+                                  "uid": 918688630,
                                   "position": {
-                                    "x": -41.8117371,
-                                    "y": 285.490143
+                                    "x": 0.0,
+                                    "y": 0.0
                                   },
                                   "data": {
                                     "integers": {},
@@ -988,36 +1611,12 @@
                                   },
                                   "snapPoints": [
                                     {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 18446744072282321593
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {
-                                          "value": "touchCount"
-                                        },
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
                                       "snapped": {
-                                        "id": "Add",
-                                        "uid": 918688630,
+                                        "id": "GetVariable",
+                                        "uid": 1866790434,
                                         "position": {
-                                          "x": 200.39975,
-                                          "y": 279.330444
+                                          "x": 0.0,
+                                          "y": 0.0
                                         },
                                         "data": {
                                           "integers": {},
@@ -1028,53 +1627,13 @@
                                         },
                                         "snapPoints": [
                                           {
-                                            "snapped": {
-                                              "id": "GetVariable",
-                                              "uid": 1866790434,
-                                              "position": {
-                                                "x": 182.954376,
-                                                "y": 279.330444
-                                              },
-                                              "data": {
-                                                "integers": {},
-                                                "ulongs": {},
-                                                "floats": {},
-                                                "strings": {},
-                                                "bools": {}
-                                              },
-                                              "snapPoints": [
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {
-                                                      "setObject": 18446744072282321593
-                                                    },
-                                                    "floats": {},
-                                                    "strings": {},
-                                                    "bools": {}
-                                                  }
-                                                },
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {},
-                                                    "floats": {},
-                                                    "strings": {
-                                                      "value": "touchCount"
-                                                    },
-                                                    "bools": {}
-                                                  }
-                                                }
-                                              ]
-                                            },
+                                            "snapped": null,
                                             "data": {
                                               "integers": {},
-                                              "ulongs": {},
-                                              "floats": {
-                                                "value": 10.0
+                                              "ulongs": {
+                                                "setObject": 18446744072282321593
                                               },
+                                              "floats": {},
                                               "strings": {},
                                               "bools": {}
                                             }
@@ -1084,30 +1643,23 @@
                                             "data": {
                                               "integers": {},
                                               "ulongs": {},
-                                              "floats": {
-                                                "value": 1.0
+                                              "floats": {},
+                                              "strings": {
+                                                "value": "touchCount"
                                               },
-                                              "strings": {},
                                               "bools": {}
                                             }
                                           }
                                         ]
                                       },
                                       "data": {
-                                        "integers": {
-                                          "typeIndex": 0
+                                        "integers": {},
+                                        "ulongs": {},
+                                        "floats": {
+                                          "value": 10.0
                                         },
-                                        "ulongs": {
-                                          "setObject": 0,
-                                          "setAsset": 0
-                                        },
-                                        "floats": {},
-                                        "strings": {
-                                          "inputValue": ""
-                                        },
-                                        "bools": {
-                                          "toggleValue": true
-                                        }
+                                        "strings": {},
+                                        "bools": {}
                                       }
                                     },
                                     {
@@ -1115,7 +1667,9 @@
                                       "data": {
                                         "integers": {},
                                         "ulongs": {},
-                                        "floats": {},
+                                        "floats": {
+                                          "value": 1.0
+                                        },
                                         "strings": {},
                                         "bools": {}
                                       }
@@ -1123,130 +1677,27 @@
                                   ]
                                 },
                                 "data": {
-                                  "integers": {},
-                                  "ulongs": {},
-                                  "floats": {},
-                                  "strings": {},
-                                  "bools": {}
+                                  "integers": {
+                                    "typeIndex": 0
+                                  },
+                                  "ulongs": {
+                                    "setObject": 0,
+                                    "setAsset": 0
+                                  },
+                                  "floats": {
+                                    "vectorXInput": 0.0,
+                                    "vectorYInput": 0.0
+                                  },
+                                  "strings": {
+                                    "inputValue": ""
+                                  },
+                                  "bools": {
+                                    "toggleValue": true
+                                  }
                                 }
                               },
                               {
-                                "snapped": {
-                                  "id": "SystemLog",
-                                  "uid": 18446744072789471128,
-                                  "position": {
-                                    "x": -55.4997864,
-                                    "y": 259.4827
-                                  },
-                                  "data": {
-                                    "integers": {
-                                      "logType": 0
-                                    },
-                                    "ulongs": {},
-                                    "floats": {},
-                                    "strings": {},
-                                    "bools": {}
-                                  },
-                                  "snapPoints": [
-                                    {
-                                      "snapped": {
-                                        "id": "CastToNumber",
-                                        "uid": 479553182,
-                                        "position": {
-                                          "x": 122.478271,
-                                          "y": 253.323074
-                                        },
-                                        "data": {
-                                          "integers": {},
-                                          "ulongs": {},
-                                          "floats": {},
-                                          "strings": {},
-                                          "bools": {}
-                                        },
-                                        "snapPoints": [
-                                          {
-                                            "snapped": {
-                                              "id": "GetVariable",
-                                              "uid": 18446744073562229480,
-                                              "position": {
-                                                "x": 137.233429,
-                                                "y": 253.323074
-                                              },
-                                              "data": {
-                                                "integers": {},
-                                                "ulongs": {},
-                                                "floats": {},
-                                                "strings": {},
-                                                "bools": {}
-                                              },
-                                              "snapPoints": [
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {
-                                                      "setObject": 18446744072282321593
-                                                    },
-                                                    "floats": {},
-                                                    "strings": {},
-                                                    "bools": {}
-                                                  }
-                                                },
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {},
-                                                    "floats": {},
-                                                    "strings": {
-                                                      "value": "touchCount"
-                                                    },
-                                                    "bools": {}
-                                                  }
-                                                }
-                                              ]
-                                            },
-                                            "data": {
-                                              "integers": {
-                                                "typeIndex": 0
-                                              },
-                                              "ulongs": {
-                                                "setObject": 0,
-                                                "setAsset": 0
-                                              },
-                                              "floats": {},
-                                              "strings": {
-                                                "inputValue": ""
-                                              },
-                                              "bools": {
-                                                "toggleValue": true
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      },
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {
-                                          "value": "Hello World!"
-                                        },
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    }
-                                  ]
-                                },
+                                "snapped": null,
                                 "data": {
                                   "integers": {},
                                   "ulongs": {},
@@ -1257,6 +1708,16 @@
                               }
                             ]
                           },
+                          "data": {
+                            "integers": {},
+                            "ulongs": {},
+                            "floats": {},
+                            "strings": {},
+                            "bools": {}
+                          }
+                        },
+                        {
+                          "snapped": null,
                           "data": {
                             "integers": {},
                             "ulongs": {},
@@ -1276,24 +1737,7 @@
                     }
                   },
                   {
-                    "snapped": {
-                      "id": "CollidedObject",
-                      "uid": 1732239315,
-                      "position": {
-                        "x": 54.0050659,
-                        "y": 318.6154
-                      },
-                      "data": {
-                        "integers": {},
-                        "ulongs": {
-                          "target": 18446744071847660778
-                        },
-                        "floats": {},
-                        "strings": {},
-                        "bools": {}
-                      },
-                      "snapPoints": []
-                    },
+                    "snapped": null,
                     "data": {
                       "integers": {},
                       "ulongs": {},
@@ -1308,8 +1752,8 @@
                 "id": "OnAwake",
                 "uid": 546951041,
                 "position": {
-                  "x": 3.9664917,
-                  "y": 4308.288
+                  "x": -2276.20947,
+                  "y": 3207.28882
                 },
                 "data": {
                   "integers": {},
@@ -1324,8 +1768,8 @@
                       "id": "SetVariable",
                       "uid": 18446744073378534246,
                       "position": {
-                        "x": 3.9664917,
-                        "y": 4294.59961
+                        "x": 0.0,
+                        "y": 0.0
                       },
                       "data": {
                         "integers": {},
@@ -1369,7 +1813,10 @@
                               "setObject": 0,
                               "setAsset": 0
                             },
-                            "floats": {},
+                            "floats": {
+                              "vectorXInput": 0.0,
+                              "vectorYInput": 0.0
+                            },
                             "strings": {
                               "inputValue": "0"
                             },
@@ -1404,8 +1851,8 @@
                 "id": "OnTriggerExit",
                 "uid": 18446744072390409460,
                 "position": {
-                  "x": -60.26178,
-                  "y": 228.95787
+                  "x": 148.019623,
+                  "y": 445.964874
                 },
                 "data": {
                   "integers": {},
@@ -1417,16 +1864,14 @@
                 "snapPoints": [
                   {
                     "snapped": {
-                      "id": "SystemLog",
-                      "uid": 1599173096,
+                      "id": "If",
+                      "uid": 18446744073418220980,
                       "position": {
-                        "x": -60.26178,
-                        "y": 216.63855
+                        "x": 0.0,
+                        "y": 0.0
                       },
                       "data": {
-                        "integers": {
-                          "logType": 0
-                        },
+                        "integers": {},
                         "ulongs": {},
                         "floats": {},
                         "strings": {},
@@ -1435,11 +1880,11 @@
                       "snapPoints": [
                         {
                           "snapped": {
-                            "id": "ObjectName",
-                            "uid": 18446744072440510710,
+                            "id": "IsChildOf",
+                            "uid": 1484611160,
                             "position": {
-                              "x": 86.4819,
-                              "y": 210.478943
+                              "x": 0.0,
+                              "y": 0.0
                             },
                             "data": {
                               "integers": {},
@@ -1452,10 +1897,10 @@
                               {
                                 "snapped": {
                                   "id": "CollidedObject",
-                                  "uid": 18446744072683647273,
+                                  "uid": 1938445892,
                                   "position": {
-                                    "x": 68.54895,
-                                    "y": 210.478943
+                                    "x": 0.0,
+                                    "y": 0.0
                                   },
                                   "data": {
                                     "integers": {},
@@ -1477,6 +1922,18 @@
                                   "strings": {},
                                   "bools": {}
                                 }
+                              },
+                              {
+                                "snapped": null,
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {
+                                    "setObject": 18446744073684602717
+                                  },
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
                               }
                             ]
                           },
@@ -1484,19 +1941,19 @@
                             "integers": {},
                             "ulongs": {},
                             "floats": {},
-                            "strings": {
-                              "value": "Hello World!"
-                            },
-                            "bools": {}
+                            "strings": {},
+                            "bools": {
+                              "value": true
+                            }
                           }
                         },
                         {
                           "snapped": {
-                            "id": "If",
-                            "uid": 18446744073418220980,
+                            "id": "SetVariable",
+                            "uid": 18446744072307283398,
                             "position": {
-                              "x": -60.26178,
-                              "y": 202.9505
+                              "x": 0.0,
+                              "y": 0.0
                             },
                             "data": {
                               "integers": {},
@@ -1507,81 +1964,36 @@
                             },
                             "snapPoints": [
                               {
-                                "snapped": {
-                                  "id": "IsChildOf",
-                                  "uid": 1484611160,
-                                  "position": {
-                                    "x": 38.2627563,
-                                    "y": 196.106369
+                                "snapped": null,
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {
+                                    "setObject": 18446744072282321593
                                   },
-                                  "data": {
-                                    "integers": {},
-                                    "ulongs": {},
-                                    "floats": {},
-                                    "strings": {},
-                                    "bools": {}
-                                  },
-                                  "snapPoints": [
-                                    {
-                                      "snapped": {
-                                        "id": "CollidedObject",
-                                        "uid": 1938445892,
-                                        "position": {
-                                          "x": -5.35562134,
-                                          "y": 196.106369
-                                        },
-                                        "data": {
-                                          "integers": {},
-                                          "ulongs": {
-                                            "target": 18446744072390409460
-                                          },
-                                          "floats": {},
-                                          "strings": {},
-                                          "bools": {}
-                                        },
-                                        "snapPoints": []
-                                      },
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 0
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 18446744071746126695
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    }
-                                  ]
-                                },
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
+                              },
+                              {
+                                "snapped": null,
                                 "data": {
                                   "integers": {},
                                   "ulongs": {},
                                   "floats": {},
-                                  "strings": {},
-                                  "bools": {
-                                    "value": true
-                                  }
+                                  "strings": {
+                                    "value": "touchCount"
+                                  },
+                                  "bools": {}
                                 }
                               },
                               {
                                 "snapped": {
-                                  "id": "SetVariable",
-                                  "uid": 18446744072307283398,
+                                  "id": "Add",
+                                  "uid": 18446744073553759031,
                                   "position": {
-                                    "x": -46.57373,
-                                    "y": 189.262329
+                                    "x": 0.0,
+                                    "y": 0.0
                                   },
                                   "data": {
                                     "integers": {},
@@ -1592,36 +2004,12 @@
                                   },
                                   "snapPoints": [
                                     {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {
-                                          "setObject": 18446744072282321593
-                                        },
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {
-                                          "value": "touchCount"
-                                        },
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
                                       "snapped": {
-                                        "id": "Add",
-                                        "uid": 18446744073553759031,
+                                        "id": "GetVariable",
+                                        "uid": 1866790434,
                                         "position": {
-                                          "x": 195.637756,
-                                          "y": 183.102631
+                                          "x": 0.0,
+                                          "y": 0.0
                                         },
                                         "data": {
                                           "integers": {},
@@ -1632,53 +2020,13 @@
                                         },
                                         "snapPoints": [
                                           {
-                                            "snapped": {
-                                              "id": "GetVariable",
-                                              "uid": 1866790434,
-                                              "position": {
-                                                "x": 178.192383,
-                                                "y": 183.102631
-                                              },
-                                              "data": {
-                                                "integers": {},
-                                                "ulongs": {},
-                                                "floats": {},
-                                                "strings": {},
-                                                "bools": {}
-                                              },
-                                              "snapPoints": [
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {
-                                                      "setObject": 18446744072282321593
-                                                    },
-                                                    "floats": {},
-                                                    "strings": {},
-                                                    "bools": {}
-                                                  }
-                                                },
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {},
-                                                    "floats": {},
-                                                    "strings": {
-                                                      "value": "touchCount"
-                                                    },
-                                                    "bools": {}
-                                                  }
-                                                }
-                                              ]
-                                            },
+                                            "snapped": null,
                                             "data": {
                                               "integers": {},
-                                              "ulongs": {},
-                                              "floats": {
-                                                "value": 10.0
+                                              "ulongs": {
+                                                "setObject": 18446744072282321593
                                               },
+                                              "floats": {},
                                               "strings": {},
                                               "bools": {}
                                             }
@@ -1688,30 +2036,23 @@
                                             "data": {
                                               "integers": {},
                                               "ulongs": {},
-                                              "floats": {
-                                                "value": -1.0
+                                              "floats": {},
+                                              "strings": {
+                                                "value": "touchCount"
                                               },
-                                              "strings": {},
                                               "bools": {}
                                             }
                                           }
                                         ]
                                       },
                                       "data": {
-                                        "integers": {
-                                          "typeIndex": 0
+                                        "integers": {},
+                                        "ulongs": {},
+                                        "floats": {
+                                          "value": 10.0
                                         },
-                                        "ulongs": {
-                                          "setObject": 0,
-                                          "setAsset": 0
-                                        },
-                                        "floats": {},
-                                        "strings": {
-                                          "inputValue": ""
-                                        },
-                                        "bools": {
-                                          "toggleValue": true
-                                        }
+                                        "strings": {},
+                                        "bools": {}
                                       }
                                     },
                                     {
@@ -1719,7 +2060,9 @@
                                       "data": {
                                         "integers": {},
                                         "ulongs": {},
-                                        "floats": {},
+                                        "floats": {
+                                          "value": -1.0
+                                        },
                                         "strings": {},
                                         "bools": {}
                                       }
@@ -1727,130 +2070,27 @@
                                   ]
                                 },
                                 "data": {
-                                  "integers": {},
-                                  "ulongs": {},
-                                  "floats": {},
-                                  "strings": {},
-                                  "bools": {}
+                                  "integers": {
+                                    "typeIndex": 0
+                                  },
+                                  "ulongs": {
+                                    "setObject": 0,
+                                    "setAsset": 0
+                                  },
+                                  "floats": {
+                                    "vectorXInput": 0.0,
+                                    "vectorYInput": 0.0
+                                  },
+                                  "strings": {
+                                    "inputValue": ""
+                                  },
+                                  "bools": {
+                                    "toggleValue": true
+                                  }
                                 }
                               },
                               {
-                                "snapped": {
-                                  "id": "SystemLog",
-                                  "uid": 2081589411,
-                                  "position": {
-                                    "x": -60.26178,
-                                    "y": 163.254868
-                                  },
-                                  "data": {
-                                    "integers": {
-                                      "logType": 0
-                                    },
-                                    "ulongs": {},
-                                    "floats": {},
-                                    "strings": {},
-                                    "bools": {}
-                                  },
-                                  "snapPoints": [
-                                    {
-                                      "snapped": {
-                                        "id": "CastToNumber",
-                                        "uid": 479553182,
-                                        "position": {
-                                          "x": 117.716705,
-                                          "y": 157.095261
-                                        },
-                                        "data": {
-                                          "integers": {},
-                                          "ulongs": {},
-                                          "floats": {},
-                                          "strings": {},
-                                          "bools": {}
-                                        },
-                                        "snapPoints": [
-                                          {
-                                            "snapped": {
-                                              "id": "GetVariable",
-                                              "uid": 18446744073562229480,
-                                              "position": {
-                                                "x": 132.471436,
-                                                "y": 157.095261
-                                              },
-                                              "data": {
-                                                "integers": {},
-                                                "ulongs": {},
-                                                "floats": {},
-                                                "strings": {},
-                                                "bools": {}
-                                              },
-                                              "snapPoints": [
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {
-                                                      "setObject": 18446744072282321593
-                                                    },
-                                                    "floats": {},
-                                                    "strings": {},
-                                                    "bools": {}
-                                                  }
-                                                },
-                                                {
-                                                  "snapped": null,
-                                                  "data": {
-                                                    "integers": {},
-                                                    "ulongs": {},
-                                                    "floats": {},
-                                                    "strings": {
-                                                      "value": "touchCount"
-                                                    },
-                                                    "bools": {}
-                                                  }
-                                                }
-                                              ]
-                                            },
-                                            "data": {
-                                              "integers": {
-                                                "typeIndex": 0
-                                              },
-                                              "ulongs": {
-                                                "setObject": 0,
-                                                "setAsset": 0
-                                              },
-                                              "floats": {},
-                                              "strings": {
-                                                "inputValue": ""
-                                              },
-                                              "bools": {
-                                                "toggleValue": true
-                                              }
-                                            }
-                                          }
-                                        ]
-                                      },
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {
-                                          "value": "Hello World!"
-                                        },
-                                        "bools": {}
-                                      }
-                                    },
-                                    {
-                                      "snapped": null,
-                                      "data": {
-                                        "integers": {},
-                                        "ulongs": {},
-                                        "floats": {},
-                                        "strings": {},
-                                        "bools": {}
-                                      }
-                                    }
-                                  ]
-                                },
+                                "snapped": null,
                                 "data": {
                                   "integers": {},
                                   "ulongs": {},
@@ -1861,6 +2101,16 @@
                               }
                             ]
                           },
+                          "data": {
+                            "integers": {},
+                            "ulongs": {},
+                            "floats": {},
+                            "strings": {},
+                            "bools": {}
+                          }
+                        },
+                        {
+                          "snapped": null,
                           "data": {
                             "integers": {},
                             "ulongs": {},
@@ -1880,24 +2130,7 @@
                     }
                   },
                   {
-                    "snapped": {
-                      "id": "CollidedObject",
-                      "uid": 1457992454,
-                      "position": {
-                        "x": 49.24353,
-                        "y": 222.387558
-                      },
-                      "data": {
-                        "integers": {},
-                        "ulongs": {
-                          "target": 18446744072390409460
-                        },
-                        "floats": {},
-                        "strings": {},
-                        "bools": {}
-                      },
-                      "snapPoints": []
-                    },
+                    "snapped": null,
                     "data": {
                       "integers": {},
                       "ulongs": {},
@@ -1912,8 +2145,8 @@
                 "id": "OnUpdate",
                 "uid": 156221926,
                 "position": {
-                  "x": -53.349762,
-                  "y": 133.736954
+                  "x": 170.76178,
+                  "y": 203.084259
                 },
                 "data": {
                   "integers": {},
@@ -1928,8 +2161,8 @@
                       "id": "SetVariable",
                       "uid": 18446744073604482971,
                       "position": {
-                        "x": -53.349762,
-                        "y": 120.048904
+                        "x": 0.0,
+                        "y": 0.0
                       },
                       "data": {
                         "integers": {},
@@ -1968,8 +2201,8 @@
                             "id": "Greater",
                             "uid": 18446744072316725327,
                             "position": {
-                              "x": 188.86174,
-                              "y": 113.889191
+                              "x": 0.0,
+                              "y": 0.0
                             },
                             "data": {
                               "integers": {},
@@ -1984,8 +2217,8 @@
                                   "id": "GetVariable",
                                   "uid": 18446744073439192318,
                                   "position": {
-                                    "x": 171.416367,
-                                    "y": 113.889191
+                                    "x": 0.0,
+                                    "y": 0.0
                                   },
                                   "data": {
                                     "integers": {},
@@ -2053,7 +2286,10 @@
                               "setObject": 0,
                               "setAsset": 0
                             },
-                            "floats": {},
+                            "floats": {
+                              "vectorXInput": 0.0,
+                              "vectorYInput": 0.0
+                            },
                             "strings": {
                               "inputValue": ""
                             },
@@ -2117,6 +2353,451 @@
                 "children": []
               }
             ]
+          },
+          {
+            "id": "Canvas",
+            "name": "Canvas",
+            "uid": 2138413541,
+            "position": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "rotation": 0.0,
+            "scale": {
+              "x": 0.01,
+              "y": 0.01
+            },
+            "lastOffset": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "data": {
+              "integers": {
+                "orderInLayer": 0
+              },
+              "ulongs": {},
+              "floats": {
+                "width": 100.0,
+                "height": 100.0
+              },
+              "strings": {},
+              "bools": {}
+            },
+            "codeBlocks": [],
+            "children": [
+              {
+                "id": "Image",
+                "name": "Image",
+                "uid": 1649972691,
+                "position": {
+                  "x": 0.0,
+                  "y": 80.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                  "x": 1.0,
+                  "y": 1.0
+                },
+                "lastOffset": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {
+                    "image": 1629009515
+                  },
+                  "floats": {
+                    "anchorMin.x": 0.5,
+                    "anchorMin.y": 0.5,
+                    "anchorMax.x": 0.5,
+                    "anchorMax.y": 0.5,
+                    "offsetMin.x": -50.0,
+                    "offsetMin.y": 70.0,
+                    "offsetMax.x": 50.0,
+                    "offsetMax.y": 90.0,
+                    "pivot.x": 0.5,
+                    "pivot.y": 0.5,
+                    "anchoredPosition.x": 0.0,
+                    "anchoredPosition.y": 80.0
+                  },
+                  "strings": {},
+                  "bools": {}
+                },
+                "codeBlocks": [],
+                "children": [
+                  {
+                    "id": "Image",
+                    "name": "Bar",
+                    "uid": 117548268,
+                    "position": {
+                      "x": -50.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "lastOffset": {
+                      "x": -559.7793,
+                      "y": 94.22479
+                    },
+                    "data": {
+                      "integers": {},
+                      "ulongs": {
+                        "image": 18446744073078332012
+                      },
+                      "floats": {
+                        "anchorMin.x": 0.0,
+                        "anchorMin.y": 0.0,
+                        "anchorMax.x": 1.0,
+                        "anchorMax.y": 1.0,
+                        "offsetMin.x": 0.0,
+                        "offsetMin.y": 0.0,
+                        "offsetMax.x": 0.0,
+                        "offsetMax.y": 0.0,
+                        "pivot.x": 0.0,
+                        "pivot.y": 0.5,
+                        "anchoredPosition.x": 0.0,
+                        "anchoredPosition.y": 0.0
+                      },
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [
+                      {
+                        "id": "Function",
+                        "uid": 1597713148,
+                        "position": {
+                          "x": -128.529434,
+                          "y": 103.319542
+                        },
+                        "data": {
+                          "integers": {},
+                          "ulongs": {},
+                          "floats": {},
+                          "strings": {
+                            "parameters": "{\"parameters\":[]}",
+                            "functionName": "SetScale"
+                          },
+                          "bools": {}
+                        },
+                        "snapPoints": [
+                          {
+                            "snapped": {
+                              "id": "SetProperty",
+                              "uid": 1756172731,
+                              "position": {
+                                "x": 0.0,
+                                "y": 0.0
+                              },
+                              "data": {
+                                "integers": {
+                                  "property": 13
+                                },
+                                "ulongs": {},
+                                "floats": {},
+                                "strings": {},
+                                "bools": {}
+                              },
+                              "snapPoints": [
+                                {
+                                  "snapped": {
+                                    "id": "Vector2",
+                                    "uid": 792169372,
+                                    "position": {
+                                      "x": 0.0,
+                                      "y": 0.0
+                                    },
+                                    "data": {
+                                      "integers": {},
+                                      "ulongs": {},
+                                      "floats": {},
+                                      "strings": {},
+                                      "bools": {}
+                                    },
+                                    "snapPoints": [
+                                      {
+                                        "snapped": {
+                                          "id": "Divide",
+                                          "uid": 18446744072916477732,
+                                          "position": {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                          },
+                                          "data": {
+                                            "integers": {},
+                                            "ulongs": {},
+                                            "floats": {},
+                                            "strings": {},
+                                            "bools": {}
+                                          },
+                                          "snapPoints": [
+                                            {
+                                              "snapped": {
+                                                "id": "GetVariable",
+                                                "uid": 18446744072202578813,
+                                                "position": {
+                                                  "x": 0.0,
+                                                  "y": 0.0
+                                                },
+                                                "data": {
+                                                  "integers": {},
+                                                  "ulongs": {},
+                                                  "floats": {},
+                                                  "strings": {},
+                                                  "bools": {}
+                                                },
+                                                "snapPoints": [
+                                                  {
+                                                    "snapped": null,
+                                                    "data": {
+                                                      "integers": {},
+                                                      "ulongs": {
+                                                        "setObject": 695548526
+                                                      },
+                                                      "floats": {},
+                                                      "strings": {},
+                                                      "bools": {}
+                                                    }
+                                                  },
+                                                  {
+                                                    "snapped": null,
+                                                    "data": {
+                                                      "integers": {},
+                                                      "ulongs": {},
+                                                      "floats": {},
+                                                      "strings": {
+                                                        "value": "hp"
+                                                      },
+                                                      "bools": {}
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "data": {
+                                                "integers": {},
+                                                "ulongs": {},
+                                                "floats": {
+                                                  "value": 10.0
+                                                },
+                                                "strings": {},
+                                                "bools": {}
+                                              }
+                                            },
+                                            {
+                                              "snapped": {
+                                                "id": "GetVariable",
+                                                "uid": 18446744072504863832,
+                                                "position": {
+                                                  "x": 0.0,
+                                                  "y": 0.0
+                                                },
+                                                "data": {
+                                                  "integers": {},
+                                                  "ulongs": {},
+                                                  "floats": {},
+                                                  "strings": {},
+                                                  "bools": {}
+                                                },
+                                                "snapPoints": [
+                                                  {
+                                                    "snapped": null,
+                                                    "data": {
+                                                      "integers": {},
+                                                      "ulongs": {
+                                                        "setObject": 695548526
+                                                      },
+                                                      "floats": {},
+                                                      "strings": {},
+                                                      "bools": {}
+                                                    }
+                                                  },
+                                                  {
+                                                    "snapped": null,
+                                                    "data": {
+                                                      "integers": {},
+                                                      "ulongs": {},
+                                                      "floats": {},
+                                                      "strings": {
+                                                        "value": "MaxHp"
+                                                      },
+                                                      "bools": {}
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "data": {
+                                                "integers": {},
+                                                "ulongs": {},
+                                                "floats": {
+                                                  "value": 10.0
+                                                },
+                                                "strings": {},
+                                                "bools": {}
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {},
+                                          "floats": {
+                                            "value": 10.0
+                                          },
+                                          "strings": {},
+                                          "bools": {}
+                                        }
+                                      },
+                                      {
+                                        "snapped": {
+                                          "id": "Vector2Y",
+                                          "uid": 18446744073143852523,
+                                          "position": {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                          },
+                                          "data": {
+                                            "integers": {},
+                                            "ulongs": {},
+                                            "floats": {},
+                                            "strings": {},
+                                            "bools": {}
+                                          },
+                                          "snapPoints": [
+                                            {
+                                              "snapped": {
+                                                "id": "GetProperty",
+                                                "uid": 1608347134,
+                                                "position": {
+                                                  "x": 0.0,
+                                                  "y": 0.0
+                                                },
+                                                "data": {
+                                                  "integers": {
+                                                    "property": 13
+                                                  },
+                                                  "ulongs": {},
+                                                  "floats": {},
+                                                  "strings": {},
+                                                  "bools": {}
+                                                },
+                                                "snapPoints": []
+                                              },
+                                              "data": {
+                                                "integers": {},
+                                                "ulongs": {},
+                                                "floats": {
+                                                  "inputX": 0.0,
+                                                  "inputY": 0.0
+                                                },
+                                                "strings": {},
+                                                "bools": {}
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {},
+                                          "floats": {
+                                            "value": 10.0
+                                          },
+                                          "strings": {},
+                                          "bools": {}
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "data": {
+                                    "integers": {
+                                      "typeIndex": 0
+                                    },
+                                    "ulongs": {
+                                      "setObject": 0,
+                                      "setAsset": 0
+                                    },
+                                    "floats": {
+                                      "vectorXInput": 0.0,
+                                      "vectorYInput": 0.0
+                                    },
+                                    "strings": {
+                                      "inputValue": ""
+                                    },
+                                    "bools": {
+                                      "toggleValue": true
+                                    }
+                                  }
+                                },
+                                {
+                                  "snapped": {
+                                    "id": "SystemLog",
+                                    "uid": 770837678,
+                                    "position": {
+                                      "x": 0.0,
+                                      "y": 0.0
+                                    },
+                                    "data": {
+                                      "integers": {
+                                        "logType": 0
+                                      },
+                                      "ulongs": {},
+                                      "floats": {},
+                                      "strings": {},
+                                      "bools": {}
+                                    },
+                                    "snapPoints": [
+                                      {
+                                        "snapped": null,
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {},
+                                          "floats": {},
+                                          "strings": {
+                                            "value": "Hello World!"
+                                          },
+                                          "bools": {}
+                                        }
+                                      },
+                                      {
+                                        "snapped": null,
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {},
+                                          "floats": {},
+                                          "strings": {},
+                                          "bools": {}
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {},
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  }
+                                }
+                              ]
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -2147,78 +2828,16 @@
         "codeBlocks": [],
         "children": [
           {
-            "id": "BoxCollider",
+            "id": "Empty",
             "name": "Ground",
-            "uid": 1545645338,
+            "uid": 18446744073684602717,
             "position": {
-              "x": 0.0,
-              "y": -10.0
-            },
-            "rotation": 0.0,
-            "scale": {
-              "x": 300.0,
-              "y": 5.0
-            },
-            "lastOffset": {
               "x": 0.0,
               "y": 0.0
             },
-            "data": {
-              "integers": {},
-              "ulongs": {},
-              "floats": {},
-              "strings": {},
-              "bools": {
-                "enabled": true,
-                "isTrigger": false
-              }
-            },
-            "codeBlocks": [],
-            "children": [
-              {
-                "id": "Sprite",
-                "name": "Sprite",
-                "uid": 1059336864,
-                "position": {
-                  "x": 0.0,
-                  "y": 0.0
-                },
-                "rotation": 0.0,
-                "scale": {
-                  "x": 1.0,
-                  "y": 1.0
-                },
-                "lastOffset": {
-                  "x": 0.0,
-                  "y": 0.0
-                },
-                "data": {
-                  "integers": {
-                    "orderInLayer": 0
-                  },
-                  "ulongs": {
-                    "image": 0
-                  },
-                  "floats": {},
-                  "strings": {},
-                  "bools": {}
-                },
-                "codeBlocks": [],
-                "children": []
-              }
-            ]
-          },
-          {
-            "id": "BoxCollider",
-            "name": "Platform",
-            "uid": 18446744073223024091,
-            "position": {
-              "x": 5.0,
-              "y": -4.0
-            },
             "rotation": 0.0,
             "scale": {
-              "x": 5.0,
+              "x": 1.0,
               "y": 1.0
             },
             "lastOffset": {
@@ -2230,24 +2849,83 @@
               "ulongs": {},
               "floats": {},
               "strings": {},
-              "bools": {
-                "enabled": true,
-                "isTrigger": false
-              }
+              "bools": {}
             },
             "codeBlocks": [],
             "children": [
               {
-                "id": "Sprite",
-                "name": "Sprite",
-                "uid": 18446744073347072266,
+                "id": "BoxCollider",
+                "name": "Platform1",
+                "uid": 1545645338,
                 "position": {
-                  "x": 0.0,
-                  "y": 0.0
+                  "x": 145.0,
+                  "y": -10.0
                 },
                 "rotation": 0.0,
                 "scale": {
-                  "x": 1.0,
+                  "x": 300.0,
+                  "y": 5.0
+                },
+                "lastOffset": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": false
+                  }
+                },
+                "codeBlocks": [],
+                "children": [
+                  {
+                    "id": "Sprite",
+                    "name": "Sprite",
+                    "uid": 1059336864,
+                    "position": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "lastOffset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "data": {
+                      "integers": {
+                        "orderInLayer": 0
+                      },
+                      "ulongs": {
+                        "image": 0
+                      },
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "BoxCollider",
+                "name": "Platform2",
+                "uid": 18446744073223024091,
+                "position": {
+                  "x": 5.0,
+                  "y": -4.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                  "x": 5.0,
                   "y": 1.0
                 },
                 "lastOffset": {
@@ -2255,61 +2933,635 @@
                   "y": 0.0
                 },
                 "data": {
-                  "integers": {
-                    "orderInLayer": 0
-                  },
-                  "ulongs": {
-                    "image": 0
-                  },
+                  "integers": {},
+                  "ulongs": {},
                   "floats": {},
                   "strings": {},
-                  "bools": {}
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": false
+                  }
                 },
                 "codeBlocks": [],
-                "children": []
+                "children": [
+                  {
+                    "id": "Sprite",
+                    "name": "Sprite",
+                    "uid": 18446744073347072266,
+                    "position": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "lastOffset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "data": {
+                      "integers": {
+                        "orderInLayer": 0
+                      },
+                      "ulongs": {
+                        "image": 0
+                      },
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "BoxCollider",
+                "name": "Platform3",
+                "uid": 1553917053,
+                "position": {
+                  "x": 12.0,
+                  "y": -1.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                  "x": 5.0,
+                  "y": 1.0
+                },
+                "lastOffset": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": false
+                  }
+                },
+                "codeBlocks": [],
+                "children": [
+                  {
+                    "id": "Sprite",
+                    "name": "Sprite",
+                    "uid": 1992194010,
+                    "position": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "lastOffset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "data": {
+                      "integers": {
+                        "orderInLayer": 0
+                      },
+                      "ulongs": {
+                        "image": 0
+                      },
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "BoxCollider",
+                "name": "Platform4",
+                "uid": 18446744072033885272,
+                "position": {
+                  "x": -40.0,
+                  "y": -10.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                  "x": 50.0,
+                  "y": 5.0
+                },
+                "lastOffset": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": false
+                  }
+                },
+                "codeBlocks": [],
+                "children": [
+                  {
+                    "id": "Sprite",
+                    "name": "Sprite",
+                    "uid": 18446744073669058667,
+                    "position": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 1.0,
+                      "y": 1.0
+                    },
+                    "lastOffset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "data": {
+                      "integers": {
+                        "orderInLayer": 0
+                      },
+                      "ulongs": {
+                        "image": 0
+                      },
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [],
+                    "children": []
+                  }
+                ]
               }
             ]
           },
           {
-            "id": "BoxCollider",
-            "name": "Platform",
-            "uid": 1553917053,
+            "id": "Rigidbody",
+            "name": "Lava",
+            "uid": 311682104,
             "position": {
-              "x": 12.0,
-              "y": -1.0
-            },
-            "rotation": 0.0,
-            "scale": {
-              "x": 5.0,
-              "y": 1.0
-            },
-            "lastOffset": {
               "x": 0.0,
               "y": 0.0
             },
+            "rotation": 0.0,
+            "scale": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "lastOffset": {
+              "x": -415.5452,
+              "y": 236.2164
+            },
             "data": {
-              "integers": {},
+              "integers": {
+                "bodyType": 1
+              },
               "ulongs": {},
-              "floats": {},
+              "floats": {
+                "mass": 1.0,
+                "linearDamping": 0.0,
+                "angularDamping": 0.05,
+                "gravityScale": 1.0
+              },
               "strings": {},
               "bools": {
-                "enabled": true,
-                "isTrigger": false
+                "useAutoMass": false,
+                "freezeRotation": false
               }
             },
-            "codeBlocks": [],
+            "codeBlocks": [
+              {
+                "id": "OnTriggerEnter",
+                "uid": 1640214687,
+                "position": {
+                  "x": -170.0,
+                  "y": 159.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {}
+                },
+                "snapPoints": [
+                  {
+                    "snapped": {
+                      "id": "SystemLog",
+                      "uid": 1418588798,
+                      "position": {
+                        "x": 0.0,
+                        "y": 0.0
+                      },
+                      "data": {
+                        "integers": {
+                          "logType": 0
+                        },
+                        "ulongs": {},
+                        "floats": {},
+                        "strings": {},
+                        "bools": {}
+                      },
+                      "snapPoints": [
+                        {
+                          "snapped": {
+                            "id": "ObjectName",
+                            "uid": 18446744073619454811,
+                            "position": {
+                              "x": 0.0,
+                              "y": 0.0
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            },
+                            "snapPoints": [
+                              {
+                                "snapped": {
+                                  "id": "CollidedObject",
+                                  "uid": 18446744072496572796,
+                                  "position": {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                  },
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {
+                                      "target": 1640214687
+                                    },
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  },
+                                  "snapPoints": []
+                                },
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {
+                                    "setObject": 0
+                                  },
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
+                              }
+                            ]
+                          },
+                          "data": {
+                            "integers": {},
+                            "ulongs": {},
+                            "floats": {},
+                            "strings": {
+                              "value": "Hello World!"
+                            },
+                            "bools": {}
+                          }
+                        },
+                        {
+                          "snapped": {
+                            "id": "If",
+                            "uid": 18446744073169832261,
+                            "position": {
+                              "x": 0.0,
+                              "y": 0.0
+                            },
+                            "data": {
+                              "integers": {},
+                              "ulongs": {},
+                              "floats": {},
+                              "strings": {},
+                              "bools": {}
+                            },
+                            "snapPoints": [
+                              {
+                                "snapped": {
+                                  "id": "Equal(Object)",
+                                  "uid": 2009630966,
+                                  "position": {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                  },
+                                  "data": {
+                                    "integers": {},
+                                    "ulongs": {},
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  },
+                                  "snapPoints": [
+                                    {
+                                      "snapped": {
+                                        "id": "CollidedObject",
+                                        "uid": 676331612,
+                                        "position": {
+                                          "x": 0.0,
+                                          "y": 0.0
+                                        },
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {
+                                            "target": 1640214687
+                                          },
+                                          "floats": {},
+                                          "strings": {},
+                                          "bools": {}
+                                        },
+                                        "snapPoints": []
+                                      },
+                                      "data": {
+                                        "integers": {},
+                                        "ulongs": {
+                                          "setObject": 0
+                                        },
+                                        "floats": {},
+                                        "strings": {},
+                                        "bools": {}
+                                      }
+                                    },
+                                    {
+                                      "snapped": null,
+                                      "data": {
+                                        "integers": {},
+                                        "ulongs": {
+                                          "setObject": 695548526
+                                        },
+                                        "floats": {},
+                                        "strings": {},
+                                        "bools": {}
+                                      }
+                                    }
+                                  ]
+                                },
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {},
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {
+                                    "value": true
+                                  }
+                                }
+                              },
+                              {
+                                "snapped": {
+                                  "id": "SystemLog",
+                                  "uid": 18446744072968529404,
+                                  "position": {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                  },
+                                  "data": {
+                                    "integers": {
+                                      "logType": 0
+                                    },
+                                    "ulongs": {},
+                                    "floats": {},
+                                    "strings": {},
+                                    "bools": {}
+                                  },
+                                  "snapPoints": [
+                                    {
+                                      "snapped": null,
+                                      "data": {
+                                        "integers": {},
+                                        "ulongs": {},
+                                        "floats": {},
+                                        "strings": {
+                                          "value": "FunctionCall"
+                                        },
+                                        "bools": {}
+                                      }
+                                    },
+                                    {
+                                      "snapped": {
+                                        "id": "InvokeFunction",
+                                        "uid": 18446744073345093808,
+                                        "position": {
+                                          "x": 0.0,
+                                          "y": 0.0
+                                        },
+                                        "data": {
+                                          "integers": {},
+                                          "ulongs": {},
+                                          "floats": {},
+                                          "strings": {
+                                            "arguments": "{\"arguments\":[{\"snapped\":null,\"data\":{\"integers\":{\"typeIndex\":0},\"ulongs\":{\"setObject\":0,\"setAsset\":0},\"floats\":{\"vectorXInput\":0.0,\"vectorYInput\":0.0},\"strings\":{\"inputValue\":\"10\"},\"bools\":{\"toggleValue\":true}}}]}",
+                                            "functionName": "GetDamage"
+                                          },
+                                          "bools": {}
+                                        },
+                                        "snapPoints": [
+                                          {
+                                            "snapped": {
+                                              "id": "InvokeFunction",
+                                              "uid": 637646460,
+                                              "position": {
+                                                "x": 0.0,
+                                                "y": 0.0
+                                              },
+                                              "data": {
+                                                "integers": {},
+                                                "ulongs": {},
+                                                "floats": {},
+                                                "strings": {
+                                                  "arguments": "{\"arguments\":[{\"snapped\":null,\"data\":{\"integers\":{\"typeIndex\":5},\"ulongs\":{\"setObject\":0,\"setAsset\":0},\"floats\":{\"vectorXInput\":0.0,\"vectorYInput\":25.0},\"strings\":{\"inputValue\":\"10\"},\"bools\":{\"toggleValue\":true}}}]}",
+                                                  "functionName": "GetKnockback"
+                                                },
+                                                "bools": {}
+                                              },
+                                              "snapPoints": [
+                                                {
+                                                  "snapped": null,
+                                                  "data": {
+                                                    "integers": {},
+                                                    "ulongs": {},
+                                                    "floats": {},
+                                                    "strings": {},
+                                                    "bools": {}
+                                                  }
+                                                },
+                                                {
+                                                  "snapped": null,
+                                                  "data": {
+                                                    "integers": {},
+                                                    "ulongs": {
+                                                      "setObject": 695548526
+                                                    },
+                                                    "floats": {},
+                                                    "strings": {},
+                                                    "bools": {}
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "data": {
+                                              "integers": {},
+                                              "ulongs": {},
+                                              "floats": {},
+                                              "strings": {},
+                                              "bools": {}
+                                            }
+                                          },
+                                          {
+                                            "snapped": null,
+                                            "data": {
+                                              "integers": {},
+                                              "ulongs": {
+                                                "setObject": 695548526
+                                              },
+                                              "floats": {},
+                                              "strings": {},
+                                              "bools": {}
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "data": {
+                                        "integers": {},
+                                        "ulongs": {},
+                                        "floats": {},
+                                        "strings": {},
+                                        "bools": {}
+                                      }
+                                    }
+                                  ]
+                                },
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {},
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
+                              },
+                              {
+                                "snapped": null,
+                                "data": {
+                                  "integers": {},
+                                  "ulongs": {},
+                                  "floats": {},
+                                  "strings": {},
+                                  "bools": {}
+                                }
+                              }
+                            ]
+                          },
+                          "data": {
+                            "integers": {},
+                            "ulongs": {},
+                            "floats": {},
+                            "strings": {},
+                            "bools": {}
+                          }
+                        }
+                      ]
+                    },
+                    "data": {
+                      "integers": {},
+                      "ulongs": {},
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    }
+                  },
+                  {
+                    "snapped": null,
+                    "data": {
+                      "integers": {},
+                      "ulongs": {},
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    }
+                  }
+                ]
+              }
+            ],
             "children": [
               {
-                "id": "Sprite",
-                "name": "Sprite",
-                "uid": 1992194010,
+                "id": "BoxCollider",
+                "name": "BoxCollider",
+                "uid": 18446744072504638108,
                 "position": {
                   "x": 0.0,
-                  "y": 0.0
+                  "y": -10.0
                 },
                 "rotation": 0.0,
                 "scale": {
-                  "x": 1.0,
+                  "x": 500.0,
+                  "y": 4.0
+                },
+                "lastOffset": {
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "data": {
+                  "integers": {},
+                  "ulongs": {},
+                  "floats": {},
+                  "strings": {},
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": true
+                  }
+                },
+                "codeBlocks": [],
+                "children": [
+                  {
+                    "id": "Sprite",
+                    "name": "Sprite",
+                    "uid": 1155891290,
+                    "position": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "rotation": 0.0,
+                    "scale": {
+                      "x": 0.4,
+                      "y": 0.4
+                    },
+                    "lastOffset": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "data": {
+                      "integers": {
+                        "orderInLayer": -1
+                      },
+                      "ulongs": {
+                        "image": 1229371519
+                      },
+                      "floats": {},
+                      "strings": {},
+                      "bools": {}
+                    },
+                    "codeBlocks": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "id": "BoxCollider",
+                "name": "BoxCollider1",
+                "uid": 18446744073452012823,
+                "position": {
+                  "x": 0.0,
+                  "y": -9.0
+                },
+                "rotation": 0.0,
+                "scale": {
+                  "x": 500.0,
                   "y": 1.0
                 },
                 "lastOffset": {
@@ -2317,15 +3569,14 @@
                   "y": 0.0
                 },
                 "data": {
-                  "integers": {
-                    "orderInLayer": 0
-                  },
-                  "ulongs": {
-                    "image": 0
-                  },
+                  "integers": {},
+                  "ulongs": {},
                   "floats": {},
                   "strings": {},
-                  "bools": {}
+                  "bools": {
+                    "enabled": true,
+                    "isTrigger": false
+                  }
                 },
                 "codeBlocks": [],
                 "children": []
@@ -2367,8 +3618,8 @@
             "id": "OnUpdate",
             "uid": 18446744073592819889,
             "position": {
-              "x": 5034.168,
-              "y": -962.7986
+              "x": 74.58899,
+              "y": 743.9155
             },
             "data": {
               "integers": {},
@@ -2383,8 +3634,8 @@
                   "id": "MoveToVector2",
                   "uid": 1302484682,
                   "position": {
-                    "x": 5034.168,
-                    "y": -976.4867
+                    "x": 0.0,
+                    "y": 0.0
                   },
                   "data": {
                     "integers": {},
@@ -2399,8 +3650,8 @@
                         "id": "LerpVector2",
                         "uid": 888931631,
                         "position": {
-                          "x": 5034.168,
-                          "y": -988.8059
+                          "x": 0.0,
+                          "y": 0.0
                         },
                         "data": {
                           "integers": {},
@@ -2415,8 +3666,8 @@
                               "id": "PositionOf",
                               "uid": 18446744073689517589,
                               "position": {
-                                "x": 5034.168,
-                                "y": -992.9125
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -2456,8 +3707,8 @@
                               "id": "PositionOf",
                               "uid": 1738449499,
                               "position": {
-                                "x": 5034.168,
-                                "y": -992.9125
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -2497,8 +3748,8 @@
                               "id": "Multiply",
                               "uid": 18446744073104748570,
                               "position": {
-                                "x": 5034.168,
-                                "y": -992.9125
+                                "x": 0.0,
+                                "y": 0.0
                               },
                               "data": {
                                 "integers": {},
@@ -2525,8 +3776,8 @@
                                     "id": "DeltaTime",
                                     "uid": 18446744072445355592,
                                     "position": {
-                                      "x": 5034.168,
-                                      "y": -997.0188
+                                      "x": 0.0,
+                                      "y": 0.0
                                     },
                                     "data": {
                                       "integers": {},
@@ -2707,10 +3958,10 @@
                 "anchorMin.y": 0.0,
                 "anchorMax.x": 1.0,
                 "anchorMax.y": 1.0,
-                "offsetMin.x": 5.0,
-                "offsetMin.y": 5.0,
-                "offsetMax.x": -5.0,
-                "offsetMax.y": -5.0,
+                "offsetMin.x": 10.0,
+                "offsetMin.y": 10.0,
+                "offsetMax.x": -10.0,
+                "offsetMax.y": -10.0,
                 "pivot.x": 0.5,
                 "pivot.y": 0.5,
                 "anchoredPosition.x": 0.0,
@@ -2726,5 +3977,57 @@
       }
     ]
   },
-  "assets": []
+  "assets": [
+    {
+      "type": 1,
+      "name": "square",
+      "uid": 1229371519,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        "strings": {
+          "filePath": "Saves\\platformer\\Assets\\black-square (1).png"
+        },
+        "bools": {}
+      }
+    },
+    {
+      "type": 1,
+      "name": "square",
+      "uid": 1629009515,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        "strings": {
+          "filePath": "Saves\\platformer\\Assets\\black-square (2).png"
+        },
+        "bools": {}
+      }
+    },
+    {
+      "type": 1,
+      "name": "square",
+      "uid": 18446744073078332012,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        "strings": {
+          "filePath": "Saves\\platformer\\Assets\\black-square (3).png"
+        },
+        "bools": {}
+      }
+    }
+  ]
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[System.Serializable]
 public class DataUnit
 {
     public SerializableDictionary<string, int> integers = new();

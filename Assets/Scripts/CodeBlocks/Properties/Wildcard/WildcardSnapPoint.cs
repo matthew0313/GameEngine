@@ -72,14 +72,6 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
             return v;
         return 0f;
     }
-    public Vector2 GetVector2(ulong hash)
-    {
-        if (snapped is PropertyCodeBlock p) return p.GetVector2(hash);
-        if (snapped == null &&
-            float.TryParse(vectorXInput.text, out float x) &&
-            float.TryParse(vectorYInput.text, out float y)) return new Vector2(x, y);
-        return new();
-    }
 
     public bool GetCondition(ulong hash)
     {
@@ -108,6 +100,14 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         if (snapped == null) return setAsset;
         return null;
     }
+    public Vector2 GetVector2(ulong hash)
+    {
+        if (snapped is PropertyCodeBlock p) return p.GetVector2(hash);
+        Vector2 tmp = new();
+        float.TryParse(vectorXInput.text, out tmp.x);
+        float.TryParse(vectorYInput.text, out tmp.y);
+        return tmp;
+    }
     public Wildcard GetWildcard(ulong hash)
     {
         return new()
@@ -117,6 +117,7 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
             str = GetString(hash),
             obj = GetObject(hash),
             asset = GetAsset(hash),
+            vector2 = GetVector2(hash),
         };
     }
 
@@ -187,6 +188,8 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         var save = base.Save();
         save.data.integers["typeIndex"] = typeDropdown.value;
         save.data.strings["inputValue"] = inputField.text;
+        save.data.floats["vectorXInput"] = float.TryParse(vectorXInput.text, out float x) ? x : 0.0f;
+        save.data.floats["vectorYInput"] = float.TryParse(vectorYInput.text, out float y) ? y : 0.0f;
         save.data.bools["toggleValue"] = toggle.isOn;
         save.data.ulongs["setObject"] = setObject != null ? setObject.uid : 0;
         save.data.ulongs["setAsset"] = setAsset != null ? setAsset.uid : 0;
@@ -198,6 +201,8 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         base.Load(save);
         if (save.data.integers.TryGetValue("typeIndex", out int typeIndex)) typeDropdown.value = typeIndex;
         if (save.data.strings.TryGetValue("inputValue", out string inputValue)) inputField.text = inputValue;
+        if (save.data.floats.TryGetValue("vectorXInput", out float vectorX)) vectorXInput.text = vectorX.ToString();
+        if (save.data.floats.TryGetValue("vectorYInput", out float vectorY)) vectorYInput.text = vectorY.ToString();
         if (save.data.bools.TryGetValue("toggleValue", out bool toggleValue)) toggle.isOn = toggleValue;
         if (save.data.ulongs.TryGetValue("setObject", out ulong setObjectId)) SetObject(EditorSceneManager.Instance.FindObjectWithUID(setObjectId));
         if (save.data.ulongs.TryGetValue("setAsset", out ulong setAssetId)) SetAsset(EditorSceneManager.Instance.GetAsset<MyAsset>(setAssetId));

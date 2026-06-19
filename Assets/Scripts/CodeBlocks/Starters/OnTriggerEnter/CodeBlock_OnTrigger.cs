@@ -43,7 +43,7 @@ public abstract class CodeBlock_OnTrigger : CodeBlock, IOnFinish
     }
     protected void OnObjectTrigger(Collider2D collider)
     {
-        Run(collider != null ? collider.GetComponentInParent<MyGameObject>() : null).Forget();
+        Run(collider != null ? collider.attachedRigidbody != null ? collider.attachedRigidbody.GetComponentInParent<MyGameObject>() : collider.GetComponentInParent<MyGameObject>() : null).Forget();
     }
     async UniTaskVoid Run(MyGameObject other)
     {

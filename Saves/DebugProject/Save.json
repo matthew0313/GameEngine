@@ -164,6 +164,48 @@
         },
         "codeBlocks": [],
         "children": []
+      },
+      {
+        "id": "Image",
+        "name": "Image",
+        "uid": 18446744073702293383,
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "rotation": 0.0,
+        "scale": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "lastOffset": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "data": {
+          "integers": {},
+          "ulongs": {
+            "image": 18446744073147432626
+          },
+          "floats": {
+            "anchorMin.x": 0.5,
+            "anchorMin.y": 0.5,
+            "anchorMax.x": 0.5,
+            "anchorMax.y": 0.5,
+            "offsetMin.x": -50.0,
+            "offsetMin.y": -50.0,
+            "offsetMax.x": 50.0,
+            "offsetMax.y": 50.0,
+            "pivot.x": 0.5,
+            "pivot.y": 0.5,
+            "anchoredPosition.x": 0.0,
+            "anchoredPosition.y": 0.0
+          },
+          "strings": {},
+          "bools": {}
+        },
+        "codeBlocks": [],
+        "children": []
       }
     ]
   },

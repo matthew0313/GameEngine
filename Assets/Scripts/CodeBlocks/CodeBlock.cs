@@ -155,6 +155,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         int index = 0;
         foreach (var snapPoint in GetSnapPoints())
         {
+            if (index >= save.snapPoints.Count) break;
             snapPoint.EarlyLoad(save.snapPoints[index++]);
         }
     }
@@ -164,6 +165,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         int index = 0;
         foreach (var snapPoint in GetSnapPoints())
         {
+            if (index >= save.snapPoints.Count) break;
             snapPoint.Load(save.snapPoints[index++]);
         }
     }
@@ -179,7 +181,6 @@ public enum CodeBlockCategory
     Other = 5,
     Debug = 6
 }
-[System.Serializable]
 public class CodeBlockSave
 {
     public string id;

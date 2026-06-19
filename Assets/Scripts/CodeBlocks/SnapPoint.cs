@@ -93,7 +93,6 @@ public abstract class SnapPoint : MonoBehaviour
         }
     }
 }
-[System.Serializable]
 public class SnapPointSave
 {
     public CodeBlockSave snapped;

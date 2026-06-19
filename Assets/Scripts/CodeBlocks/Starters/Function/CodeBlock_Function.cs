@@ -81,13 +81,14 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     public async UniTask Execute(Dictionary<string, Wildcard> parameters, CancellationToken token)
     {
         executionParams[hash] = parameters;
-        await onExecute.Execute(hash, token);
+        var info = await onExecute.Execute(hash, token);
         executionParams.Remove(hash);
         hash++;
     }
     public Wildcard GetParameter(ulong hash, string name)
     {
-        if (!executionParams.ContainsKey(hash) || !executionParams[hash].ContainsKey(name)) return new();
+        if (!executionParams.ContainsKey(hash)) return new();
+        if (!executionParams[hash].ContainsKey(name)) return new();
         return executionParams[hash][name];
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()

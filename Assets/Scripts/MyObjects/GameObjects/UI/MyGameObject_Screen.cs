@@ -14,10 +14,6 @@ public class MyGameObject_Screen : MyGameObject_UI
         base.Awake();
         rawImage = GetComponent<RawImage>();
     }
-    private void Update()
-    {
-        Debug.Log($"{Input.mousePosition}, {rectTransform.rect.min}, {rectTransform.rect.max}");
-    }
     void SetCamera(MyGameObject_Camera cam)
     {
         if (boundCamera != null) boundCamera.onTextureChange -= OnTextureChange;

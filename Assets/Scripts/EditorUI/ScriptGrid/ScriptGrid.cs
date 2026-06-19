@@ -46,7 +46,6 @@ public class ScriptGrid : MonoBehaviour, IPointerDownHandler, IScrollHandler
             grid.SetVerticesDirty();
             foreach (var block in editing.codeBlocks)
             {
-                block.transform.SetParent(anchor, true);
                 block.gameObject.SetActive(true);
             }
         }

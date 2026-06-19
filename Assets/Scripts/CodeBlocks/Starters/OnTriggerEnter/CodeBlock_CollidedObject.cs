@@ -13,7 +13,6 @@ public class CodeBlock_CollidedObject : ObjectCodeBlock
     public override MyGameObject GetObject(ulong hash)
     {
         var tmp = target != null ? target.GetCollidedObject(hash) : null;
-        if (tmp != null) Debug.Log(tmp.name);
         return tmp;
     }
     public override float GetWidth() => rectTransform.rect.width;

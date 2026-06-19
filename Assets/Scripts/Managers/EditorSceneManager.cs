@@ -289,7 +289,6 @@ public class EditorSceneManager : MonoBehaviour
     public void Load(ProjectSave save)
     {
         projectName = save.projectName;
-        myScene.Load(save.scene);
         Dictionary<MyAsset, MyAssetSave> saves = new();
         foreach(var assetSave in save.assets)
         {
@@ -308,6 +307,7 @@ public class EditorSceneManager : MonoBehaviour
             saves.Add(added, assetSave);
         }
         foreach(var i in saves) i.Key.Load(i.Value);
+        myScene.Load(save.scene);
     }
 }
 public enum MyLogType
@@ -328,7 +328,6 @@ public struct MyLog
     public DateTime time;
     public string message;
 }
-[System.Serializable]
 public class ProjectSave
 {
     public string projectName;
