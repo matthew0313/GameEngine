@@ -26,11 +26,6 @@ public class MyGameObject_Camera : MyGameObject
         base.Awake();
         size = m_size;
     }
-    private void Update()
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10.0f);
-    }
-
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
@@ -57,7 +52,7 @@ public class MyGameObject_Camera : MyGameObject
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        cam.orthographicSize = save.data.floats["orthographicSize"];
-        size = save.data.LoadVector2("size");
+        if (save.data.floats.TryGetValue("orthographicSize", out float orthographicSize)) cam.orthographicSize = orthographicSize;
+        if (save.data.TryLoadVector2("size", out Vector2 sizeValue)) size = sizeValue;
     }
 }

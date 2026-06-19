@@ -58,6 +58,7 @@ public class ImageAsset : FileAsset
     public override void Load(MyAssetSave save)
     {
         base.Load(save);
-        pivot = new Vector2(save.data.floats["pivotX"], save.data.floats["pivotY"]);
+        if (save.data.floats.TryGetValue("pivotX", out float pivotX) && save.data.floats.TryGetValue("pivotY", out float pivotY))
+            pivot = new Vector2(pivotX, pivotY);
     }
 }

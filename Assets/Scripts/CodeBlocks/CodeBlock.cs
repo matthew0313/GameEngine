@@ -42,9 +42,10 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     public virtual void Delete()
     {
         if (snappedPoint != null) snappedPoint.Detach();
-        foreach(var snapPoint in GetSnapPoints())
+        foreach (var snapPoint in GetSnapPoints())
         {
-            if (snapPoint.snapped != null) snapPoint.snapped.Delete();
+            snapPoint.enabled = false;
+            snapPoint.Clear();
         }
         if (owner != null) owner.codeBlocks.Remove(this);
         Destroy(gameObject);
@@ -144,7 +145,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         CodeBlockSave save = new();
         save.id = blockID;
         save.uid = uid;
-        save.position = transform.position;
+        save.position = transform.localPosition;
         foreach (var snapPoint in GetSnapPoints()) save.snapPoints.Add(snapPoint.Save());
         return save;
     }
@@ -159,7 +160,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
     }
     public virtual void Load(CodeBlockSave save)
     {
-        transform.position = save.position;
+        transform.localPosition = save.position;
         int index = 0;
         foreach (var snapPoint in GetSnapPoints())
         {

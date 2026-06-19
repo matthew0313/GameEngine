@@ -45,8 +45,8 @@ public class MyGameObject_Canvas : MyGameObject
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, save.data.floats["width"]);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, save.data.floats["height"]);
-        canvas.sortingOrder = save.data.integers["orderInLayer"];
+        if (save.data.floats.TryGetValue("width", out float width)) rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+        if (save.data.floats.TryGetValue("height", out float height)) rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+        if (save.data.integers.TryGetValue("orderInLayer", out int orderInLayer)) canvas.sortingOrder = orderInLayer;
     }
 }

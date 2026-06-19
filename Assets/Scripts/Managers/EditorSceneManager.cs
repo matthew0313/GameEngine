@@ -94,12 +94,12 @@ public class EditorSceneManager : MonoBehaviour
             if (selected is MyGameObject myGameObject)
             {
                 copyBufferItemType = CopyBufferItemType.MyGameObject;
-                copyBuffer = JsonUtility.ToJson(myGameObject.Save());
+                copyBuffer = SaveSerializer.Serialize(myGameObject.Save());
             }
             else if (selected is MyAsset myAsset)
             {
                 copyBufferItemType = CopyBufferItemType.MyAsset;
-                copyBuffer = JsonUtility.ToJson(myAsset.Save());
+                copyBuffer = SaveSerializer.Serialize(myAsset.Save());
             }
         }
         if (Input.GetKey(KeyCode.LeftControl) && InputManager.GetKeyDown(KeyCode.V)) Paste();
@@ -115,14 +115,13 @@ public class EditorSceneManager : MonoBehaviour
     public void CopyBlock(CodeBlock block)
     {
         copyBufferItemType = CopyBufferItemType.CodeBlock;
-        copyBuffer = JsonUtility.ToJson(block.Save(), true);
-        Debug.Log(copyBuffer);
+        copyBuffer = SaveSerializer.Serialize(block.Save(), true);
     }
     public void Paste()
     {
         if (copyBufferItemType == CopyBufferItemType.MyGameObject)
         {
-            MyGameObjectSave save = JsonUtility.FromJson<MyGameObjectSave>(copyBuffer);
+            MyGameObjectSave save = SaveSerializer.Deserialize<MyGameObjectSave>(copyBuffer);
             MyGameObject obj = Instantiate(IDToObjectPrefab(save.id));
             obj.EarlyLoad(save, true);
             myScene.AddChild(obj);
@@ -130,7 +129,7 @@ public class EditorSceneManager : MonoBehaviour
         }
         else if (copyBufferItemType == CopyBufferItemType.MyAsset)
         {
-            MyAssetSave save = JsonUtility.FromJson<MyAssetSave>(copyBuffer);
+            MyAssetSave save = SaveSerializer.Deserialize<MyAssetSave>(copyBuffer);
             MyAsset asset = MyAsset.TypeToAsset(save.type);
             if (asset != null)
             {
@@ -141,7 +140,7 @@ public class EditorSceneManager : MonoBehaviour
         }
         else if (copyBufferItemType == CopyBufferItemType.CodeBlock && scriptGrid.editing != null)
         {
-            CodeBlockSave save = JsonUtility.FromJson<CodeBlockSave>(copyBuffer);
+            CodeBlockSave save = SaveSerializer.Deserialize<CodeBlockSave>(copyBuffer);
             CodeBlock blockPrefab = IDToBlockPrefab(save.id);
             if (blockPrefab != null)
             {

@@ -73,7 +73,7 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        propertyDropdown.value = save.data.integers["property"];
+        if (save.data.integers.TryGetValue("property", out int property)) propertyDropdown.value = property;
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {

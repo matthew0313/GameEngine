@@ -185,6 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyGameObject_BoxCollider
   dirty: 0
   foldedInInspector: 0
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: 2792acde4af04df439ebb20b88e3f6ce, type: 3}
   childrenOffset: 1
   boundingBox: {fileID: 8328323558330796756}

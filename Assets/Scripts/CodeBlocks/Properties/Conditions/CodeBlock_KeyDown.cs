@@ -20,7 +20,7 @@ public class CodeBlock_KeyDown : ConditionCodeBlock
     }
     void OnKeySet(string str)
     {
-        if (char.TryParse(str, out char c) && InputManager.Instance.CharToKeycode(c, out KeyCode keyCode))
+        if (InputManager.Instance.StringToKeyCode(str, out KeyCode keyCode))
         {
             setKey = keyCode;
         }
@@ -40,7 +40,10 @@ public class CodeBlock_KeyDown : ConditionCodeBlock
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        setKey = (KeyCode)save.data.integers["setKey"];
-        key.text = InputManager.Instance.KeycodeToString(setKey);
+        if (save.data.integers.TryGetValue("setKey", out int setKeyValue))
+        {
+            setKey = (KeyCode)setKeyValue;
+            key.text = InputManager.Instance.KeycodeToString(setKey);
+        }
     }
 }

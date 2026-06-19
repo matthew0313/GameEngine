@@ -28,3 +28,6 @@ MonoBehaviour:
   - type: 0
     item: {fileID: 5499645272162712057, guid: a6f1ab7997d922742a1016ecb153523b, type: 3}
     list: {fileID: 0}
+  - type: 0
+    item: {fileID: 4525944594000461492, guid: fa8877810c5133c4fb6f22241e08e6b3, type: 3}
+    list: {fileID: 0}

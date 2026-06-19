@@ -34,7 +34,7 @@ public enum PropertyType
     Asset = 1<<4,
     Vector2 = 1<<5,
     Array = 1<<6,
-    Wildcard = Number + Condition + String + Object + Asset + Array
+    Wildcard = Number + Condition + String + Object + Asset + Vector2 + Array
 }
 [System.Serializable]
 public struct Wildcard

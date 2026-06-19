@@ -1296,7 +1296,7 @@ MonoBehaviour:
   snapAnchor: {fileID: 211829689755353284}
   highlight: {fileID: 2735404177121946522}
   layoutElement: {fileID: 843912763869351075}
-  defaultWidth: 50
+  defaultWidth: 160
   unSnapped: {fileID: 6377319246334900599}
   inputX: {fileID: 5767295431245118674}
   inputY: {fileID: 8147419974107342774}

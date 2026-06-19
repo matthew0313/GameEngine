@@ -53,6 +53,7 @@ public class MyGameObject_Screen : MyGameObject_UI
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        SetCamera(EditorSceneManager.Instance.FindObjectWithUID(save.data.ulongs["boundCamera"]) as MyGameObject_Camera);
+        if (save.data.ulongs.TryGetValue("boundCamera", out ulong boundCameraId))
+            SetCamera(EditorSceneManager.Instance.FindObjectWithUID(boundCameraId) as MyGameObject_Camera);
     }
 }

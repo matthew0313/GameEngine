@@ -51,7 +51,7 @@ public class MyGameObject_BoxCollider : MyGameObject
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        collider.enabled = save.data.bools["enabled"];
-        collider.isTrigger = save.data.bools["isTrigger"];
+        if (save.data.bools.TryGetValue("enabled", out bool enabled)) collider.enabled = enabled;
+        if (save.data.bools.TryGetValue("isTrigger", out bool isTrigger)) collider.isTrigger = isTrigger;
     }
 }

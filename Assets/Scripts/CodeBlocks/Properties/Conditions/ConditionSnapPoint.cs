@@ -49,6 +49,6 @@ public class ConditionSnapPoint : SnapPoint
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        toggle.isOn = save.data.bools["value"];
+        if (save.data.bools.TryGetValue("value", out bool value)) toggle.isOn = value;
     }
 }

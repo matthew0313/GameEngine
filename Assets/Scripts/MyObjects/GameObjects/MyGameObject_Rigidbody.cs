@@ -91,22 +91,24 @@ public class MyGameObject_Rigidbody : MyGameObject
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {
         var save = base.Save(prettyPrint);
-        save.data.integers["bodyType"] = (int)rb.bodyType;
+        save.data.integers["bodyType"] = (int)setType;
         save.data.bools["useAutoMass"] = rb.useAutoMass;
         save.data.floats["mass"] = rb.mass;
         save.data.floats["linearDamping"] = rb.linearDamping;
         save.data.floats["angularDamping"] = rb.angularDamping;
         save.data.floats["gravityScale"] = rb.gravityScale;
+        save.data.bools["freezeRotation"] = rb.freezeRotation;
         return save;
     }
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        rb.bodyType = (RigidbodyType2D)save.data.integers["bodyType"];
-        rb.useAutoMass = save.data.bools["useAutoMass"];
-        rb.mass = save.data.floats["mass"];
-        rb.linearDamping = save.data.floats["linearDamping"];
-        rb.angularDamping = save.data.floats["angularDamping"];
-        rb.gravityScale = save.data.floats["gravityScale"];
+        if (save.data.integers.TryGetValue("bodyType", out int bodyType)) setType = (RigidbodyType2D)bodyType;
+        if (save.data.bools.TryGetValue("useAutoMass", out bool useAutoMass)) rb.useAutoMass = useAutoMass;
+        if (save.data.floats.TryGetValue("mass", out float mass)) rb.mass = mass;
+        if (save.data.floats.TryGetValue("linearDamping", out float linearDamping)) rb.linearDamping = linearDamping;
+        if (save.data.floats.TryGetValue("angularDamping", out float angularDamping)) rb.angularDamping = angularDamping;
+        if (save.data.floats.TryGetValue("gravityScale", out float gravityScale)) rb.gravityScale = gravityScale;
+        if (save.data.bools.TryGetValue("freezeRotation", out bool freezeRotation)) rb.freezeRotation = freezeRotation;
     }
 }

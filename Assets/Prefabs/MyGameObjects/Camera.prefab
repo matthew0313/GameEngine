@@ -175,6 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyGameObject_Camera
   dirty: 0
   foldedInInspector: 0
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: 68dba39b87b88054e94f7555e01b1309, type: 3}
   childrenOffset: 1
   <cam>k__BackingField: {fileID: 8926227843018218978}

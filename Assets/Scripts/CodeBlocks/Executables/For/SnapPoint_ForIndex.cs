@@ -15,7 +15,8 @@ public class SnapPoint_ForIndex : SnapPoint
     protected override void OnSnappedChange()
     {
         base.OnSnappedChange();
-        if(snapped == null)
+        if (!enabled) return;
+        if (snapped == null)
         {
             var tmp = Instantiate(blockPrefab);
             tmp.BindTarget(ownerBlock as CodeBlock_For);

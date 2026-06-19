@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MyGameObjectList
   m_EditorClassIdentifier: Assembly-CSharp::MyGameObjectList
   myGameObjects:
+  - {fileID: 4848911049273490709, guid: 18d972859418098488bea8e41507f890, type: 3}
   - {fileID: 1596195061158751790, guid: 785e361e7c147e644971887ff36ca5b6, type: 3}
   - {fileID: 1975706289692821898, guid: b847564c678d6c94d8426cfdf6eb383c, type: 3}
   - {fileID: 3751043104619864195, guid: e3deb1d5c8857c047b272819cd808124, type: 3}

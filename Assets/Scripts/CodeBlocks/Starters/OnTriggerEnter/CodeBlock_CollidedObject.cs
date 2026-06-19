@@ -10,7 +10,12 @@ public class CodeBlock_CollidedObject : ObjectCodeBlock
     [SerializeField] RectTransform rectTransform;
     public CodeBlock_OnTrigger target { get; private set; }
     public override bool IsAddable(ICodeable codeable) => false;
-    public override MyGameObject GetObject(ulong hash) => target != null ? target.GetCollidedObject(hash) : null;
+    public override MyGameObject GetObject(ulong hash)
+    {
+        var tmp = target != null ? target.GetCollidedObject(hash) : null;
+        if (tmp != null) Debug.Log(tmp.name);
+        return tmp;
+    }
     public override float GetWidth() => rectTransform.rect.width;
     public void BindTarget(CodeBlock_OnTrigger target)
     {

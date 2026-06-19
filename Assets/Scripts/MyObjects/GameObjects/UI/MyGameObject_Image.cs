@@ -46,6 +46,7 @@ public class MyGameObject_Image : MyGameObject_UI
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(save.data.ulongs["image"]));
+        if (save.data.ulongs.TryGetValue("image", out ulong imageId))
+            SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(imageId));
     }
 }

@@ -59,7 +59,7 @@ public class Vector2SnapPoint : SnapPoint
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        inputX.text = save.data.floats["inputX"].ToString();
-        inputY.text = save.data.floats["inputY"].ToString();
+        if (save.data.floats.TryGetValue("inputX", out float x)) inputX.text = x.ToString();
+        if (save.data.floats.TryGetValue("inputY", out float y)) inputY.text = y.ToString();
     }
 }

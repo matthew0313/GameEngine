@@ -49,6 +49,6 @@ public class Codeblock_Wait : ExecutableCodeBlock, IOnFinish
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        unit.value = save.data.integers["unit"];
+        if (save.data.integers.TryGetValue("unit", out int unitValue)) unit.value = unitValue;
     }
 }

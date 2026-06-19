@@ -59,6 +59,6 @@ public class StringSnapPoint : SnapPoint
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        inputField.text = save.data.strings["value"];
+        if (save.data.strings.TryGetValue("value", out string value)) inputField.text = value;
     }
 }

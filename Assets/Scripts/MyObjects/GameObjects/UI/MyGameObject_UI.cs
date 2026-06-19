@@ -86,21 +86,21 @@ public abstract class MyGameObject_UI : MyGameObject
         var save = base.Save(prettyPrint);
         save.data.SaveVector2("anchorMin", rectTransform.anchorMin);
         save.data.SaveVector2("anchorMax", rectTransform.anchorMax);
-        save.data.SaveVector2("anchoredPosition", rectTransform.anchoredPosition);
         save.data.SaveVector2("offsetMin", rectTransform.offsetMin);
         save.data.SaveVector2("offsetMax", rectTransform.offsetMax);
         save.data.SaveVector2("pivot", rectTransform.pivot);
+        save.data.SaveVector2("anchoredPosition", rectTransform.anchoredPosition);
         return save;
     }
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        rectTransform.anchorMin = save.data.LoadVector2("anchorMin");
-        rectTransform.anchorMax = save.data.LoadVector2("anchorMax");
-        rectTransform.anchoredPosition = save.data.LoadVector2("anchoredPosition");
-        rectTransform.offsetMin = save.data.LoadVector2("offsetMin");
-        rectTransform.offsetMax = save.data.LoadVector2("offsetMax");
-        rectTransform.pivot = save.data.LoadVector2("pivot");
+        if (save.data.TryLoadVector2("anchorMin", out Vector2 anchorMin)) rectTransform.anchorMin = anchorMin;
+        if (save.data.TryLoadVector2("anchorMax", out Vector2 anchorMax)) rectTransform.anchorMax = anchorMax;
+        if (save.data.TryLoadVector2("offsetMin", out Vector2 offsetMin)) rectTransform.offsetMin = offsetMin;
+        if (save.data.TryLoadVector2("offsetMax", out Vector2 offsetMax)) rectTransform.offsetMax = offsetMax;
+        if (save.data.TryLoadVector2("pivot", out Vector2 pivot)) rectTransform.pivot = pivot;
+        if (save.data.TryLoadVector2("anchoredPosition", out Vector2 anchoredPosition)) rectTransform.anchoredPosition = anchoredPosition;
     }
 }
 public class ExposedAnchor : ExposedElement

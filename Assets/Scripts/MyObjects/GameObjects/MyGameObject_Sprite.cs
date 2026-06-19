@@ -62,7 +62,8 @@ public class MyGameObject_Sprite : MyGameObject
     public override void Load(MyGameObjectSave save)
     {
         base.Load(save);
-        SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(save.data.ulongs["image"]));
-        spriteRenderer.sortingOrder = save.data.integers["orderInLayer"];
+        if (save.data.ulongs.TryGetValue("image", out ulong imageId))
+            SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(imageId));
+        if (save.data.integers.TryGetValue("orderInLayer", out int orderInLayer)) spriteRenderer.sortingOrder = orderInLayer;
     }
 }

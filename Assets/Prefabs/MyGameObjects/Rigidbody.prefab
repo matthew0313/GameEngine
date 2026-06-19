@@ -74,5 +74,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyGameObject_Rigidbody
   dirty: 0
   foldedInInspector: 0
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: 21300000, guid: 08fd2d6286d4e7c44bde8459f9801aa4, type: 3}
   childrenOffset: 0

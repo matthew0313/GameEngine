@@ -93,7 +93,7 @@ public class ObjectSnapPoint : SnapPoint, IObjectDraggable, IPointerDownHandler
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        ulong objID = save.data.ulongs["setObject"];
-        SetObject(EditorSceneManager.Instance.FindObjectWithUID(objID));
+        if (save.data.ulongs.TryGetValue("setObject", out ulong objID))
+            SetObject(EditorSceneManager.Instance.FindObjectWithUID(objID));
     }
 }

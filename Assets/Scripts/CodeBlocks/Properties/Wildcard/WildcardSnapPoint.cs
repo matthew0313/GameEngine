@@ -196,10 +196,10 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        typeDropdown.value = save.data.integers["typeIndex"];
-        inputField.text = save.data.strings["inputValue"];
-        toggle.isOn = save.data.bools["toggleValue"];
-        SetObject(EditorSceneManager.Instance.FindObjectWithUID(save.data.ulongs["setObject"]));
-        SetAsset(EditorSceneManager.Instance.GetAsset<MyAsset>(save.data.ulongs["setAsset"]));
+        if (save.data.integers.TryGetValue("typeIndex", out int typeIndex)) typeDropdown.value = typeIndex;
+        if (save.data.strings.TryGetValue("inputValue", out string inputValue)) inputField.text = inputValue;
+        if (save.data.bools.TryGetValue("toggleValue", out bool toggleValue)) toggle.isOn = toggleValue;
+        if (save.data.ulongs.TryGetValue("setObject", out ulong setObjectId)) SetObject(EditorSceneManager.Instance.FindObjectWithUID(setObjectId));
+        if (save.data.ulongs.TryGetValue("setAsset", out ulong setAssetId)) SetAsset(EditorSceneManager.Instance.GetAsset<MyAsset>(setAssetId));
     }
 }

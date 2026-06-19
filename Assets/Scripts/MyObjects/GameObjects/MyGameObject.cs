@@ -123,7 +123,6 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         {
             if (block.snappedPoint != null) continue;
             var tmp = block.Save();
-            tmp.position = block.transform.position;
             save.codeBlocks.Add(tmp);
         }
         foreach(var child in children)
@@ -165,7 +164,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
         gameObject.name = save.name;
         transform.localPosition = save.position;
         transform.localRotation = Quaternion.Euler(0, 0, save.rotation);
-        transform.localScale = save.scale;
+        transform.localScale = new Vector3(save.scale.x, save.scale.y, 1.0f);
         lastOffset = save.lastOffset;
         foreach (var i in blockSaves) i.Key.Load(i.Value);
         foreach (var i in childSaves) i.Key.Load(i.Value);

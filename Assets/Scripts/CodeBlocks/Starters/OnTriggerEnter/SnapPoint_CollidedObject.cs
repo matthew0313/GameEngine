@@ -15,6 +15,7 @@ public class SnapPoint_CollidedObject : SnapPoint
     protected override void OnSnappedChange()
     {
         base.OnSnappedChange();
+        if (!enabled) return;
         if (snapped == null)
         {
             var tmp = Instantiate(blockPrefab);

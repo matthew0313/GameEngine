@@ -17,6 +17,6 @@ public class CodeBlock_SetBodyType : RigidbodyExecutableCodeBlock
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        bodyType.value = save.data.integers["bodyType"];
+        if (save.data.integers.TryGetValue("bodyType", out int bodyTypeValue)) bodyType.value = bodyTypeValue;
     }
 }

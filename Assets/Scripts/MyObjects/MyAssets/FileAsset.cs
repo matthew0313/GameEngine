@@ -24,6 +24,6 @@ public abstract class FileAsset : MyAsset
     public override void Load(MyAssetSave save)
     {
         base.Load(save);
-        LoadFile(save.data.strings["filePath"]);
+        if (save.data.strings.TryGetValue("filePath", out string path)) LoadFile(path);
     }
 }

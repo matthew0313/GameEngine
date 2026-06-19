@@ -1,11 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
-using Mono.Cecil;
-using NUnit.Framework.Internal;
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -102,7 +97,7 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
         var save = base.Save();
         ArgumentsWrapper wrapper = new() { arguments = new() };
         foreach (var i in argumentElements) wrapper.arguments.Add(i.Save());
-        save.data.strings["arguments"] = JsonUtility.ToJson(wrapper);
+        save.data.strings["arguments"] = SaveSerializer.Serialize(wrapper);
         save.data.strings["functionName"] = functionNameField.text;
         return save;
     }
@@ -110,7 +105,9 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
     public override void EarlyLoad(CodeBlockSave save, bool resetUID = false)
     {
         base.EarlyLoad(save, resetUID);
-        loadWrapper = JsonUtility.FromJson<ArgumentsWrapper>(save.data.strings["arguments"]);
+        loadWrapper = save.data.strings.TryGetValue("arguments", out string argumentsJson)
+            ? SaveSerializer.Deserialize<ArgumentsWrapper>(argumentsJson)
+            : new ArgumentsWrapper { arguments = new() };
         int i = 0;
         for (; i < loadWrapper.arguments.Count; i++)
         {
@@ -134,7 +131,7 @@ public class Codeblock_InvokeFunction : ExecutableCodeBlock, IOnFinish
         {
             argumentElements[i].Load(loadWrapper.arguments[i]);
         }
-        functionNameField.text = save.data.strings["functionName"];
+        if (save.data.strings.TryGetValue("functionName", out string functionName)) functionNameField.text = functionName;
     }
     [System.Serializable]
     struct ArgumentsWrapper

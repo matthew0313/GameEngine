@@ -56,6 +56,6 @@ public class NumericSnapPoint : SnapPoint
     public override void Load(SnapPointSave save)
     {
         base.Load(save);
-        inputField.text = save.data.floats["value"].ToString();
+        if (save.data.floats.TryGetValue("value", out float value)) inputField.text = value.ToString();
     }
 }

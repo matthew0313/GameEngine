@@ -21,16 +21,19 @@ public class PrefabAsset : MyAsset, ICodeable
     public override MyAssetSave Save()
     {
         var save = base.Save();
-        save.data.strings["prefabOrigin"] = JsonUtility.ToJson(prefabOrigin.Save());
+        save.data.strings["prefabOrigin"] = SaveSerializer.Serialize(prefabOrigin.Save());
         return save;
     }
     MyGameObjectSave prefabOriginSave;
     public override void EarlyLoad(MyAssetSave save, bool resetUID = false)
     {
         base.EarlyLoad(save, resetUID);
-        prefabOriginSave = JsonUtility.FromJson<MyGameObjectSave>(save.data.strings["prefabOrigin"]);
-        prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.IDToObjectPrefab(prefabOriginSave.id));
-        prefabOrigin.EarlyLoad(prefabOriginSave, resetUID);
+        if (save.data.strings.TryGetValue("prefabOrigin", out string prefabOriginJson))
+        {
+            prefabOriginSave = SaveSerializer.Deserialize<MyGameObjectSave>(prefabOriginJson);
+            prefabOrigin = MonoBehaviour.Instantiate(EditorSceneManager.Instance.IDToObjectPrefab(prefabOriginSave.id));
+            prefabOrigin.EarlyLoad(prefabOriginSave, resetUID);
+        }
     }
     public override void Load(MyAssetSave save)
     {

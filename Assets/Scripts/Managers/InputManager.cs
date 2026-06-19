@@ -12,51 +12,55 @@ public class InputManager : MonoBehaviour
         Instance = Instantiate(Resources.Load<InputManager>("InputManager"));
         DontDestroyOnLoad(Instance);
     }
-    Dictionary<char, KeyCode> charToKeycode = new Dictionary<char, KeyCode>()
+    // Keys are lowercase; lookups are normalized to lowercase so input is case-insensitive.
+    Dictionary<string, KeyCode> stringToKeyCode = new Dictionary<string, KeyCode>()
     {
-      {'a', KeyCode.A},
-      {'b', KeyCode.B},
-      {'c', KeyCode.C},
-      {'d', KeyCode.D},
-      {'e', KeyCode.E},
-      {'f', KeyCode.F},
-      {'g', KeyCode.G},
-      {'h', KeyCode.H},
-      {'i', KeyCode.I},
-      {'j', KeyCode.J},
-      {'k', KeyCode.K},
-      {'l', KeyCode.L},
-      {'m', KeyCode.M},
-      {'n', KeyCode.N},
-      {'o', KeyCode.O},
-      {'p', KeyCode.P},
-      {'q', KeyCode.Q},
-      {'r', KeyCode.R},
-      {'s', KeyCode.S},
-      {'t', KeyCode.T},
-      {'u', KeyCode.U},
-      {'v', KeyCode.V},
-      {'w', KeyCode.W},
-      {'x', KeyCode.X},
-      {'y', KeyCode.Y},
-      {'z', KeyCode.Z},
+      {"a", KeyCode.A},
+      {"b", KeyCode.B},
+      {"c", KeyCode.C},
+      {"d", KeyCode.D},
+      {"e", KeyCode.E},
+      {"f", KeyCode.F},
+      {"g", KeyCode.G},
+      {"h", KeyCode.H},
+      {"i", KeyCode.I},
+      {"j", KeyCode.J},
+      {"k", KeyCode.K},
+      {"l", KeyCode.L},
+      {"m", KeyCode.M},
+      {"n", KeyCode.N},
+      {"o", KeyCode.O},
+      {"p", KeyCode.P},
+      {"q", KeyCode.Q},
+      {"r", KeyCode.R},
+      {"s", KeyCode.S},
+      {"t", KeyCode.T},
+      {"u", KeyCode.U},
+      {"v", KeyCode.V},
+      {"w", KeyCode.W},
+      {"x", KeyCode.X},
+      {"y", KeyCode.Y},
+      {"z", KeyCode.Z},
 
-      {'1', KeyCode.Alpha1},
-      {'2', KeyCode.Alpha2},
-      {'3', KeyCode.Alpha3},
-      {'4', KeyCode.Alpha4},
-      {'5', KeyCode.Alpha5},
-      {'6', KeyCode.Alpha6},
-      {'7', KeyCode.Alpha7},
-      {'8', KeyCode.Alpha8},
-      {'9', KeyCode.Alpha9},
-      {'0', KeyCode.Alpha0},
+      {"space", KeyCode.Space},
+      {"shift", KeyCode.LeftShift},
+
+      {"1", KeyCode.Alpha1},
+      {"2", KeyCode.Alpha2},
+      {"3", KeyCode.Alpha3},
+      {"4", KeyCode.Alpha4},
+      {"5", KeyCode.Alpha5},
+      {"6", KeyCode.Alpha6},
+      {"7", KeyCode.Alpha7},
+      {"8", KeyCode.Alpha8},
+      {"9", KeyCode.Alpha9},
+      {"0", KeyCode.Alpha0},
     };
-    Dictionary<KeyCode, char> keycodeToChar;
+    Dictionary<KeyCode, string> keycodeToString;
     private void Awake()
     {
-        keycodeToChar = new Dictionary<KeyCode, char>();
-        foreach (var pair in charToKeycode) keycodeToChar[pair.Value] = pair.Key;
+        keycodeToString = new Dictionary<KeyCode, string>();
+        foreach (var pair in stringToKeyCode) keycodeToString[pair.Value] = pair.Key;
     }
     readonly Dictionary<KeyCode, List<InputOverride>> overrides = new();
     public static bool GetKeyDown(KeyCode keyCode) => Input.GetKeyDown(keyCode) && !Instance.overrides.ContainsKey(keyCode);
@@ -80,17 +84,14 @@ public class InputManager : MonoBehaviour
     }
     public string KeycodeToString(KeyCode keyCode)
     {
-        if (keycodeToChar.ContainsKey(keyCode)) return keycodeToChar[keyCode].ToString();
+        if (keycodeToString.ContainsKey(keyCode)) return keycodeToString[keyCode];
         return "";
     }
-    public bool CharToKeycode(char c, out KeyCode keyCode)
+    public bool StringToKeyCode(string str, out KeyCode keyCode)
     {
         keyCode = KeyCode.None;
-        if (charToKeycode.ContainsKey(c))
-        {
-            keyCode = charToKeycode[c];
-            return true;
-        }
+        if (str == null) return false;
+        if (stringToKeyCode.TryGetValue(str.Trim().ToLower(), out keyCode)) return true;
         return false;
     }
 }

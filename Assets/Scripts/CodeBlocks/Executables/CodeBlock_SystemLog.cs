@@ -36,6 +36,6 @@ public class Codeblock_SystemLog : ExecutableCodeBlock, IOnFinish
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        logType.value = save.data.integers["logType"];
+        if (save.data.integers.TryGetValue("logType", out int logTypeValue)) logType.value = logTypeValue;
     }
 }

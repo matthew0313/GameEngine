@@ -90,10 +90,14 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
         if (!executionParams.ContainsKey(hash) || !executionParams[hash].ContainsKey(name)) return new();
         return executionParams[hash][name];
     }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return onExecute;
+    }
     public override CodeBlockSave Save()
     {
         var save = base.Save();
-        save.data.strings["parameters"] = JsonUtility.ToJson(new ParametersWrapper() { parameters = parameters });
+        save.data.strings["parameters"] = SaveSerializer.Serialize(new ParametersWrapper() { parameters = parameters });
         save.data.strings["functionName"] = functionName;
         return save;
     }
@@ -101,13 +105,14 @@ public class CodeBlock_Function : CodeBlock, IOnFinish
     {
         base.Load(save);
         parameters.Clear();
-        foreach (var i in JsonUtility.FromJson<ParametersWrapper>(save.data.strings["parameters"]).parameters) parameters.Add(i);
-        functionNameField.text = save.data.strings["functionName"];
+        if (save.data.strings.TryGetValue("parameters", out string parametersJson))
+            foreach (var i in SaveSerializer.Deserialize<ParametersWrapper>(parametersJson).parameters) parameters.Add(i);
+        if (save.data.strings.TryGetValue("functionName", out string fnName)) functionNameField.text = fnName;
         OnParameterUpdate();
     }
     public override void Delete()
     {
-        foreach (var i in parameterElements) i.Clear();
+        foreach (var i in parameterElements) i.enabled = false;
         if (owner is MyGameObject obj) obj.functions.Remove(this);
         base.Delete();
     }

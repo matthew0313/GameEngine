@@ -72,7 +72,7 @@ public class Codeblock_GetProperty : PropertyCodeBlock
     public override void Load(CodeBlockSave save)
     {
         base.Load(save);
-        propertyDropdown.value = save.data.integers["property"];
+        if (save.data.integers.TryGetValue("property", out int property)) propertyDropdown.value = property;
     }
     public override float GetWidth() => rectTransform.rect.width;
 }

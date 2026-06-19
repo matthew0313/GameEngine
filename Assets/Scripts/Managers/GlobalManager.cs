@@ -133,7 +133,7 @@ public class GlobalManager : MonoBehaviour
         if (!File.Exists(file)) return null;
         string json = File.ReadAllText(file);
         if (string.IsNullOrWhiteSpace(json)) return null;
-        try { return JsonUtility.FromJson<ProjectSave>(json); }
+        try { return SaveSerializer.Deserialize<ProjectSave>(json); }
         catch (Exception e) { Debug.LogWarning($"Failed to parse '{file}': {e.Message}"); return null; }
     }
 
@@ -144,7 +144,7 @@ public class GlobalManager : MonoBehaviour
         if (save == null || string.IsNullOrEmpty(save.projectName)) return;
         Directory.CreateDirectory(ProjectFolder(save.projectName));
         Directory.CreateDirectory(ProjectAssetsFolder(save.projectName));
-        File.WriteAllText(ProjectSaveFile(save.projectName), JsonUtility.ToJson(save, true));
+        File.WriteAllText(ProjectSaveFile(save.projectName), SaveSerializer.Serialize(save, true));
     }
 
     // ---- Scene transitions ----
