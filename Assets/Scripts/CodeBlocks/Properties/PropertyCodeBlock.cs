@@ -11,6 +11,7 @@ public abstract class PropertyCodeBlock : CodeBlock
     public virtual MyAsset GetAsset(ulong hash) => null;
     public virtual Vector2 GetVector2(ulong hash) => new();
     public virtual Color GetColor(ulong hash) => Color.white;
+    public virtual ulong GetHash(ulong hash) => 0;
     public virtual List<Wildcard> GetArray(ulong hash) => null;
     public Wildcard GetWildcard(ulong hash) => new()
     {
@@ -21,6 +22,7 @@ public abstract class PropertyCodeBlock : CodeBlock
         asset = GetAsset(hash),
         vector2 = GetVector2(hash),
         color = GetColor(hash),
+        hash = GetHash(hash),
         array = GetArray(hash)
     };
     public abstract float GetWidth();
@@ -37,7 +39,8 @@ public enum PropertyType
     Vector2 = 1<<5,
     Array = 1<<6,
     Color = 1<<7,
-    Wildcard = Number + Condition + String + Object + Asset + Vector2 + Array + Color
+    Hash = 1<<8,
+    Wildcard = Number + Condition + String + Object + Asset + Vector2 + Array + Color + Hash
 }
 [System.Serializable]
 public struct Wildcard
@@ -49,5 +52,6 @@ public struct Wildcard
     public MyAsset asset;
     public Vector2 vector2;
     public Color color;
+    public ulong hash;
     public List<Wildcard> array;
 }

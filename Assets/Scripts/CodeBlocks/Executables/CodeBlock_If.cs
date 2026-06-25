@@ -15,7 +15,11 @@ public class Codeblock_If : ExecutableCodeBlock, IOnFinish
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
-        if (condition.GetCondition(hash)) await onTrue.Execute(hash, token);
+        if (condition.GetCondition(hash))
+        {
+            var info = await onTrue.Execute(hash, token);
+            if (info.breaked) return info;
+        }
         return await onFinish.Execute(hash, token);
     }
 

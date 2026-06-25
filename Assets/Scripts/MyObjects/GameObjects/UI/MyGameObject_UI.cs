@@ -11,6 +11,27 @@ public abstract class MyGameObject_UI : MyGameObject
         base.Awake();
         rectTransform = GetComponent<RectTransform>();
     }
+    // Change the anchors while keeping the rect visually in place (Unity stores
+    // anchoredPosition/sizeDelta, not the edges, so a raw anchor assignment would
+    // otherwise reshape the rect). Mirrors what the Inspector's anchor presets do.
+    void SetAnchors(Vector2 newMin, Vector2 newMax)
+    {
+        if (rectTransform.parent is RectTransform parent)
+        {
+            Vector2 parentSize = parent.rect.size;
+            Vector2 absMin = Vector2.Scale(rectTransform.anchorMin, parentSize) + rectTransform.offsetMin;
+            Vector2 absMax = Vector2.Scale(rectTransform.anchorMax, parentSize) + rectTransform.offsetMax;
+            rectTransform.anchorMin = newMin;
+            rectTransform.anchorMax = newMax;
+            rectTransform.offsetMin = absMin - Vector2.Scale(newMin, parentSize);
+            rectTransform.offsetMax = absMax - Vector2.Scale(newMax, parentSize);
+        }
+        else
+        {
+            rectTransform.anchorMin = newMin;
+            rectTransform.anchorMax = newMax;
+        }
+    }
     public override IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(
@@ -22,16 +43,12 @@ public abstract class MyGameObject_UI : MyGameObject
             () => rectTransform.anchorMax,
             (value) =>
             {
-                Rect tmp = rectTransform.rect;
-                rectTransform.anchorMin = value;
-                rectTransform.rect.Set(tmp.x, tmp.y, tmp.width, tmp.height);
+                SetAnchors(value, rectTransform.anchorMax);
                 onInspectorChange?.Invoke();
             },
             (value) =>
             {
-                Rect tmp = rectTransform.rect;
-                rectTransform.anchorMax = value;
-                rectTransform.rect.Set(tmp.x, tmp.y, tmp.width, tmp.height);
+                SetAnchors(rectTransform.anchorMin, value);
                 onInspectorChange?.Invoke();
             });
         bool xPointAnchor = rectTransform.anchorMin.x == rectTransform.anchorMax.x;
