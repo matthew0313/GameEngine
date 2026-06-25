@@ -48,6 +48,7 @@ public class MyGameObject_Screen : MyGameObject_UI
     {
         var save = base.Save(prettyPrint);
         save.data.ulongs["boundCamera"] = boundCamera != null ? boundCamera.uid : 0;
+        save.data.SaveColor("color", rawImage.color);
         return save;
     }
     public override void Load(MyGameObjectSave save)
@@ -55,5 +56,6 @@ public class MyGameObject_Screen : MyGameObject_UI
         base.Load(save);
         if (save.data.ulongs.TryGetValue("boundCamera", out ulong boundCameraId))
             SetCamera(EditorSceneManager.Instance.FindObjectWithUID(boundCameraId) as MyGameObject_Camera);
+        if (save.data.TryLoadColor("color", out Color color)) rawImage.color = color;
     }
 }

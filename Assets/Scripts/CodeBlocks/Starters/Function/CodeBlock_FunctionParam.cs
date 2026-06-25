@@ -57,6 +57,7 @@ public class CodeBlock_FunctionParam : PropertyCodeBlock
     public override MyGameObject GetObject(ulong hash) => target.GetParameter(hash, parameterName).obj;
     public override MyAsset GetAsset(ulong hash) => target.GetParameter(hash, parameterName).asset;
     public override Vector2 GetVector2(ulong hash) => target.GetParameter(hash, parameterName).vector2;
+    public override Color GetColor(ulong hash) => target.GetParameter(hash, parameterName).color;
 
     public override CodeBlockSave Save()
     {

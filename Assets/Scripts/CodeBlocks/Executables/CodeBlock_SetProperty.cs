@@ -47,6 +47,7 @@ public class Codeblock_SetProperty : ExecutableCodeBlock, IOnFinish
                 else if (i is ExposedObject obj) cache.Add((snap, hash) => obj.setter(snap.GetObject(hash)));
                 else if (i is ExposedAsset asset) cache.Add((snap, hash) => asset.setter(snap.GetAsset(hash)));
                 else if (i is ExposedVector2 vector2) cache.Add((snap, hash) => vector2.setter(snap.GetVector2(hash)));
+                else if (i is ExposedColor color) cache.Add((snap, hash) => color.setter(snap.GetColor(hash)));
             }
             else if(i is ExposedAnchor anchor)
             {

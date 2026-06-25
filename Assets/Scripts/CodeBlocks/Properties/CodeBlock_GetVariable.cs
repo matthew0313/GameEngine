@@ -144,6 +144,27 @@ public class Codeblock_GetVariable : PropertyCodeBlock
         }
         return base.GetVector2(hash);
     }
+    public override Color GetColor(ulong hash)
+    {
+        MyGameObject target = targetObject.GetObject(hash);
+        if (target == null)
+        {
+            EditorSceneManager.Instance.AddLog(new()
+            {
+                type = MyLogType.Error,
+                message = $"No target for GetVariable"
+            });
+        }
+        else
+        {
+            string name = variableName.GetValue(hash);
+            if (target.variables.ContainsKey(name))
+            {
+                return target.variables[name].color;
+            }
+        }
+        return base.GetColor(hash);
+    }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
         yield return targetObject;

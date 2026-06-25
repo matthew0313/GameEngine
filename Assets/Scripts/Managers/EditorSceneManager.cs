@@ -35,6 +35,7 @@ public class EditorSceneManager : MonoBehaviour
     [field:SerializeField] public HierarchyUI hierarchy { get; private set; }
     [field:SerializeField] public SceneScreenController sceneScreen { get; private set; }
     [field:SerializeField] public ScreenUI screen { get; private set; }
+    [field:SerializeField] public ColorMenu colorMenu { get; private set; }
 
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();

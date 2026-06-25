@@ -44,6 +44,7 @@ public class MyGameObject_Image : MyGameObject_UI
     {
         var save = base.Save(prettyPrint);
         save.data.ulongs["image"] = image != null ? image.uid : 0;
+        save.data.SaveColor("color", imageComp.color);
         return save;
     }
     public override void Load(MyGameObjectSave save)
@@ -51,5 +52,6 @@ public class MyGameObject_Image : MyGameObject_UI
         base.Load(save);
         if (save.data.ulongs.TryGetValue("image", out ulong imageId))
             SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(imageId));
+        if (save.data.TryLoadColor("color", out Color color)) imageComp.color = color;
     }
 }

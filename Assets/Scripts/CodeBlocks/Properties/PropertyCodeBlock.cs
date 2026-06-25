@@ -20,6 +20,7 @@ public abstract class PropertyCodeBlock : CodeBlock
         obj = GetObject(hash),
         asset = GetAsset(hash),
         vector2 = GetVector2(hash),
+        color = GetColor(hash),
         array = GetArray(hash)
     };
     public abstract float GetWidth();
@@ -35,7 +36,8 @@ public enum PropertyType
     Asset = 1<<4,
     Vector2 = 1<<5,
     Array = 1<<6,
-    Wildcard = Number + Condition + String + Object + Asset + Vector2 + Array
+    Color = 1<<7,
+    Wildcard = Number + Condition + String + Object + Asset + Vector2 + Array + Color
 }
 [System.Serializable]
 public struct Wildcard
@@ -46,5 +48,6 @@ public struct Wildcard
     public MyGameObject obj;
     public MyAsset asset;
     public Vector2 vector2;
+    public Color color;
     public List<Wildcard> array;
 }

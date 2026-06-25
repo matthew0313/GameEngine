@@ -60,6 +60,7 @@ public class MyGameObject_Sprite : MyGameObject
     {
         var save = base.Save(prettyPrint);
         save.data.ulongs["image"] = image != null ? image.uid : 0;
+        save.data.SaveColor("color", spriteRenderer.color);
         save.data.integers["orderInLayer"] = spriteRenderer.sortingOrder;
         return save;
     }
@@ -68,6 +69,7 @@ public class MyGameObject_Sprite : MyGameObject
         base.Load(save);
         if (save.data.ulongs.TryGetValue("image", out ulong imageId))
             SetImage(EditorSceneManager.Instance.GetAsset<ImageAsset>(imageId));
+        if (save.data.TryLoadColor("color", out Color color)) spriteRenderer.color = color;
         if (save.data.integers.TryGetValue("orderInLayer", out int orderInLayer)) spriteRenderer.sortingOrder = orderInLayer;
     }
 }

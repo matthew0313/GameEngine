@@ -29,4 +29,28 @@ public class DataUnit
     {
         return new Vector2(floats[key + ".x"], floats[key + ".y"]);
     }
+    public void SaveColor(string key, Color value)
+    {
+        floats[key + ".r"] = value.r;
+        floats[key + ".g"] = value.g;
+        floats[key + ".b"] = value.b;
+        floats[key + ".a"] = value.a;
+    }
+    public bool TryLoadColor(string key, out Color color)
+    {
+        color = new();
+        if(floats.TryGetValue(key + ".r", out float r)
+            && floats.TryGetValue(key + ".g", out float g)
+            && floats.TryGetValue(key + ".b", out float b)
+            && floats.TryGetValue(key + ".a", out float a))
+        {
+            color = new Color(r, g, b, a);
+            return true;
+        }
+        return false;
+    }
+    public Color LoadColor(string key)
+    {
+        return new Color(floats[key + ".r"], floats[key + ".g"], floats[key + ".b"], floats[key + ".a"]);
+    }
 }

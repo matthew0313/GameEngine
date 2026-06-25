@@ -2,19 +2,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InspectorUIColor : InspectorUIElement
+public class InspectorUIColor : InspectorUIElement, IColorMenuUser
 {
     [SerializeField] TMP_Text label;
     [SerializeField] Button openMenuButton;
     [SerializeField] Transform menuAnchor;
-    [SerializeField] InspectorUIColorMenu menu;
     [SerializeField] Image colorImage;
 
-    bool menuOpen = false;
     ExposedColor element;
     public Color color => element.getter();
 
-    static InputOverride exitMenuInput;
     public void Set(ExposedColor element)
     {
         this.element = element;
@@ -34,31 +31,20 @@ public class InspectorUIColor : InspectorUIElement
     private void OnDisable()
     {
         openMenuButton.onClick.RemoveListener(OpenMenu);
-        CloseMenu();
+        var menu = EditorSceneManager.Instance != null ? EditorSceneManager.Instance.colorMenu : null;
+        if (menu != null && menu.currentUser == (IColorMenuUser)this) menu.Close();
     }
     void OpenMenu()
     {
-        if (menuOpen) return;
-        menu.Show(this);
+        var menu = EditorSceneManager.Instance.colorMenu;
+        if (menu.currentUser == (IColorMenuUser)this) return;
+        menu.Open(this);
         menu.transform.position = menuAnchor.position;
-        menuOpen = true;
-        exitMenuInput ??= new() { priority = 9999, onTrigger = CloseMenu };
-        InputManager.Instance.AddOverride(KeyCode.Escape, exitMenuInput);
-    }
-    void CloseMenu()
-    {
-        if (!menuOpen) return;
-        menu.Hide();
-        menuOpen = false;
-        InputManager.Instance.RemoveOverride(KeyCode.Escape, exitMenuInput);
     }
     private void Update()
     {
         colorImage.color = element.getter();
-        if (menuOpen)
-        {
-            menu.transform.position = menuAnchor.position;
-            if (Input.GetMouseButtonDown(0) && !UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(menu.transform)) CloseMenu();
-        }
+        var menu = EditorSceneManager.Instance.colorMenu;
+        if (menu.currentUser == (IColorMenuUser)this) menu.transform.position = menuAnchor.position;
     }
 }

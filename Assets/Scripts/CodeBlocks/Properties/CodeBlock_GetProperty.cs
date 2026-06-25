@@ -46,6 +46,7 @@ public class Codeblock_GetProperty : PropertyCodeBlock
                 else if (i is ExposedObject obj) cache.Add(_ => new() { obj = obj.getter() });
                 else if (i is ExposedAsset asset) cache.Add(_ => new() { asset = asset.getter() });
                 else if (i is ExposedVector2 vector2) cache.Add(_ => new() { vector2 = vector2.getter() });
+                else if (i is ExposedColor color) cache.Add(_ => new() { color = color.getter() });
             }
             else if (i is ExposedAnchor anchor)
             {
@@ -63,6 +64,7 @@ public class Codeblock_GetProperty : PropertyCodeBlock
     public override MyGameObject GetObject(ulong hash) => cache[propertyDropdown.value].Invoke(hash).obj;
     public override MyAsset GetAsset(ulong hash) => cache[propertyDropdown.value].Invoke(hash).asset;
     public override Vector2 GetVector2(ulong hash) => cache[propertyDropdown.value].Invoke(hash).vector2;
+    public override Color GetColor(ulong hash) => cache[propertyDropdown.value].Invoke(hash).color;
     public override CodeBlockSave Save()
     {
         var save = base.Save();

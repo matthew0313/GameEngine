@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InspectorUIColorMenu : MonoBehaviour
+public class ColorMenu : MonoBehaviour
 {
     [Header("Preview")]
     [SerializeField] Image colorImage;
@@ -21,7 +21,7 @@ public class InspectorUIColorMenu : MonoBehaviour
     [SerializeField] Slider gSlider, bSlider, aSlider;
     [SerializeField] TMP_InputField rField, gField, bField, aField;
 
-    InspectorUIColor UIColor;
+    public IColorMenuUser currentUser { get; private set; }
 
     Color color;
     float h, s, v;
@@ -30,14 +30,25 @@ public class InspectorUIColorMenu : MonoBehaviour
     Texture2D svTex;
     bool texturesBuilt;
 
-    public void Show(InspectorUIColor UIColor)
+    static InputOverride exitMenuInput;
+    int openedFrame;
+
+    // Open the shared menu for a user. The caller is responsible for positioning
+    // (set this.transform.position right after calling Open).
+    public void Open(IColorMenuUser user)
     {
-        this.UIColor = UIColor;
+        currentUser = user;
         gameObject.SetActive(true);
-        SetColor(UIColor.color);
+        openedFrame = Time.frameCount;
+        SetColor(user.color);
+        exitMenuInput ??= new() { priority = 9999, onTrigger = Close };
+        InputManager.Instance.AddOverride(KeyCode.Escape, exitMenuInput);
     }
-    public void Hide()
+    public void Close()
     {
+        if (!gameObject.activeSelf) return;
+        InputManager.Instance.RemoveOverride(KeyCode.Escape, exitMenuInput);
+        currentUser = null;
         gameObject.SetActive(false);
     }
     private void OnEnable()
@@ -69,10 +80,21 @@ public class InspectorUIColorMenu : MonoBehaviour
     }
     private void Update()
     {
-        Color color = UIColor.color;
-        if(color != this.color)
+        // close if the user went away (e.g. inspector cleared / block deleted)
+        if (currentUser == null || (currentUser is Object o && o == null))
         {
-            SetColor(color);
+            Close();
+            return;
+        }
+        Color color = currentUser.color;
+        if (color != this.color) SetColor(color);
+
+        // click-outside closes (skip the frame we opened on to avoid self-close)
+        if (Time.frameCount != openedFrame
+            && Input.GetMouseButtonDown(0)
+            && !UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(transform))
+        {
+            Close();
         }
     }
 
@@ -113,17 +135,10 @@ public class InspectorUIColorMenu : MonoBehaviour
     void SetColor(Color color)
     {
         this.color = color;
-        if (UIColor != null) UIColor.SetColor(color);
+        currentUser?.SetColor(color);
         Color.RGBToHSV(color, out h, out s, out v);
         BuildSVTexture();
         BuildBarTexture();
-        Refresh(color);
-    }
-    // Rebuild the RGBA color from the current h/s/v (after a spectrum pick).
-    void ApplyHSV()
-    {
-        Color color = Color.HSVToRGB(h, s, v);
-        color.a = this.color.a;
         Refresh(color);
     }
     // Push the resolved color out to every control + the inspected element.
@@ -148,7 +163,7 @@ public class InspectorUIColorMenu : MonoBehaviour
     {
         Rect r = ((RectTransform)svImage.transform).rect;
         svHandle.anchoredPosition = new Vector2((s - 0.5f) * r.width, (v - 0.5f) * r.height);
-        
+
         r = ((RectTransform)hueImage.transform).rect;
         hueHandle.anchoredPosition = new Vector2(0f, (h - 0.5f) * r.height);
     }
