@@ -25,6 +25,10 @@ public class MyGameObject_Image : MyGameObject_UI
             () => image,
             (value) => SetImage(value as ImageAsset),
             AssetType.Image);
+        yield return new ExposedColor(
+            "Color",
+            () => imageComp.color,
+            (value) => imageComp.color = value);
     }
     public void SetImage(ImageAsset image)
     {

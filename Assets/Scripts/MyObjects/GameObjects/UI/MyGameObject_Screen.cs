@@ -39,6 +39,10 @@ public class MyGameObject_Screen : MyGameObject_UI
             {
                 if (value is MyGameObject_Camera cam) SetCamera(cam);
             }) { IDSpecific = true, id = "Camera" };
+        yield return new ExposedColor(
+            "Color",
+            () => rawImage.color,
+            (value) => rawImage.color = value);
     }
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {

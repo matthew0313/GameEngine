@@ -44,6 +44,7 @@ public class Codeblock_SetVariable : ExecutableCodeBlock, IOnFinish
         variable.str = value.GetString(hash);
         variable.obj = value.GetObject(hash);
         variable.asset = value.GetAsset(hash);
+        variable.vector2 = value.GetVector2(hash);
         return await onFinish.Execute(hash, token);
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()

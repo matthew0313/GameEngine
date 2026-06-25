@@ -26,7 +26,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = $"No target for SetVariable"
+                message = $"No target for GetVariable"
             });
         }
         else
@@ -47,7 +47,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = $"No target for SetVariable"
+                message = $"No target for GetVariable"
             });
         }
         else
@@ -68,7 +68,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = $"No target for SetVariable"
+                message = $"No target for GetVariable"
             });
         }
         else
@@ -89,7 +89,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = $"No target for SetVariable"
+                message = $"No target for GetVariable"
             });
         }
         else
@@ -110,7 +110,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             EditorSceneManager.Instance.AddLog(new()
             {
                 type = MyLogType.Error,
-                message = $"No target for SetVariable"
+                message = $"No target for GetVariable"
             });
         }
         else
@@ -122,6 +122,27 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             }
         }
         return base.GetAsset(hash);
+    }
+    public override Vector2 GetVector2(ulong hash)
+    {
+        MyGameObject target = targetObject.GetObject(hash);
+        if (target == null)
+        {
+            EditorSceneManager.Instance.AddLog(new()
+            {
+                type = MyLogType.Error,
+                message = $"No target for GetVariable"
+            });
+        }
+        else
+        {
+            string name = variableName.GetValue(hash);
+            if (target.variables.ContainsKey(name))
+            {
+                return target.variables[name].vector2;
+            }
+        }
+        return base.GetVector2(hash);
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {

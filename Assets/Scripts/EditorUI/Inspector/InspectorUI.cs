@@ -16,6 +16,7 @@ public class InspectorUI : MonoBehaviour
     [SerializeField] InspectorUIAsset assetPrefab;
     [SerializeField] InspectorUIAnchor anchorPrefab;
     [SerializeField] InspectorUIDropdown dropdownPrefab;
+    [SerializeField] InspectorUIColor colorPrefab;
 
     Pooler<InspectorUIButton> buttonPool;
     Pooler<InspectorUIVector2> vector2Pool;
@@ -26,6 +27,7 @@ public class InspectorUI : MonoBehaviour
     Pooler<InspectorUIAsset> assetPool;
     Pooler<InspectorUIAnchor> anchorPool;
     Pooler<InspectorUIDropdown> dropdownPool;
+    Pooler<InspectorUIColor> colorPool;
 
     readonly List<InspectorUIElement> active = new();
 
@@ -47,6 +49,7 @@ public class InspectorUI : MonoBehaviour
         assetPool ??= MakePool(assetPrefab);
         anchorPool ??= MakePool(anchorPrefab);
         dropdownPool ??= MakePool(dropdownPrefab);
+        colorPool ??= MakePool(colorPrefab);
         EditorSceneManager.Instance.onSelect += OnSelect;
         OnSelect(EditorSceneManager.Instance.selected);
     }
@@ -121,6 +124,12 @@ public class InspectorUI : MonoBehaviour
                 ui.Set(exposedDropdown);
                 active.Add(ui);
             }
+            else if(element is ExposedColor exposedColor)
+            {
+                var ui = colorPool.GetObject(container);
+                ui.Set(exposedColor);
+                active.Add(ui);
+            }
         }
         inspecting = inspectable;
         inspecting.onInspectorChange += Reload;
@@ -142,6 +151,7 @@ public class InspectorUI : MonoBehaviour
             else if (ui is InspectorUIAsset a) assetPool.ReleaseObject(a);
             else if (ui is InspectorUIAnchor anchor) anchorPool.ReleaseObject(anchor);
             else if (ui is InspectorUIDropdown dropdown) dropdownPool.ReleaseObject(dropdown);
+            else if (ui is InspectorUIColor color) colorPool.ReleaseObject(color);
         }
         active.Clear();
         if (inspecting != null) inspecting.onInspectorChange -= Reload;

@@ -10,6 +10,7 @@ public abstract class PropertyCodeBlock : CodeBlock
     public virtual MyGameObject GetObject(ulong hash) => null;
     public virtual MyAsset GetAsset(ulong hash) => null;
     public virtual Vector2 GetVector2(ulong hash) => new();
+    public virtual Color GetColor(ulong hash) => Color.white;
     public virtual List<Wildcard> GetArray(ulong hash) => null;
     public Wildcard GetWildcard(ulong hash) => new()
     {

@@ -228,4 +228,6 @@ public class MyVariable
     public string str = null;
     public MyGameObject obj = null;
     public MyAsset asset = null;
+    public Vector2 vector2 = Vector2.zero;
+    public Color color = Color.white;
 }

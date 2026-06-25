@@ -105,3 +105,13 @@ public class ExposedObject : ExposedProperty
         this.setter = setter;
     }
 }
+public class ExposedColor : ExposedProperty
+{
+    public readonly Func<Color> getter;
+    public readonly Action<Color> setter;
+    public ExposedColor(string name, Func<Color> getter, Action<Color> setter) : base(name)
+    {
+        this.getter = getter;
+        this.setter = setter;
+    }
+}

@@ -28,6 +28,10 @@ public class MyGameObject_Sprite : MyGameObject
             () => image,
             (value) => SetImage(value as ImageAsset),
             AssetType.Image);
+        yield return new ExposedColor(
+            "Color",
+            () => spriteRenderer.color,
+            (value) => spriteRenderer.color = value);
         yield return new ExposedNumber(
             "Order in Layer",
             () => spriteRenderer.sortingOrder,
