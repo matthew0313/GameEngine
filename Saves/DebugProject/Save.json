@@ -3,172 +3,9 @@
   "scene": {
     "topGameObjects": [
       {
-        "id": "Empty",
-        "name": "Empty",
-        "uid": 18446744071948574036,
-        "position": {
-          "x": 0.0,
-          "y": 0.0
-        },
-        "rotation": 0.0,
-        "scale": {
-          "x": 1.0,
-          "y": 1.0
-        },
-        "lastOffset": {
-          "x": 0.0,
-          "y": -1.52587891E-05
-        },
-        "data": {
-          "integers": {},
-          "ulongs": {},
-          "floats": {},
-          "strings": {},
-          "bools": {}
-        },
-        "codeBlocks": [
-          {
-            "id": "OnAwake",
-            "uid": 18446744072973662505,
-            "position": {
-              "x": 93.565,
-              "y": 168.019928
-            },
-            "data": {
-              "integers": {},
-              "ulongs": {},
-              "floats": {},
-              "strings": {},
-              "bools": {}
-            },
-            "snapPoints": [
-              {
-                "snapped": null,
-                "data": {
-                  "integers": {},
-                  "ulongs": {},
-                  "floats": {},
-                  "strings": {},
-                  "bools": {}
-                }
-              }
-            ]
-          },
-          {
-            "id": "OnUpdate",
-            "uid": 18446744071632981725,
-            "position": {
-              "x": -296.028,
-              "y": 141.172852
-            },
-            "data": {
-              "integers": {},
-              "ulongs": {},
-              "floats": {},
-              "strings": {},
-              "bools": {}
-            },
-            "snapPoints": [
-              {
-                "snapped": null,
-                "data": {
-                  "integers": {},
-                  "ulongs": {},
-                  "floats": {},
-                  "strings": {},
-                  "bools": {}
-                }
-              }
-            ]
-          },
-          {
-            "id": "OnUpdate",
-            "uid": 18446744073426764523,
-            "position": {
-              "x": -258.6892,
-              "y": -129.057159
-            },
-            "data": {
-              "integers": {},
-              "ulongs": {},
-              "floats": {},
-              "strings": {},
-              "bools": {}
-            },
-            "snapPoints": [
-              {
-                "snapped": null,
-                "data": {
-                  "integers": {},
-                  "ulongs": {},
-                  "floats": {},
-                  "strings": {},
-                  "bools": {}
-                }
-              }
-            ]
-          },
-          {
-            "id": "OnUpdate",
-            "uid": 1110562171,
-            "position": {
-              "x": 297.5825,
-              "y": -120.6198
-            },
-            "data": {
-              "integers": {},
-              "ulongs": {},
-              "floats": {},
-              "strings": {},
-              "bools": {}
-            },
-            "snapPoints": [
-              {
-                "snapped": null,
-                "data": {
-                  "integers": {},
-                  "ulongs": {},
-                  "floats": {},
-                  "strings": {},
-                  "bools": {}
-                }
-              }
-            ]
-          }
-        ],
-        "children": []
-      },
-      {
-        "id": "Empty",
-        "name": "Empty1",
-        "uid": 18446744073145022260,
-        "position": {
-          "x": 0.0,
-          "y": 0.0
-        },
-        "rotation": 0.0,
-        "scale": {
-          "x": 1.0,
-          "y": 1.0
-        },
-        "lastOffset": {
-          "x": -397.23645,
-          "y": -343.073425
-        },
-        "data": {
-          "integers": {},
-          "ulongs": {},
-          "floats": {},
-          "strings": {},
-          "bools": {}
-        },
-        "codeBlocks": [],
-        "children": []
-      },
-      {
         "id": "Image",
         "name": "Image",
-        "uid": 18446744073702293383,
+        "uid": 18446744072644061490,
         "position": {
           "x": 0.0,
           "y": 0.0
@@ -185,21 +22,25 @@
         "data": {
           "integers": {},
           "ulongs": {
-            "image": 18446744073147432626
+            "image": 0
           },
           "floats": {
-            "anchorMin.x": 0.5,
-            "anchorMin.y": 0.5,
-            "anchorMax.x": 0.5,
-            "anchorMax.y": 0.5,
-            "offsetMin.x": -50.0,
-            "offsetMin.y": -50.0,
-            "offsetMax.x": 50.0,
-            "offsetMax.y": 50.0,
+            "anchorMin.x": 0.0,
+            "anchorMin.y": 0.0,
+            "anchorMax.x": 1.0,
+            "anchorMax.y": 1.0,
+            "offsetMin.x": 0.0,
+            "offsetMin.y": 0.0,
+            "offsetMax.x": 0.0,
+            "offsetMax.y": 0.0,
             "pivot.x": 0.5,
             "pivot.y": 0.5,
             "anchoredPosition.x": 0.0,
-            "anchoredPosition.y": 0.0
+            "anchoredPosition.y": 0.0,
+            "color.r": 1.0,
+            "color.g": 0.0,
+            "color.b": 0.0,
+            "color.a": 0.0
           },
           "strings": {},
           "bools": {}
@@ -213,7 +54,7 @@
     {
       "type": 1,
       "name": "monitor",
-      "uid": 18446744073147432626,
+      "uid": 18446744072534413450,
       "data": {
         "integers": {},
         "ulongs": {},

@@ -31,8 +31,8 @@ public class InspectorUIColor : InspectorUIElement, IColorMenuUser
     private void OnDisable()
     {
         openMenuButton.onClick.RemoveListener(OpenMenu);
-        var menu = EditorSceneManager.Instance != null ? EditorSceneManager.Instance.colorMenu : null;
-        if (menu != null && menu.currentUser == (IColorMenuUser)this) menu.Close();
+        var menu = EditorSceneManager.Instance.colorMenu;
+        if (menu.currentUser == (IColorMenuUser)this) menu.Close();
     }
     void OpenMenu()
     {
@@ -44,7 +44,5 @@ public class InspectorUIColor : InspectorUIElement, IColorMenuUser
     private void Update()
     {
         colorImage.color = element.getter();
-        var menu = EditorSceneManager.Instance.colorMenu;
-        if (menu.currentUser == (IColorMenuUser)this) menu.transform.position = menuAnchor.position;
     }
 }

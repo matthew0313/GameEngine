@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorSnapPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: ownerBlock
+      value: 
+      objectReference: {fileID: 5068137503153481116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

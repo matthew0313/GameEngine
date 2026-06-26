@@ -19,12 +19,12 @@ public class Codeblock_IfElse : ExecutableCodeBlock, IOnFinish
         if (condition.GetCondition(hash))
         {
             var info = await onTrue.Execute(hash, token);
-            if (info.breaked) return info;
+            if (info.breaked || info.ended) return info;
         }
         else
         {
             var info = await onFalse.Execute(hash, token);
-            if (info.breaked) return info;
+            if (info.breaked || info.ended) return info;
         }
         return await onFinish.Execute(hash, token);
     }

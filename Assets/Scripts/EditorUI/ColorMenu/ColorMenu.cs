@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ColorMenu : MonoBehaviour
+public class ColorMenu : MonoBehaviour, IDragHandler
 {
     [Header("Preview")]
     [SerializeField] Image colorImage;
@@ -31,7 +32,7 @@ public class ColorMenu : MonoBehaviour
     bool texturesBuilt;
 
     static InputOverride exitMenuInput;
-    int openedFrame;
+    bool openedFrame;
 
     // Open the shared menu for a user. The caller is responsible for positioning
     // (set this.transform.position right after calling Open).
@@ -39,7 +40,7 @@ public class ColorMenu : MonoBehaviour
     {
         currentUser = user;
         gameObject.SetActive(true);
-        openedFrame = Time.frameCount;
+        openedFrame = true;
         SetColor(user.color);
         exitMenuInput ??= new() { priority = 9999, onTrigger = Close };
         InputManager.Instance.AddOverride(KeyCode.Escape, exitMenuInput);
@@ -90,12 +91,13 @@ public class ColorMenu : MonoBehaviour
         if (color != this.color) SetColor(color);
 
         // click-outside closes (skip the frame we opened on to avoid self-close)
-        if (Time.frameCount != openedFrame
+        if (!openedFrame
             && Input.GetMouseButtonDown(0)
             && !UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(transform))
         {
             Close();
         }
+        else openedFrame = false;
     }
 
     // --- spectrum input ---
@@ -224,5 +226,12 @@ public class ColorMenu : MonoBehaviour
         hueImage.sprite = Sprite.Create(t, new Rect(0, 0, 1, texSize), new Vector2(0.5f, 0.5f));
         hueImage.type = Image.Type.Simple;
         hueImage.color = Color.white;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (eventData.used) return;
+        Debug.Log("darg");
+        transform.position += (Vector3)eventData.delta;
     }
 }

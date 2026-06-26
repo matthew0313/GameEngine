@@ -36,8 +36,8 @@ public class ColorSnapPoint : SnapPoint, IColorMenuUser
     {
         base.OnDisable();
         if (colorButton != null) colorButton.onClick.RemoveListener(OpenColorMenu);
-        var menu = EditorSceneManager.Instance != null ? EditorSceneManager.Instance.colorMenu : null;
-        if (menu != null && menu.currentUser == (IColorMenuUser)this) menu.Close();
+        var menu = EditorSceneManager.Instance.colorMenu;
+        if (menu.currentUser == (IColorMenuUser)this) menu.Close();
     }
     void OpenColorMenu()
     {

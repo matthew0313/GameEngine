@@ -49,3 +49,6 @@ MonoBehaviour:
   - type: 0
     item: {fileID: 64589512743494058, guid: d05d0bf5fbb75cb44881ef1491a018f7, type: 3}
     list: {fileID: 0}
+  - type: 0
+    item: {fileID: 1736368187479161226, guid: 60fdb070023e5f24ea5cac5f48524b23, type: 3}
+    list: {fileID: 0}

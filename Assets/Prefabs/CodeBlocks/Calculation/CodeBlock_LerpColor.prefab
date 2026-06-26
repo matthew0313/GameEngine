@@ -784,6 +784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorSnapPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: ownerBlock
+      value: 
+      objectReference: {fileID: 1630043113288123394}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -817,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NumericSnapPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: ownerBlock
+      value: 
+      objectReference: {fileID: 1630043113288123394}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1010,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorSnapPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: ownerBlock
+      value: 
+      objectReference: {fileID: 1630043113288123394}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

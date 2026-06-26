@@ -37,15 +37,7 @@ public class Codeblock_SetVariable : ExecutableCodeBlock, IOnFinish
             };
         }
         string name = variableName.GetValue(hash);
-        if (!target.variables.ContainsKey(name)) target.variables[name] = new();
-        MyVariable variable = target.variables[name];
-        variable.number = value.GetNumber(hash);
-        variable.condition = value.GetCondition(hash);
-        variable.str = value.GetString(hash);
-        variable.obj = value.GetObject(hash);
-        variable.asset = value.GetAsset(hash);
-        variable.vector2 = value.GetVector2(hash);
-        variable.color = value.GetColor(hash);
+        if(target.variables.ContainsKey(name)) target.variables[name] = value.GetWildcard(hash);
         return await onFinish.Execute(hash, token);
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()

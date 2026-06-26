@@ -4,15 +4,15 @@ using UnityEngine;
 public abstract class PropertyCodeBlock : CodeBlock
 {
     public abstract PropertyType propertyType { get; }
-    public virtual float GetNumber(ulong hash) => 0;
-    public virtual bool GetCondition(ulong hash) => false;
-    public virtual string GetString(ulong hash) => "";
-    public virtual MyGameObject GetObject(ulong hash) => null;
-    public virtual MyAsset GetAsset(ulong hash) => null;
-    public virtual Vector2 GetVector2(ulong hash) => new();
-    public virtual Color GetColor(ulong hash) => Color.white;
-    public virtual ulong GetHash(ulong hash) => 0;
-    public virtual List<Wildcard> GetArray(ulong hash) => null;
+    public virtual float GetNumber(ulong hash) => Wildcard.Default().number;
+    public virtual bool GetCondition(ulong hash) => Wildcard.Default().condition;
+    public virtual string GetString(ulong hash) => Wildcard.Default().str;
+    public virtual MyGameObject GetObject(ulong hash) => Wildcard.Default().obj;
+    public virtual MyAsset GetAsset(ulong hash) => Wildcard.Default().asset;
+    public virtual Vector2 GetVector2(ulong hash) => Wildcard.Default().vector2;
+    public virtual Color GetColor(ulong hash) => Wildcard.Default().color;
+    public virtual ulong GetHash(ulong hash) => Wildcard.Default().hash;
+    public virtual List<Wildcard> GetArray(ulong hash) => Wildcard.Default().array;
     public Wildcard GetWildcard(ulong hash) => new()
     {
         number = GetNumber(hash),
@@ -54,4 +54,18 @@ public struct Wildcard
     public Color color;
     public ulong hash;
     public List<Wildcard> array;
+    public static Wildcard Default()
+    {
+        Wildcard tmp = new();
+        tmp.number = 0;
+        tmp.condition = false;
+        tmp.str = null;
+        tmp.obj = null;
+        tmp.asset = null;
+        tmp.vector2 = Vector2.zero;
+        tmp.color = Color.white;
+        tmp.hash = ulong.MaxValue;
+        tmp.array = null;
+        return tmp;
+    }
 }

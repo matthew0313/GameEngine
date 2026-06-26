@@ -27,6 +27,7 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
         {
             loopIndices[hash] = i;
             var info = await onLoop.Execute(hash, token);
+            if (info.ended) return info;
             if (info.breaked) break;
         }
         loopIndices.Remove(hash);
@@ -35,6 +36,9 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
         yield return index;
+        yield return onLoop;
+        yield return index;
+        yield return onFinish;
     }
     public override float GetHeight()
     {

@@ -203,9 +203,10 @@ public class EditorSceneManager : MonoBehaviour
         }
         onAssetsChange?.Invoke();
     }
+    public MyAsset FindAsset(Func<MyAsset, bool> predicate) => assets.Find(predicate);
     public T GetAsset<T>(ulong uid) where T : MyAsset
     {
-        MyAsset asset = assets.Find(a => a.uid == uid);
+        MyAsset asset = FindAsset(item => item.uid == uid);
         if(asset != null && asset is T t) return t;
         return null;
     }

@@ -89,7 +89,7 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     }
     public Action onInspectorChange { get; set; }
 
-    public readonly Dictionary<string, MyVariable> variables = new();
+    public readonly Dictionary<string, Wildcard> variables = new();
     public readonly List<CodeBlock_Function> functions = new();
     public event Action onAwake, onStart, onUpdate, onFixedUpdate;
     public virtual void OnAwake()
@@ -220,15 +220,4 @@ public class MyGameObjectSave
     public DataUnit data = new();
     public List<CodeBlockSave> codeBlocks = new();
     public List<MyGameObjectSave> children = new();
-}
-public class MyVariable
-{
-    public float number = 0.0f;
-    public bool condition = false;
-    public string str = null;
-    public MyGameObject obj = null;
-    public MyAsset asset = null;
-    public Vector2 vector2 = Vector2.zero;
-    public Color color = Color.white;
-    public ulong hash = 0;
 }

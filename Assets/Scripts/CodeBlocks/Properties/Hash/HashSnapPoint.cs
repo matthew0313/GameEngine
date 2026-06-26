@@ -29,7 +29,7 @@ public class HashSnapPoint : SnapPoint
         {
             return propertyBlock.GetHash(hash);
         }
-        return 0;
+        return ulong.MaxValue;
     }
     public float GetWidth()
     {

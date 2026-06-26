@@ -135,6 +135,11 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
         if (snapped is PropertyCodeBlock p) return p.GetColor(hash);
         return setColor;
     }
+    public ulong GetHash(ulong hash)
+    {
+        if (snapped is PropertyCodeBlock p) return p.GetHash(hash);
+        return ulong.MaxValue;
+    }
     public Wildcard GetWildcard(ulong hash)
     {
         return new()
@@ -146,6 +151,7 @@ public class WildcardSnapPoint : SnapPoint, IObjectDraggable, IAssetDraggable, I
             asset = GetAsset(hash),
             vector2 = GetVector2(hash),
             color = GetColor(hash),
+            hash = GetHash(hash),
         };
     }
 
