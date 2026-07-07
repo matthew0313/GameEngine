@@ -1,0 +1,28 @@
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class Codeblock_WaitFrame : ExecutableCodeBlock, IOnFinish
+{
+    public override CodeBlockCategory category => CodeBlockCategory.Logic;
+
+    [SerializeField] RectTransform rectTransform;
+    [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
+    public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
+    {
+        await UniTask.NextFrame();
+        return await onFinish.Execute(hash, token);
+    }
+    public override float GetHeight()
+    {
+        return rectTransform.rect.height + onFinish.GetHeight();
+    }
+    protected override IEnumerable<SnapPoint> GetSnapPoints()
+    {
+        yield return onFinish;
+    }
+}

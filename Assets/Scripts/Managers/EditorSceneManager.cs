@@ -125,7 +125,8 @@ public class EditorSceneManager : MonoBehaviour
             MyGameObjectSave save = SaveSerializer.Deserialize<MyGameObjectSave>(copyBuffer);
             MyGameObject obj = Instantiate(IDToObjectPrefab(save.id));
             obj.EarlyLoad(save, true);
-            myScene.AddChild(obj);
+            IParent parent = selected is MyGameObject selectedObject && selectedObject.parent != null ? selectedObject.parent : (IParent)myScene;
+            parent.AddChild(obj);
             obj.Load(save);
         }
         else if (copyBufferItemType == CopyBufferItemType.MyAsset)

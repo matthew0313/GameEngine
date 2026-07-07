@@ -22,6 +22,7 @@ public class Codeblock_OnUpdate : CodeBlock, IOnFinish
                 type = MyLogType.Error,
                 message = "OnUpdate block added in a non-object. Block will not function."
             });
+            return;
         }
         obj.onUpdate += OnUpdate;
     }
