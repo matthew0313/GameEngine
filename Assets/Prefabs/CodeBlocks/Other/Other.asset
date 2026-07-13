@@ -37,3 +37,6 @@ MonoBehaviour:
   - type: 0
     item: {fileID: 8011297774310472276, guid: a3bee1243962c3a4aad201645d3b4938, type: 3}
     list: {fileID: 0}
+  - type: 0
+    item: {fileID: 6384563973867109735, guid: 1329684115b3cab48a98283bb9d92cd2, type: 3}
+    list: {fileID: 0}

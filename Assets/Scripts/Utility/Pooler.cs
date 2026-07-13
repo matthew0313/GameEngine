@@ -48,7 +48,8 @@ public class Pooler<T> where T : Component
         T obj = Get();
         obj.transform.position = position;
         obj.transform.rotation = rotation;
-        obj.transform.parent = parent;
+        obj.transform.SetParent(parent, false);
+        obj.transform.SetAsLastSibling();
         OnTakeout(obj);
         return obj;
     }
@@ -56,6 +57,7 @@ public class Pooler<T> where T : Component
     {
         T obj = Get();
         obj.transform.SetParent(parent, false);
+        obj.transform.SetAsLastSibling();
         OnTakeout(obj);
         return obj;
     }

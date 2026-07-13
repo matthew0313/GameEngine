@@ -7,6 +7,11 @@ public class MyScene : MonoBehaviour, IParent
     [SerializeField] Transform objectAnchor, UIAnchor;
     public readonly List<MyGameObject> topGameObjects = new();
     public event Action onHierarchyChange;
+
+
+    public bool prefabMode { get; private set; } = false;
+    public PrefabAsset prefab { get; private set; }
+    public MyGameObject prefabOrigin => prefab.prefabOrigin;
     public void Clear()
     {
         while (topGameObjects.Count > 0) topGameObjects[0].Delete();
@@ -17,9 +22,25 @@ public class MyScene : MonoBehaviour, IParent
         foreach (var i in topGameObjects) save.topGameObjects.Add(i.Save(prettyPrint));
         return save;
     }
+    public void LoadPrefab(PrefabAsset prefabAsset)
+    {
+        Clear();
+        prefabMode = true;
+        prefab = prefabAsset;
+        prefabOrigin.onChildrenChange += OnChildrenChange;
+        prefabOrigin.gameObject.SetActive(true);
+        onHierarchyChange?.Invoke();
+    }
     public void Load(MySceneSave save)
     {
         Clear();
+        if (prefabMode)
+        {
+            prefabOrigin.gameObject.SetActive(false);
+            prefabOrigin.onChildrenChange -= OnChildrenChange;
+            prefabMode = false;
+            prefab = null;
+        }
         Dictionary<MyGameObject, MyGameObjectSave> saves = new();
         foreach (var i in save.topGameObjects)
         {
@@ -33,6 +54,10 @@ public class MyScene : MonoBehaviour, IParent
     }
     public void AddChild(MyGameObject child)
     {
+        if (prefabMode)
+        {
+            prefabOrigin.AddChild(child); return;
+        }
         if (topGameObjects.Contains(child)) return;
         if (child.parent != null && child.parent != this) child.parent.RemoveChild(child);
         if (child is MyGameObject_UI) child.transform.SetParent(UIAnchor, false);
@@ -45,6 +70,10 @@ public class MyScene : MonoBehaviour, IParent
 
     public void RemoveChild(MyGameObject child)
     {
+        if (prefabMode)
+        {
+            prefabOrigin.RemoveChild(child); return;
+        }
         if (!topGameObjects.Contains(child)) return;
         child.transform.SetParent(null, true);
         child.parent = null;
@@ -52,16 +81,20 @@ public class MyScene : MonoBehaviour, IParent
         child.onChildrenChange -= OnChildrenChange;
         onHierarchyChange?.Invoke();
     }
-    public bool HasChild(MyGameObject child) => topGameObjects.Contains(child);
-    public int GetChildIndex(MyGameObject obj) => topGameObjects.IndexOf(obj);
+    public bool HasChild(MyGameObject child) => prefabMode ? prefabOrigin.HasChild(child) : topGameObjects.Contains(child);
+    public int GetChildIndex(MyGameObject obj) => prefabMode ? prefabOrigin.GetChildIndex(obj) : topGameObjects.IndexOf(obj);
     public void SetChildIndex(MyGameObject child, int index)
     {
+        if(prefabMode)
+        {
+            prefabOrigin.SetChildIndex(child, index); return;
+        }
         if (!topGameObjects.Contains(child) || index < 0 || index >= topGameObjects.Count) return;
         topGameObjects.Remove(child); topGameObjects.Insert(index, child);
         child.transform.SetSiblingIndex(index);
         onHierarchyChange?.Invoke();
     }
-    public IEnumerable<MyGameObject> GetChildren() => topGameObjects;
+    public IEnumerable<MyGameObject> GetChildren() => prefabMode ? prefabOrigin.GetChildren() : topGameObjects;
     private void OnChildrenChange() => onHierarchyChange?.Invoke();
     public bool ContainsObject(MyGameObject obj) => FindObject((o) => o == obj) != null;
     public MyGameObject FindObject(Func<MyGameObject, bool> predicate)

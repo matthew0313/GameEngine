@@ -6,6 +6,7 @@ public abstract class MyAsset : ISelectable, IInspectable
 {
     public ulong uid { get; private set; } = MathUtilities.GenerateRandomID();
     public abstract AssetType type { get; }
+    public abstract Sprite assetImage { get; }
 
     public string name;
     public event Action onDisplayUpdate;
@@ -40,6 +41,7 @@ public abstract class MyAsset : ISelectable, IInspectable
         {
             AssetType.Image => new ImageAsset(),
             AssetType.Prefab => new PrefabAsset(),
+            AssetType.Scene => new SceneAsset(),
             _ => null
         };
     }
@@ -63,5 +65,6 @@ public class MyAssetSave
 public enum AssetType
 {
     Image = 1 << 0,
-    Prefab = 1 << 1
+    Prefab = 1 << 1,
+    Scene = 1 << 2
 }

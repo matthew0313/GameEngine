@@ -98,17 +98,31 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     public void Refresh()
     {
         MyScene scene = EditorSceneManager.Instance.myScene;
-        int i = 0;
-        foreach (var obj in scene.topGameObjects)
+        if (scene.prefabMode)
         {
-            if (elements.Count <= i) elements.Add(elementPool.GetObject(elementAnchor));
-            elements[i].gameObject.SetActive(true);
-            elements[i++].Set(obj);
+            while (elements.Count > 0)
+            {
+                elementPool.ReleaseObject(elements[0]);
+                elements.RemoveAt(0);
+            }
+            elements.Add(elementPool.GetObject(elementAnchor));
+            elements[0].gameObject.SetActive(true);
+            elements[0].Set(scene.prefabOrigin);
         }
-        for (; i < elements.Count; i++)
+        else
         {
-            elementPool.ReleaseObject(elements[i]);
-            elements.RemoveAt(i--);
+            int i = 0;
+            foreach (var obj in scene.topGameObjects)
+            {
+                if (elements.Count <= i) elements.Add(elementPool.GetObject(elementAnchor));
+                elements[i].gameObject.SetActive(true);
+                elements[i++].Set(obj);
+            }
+            for (; i < elements.Count; i++)
+            {
+                elementPool.ReleaseObject(elements[i]);
+                elements.RemoveAt(i--);
+            }
         }
     }
 
@@ -196,11 +210,12 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject(HierarchyUIElement element)
     {
         bool UI = false;
-        foreach(var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
+        for(int i = 0; i < EditorSceneManager.Instance.myGameObjectList.myGameObjects.Count; i++)
         {
+            var obj = EditorSceneManager.Instance.myGameObjectList.myGameObjects[i];
             if (obj is MyGameObject_UI)
             {
-                UI = true; break;
+                UI = true; continue;
             }
             yield return new RCMenuElement_Button(
                 obj.name,
@@ -212,8 +227,9 @@ public class HierarchyUI : MonoBehaviour, IPointerDownHandler
     }
     IEnumerable<RCMenuElement> MakeRightClickMenu_CreateObject_UI(HierarchyUIElement element)
     {
-        foreach (var obj in EditorSceneManager.Instance.myGameObjectList.myGameObjects)
+        for (int i = 0; i < EditorSceneManager.Instance.myGameObjectList.myGameObjects.Count; i++)
         {
+            var obj = EditorSceneManager.Instance.myGameObjectList.myGameObjects[i];
             if (!(obj is MyGameObject_UI)) continue;
             yield return new RCMenuElement_Button(
                 obj.name,

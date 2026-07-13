@@ -1,60 +1,11 @@
 {
   "projectName": "DebugProject",
-  "scene": {
-    "topGameObjects": [
-      {
-        "id": "Image",
-        "name": "Image",
-        "uid": 18446744072644061490,
-        "position": {
-          "x": 0.0,
-          "y": 0.0
-        },
-        "rotation": 0.0,
-        "scale": {
-          "x": 1.0,
-          "y": 1.0
-        },
-        "lastOffset": {
-          "x": 0.0,
-          "y": 0.0
-        },
-        "data": {
-          "integers": {},
-          "ulongs": {
-            "image": 0
-          },
-          "floats": {
-            "anchorMin.x": 0.0,
-            "anchorMin.y": 0.0,
-            "anchorMax.x": 1.0,
-            "anchorMax.y": 1.0,
-            "offsetMin.x": 0.0,
-            "offsetMin.y": 0.0,
-            "offsetMax.x": 0.0,
-            "offsetMax.y": 0.0,
-            "pivot.x": 0.5,
-            "pivot.y": 0.5,
-            "anchoredPosition.x": 0.0,
-            "anchoredPosition.y": 0.0,
-            "color.r": 1.0,
-            "color.g": 0.0,
-            "color.b": 0.0,
-            "color.a": 0.0
-          },
-          "strings": {},
-          "bools": {}
-        },
-        "codeBlocks": [],
-        "children": []
-      }
-    ]
-  },
+  "lastOpenScene": 0,
   "assets": [
     {
       "type": 1,
       "name": "monitor",
-      "uid": 18446744072534413450,
+      "uid": 18446744072715170746,
       "data": {
         "integers": {},
         "ulongs": {},
@@ -64,6 +15,20 @@
         },
         "strings": {
           "filePath": "Saves\\DebugProject\\Assets\\monitor.png"
+        },
+        "bools": {}
+      }
+    },
+    {
+      "type": 2,
+      "name": "Sprite",
+      "uid": 508455506,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {},
+        "strings": {
+          "prefabOrigin": "{\"id\":\"Sprite\",\"name\":\"Sprite\",\"uid\":274309456,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"orderInLayer\":0},\"ulongs\":{\"image\":0},\"floats\":{\"color.r\":1.0,\"color.g\":1.0,\"color.b\":1.0,\"color.a\":1.0},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[{\"id\":\"BoxCollider\",\"name\":\"BoxCollider\",\"uid\":959736110,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"enabled\":true,\"isTrigger\":false}},\"codeBlocks\":[],\"children\":[]},{\"id\":\"Empty\",\"name\":\"Empty\",\"uid\":1569925923,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[]},{\"id\":\"Sprite\",\"name\":\"Sprite\",\"uid\":1888669954,\"position\":{\"x\":0.0,\"y\":2.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"orderInLayer\":0},\"ulongs\":{\"image\":0},\"floats\":{\"color.r\":1.0,\"color.g\":1.0,\"color.b\":1.0,\"color.a\":1.0},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[]}]}"
         },
         "bools": {}
       }

@@ -13,6 +13,8 @@ public class SceneScreenController : MonoBehaviour, IPointerDownHandler
     public float zoomSpeed = 5.0f;  
     public float minSize = 2.0f;   
     public float maxSize = 20.0f;
+
+    public Color sceneColor, prefabColor;
     float baseSpacing;
     void Awake()
     {
@@ -65,6 +67,7 @@ public class SceneScreenController : MonoBehaviour, IPointerDownHandler
     }
     void Update()
     {
+        sceneCamera.backgroundColor = EditorSceneManager.Instance.myScene.prefabMode ? prefabColor : sceneColor;
         bool hitSelf = false;
         foreach (var hit in EditorSceneManager.Instance.RaycastUI(Input.mousePosition))
         {

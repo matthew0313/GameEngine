@@ -5,6 +5,8 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
+
 
 
 
@@ -37,6 +39,9 @@ public class EditorSceneManager : MonoBehaviour
     [field:SerializeField] public ScreenUI screen { get; private set; }
     [field:SerializeField] public ColorMenu colorMenu { get; private set; }
 
+    [field:Header("Settings")]
+    [field:SerializeField] public AssetsSettings assetsSettings { get; private set; }
+
     public readonly List<MyAsset> assets = new();
     public readonly List<SnapPoint> snapPoints = new();
     public event Action onAssetsChange;
@@ -50,6 +55,7 @@ public class EditorSceneManager : MonoBehaviour
     public ControlMachine<bool> raycastControl { get; private set; }
     EventSystem eventSystem;
 
+    [Space(10)]
     public CopyBufferItemType copyBufferItemType = CopyBufferItemType.None;
     public string copyBuffer;
     public void Select(ISelectable selectable)
@@ -164,6 +170,27 @@ public class EditorSceneManager : MonoBehaviour
         raycaster.Raycast(pointerData, raycastResults);
         return raycastResults;
     }
+    public MyAsset CreateAsset(AssetType assetType)
+    {
+        string defaultName = assetType switch
+        {
+            AssetType.Image => "NewImage",
+            AssetType.Prefab => "NewPrefab",
+            AssetType.Scene => "NewScene",
+            _ => "NewAsset"
+        };
+        int i = 0;
+        while(FindAsset(a => a.name == $"{defaultName}{i}") != null) i++;
+        MyAsset asset = assetType switch
+        {
+            AssetType.Image => new ImageAsset(),
+            AssetType.Prefab => new PrefabAsset(),
+            AssetType.Scene => new SceneAsset(),
+            _ => null
+        };
+        asset.name = $"{defaultName}{i}";
+        return asset;
+    }
     public void AddAsset(MyAsset asset)
     {
         if (assets.Contains(asset)) return;
@@ -221,6 +248,36 @@ public class EditorSceneManager : MonoBehaviour
         logs.Clear();
         onLogsChange?.Invoke();
     }
+    public SceneAsset openSceneAsset { get; private set; } = null;
+    public event Action<SceneAsset> onOpenSceneChange;
+    public void OpenSceneAsset(SceneAsset asset)
+    {
+        if (asset == openSceneAsset || asset == null) return;
+        if (!playMode)
+        {
+            sceneScreen.MoveTo(Vector2.zero);
+            Select(null);
+            openSceneAsset = asset;
+            myScene.Load(asset.sceneSave);
+            onOpenSceneChange?.Invoke(asset);
+        }
+        else
+        {
+            Select(null);
+            myScene.Load(asset.sceneSave);
+            foreach (var i in myScene.GetObjects()) i.OnAwake();
+            foreach (var i in myScene.GetObjects()) i.OnStart();
+        }
+    }
+    public void OpenPrefabAsset(PrefabAsset asset)
+    {
+        if (playMode) return;
+        sceneScreen.MoveTo(Vector2.zero);
+        Select(null);
+        openSceneAsset = null;
+        myScene.LoadPrefab(asset);
+    }
+
     public CodeBlock IDToBlockPrefab(string id) => codeBlockList.IDToBlockPrefab(id);
     public MyGameObject IDToObjectPrefab(string id)
     {
@@ -246,7 +303,7 @@ public class EditorSceneManager : MonoBehaviour
     public CancellationToken playToken => playCts != null ? playCts.Token : CancellationToken.None;
     public void EnterPlayMode()
     {
-        if (playMode) return;
+        if (playMode || myScene.prefabMode) return;
         playCts?.Dispose();
         playCts = new CancellationTokenSource();
         sceneSave = myScene.Save();
@@ -271,13 +328,25 @@ public class EditorSceneManager : MonoBehaviour
         if (selectedUID != 0) Select(FindObjectWithUID(selectedUID));
         onPlayModeToggle?.Invoke(false);
     }
+    public void SaveScene()
+    {
+        if (playMode || myScene.prefabMode) return;
+        if(openSceneAsset == null)
+        {
+            if (myScene.GetChildren().Count() == 0) return;
+            openSceneAsset = CreateAsset(AssetType.Scene) as SceneAsset;
+            AddAsset(openSceneAsset);
+        }
+        openSceneAsset.sceneSave = myScene.Save();
+    }
     public void SaveProject()
     {
-        if (GlobalManager.Instance == null) return;
+        if (playMode || GlobalManager.Instance == null) return;
+        SaveScene();
         GlobalManager.Instance.SaveProject(Save());
         AddLog(new(MyLogType.Info, $"Project '{projectName}' saved."));
     }
-    public void ProjectToTitle()
+    public void ReturnToTitle()
     {
         if (GlobalManager.Instance != null) GlobalManager.Instance.ReturnToTitle();
     }
@@ -285,8 +354,8 @@ public class EditorSceneManager : MonoBehaviour
     {
         ProjectSave save = new();
         save.projectName = projectName;
-        save.scene = myScene.Save();
-        foreach(var asset in assets) save.assets.Add(asset.Save());
+        save.lastOpenScene = openSceneAsset != null ? openSceneAsset.uid : 0;
+        foreach (var asset in assets) save.assets.Add(asset.Save());
         return save;
     }
     public void Load(ProjectSave save)
@@ -310,7 +379,8 @@ public class EditorSceneManager : MonoBehaviour
             saves.Add(added, assetSave);
         }
         foreach(var i in saves) i.Key.Load(i.Value);
-        myScene.Load(save.scene);
+        SceneAsset sceneAsset = FindAsset(a => a is SceneAsset s && s.uid == save.lastOpenScene) as SceneAsset;
+        if (sceneAsset != null) OpenSceneAsset(sceneAsset);
     }
 }
 public enum MyLogType
@@ -334,7 +404,7 @@ public struct MyLog
 public class ProjectSave
 {
     public string projectName;
-    public MySceneSave scene = new();
+    public ulong lastOpenScene;
     public List<MyAssetSave> assets = new();
 }
 public enum CopyBufferItemType

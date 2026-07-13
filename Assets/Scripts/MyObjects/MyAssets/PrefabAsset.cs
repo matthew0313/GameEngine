@@ -7,6 +7,7 @@ public class PrefabAsset : MyAsset, ICodeable
 {
     public MyGameObject prefabOrigin { get; private set; }
     public override AssetType type => AssetType.Prefab;
+    public override Sprite assetImage => EditorSceneManager.Instance.assetsSettings.prefabAssetIcon;
     public float lastZoom { get => prefabOrigin.lastZoom; set => prefabOrigin.lastZoom = value; }
     public Vector2 lastOffset { get => prefabOrigin.lastOffset; set => prefabOrigin.lastOffset = value; }
     public List<CodeBlock> codeBlocks => prefabOrigin.codeBlocks;
@@ -49,6 +50,13 @@ public class PrefabAsset : MyAsset, ICodeable
         obj.gameObject.SetActive(true);
         EditorSceneManager.Instance.myScene.AddChild(obj);
         return obj;
+    }
+    public override IEnumerable<ExposedElement> GetElements()
+    {
+        foreach (var i in base.GetElements()) yield return i;
+        yield return new ExposedButton(
+            "Open Prefab",
+            () => EditorSceneManager.Instance.OpenPrefabAsset(this));
     }
     public override void OnRemove()
     {

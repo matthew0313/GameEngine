@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class ImageAsset : FileAsset
 {
     public override AssetType type => AssetType.Image;
+    public override Sprite assetImage => sprite;
     public Sprite sprite { get; private set; }
     public event Action<Sprite> onSpriteChange;
 

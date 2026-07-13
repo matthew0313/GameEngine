@@ -33,10 +33,7 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     }
     private void OnDisplayUpdate()
     {
-        if (asset is ImageAsset imageAsset)
-        {
-            icon.sprite = imageAsset.sprite;
-        }
+        icon.sprite = asset.assetImage;
         if(asset.name.Length > characterLimit) text.text = asset.name.Substring(0, characterLimit) + "..";
         else text.text = asset.name;
     }
@@ -51,9 +48,8 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!selectQueued || eventData.button != PointerEventData.InputButton.Left) return;
         if (eventData.used) return;
-        EditorSceneManager.Instance.Select(asset);
+        if (selectQueued && eventData.button == PointerEventData.InputButton.Left) EditorSceneManager.Instance.Select(asset);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
