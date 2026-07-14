@@ -10,18 +10,18 @@ public class Codeblock_LoadScene : ExecutableCodeBlock
     public override CodeBlockCategory category => CodeBlockCategory.Other;
 
     [SerializeField] RectTransform rectTransform;
-    [SerializeField] StringSnapPoint sceneName;
+    [SerializeField] AssetSnapPoint sceneAsset;
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
-        string tmp = sceneName.GetValue(hash);
+        MyAsset asset = sceneAsset.GetAsset(hash);
         if (!EditorSceneManager.Instance.playMode)
         {
             EditorSceneManager.Instance.AddLog(new(MyLogType.Warning, "Load Scene only works in play mode."));
             return new();
         }
-        if (EditorSceneManager.Instance.FindAsset(item => item is SceneAsset && item.name == tmp) is not SceneAsset scene)
+        if (asset is not SceneAsset scene)
         {
-            EditorSceneManager.Instance.AddLog(new(MyLogType.Error, $"Load Scene: no scene asset named '{tmp}'."));
+            EditorSceneManager.Instance.AddLog(new(MyLogType.Error, $"Asset is not scene asset."));
             return new();
         }
         EditorSceneManager.Instance.OpenSceneAsset(scene);
@@ -30,6 +30,6 @@ public class Codeblock_LoadScene : ExecutableCodeBlock
     public override float GetHeight() => rectTransform.rect.height;
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
-        yield return sceneName;
+        yield return sceneAsset;
     }
 }

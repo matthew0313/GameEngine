@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_GetAngularVelocity
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetAngularVelocity
-  <blockColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
   rectTransform: {fileID: 4407204174606095689}
 --- !u!1 &6152349114521858145
 GameObject:

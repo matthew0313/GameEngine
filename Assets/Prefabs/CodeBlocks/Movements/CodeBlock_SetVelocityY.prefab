@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_SetVelocityY
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetVelocityY
-  <blockColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
   rectTransform: {fileID: 2208512307749050528}
   <onFinish>k__BackingField: {fileID: 333311317756137674}
   input: {fileID: 1565043076434682948}

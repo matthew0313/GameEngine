@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 {
@@ -11,7 +12,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 
     [HideInInspector] public SnapPoint snappedPoint;
     [field:SerializeField] public string blockID { get; private set; }
-    [field:SerializeField] public Color blockColor { get; private set; }
+    [field: SerializeField] public Color displayColor { get; private set; }
     public abstract CodeBlockCategory category { get; }
 
     public virtual void Set(ICodeable owner)

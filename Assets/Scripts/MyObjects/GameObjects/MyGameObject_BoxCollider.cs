@@ -8,10 +8,9 @@ public class MyGameObject_BoxCollider : MyGameObject
     [SerializeField] Transform boundingBox;
     public new BoxCollider2D collider { get; private set; }
     public override string id => "BoxCollider";
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        collider = GetComponent<BoxCollider2D>();
+        collider ??= GetComponent<BoxCollider2D>();
     }
     private void Update()
     {

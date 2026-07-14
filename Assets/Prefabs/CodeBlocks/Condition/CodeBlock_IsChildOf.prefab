@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_IsChildOf
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: IsChildOf
-  <blockColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
   rectTransform: {fileID: 3952018371628048385}
   child: {fileID: 2662907213879967869}
   parent: {fileID: 4950924862632821908}

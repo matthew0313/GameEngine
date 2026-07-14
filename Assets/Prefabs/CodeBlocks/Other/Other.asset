@@ -40,3 +40,9 @@ MonoBehaviour:
   - type: 0
     item: {fileID: 6384563973867109735, guid: 1329684115b3cab48a98283bb9d92cd2, type: 3}
     list: {fileID: 0}
+  - type: 0
+    item: {fileID: 454181676387994799, guid: 0a5a2359524ef8745a25703ce8856f8b, type: 3}
+    list: {fileID: 0}
+  - type: 0
+    item: {fileID: 5555837180313294528, guid: 0a88b28af1c75054c9cffecdd6e25f75, type: 3}
+    list: {fileID: 0}

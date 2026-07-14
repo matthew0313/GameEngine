@@ -6,10 +6,9 @@ using UnityEngine;
 public abstract class MyGameObject_UI : MyGameObject
 {
     public RectTransform rectTransform { get; private set; }
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform ??= GetComponent<RectTransform>();
     }
     // Change the anchors while keeping the rect visually in place (Unity stores
     // anchoredPosition/sizeDelta, not the edges, so a raw anchor assignment would

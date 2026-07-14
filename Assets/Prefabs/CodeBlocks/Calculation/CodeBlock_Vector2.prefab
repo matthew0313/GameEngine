@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Vector2
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Vector2
-  <blockColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
   rectTransform: {fileID: 3952018371628048385}
   inputX: {fileID: 5854676734369935673}
   inputY: {fileID: 2363480556023742214}

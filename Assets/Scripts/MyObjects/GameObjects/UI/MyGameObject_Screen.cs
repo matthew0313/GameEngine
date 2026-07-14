@@ -9,10 +9,9 @@ public class MyGameObject_Screen : MyGameObject_UI
     public override string id => "Screen";
     public RawImage rawImage { get; private set; }
     MyGameObject_Camera boundCamera;
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        rawImage = GetComponent<RawImage>();
+        rawImage ??= GetComponent<RawImage>();
     }
     void SetCamera(MyGameObject_Camera cam)
     {

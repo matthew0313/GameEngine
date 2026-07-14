@@ -177,17 +177,12 @@ public class EditorSceneManager : MonoBehaviour
             AssetType.Image => "NewImage",
             AssetType.Prefab => "NewPrefab",
             AssetType.Scene => "NewScene",
+            AssetType.Audio => "NewAudio",
             _ => "NewAsset"
         };
         int i = 0;
         while(FindAsset(a => a.name == $"{defaultName}{i}") != null) i++;
-        MyAsset asset = assetType switch
-        {
-            AssetType.Image => new ImageAsset(),
-            AssetType.Prefab => new PrefabAsset(),
-            AssetType.Scene => new SceneAsset(),
-            _ => null
-        };
+        MyAsset asset = MyAsset.TypeToAsset(assetType);
         asset.name = $"{defaultName}{i}";
         return asset;
     }
@@ -308,14 +303,9 @@ public class EditorSceneManager : MonoBehaviour
         playCts = new CancellationTokenSource();
         sceneSave = myScene.Save();
         playMode = true;
-        foreach (var i in myScene.GetObjects())
-        {
-            i.OnAwake();
-        }
-        foreach (var i in myScene.GetObjects())
-        {
-            i.OnStart();
-        }
+        var tmp = myScene.GetObjects().ToList();
+        foreach (var i in tmp) i.OnAwake();
+        foreach (var i in tmp) i.OnStart();
         onPlayModeToggle?.Invoke(true);
     }
     public void ExitPlayMode()

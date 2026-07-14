@@ -454,11 +454,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_While
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: While
-  <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   rectTransform: {fileID: 4497544704830440801}
   condition: {fileID: 4801570259969126938}
   onLoop: {fileID: 1044255642255435475}
-  <onFinish>k__BackingField: {fileID: 0}
+  <onFinish>k__BackingField: {fileID: 5177895141276169817}
 --- !u!1 &6250430261369122449
 GameObject:
   m_ObjectHideFlags: 0

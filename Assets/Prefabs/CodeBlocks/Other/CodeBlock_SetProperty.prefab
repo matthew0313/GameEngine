@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_SetProperty
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetProperty
-  <blockColor>k__BackingField: {r: 1, g: 0.47058824, b: 0.74509805, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.47058824, b: 0.74509805, a: 1}
   rectTransform: {fileID: 4884221520590488080}
   propertyDropdown: {fileID: 7513374178556771100}
   value: {fileID: 396162088894673844}

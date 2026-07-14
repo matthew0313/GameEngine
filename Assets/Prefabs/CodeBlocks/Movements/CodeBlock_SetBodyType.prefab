@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_SetBodyType
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetBodyType
-  <blockColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
   rectTransform: {fileID: 8846573381932862622}
   <onFinish>k__BackingField: {fileID: 365763418921200297}
   bodyType: {fileID: 4242596533178701988}

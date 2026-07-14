@@ -3,7 +3,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class PrefabAsset : MyAsset, ICodeable
+public class PrefabAsset : MyAsset, ICodeable, IOpenableAsset
 {
     public MyGameObject prefabOrigin { get; private set; }
     public override AssetType type => AssetType.Prefab;
@@ -45,22 +45,32 @@ public class PrefabAsset : MyAsset, ICodeable
     {
         MyGameObjectSave save = prefabOrigin.Save();
         MyGameObject obj = MonoBehaviour.Instantiate(prefabOrigin);
+        obj.gameObject.SetActive(true);
         obj.EarlyLoad(save, true);
         obj.Load(save);
-        obj.gameObject.SetActive(true);
         EditorSceneManager.Instance.myScene.AddChild(obj);
+        if (EditorSceneManager.Instance.playMode)
+        {
+            obj.OnAwake();
+            obj.OnStart();
+        }
         return obj;
     }
+    public void Open() => EditorSceneManager.Instance.OpenPrefabAsset(this);
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
         yield return new ExposedButton(
             "Open Prefab",
-            () => EditorSceneManager.Instance.OpenPrefabAsset(this));
+            Open);
     }
     public override void OnRemove()
     {
         base.OnRemove();
+        if(EditorSceneManager.Instance.myScene.prefabMode && EditorSceneManager.Instance.myScene.prefab == this)
+        {
+            EditorSceneManager.Instance.myScene.ExitPrefabMode();
+        }
         prefabOrigin.Delete();
     }
 }

@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_FindAsset
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: FindAsset
-  <blockColor>k__BackingField: {r: 0.7058824, g: 0, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 0.7058824, g: 0, b: 0, a: 1}
   rectTransform: {fileID: 3952018371628048385}
   assetName: {fileID: 6212649123618511575}
 --- !u!1001 &7608672358225084935

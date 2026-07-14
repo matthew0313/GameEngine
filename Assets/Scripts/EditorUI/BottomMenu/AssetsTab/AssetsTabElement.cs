@@ -41,19 +41,29 @@ public class AssetsTabElement : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         selected.SetActive(asset != null && asset == obj);
     }
-    bool selectQueued = false;
+    bool pointerDown = false;
+    float lastClick = -1.0f;
     public void OnPointerDown(PointerEventData eventData)
     {
-        selectQueued = true;
+        pointerDown = true;
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         if (eventData.used) return;
-        if (selectQueued && eventData.button == PointerEventData.InputButton.Left) EditorSceneManager.Instance.Select(asset);
+        if (pointerDown && eventData.button == PointerEventData.InputButton.Left)
+        {
+            EditorSceneManager.Instance.Select(asset);
+            if(Time.time - lastClick <= 0.5f)
+            {
+                lastClick = -1.0f;
+                if (asset is IOpenableAsset openable) openable.Open();
+            }
+            else lastClick = Time.time;
+        }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        selectQueued = false;
+        pointerDown = false;
     }
 
     static AssetDragIcon dragIcon;

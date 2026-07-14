@@ -687,7 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Clamp
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Clamp
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
   rectTransform: {fileID: 8143879633851275153}
   input: {fileID: 1590921458976497765}
   min: {fileID: 683238365547040663}

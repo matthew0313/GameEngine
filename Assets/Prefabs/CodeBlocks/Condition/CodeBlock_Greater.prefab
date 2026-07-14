@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Greater
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Greater
-  <blockColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
   rectTransform: {fileID: 2923672470825538896}
   inputA: {fileID: 4803494449629580695}
   inputB: {fileID: 5817076595012316399}

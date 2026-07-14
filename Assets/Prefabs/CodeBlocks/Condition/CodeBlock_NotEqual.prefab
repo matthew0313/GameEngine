@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_NotEqual
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: NotEqual
-  <blockColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
   rectTransform: {fileID: 5872585533981526178}
   inputA: {fileID: 2739831285584163906}
   inputB: {fileID: 8756467329357227366}

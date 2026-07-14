@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_If
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: If
-  <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   rectTransform: {fileID: 9009849328756168441}
   condition: {fileID: 4801570259969126938}
   onTrue: {fileID: 1044255642255435475}

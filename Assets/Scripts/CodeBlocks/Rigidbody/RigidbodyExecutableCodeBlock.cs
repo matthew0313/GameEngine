@@ -18,7 +18,8 @@ public abstract class RigidbodyExecutableCodeBlock : ExecutableCodeBlock, IOnFin
 
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
-        if (owner is MyGameObject_Rigidbody rb) Apply(rb, hash);
+        MyGameObject_Rigidbody rb = owner is PrefabAsset prefab ? prefab.prefabOrigin as MyGameObject_Rigidbody : owner as MyGameObject_Rigidbody;
+        if (rb != null) Apply(rb, hash);
         else
         {
             EditorSceneManager.Instance.AddLog(new MyLog(MyLogType.Error, "Rigidbody block executed in non-rigidbody object."));

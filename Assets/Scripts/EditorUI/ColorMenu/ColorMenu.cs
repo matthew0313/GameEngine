@@ -91,9 +91,10 @@ public class ColorMenu : MonoBehaviour, IDragHandler
         if (color != this.color) SetColor(color);
 
         // click-outside closes (skip the frame we opened on to avoid self-close)
+        var tmp = UIScanner.ScanUI(Input.mousePosition);
         if (!openedFrame
-            && Input.GetMouseButtonDown(0)
-            && !UIScanner.ScanUI(Input.mousePosition)[0].gameObject.transform.IsChildOf(transform))
+            && Input.GetMouseButtonDown(0) &&
+            (tmp.Count > 0 && !tmp[0].gameObject.transform.IsChildOf(transform)))
         {
             Close();
         }

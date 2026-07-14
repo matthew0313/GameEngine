@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_MoveTo
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MoveTo
-  <blockColor>k__BackingField: {r: 0, g: 0.58431375, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.58431375, b: 1, a: 1}
   rectTransform: {fileID: 4884221520590488080}
   targetX: {fileID: 6115605677743381035}
   targetY: {fileID: 2695978598117456834}

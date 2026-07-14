@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_RotationOf
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: RotationOf
-  <blockColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
   rectTransform: {fileID: 2132855211158686991}
   targetObject: {fileID: 4257158606887475238}
 --- !u!1 &6432467214491834447

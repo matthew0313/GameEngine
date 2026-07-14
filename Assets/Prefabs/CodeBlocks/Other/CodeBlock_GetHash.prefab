@@ -270,5 +270,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_GetHash
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetHash
-  <blockColor>k__BackingField: {r: 0.39215687, g: 0.6862745, b: 0.5882353, a: 1}
+  <displayColor>k__BackingField: {r: 0.39215687, g: 0.6862745, b: 0.5882353, a: 1}
   rectTransform: {fileID: 3952018371628048385}

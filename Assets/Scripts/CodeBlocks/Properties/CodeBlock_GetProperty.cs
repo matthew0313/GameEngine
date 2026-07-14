@@ -66,6 +66,7 @@ public class Codeblock_GetProperty : PropertyCodeBlock
     public override Vector2 GetVector2(ulong hash) => cache[propertyDropdown.value].Invoke(hash).vector2;
     public override Color GetColor(ulong hash) => cache[propertyDropdown.value].Invoke(hash).color;
     public override ulong GetHash(ulong hash) => cache[propertyDropdown.value].Invoke(hash).hash;
+    public override List<Wildcard> GetArray(ulong hash) => cache[propertyDropdown.value].Invoke(hash).array;
     public override CodeBlockSave Save()
     {
         var save = base.Save();

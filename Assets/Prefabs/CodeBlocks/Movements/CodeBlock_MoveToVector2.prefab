@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_MoveToVector2
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MoveToVector2
-  <blockColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
   rectTransform: {fileID: 5487596184743576841}
   target: {fileID: 7556914313199278548}
   <onFinish>k__BackingField: {fileID: 7306934768238348171}

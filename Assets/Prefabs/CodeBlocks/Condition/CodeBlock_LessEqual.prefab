@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_LessEqual
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: LessEqual
-  <blockColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
   rectTransform: {fileID: 2505959359523779336}
   inputA: {fileID: 6004632274830790209}
   inputB: {fileID: 4385160472493956059}

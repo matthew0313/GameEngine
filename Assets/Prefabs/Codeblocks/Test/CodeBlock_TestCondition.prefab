@@ -191,7 +191,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   owner: {fileID: 0}
   <blockID>k__BackingField: TestCondition
-  <blockColor>k__BackingField: {r: 1, g: 0.3647059, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.3647059, b: 0, a: 1}
   rectTransform: {fileID: 2685452845337266296}
   condition: 1
 --- !u!222 &2017159621365160179

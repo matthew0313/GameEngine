@@ -9,10 +9,10 @@ public class CodeBlock_Rotate : ExecutableCodeBlock, IOnFinish
     [SerializeField] RectTransform rectTransform;
     [SerializeField] NumericSnapPoint angle;
     [field:SerializeField] public ExecutableSnapPoint onFinish { get; private set; }
-    public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject;
+    public override bool IsAddable(ICodeable codeable) => codeable is MyGameObject || codeable is PrefabAsset;
     public override async UniTask<ExecutionFinishedInfo> Execute(ulong hash, CancellationToken token)
     {
-        MyGameObject owner = this.owner as MyGameObject;
+        MyGameObject owner = this.owner is PrefabAsset prefab ? prefab.prefabOrigin : this.owner as MyGameObject;
         if(owner == null)
         {
             EditorSceneManager.Instance.AddLog(new MyLog(MyLogType.Error, "Rotation block executed in non-object."));

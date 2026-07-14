@@ -439,7 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_FunctionParam
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: FunctionParam
-  <blockColor>k__BackingField: {r: 0.7058824, g: 0, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0.7058824, g: 0, b: 1, a: 1}
   rectTransform: {fileID: 1994578705379456419}
   parameterNameText: {fileID: 5754346556394998736}
   parameterRenameField: {fileID: 54778489339363585}

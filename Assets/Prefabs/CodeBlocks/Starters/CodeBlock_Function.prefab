@@ -595,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Function
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Function
-  <blockColor>k__BackingField: {r: 0.47058824, g: 0, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0.47058824, g: 0, b: 1, a: 1}
   parameterElementAnchor: {fileID: 6048525567292731806}
   parameterElementPrefab: {fileID: 6142810603603133027}
   functionNameField: {fileID: 2320974128872148022}

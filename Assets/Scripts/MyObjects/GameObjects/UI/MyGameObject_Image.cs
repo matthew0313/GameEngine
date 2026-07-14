@@ -11,11 +11,10 @@ public class MyGameObject_Image : MyGameObject_UI
 
     public ImageAsset image { get; private set; }
     Sprite defaultSprite;
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        imageComp = GetComponent<Image>();
-        defaultSprite = imageComp.sprite;
+        imageComp ??= GetComponent<Image>();
+        defaultSprite ??= imageComp.sprite;
     }
     public override IEnumerable<ExposedElement> GetElements()
     {

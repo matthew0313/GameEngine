@@ -18,7 +18,7 @@ public class Codeblock_GetVariable : PropertyCodeBlock
         base.Set(owner);
         targetObject.SetObject(owner as MyGameObject);
     }
-    public override float GetNumber(ulong hash)
+    Wildcard GetVariable(ulong hash)
     {
         MyGameObject target = targetObject.GetObject(hash);
         if (target == null)
@@ -34,158 +34,20 @@ public class Codeblock_GetVariable : PropertyCodeBlock
             string name = variableName.GetValue(hash);
             if (target.variables.ContainsKey(name))
             {
-                return target.variables[name].number;
+                return target.variables[name];
             }
         }
-        return base.GetNumber(hash);
+        return new();
     }
-    public override bool GetCondition(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].condition;
-            }
-        }
-        return base.GetCondition(hash);
-    }
-    public override string GetString(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].str;
-            }
-        }
-        return base.GetString(hash);
-    }
-    public override MyGameObject GetObject(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].obj;
-            }
-        }
-        return base.GetObject(hash);
-    }
-    public override MyAsset GetAsset(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].asset;
-            }
-        }
-        return base.GetAsset(hash);
-    }
-    public override Vector2 GetVector2(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].vector2;
-            }
-        }
-        return base.GetVector2(hash);
-    }
-    public override Color GetColor(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].color;
-            }
-        }
-        return base.GetColor(hash);
-    }
-    public override ulong GetHash(ulong hash)
-    {
-        MyGameObject target = targetObject.GetObject(hash);
-        if (target == null)
-        {
-            EditorSceneManager.Instance.AddLog(new()
-            {
-                type = MyLogType.Error,
-                message = $"No target for GetVariable"
-            });
-        }
-        else
-        {
-            string name = variableName.GetValue(hash);
-            if (target.variables.ContainsKey(name))
-            {
-                return target.variables[name].hash;
-            }
-        }
-        return base.GetHash(hash);
-    }
+    public override float GetNumber(ulong hash) => GetVariable(hash).number;
+    public override bool GetCondition(ulong hash) => GetVariable(hash).condition;
+    public override string GetString(ulong hash) => GetVariable(hash).str;
+    public override MyGameObject GetObject(ulong hash) => GetVariable(hash).obj;
+    public override MyAsset GetAsset(ulong hash) => GetVariable(hash).asset;
+    public override Vector2 GetVector2(ulong hash) => GetVariable(hash).vector2;
+    public override Color GetColor(ulong hash) => GetVariable(hash).color;
+    public override ulong GetHash(ulong hash) => GetVariable(hash).hash;
+    public override List<Wildcard> GetArray(ulong hash) => GetVariable(hash).array;
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
         yield return targetObject;

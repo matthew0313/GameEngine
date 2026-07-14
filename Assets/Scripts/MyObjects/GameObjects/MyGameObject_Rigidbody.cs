@@ -19,10 +19,9 @@ public class MyGameObject_Rigidbody : MyGameObject
     private void OnTriggerEnter2D(Collider2D collision) => onTriggerEnter?.Invoke(collision);
     private void OnTriggerStay2D(Collider2D collision) => onTriggerStay?.Invoke(collision);
     private void OnTriggerExit2D(Collider2D collision) => onTriggerExit?.Invoke(collision);
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        rb = GetComponent<Rigidbody2D>();
+        rb ??= GetComponent<Rigidbody2D>();
     }
     public override void OnStart()
     {

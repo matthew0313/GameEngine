@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_SetVariable
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetVariable
-  <blockColor>k__BackingField: {r: 1, g: 0.3529412, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.3529412, b: 0, a: 1}
   rectTransform: {fileID: 4884221520590488080}
   targetObject: {fileID: 4198629982298676625}
   variableName: {fileID: 5508564981142679250}

@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneAsset : MyAsset
+public class SceneAsset : MyAsset, IOpenableAsset
 {
     public override AssetType type => AssetType.Scene;
     public override Sprite assetImage => EditorSceneManager.Instance.assetsSettings.sceneAssetIcon;
 
     public MySceneSave sceneSave = new();
 
+    public void Open() => EditorSceneManager.Instance.OpenSceneAsset(this);
     public override IEnumerable<ExposedElement> GetElements()
     {
         foreach (var i in base.GetElements()) yield return i;
         yield return new ExposedButton(
             "Open Scene",
-            () => EditorSceneManager.Instance.OpenSceneAsset(this));
+            Open);
     }
     public override MyAssetSave Save()
     {
@@ -29,13 +30,5 @@ public class SceneAsset : MyAsset
         base.EarlyLoad(save, resetUID);
         if (save.data.strings.TryGetValue("scene", out string sceneJson))
             sceneSave = SaveSerializer.Deserialize<MySceneSave>(sceneJson) ?? new();
-    }
-    public override void OnRemove()
-    {
-        base.OnRemove();
-        if(EditorSceneManager.Instance.openSceneAsset == this)
-        {
-
-        }
     }
 }

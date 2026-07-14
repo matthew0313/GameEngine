@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_WaitFrame
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: WaitFrame
-  <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   rectTransform: {fileID: 4884221520590488080}
   <onFinish>k__BackingField: {fileID: 5565614791616963547}
 --- !u!1 &4465941481491373922

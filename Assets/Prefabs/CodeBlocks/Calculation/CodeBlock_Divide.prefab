@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Divide
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Divide
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
   rectTransform: {fileID: 3952018371628048385}
   inputA: {fileID: 5854676734369935673}
   inputB: {fileID: 2363480556023742214}

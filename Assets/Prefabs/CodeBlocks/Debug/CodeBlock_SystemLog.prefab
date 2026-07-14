@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_SystemLog
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SystemLog
-  <blockColor>k__BackingField: {r: 0.5882353, g: 0.47058824, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0.5882353, g: 0.47058824, b: 1, a: 1}
   rectTransform: {fileID: 4884221520590488080}
   logType: {fileID: 7513374178556771100}
   message: {fileID: 1549996764327460538}

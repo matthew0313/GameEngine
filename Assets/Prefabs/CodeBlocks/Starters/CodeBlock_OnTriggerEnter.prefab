@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_OnTriggerEnter
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: OnTriggerEnter
-  <blockColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
   onTrigger: {fileID: 5565614791616963547}
   collidedObject: {fileID: 5500000000000000003}
 --- !u!1 &3873292541757180515

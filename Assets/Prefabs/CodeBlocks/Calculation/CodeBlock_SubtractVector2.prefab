@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_SubtractVector2
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SubtractVector2
-  <blockColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
   rectTransform: {fileID: 11911765445477332}
   inputA: {fileID: 854503682654139431}
   inputB: {fileID: 1376723298887211719}

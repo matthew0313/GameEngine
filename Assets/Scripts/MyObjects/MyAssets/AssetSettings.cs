@@ -6,4 +6,5 @@ public class AssetsSettings : ScriptableObject
 {
     [field: SerializeField] public Sprite prefabAssetIcon { get; private set; }
     [field: SerializeField] public Sprite sceneAssetIcon { get; private set; }
+    [field: SerializeField] public Sprite audioAssetIcon { get; private set; }
 }

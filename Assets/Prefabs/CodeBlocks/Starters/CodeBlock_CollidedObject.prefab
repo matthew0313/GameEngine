@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_CollidedObject
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: CollidedObject
-  <blockColor>k__BackingField: {r: 1, g: 0.43137255, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.43137255, b: 0, a: 1}
   rectTransform: {fileID: 3952018371628048385}
 --- !u!1 &5995240225872662190
 GameObject:

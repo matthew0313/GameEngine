@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_CastToNumber
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: CastToNumber
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
   rectTransform: {fileID: 3862591994090394307}
   input: {fileID: 5030654227039336519}
 --- !u!1 &1611465036211998899

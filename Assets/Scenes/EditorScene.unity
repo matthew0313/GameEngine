@@ -26468,7 +26468,7 @@ MonoBehaviour:
   minSize: 2
   maxSize: 20
   sceneColor: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
-  prefabColor: {r: 0, g: 0.23529412, b: 0.7058824, a: 1}
+  prefabColor: {r: 0.13725491, g: 0.23529412, b: 0.33333334, a: 1}
 --- !u!1 &2102628652
 GameObject:
   m_ObjectHideFlags: 0

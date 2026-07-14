@@ -25,7 +25,7 @@ public class BlockAddMenuElement : MonoBehaviour
     {
         target = codeBlock;
         text.text = codeBlock.blockID;
-        text.color = codeBlock.blockColor;
+        text.color = codeBlock.displayColor;
     }
     void OnClick() => menu.AddBlock(target);
 }

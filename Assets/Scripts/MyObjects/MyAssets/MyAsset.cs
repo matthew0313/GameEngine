@@ -42,6 +42,7 @@ public abstract class MyAsset : ISelectable, IInspectable
             AssetType.Image => new ImageAsset(),
             AssetType.Prefab => new PrefabAsset(),
             AssetType.Scene => new SceneAsset(),
+            AssetType.Audio => new AudioAsset(),
             _ => null
         };
     }
@@ -66,5 +67,6 @@ public enum AssetType
 {
     Image = 1 << 0,
     Prefab = 1 << 1,
-    Scene = 1 << 2
+    Scene = 1 << 2,
+    Audio = 1 << 3
 }

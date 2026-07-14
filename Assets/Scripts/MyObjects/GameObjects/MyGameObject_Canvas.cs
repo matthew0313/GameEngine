@@ -8,11 +8,10 @@ public class MyGameObject_Canvas : MyGameObject
     public Canvas canvas { get; private set; }
     RectTransform rectTransform;
     public override string id => "Canvas";
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        canvas = GetComponent<Canvas>();
-        rectTransform = canvas.GetComponent<RectTransform>();
+        canvas ??= GetComponent<Canvas>();
+        rectTransform ??= canvas.GetComponent<RectTransform>();
     }
     private void Update()
     {

@@ -10,11 +10,10 @@ public class MyGameObject_Sprite : MyGameObject
 
     public ImageAsset image { get; private set; }
     Sprite defaultSprite;
-    protected override void Awake()
+    private void OnEnable()
     {
-        base.Awake();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultSprite = spriteRenderer.sprite;
+        spriteRenderer ??= GetComponent<SpriteRenderer>();
+        defaultSprite ??= spriteRenderer.sprite;
     }
     private void Update()
     {

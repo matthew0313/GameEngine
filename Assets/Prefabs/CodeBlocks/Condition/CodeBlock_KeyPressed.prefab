@@ -833,7 +833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_KeyPressed
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: KeyPressed
-  <blockColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
   rectTransform: {fileID: 2685452845337266296}
   key: {fileID: 2776410097653148019}
 --- !u!114 &3010027854089970211

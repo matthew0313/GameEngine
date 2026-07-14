@@ -550,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_Lerp
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Lerp
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
   rectTransform: {fileID: 2692781702005018281}
   inputA: {fileID: 6786491936564142612}
   inputB: {fileID: 4515603048726305244}

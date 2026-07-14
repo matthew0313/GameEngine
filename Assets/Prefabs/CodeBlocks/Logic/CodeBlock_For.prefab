@@ -552,7 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_For
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: For
-  <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   rectTransform: {fileID: 9009849328756168441}
   loopCount: {fileID: 7286836597423317308}
   onLoop: {fileID: 1044255642255435475}

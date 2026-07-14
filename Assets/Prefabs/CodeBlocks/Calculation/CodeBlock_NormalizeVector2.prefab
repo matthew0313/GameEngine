@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_NormalizeVector2
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: NormalizeVector2
-  <blockColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
   rectTransform: {fileID: 304231908112157645}
   input: {fileID: 4151754606145504281}
 --- !u!1001 &7799149220121297727

@@ -31,16 +31,19 @@ public class MyScene : MonoBehaviour, IParent
         prefabOrigin.gameObject.SetActive(true);
         onHierarchyChange?.Invoke();
     }
+    public void ExitPrefabMode()
+    {
+        if (!prefabMode) return;
+        prefabOrigin.gameObject.SetActive(false);
+        prefabOrigin.onChildrenChange -= OnChildrenChange;
+        prefabMode = false;
+        prefab = null;
+        onHierarchyChange?.Invoke();
+    }
     public void Load(MySceneSave save)
     {
         Clear();
-        if (prefabMode)
-        {
-            prefabOrigin.gameObject.SetActive(false);
-            prefabOrigin.onChildrenChange -= OnChildrenChange;
-            prefabMode = false;
-            prefab = null;
-        }
+        if (prefabMode) ExitPrefabMode();
         Dictionary<MyGameObject, MyGameObjectSave> saves = new();
         foreach (var i in save.topGameObjects)
         {
@@ -54,6 +57,7 @@ public class MyScene : MonoBehaviour, IParent
     }
     public void AddChild(MyGameObject child)
     {
+        Debug.Log(child.name);
         if (prefabMode)
         {
             prefabOrigin.AddChild(child); return;

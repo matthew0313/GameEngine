@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CodeBlock_ColorB
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: ColorB
-  <blockColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
   rectTransform: {fileID: 8724983728552853850}
   input: {fileID: 5850137178130147020}
 --- !u!1001 &4542338848787739507

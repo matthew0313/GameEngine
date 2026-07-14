@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Codeblock_Break
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Break
-  <blockColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
   rectTransform: {fileID: 4884221520590488080}
 --- !u!1 &4465941481491373922
 GameObject:
