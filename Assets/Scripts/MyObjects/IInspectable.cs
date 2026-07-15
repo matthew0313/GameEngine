@@ -49,6 +49,22 @@ public class ExposedNumber : ExposedProperty
         this.setter = setter;
     }
 }
+public class ExposedSlider : ExposedProperty
+{
+    public readonly Func<float> getter;
+    public readonly Action<float> setter;
+    public readonly float min;
+    public readonly float max;
+    public readonly bool snapToInt;
+    public ExposedSlider(string name, Func<float> getter, Action<float> setter, float min, float max, bool snapToInt = false) : base(name)
+    {
+        this.getter = getter;
+        this.setter = setter;
+        this.min = min;
+        this.max = max;
+        this.snapToInt = snapToInt;
+    }
+}
 public class ExposedDropdown : ExposedProperty
 {
     public readonly Func<int> getter;
