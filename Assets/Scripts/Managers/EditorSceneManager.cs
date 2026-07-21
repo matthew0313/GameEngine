@@ -299,7 +299,6 @@ public class EditorSceneManager : MonoBehaviour
         }
         return null;
     }
-    public MyAsset FindAssetWithUID(ulong uid) => FindAsset(item => item.uid == uid);
 
     public event Action<bool> onPlayModeToggle;
     MySceneSave sceneSave;

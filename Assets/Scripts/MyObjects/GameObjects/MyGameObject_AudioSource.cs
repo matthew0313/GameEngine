@@ -108,4 +108,38 @@ public class MyGameObject_AudioSource : MyGameObject
             "Play Audio",
             () => Play());
     }
+    public override MyGameObjectSave Save(bool prettyPrint = true)
+    {
+        var save = base.Save(prettyPrint);
+        save.data.ulongs["audio"] = audio != null ? audio.uid : 0;
+        save.data.bools["mute"] = audioSource.mute;
+        save.data.bools["playOnAwake"] = playOnAwake;
+        save.data.bools["loop"] = audioSource.loop;
+        save.data.floats["volume"] = audioSource.volume;
+        save.data.floats["pitch"] = audioSource.pitch;
+        save.data.floats["panStereo"] = audioSource.panStereo;
+        save.data.floats["spatialBlend"] = audioSource.spatialBlend;
+        save.data.floats["dopplerLevel"] = audioSource.dopplerLevel;
+        save.data.floats["spread"] = audioSource.spread;
+        save.data.floats["minDistance"] = audioSource.minDistance;
+        save.data.floats["maxDistance"] = audioSource.maxDistance;
+        return save;
+    }
+    public override void Load(MyGameObjectSave save)
+    {
+        base.Load(save);
+        if (save.data.ulongs.TryGetValue("audio", out ulong audioId))
+            SetAudio(EditorSceneManager.Instance.GetAsset<AudioAsset>(audioId));
+        if (save.data.bools.TryGetValue("mute", out bool mute)) audioSource.mute = mute;
+        if (save.data.bools.TryGetValue("playOnAwake", out bool playOnAwakeValue)) playOnAwake = playOnAwakeValue;
+        if (save.data.bools.TryGetValue("loop", out bool loop)) audioSource.loop = loop;
+        if (save.data.floats.TryGetValue("volume", out float volume)) audioSource.volume = volume;
+        if (save.data.floats.TryGetValue("pitch", out float pitch)) audioSource.pitch = pitch;
+        if (save.data.floats.TryGetValue("panStereo", out float panStereo)) audioSource.panStereo = panStereo;
+        if (save.data.floats.TryGetValue("spatialBlend", out float spatialBlend)) audioSource.spatialBlend = spatialBlend;
+        if (save.data.floats.TryGetValue("dopplerLevel", out float dopplerLevel)) audioSource.dopplerLevel = dopplerLevel;
+        if (save.data.floats.TryGetValue("spread", out float spread)) audioSource.spread = spread;
+        if (save.data.floats.TryGetValue("minDistance", out float minDistance)) audioSource.minDistance = minDistance;
+        if (save.data.floats.TryGetValue("maxDistance", out float maxDistance)) audioSource.maxDistance = maxDistance;
+    }
 }
