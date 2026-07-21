@@ -286,6 +286,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: OnFixedUpdate
   <displayColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Starter block. Runs the blocks snapped into onFixedUpdate
+    at the fixed physics timestep rather than per frame. Use this for Rigidbody work
+    and OnUpdate for per-frame logic.
   onFixedUpdate: {fileID: 5565614791616963547}
 --- !u!1 &3873292541757180515
 GameObject:
@@ -472,5 +475,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 970022839007441985}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 3873292541757180515}
+  <snapPointName>k__BackingField: onFixedUpdate
   layoutElement: {fileID: 0}
   defaultHeight: 0

@@ -10,7 +10,7 @@ public class Pooler<T> where T : Component
     readonly int maxSize;
     readonly Func<T> creator;
 
-    public Action<T> onTakeout, onRelease;
+    public Action<T> onCreate, onTakeout, onRelease;
     public Pooler(T prefab, int maxSize = 100, int defaultSize = 0)
     {
         creator = () => MonoBehaviour.Instantiate(prefab);
@@ -73,7 +73,12 @@ public class Pooler<T> where T : Component
     T Get()
     {
         pool.RemoveAll((T obj) => obj == null || !obj.gameObject.scene.IsValid());
-        if(pool.Count == 0) Release(creator.Invoke());
+        if(pool.Count == 0)
+        {
+            var tmp = creator.Invoke();
+            onCreate?.Invoke(tmp);
+            Release(tmp);
+        }
         T result = pool[0];
         pool.RemoveAt(0);
         return result;

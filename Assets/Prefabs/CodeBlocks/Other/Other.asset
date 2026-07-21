@@ -46,3 +46,6 @@ MonoBehaviour:
   - type: 0
     item: {fileID: 5555837180313294528, guid: 0a88b28af1c75054c9cffecdd6e25f75, type: 3}
     list: {fileID: 0}
+  - type: 0
+    item: {fileID: 2228367202140536655, guid: 832974252fe180f4fa3ef76f9674eeb6, type: 3}
+    list: {fileID: 0}

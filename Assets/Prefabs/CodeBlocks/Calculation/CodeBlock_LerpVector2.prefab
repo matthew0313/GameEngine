@@ -277,6 +277,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: LerpVector2
   <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <MCPDescription>k__BackingField: Returns a Vector2 interpolated between inputA
+    and inputB by t. t is clamped to 0-1.
   rectTransform: {fileID: 5530316395026953638}
   inputA: {fileID: 230320965801627951}
   inputB: {fileID: 8536044612673447575}
@@ -836,6 +838,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1109071695755526159}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint
@@ -877,6 +883,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1109071695755526159}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: t
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1122,6 +1132,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1109071695755526159}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint

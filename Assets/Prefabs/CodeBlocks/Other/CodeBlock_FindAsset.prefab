@@ -272,6 +272,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: FindAsset
   <displayColor>k__BackingField: {r: 0.7058824, g: 0, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Returns the first project asset whose name matches
+    assetName exactly. Returns nothing when no asset matches.
   rectTransform: {fileID: 3952018371628048385}
   assetName: {fileID: 6212649123618511575}
 --- !u!1001 &7608672358225084935
@@ -366,6 +368,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 8011297774310472276}
+    - target: {fileID: 4584853831862147280, guid: cc660078f660674408ec36329ca4b269, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: assetName
+      objectReference: {fileID: 0}
     - target: {fileID: 8965765564335114882, guid: cc660078f660674408ec36329ca4b269, type: 3}
       propertyPath: m_Name
       value: StringSnapPoint

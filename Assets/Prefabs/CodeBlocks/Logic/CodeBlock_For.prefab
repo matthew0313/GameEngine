@@ -73,6 +73,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4070094249635952946}
   snapAnchor: {fileID: 1630707687202799545}
   highlight: {fileID: 6211988734415685541}
+  <snapPointName>k__BackingField: onLoop
   layoutElement: {fileID: 4397990210356726290}
   defaultHeight: 50
 --- !u!1 &2900554447505239078
@@ -553,6 +554,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: For
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Runs onLoop a fixed number of times given by loopCount,
+    then continues. The current iteration number is available through the index slot,
+    counting from 0. Use While instead when the iteration count is not known up front.
   rectTransform: {fileID: 9009849328756168441}
   loopCount: {fileID: 7286836597423317308}
   onLoop: {fileID: 1044255642255435475}
@@ -1004,6 +1008,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4070094249635952946}
   snapAnchor: {fileID: 1339819483774333364}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: index
   blockPrefab: {fileID: 8564110218564901826, guid: 93fad89d789e92f499b723767dd33887, type: 3}
 --- !u!1 &7946693431389651289
 GameObject:
@@ -1056,6 +1061,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4070094249635952946}
   snapAnchor: {fileID: 52723785528483351}
   highlight: {fileID: 7969998289651499245}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &7966853666616682995
@@ -1307,6 +1313,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4070094249635952946}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: loopCount
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

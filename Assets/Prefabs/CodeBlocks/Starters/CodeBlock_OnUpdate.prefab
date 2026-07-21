@@ -286,6 +286,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: OnUpdate
   <displayColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Starter block. Runs the blocks snapped into onUpdate
+    once per frame while in play mode. Must be added to an object; adding it elsewhere
+    logs an error and the block does nothing. Use OnFixedUpdate instead for physics-rate
+    execution.
   onUpdate: {fileID: 5565614791616963547}
 --- !u!1 &3873292541757180515
 GameObject:
@@ -472,5 +476,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 970022839007441985}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 3873292541757180515}
+  <snapPointName>k__BackingField: onUpdate
   layoutElement: {fileID: 0}
   defaultHeight: 0

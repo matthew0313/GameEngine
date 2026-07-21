@@ -92,9 +92,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: ForIndex
   <displayColor>k__BackingField: {r: 1, g: 0.43137255, b: 0, a: 1}
-  <category>k__BackingField: 4
+  <MCPDescription>k__BackingField: Returns the current iteration number of the For
+    block it belongs to, counting from 0. Created automatically by a For block and
+    cannot be added on its own; it deletes itself if that For block goes away.
   rectTransform: {fileID: 3952018371628048385}
-  target: {fileID: 0}
 --- !u!1 &5995240225872662190
 GameObject:
   m_ObjectHideFlags: 0

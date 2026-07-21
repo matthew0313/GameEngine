@@ -11,6 +11,7 @@ public abstract class MyAsset : ISelectable, IInspectable
     public string name;
     public event Action onDisplayUpdate;
     public Action onInspectorChange { get; set; }
+    public DataUnit inspectorData { get; }
     public virtual IEnumerable<ExposedElement> GetElements()
     {
         yield return new ExposedString(

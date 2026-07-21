@@ -147,6 +147,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8315726914033612382}
   snapAnchor: {fileID: 8631467742282835594}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &550233275145170094
@@ -1080,6 +1081,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetBodyType
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: 'Sets the owning Rigidbody''s body type to the
+    value selected in the block''s dropdown: Dynamic, Kinematic or Static.'
   rectTransform: {fileID: 8846573381932862622}
   <onFinish>k__BackingField: {fileID: 365763418921200297}
   bodyType: {fileID: 4242596533178701988}

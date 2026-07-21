@@ -321,6 +321,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8895000934953857394}
   snapAnchor: {fileID: 5647663762169611471}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: collidedObject
   blockPrefab: {fileID: 8564110218564901826, guid: 8d7e8ef789834050a363803e13be9674, type: 3}
 --- !u!114 &7049038978435655209
 MonoBehaviour:
@@ -530,6 +531,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: OnTriggerExit
   <displayColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Starter block. Runs the blocks snapped into onTrigger
+    when another object stops overlapping this one. That object is readable through
+    the collidedObject slot.
   onTrigger: {fileID: 6614903008172594783}
   collidedObject: {fileID: 1975621292827078269}
 --- !u!1 &8960187553950341705
@@ -583,5 +587,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 8895000934953857394}
   snapAnchor: {fileID: 4106894628949025803}
   highlight: {fileID: 6817981455968350718}
+  <snapPointName>k__BackingField: onTrigger
   layoutElement: {fileID: 0}
   defaultHeight: 0

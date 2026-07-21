@@ -1130,6 +1130,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: InvokeFunction
   <displayColor>k__BackingField: {r: 0.47058824, g: 0, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Calls the named function on targetObject, passing
+    whatever is snapped into the argument slots. Logs a warning when the target has
+    no function with that name. The call is started but not awaited, so execution
+    continues immediately without waiting for the function to finish.
   rectTransform: {fileID: 4884221520590488080}
   argumentElementAnchor: {fileID: 3526759159362021607}
   argumentElementPrefab: {fileID: 7521340018308983307}
@@ -4481,6 +4485,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 5499645272162712057}
   snapAnchor: {fileID: 7109510370382087519}
   highlight: {fileID: 7533646059264751933}
+  <snapPointName>k__BackingField: argumentElementPrefab
   layoutElement: {fileID: 3927244997391055881}
   defaultWidth: 250
   unSnapped: {fileID: 1267515040114253373}
@@ -5089,6 +5094,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 5499645272162712057}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 1705021443638480466}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &7797573716086202908
@@ -5194,6 +5200,10 @@ PrefabInstance:
     - target: {fileID: 6174852996133330321, guid: 72c0a1078e568a246920ca8ad04035ce, type: 3}
       propertyPath: m_Color.r
       value: 0.90196085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581252706431435519, guid: 72c0a1078e568a246920ca8ad04035ce, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: targetObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -109,6 +109,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8064869835142601757}
   snapAnchor: {fileID: 2020905686259891795}
   highlight: {fileID: 7282378903920199560}
+  <snapPointName>k__BackingField: parameterElementPrefab
   blockPrefab: {fileID: 8155307257939021966, guid: 81363b1eebf5225458729b18c899e10b, type: 3}
   parameterName: 
 --- !u!1 &804589366298594689
@@ -596,6 +597,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Function
   <displayColor>k__BackingField: {r: 0.47058824, g: 0, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Starter block defining a reusable function. Blocks
+    snapped into onExecute run when something calls this function by name through
+    InvokeFunction. Parameters are added from the block's right-click menu and read
+    back with FunctionParam.
   parameterElementAnchor: {fileID: 6048525567292731806}
   parameterElementPrefab: {fileID: 6142810603603133027}
   functionNameField: {fileID: 2320974128872148022}
@@ -1176,5 +1181,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 8064869835142601757}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 3873292541757180515}
+  <snapPointName>k__BackingField: onExecute
   layoutElement: {fileID: 0}
   defaultHeight: 0

@@ -286,6 +286,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: OnStart
   <displayColor>k__BackingField: {r: 0.5882353, g: 0.19607843, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Starter block. Runs the blocks snapped into onStart
+    once when the object is created, after OnAwake.
   onStart: {fileID: 5565614791616963547}
 --- !u!1 &3873292541757180515
 GameObject:
@@ -472,5 +474,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 6949765517381232857}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 3873292541757180515}
+  <snapPointName>k__BackingField: onStart
   layoutElement: {fileID: 0}
   defaultHeight: 0

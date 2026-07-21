@@ -1062,6 +1062,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 5303718113985586931}
   snapAnchor: {fileID: 3248313361100039664}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &3906354506994558395
@@ -1117,6 +1118,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MoveToVector2
   <displayColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Moves the object to the absolute position target
+    immediately. Vector2 form of MoveTo.
   rectTransform: {fileID: 5487596184743576841}
   target: {fileID: 7556914313199278548}
   <onFinish>k__BackingField: {fileID: 7306934768238348171}
@@ -1428,6 +1431,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 5303718113985586931}
   snapAnchor: {fileID: 4502257843841051218}
   highlight: {fileID: 8950866564434299734}
+  <snapPointName>k__BackingField: target
   layoutElement: {fileID: 7645945066978204765}
   defaultWidth: 160
   unSnapped: {fileID: 2357043112476034631}

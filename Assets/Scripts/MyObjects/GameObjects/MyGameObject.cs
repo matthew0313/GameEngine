@@ -21,6 +21,8 @@ public abstract class MyGameObject : MonoBehaviour, IParent, ICodeable, IInspect
     [field:SerializeField] public Sprite icon { get; private set; }
     [SerializeField] int childrenOffset = 0;
     public event Action onDisplayChange;
+
+    public DataUnit inspectorData { get; } = new();
     protected virtual void Awake()
     {
         uid = MathUtilities.GenerateRandomID();

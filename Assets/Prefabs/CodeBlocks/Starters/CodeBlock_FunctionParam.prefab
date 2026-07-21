@@ -440,6 +440,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: FunctionParam
   <displayColor>k__BackingField: {r: 0.7058824, g: 0, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Returns the value passed for one parameter of
+    the Function block it belongs to. Created automatically when a parameter is added
+    and cannot be added on its own.
   rectTransform: {fileID: 1994578705379456419}
   parameterNameText: {fileID: 5754346556394998736}
   parameterRenameField: {fileID: 54778489339363585}

@@ -189,6 +189,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: LoadScene
   <displayColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Switches to the scene held by sceneAsset. Only
+    works in play mode - outside play mode it logs a warning and does nothing. Ends
+    the current execution, so nothing after it runs.
   rectTransform: {fileID: 4884221520590488080}
   sceneAsset: {fileID: 879042770660797018}
 --- !u!1 &4465941481491373922
@@ -704,6 +707,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 6384563973867109735}
+    - target: {fileID: 993038827742563206, guid: 0f6a8b5bda789c04fb2b82f7349b1776, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: sceneAsset
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: 0f6a8b5bda789c04fb2b82f7349b1776, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

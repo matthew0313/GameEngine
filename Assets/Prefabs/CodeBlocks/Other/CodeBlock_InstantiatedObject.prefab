@@ -440,6 +440,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: InstantiatedObject
   <displayColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Returns the object created by the Instantiate
+    block it belongs to. Created automatically by that block and cannot be added
+    on its own; it deletes itself if that block goes away.
   rectTransform: {fileID: 1994578705379456419}
 --- !u!1 &9073010536169643077
 GameObject:

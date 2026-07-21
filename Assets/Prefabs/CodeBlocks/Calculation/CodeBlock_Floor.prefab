@@ -96,6 +96,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Floor
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Returns input rounded down to the nearest whole
+    number.
   rectTransform: {fileID: 3952018371628048385}
   input: {fileID: 5854676734369935673}
 --- !u!114 &4070507450292517762
@@ -428,6 +430,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 3162538872917304804}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

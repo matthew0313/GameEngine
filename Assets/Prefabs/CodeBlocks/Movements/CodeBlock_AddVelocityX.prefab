@@ -149,6 +149,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: AddVelocityX
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Adds input to the owning Rigidbody's horizontal
+    velocity, leaving vertical velocity unchanged.
   rectTransform: {fileID: 7025504397326068555}
   <onFinish>k__BackingField: {fileID: 4362437083592111335}
   input: {fileID: 1803448053799849584}
@@ -315,6 +317,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 827528038908977298}
   snapAnchor: {fileID: 2249392194027041703}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &3520896825626898081
@@ -666,6 +669,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 827528038908977298}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

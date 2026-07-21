@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IInspectable
 {
     public IEnumerable<ExposedElement> GetElements();
+    public DataUnit inspectorData { get; }
     public Action onInspectorChange { get; set; }
 }
 public abstract class ExposedElement
@@ -19,6 +20,16 @@ public class ExposedButton : ExposedElement
     {
         this.name = name;
         this.onClick = onClick;
+    }
+}
+public class ExposedFoldout : ExposedElement
+{
+    public readonly string name;
+    public readonly IEnumerable<ExposedElement> elements;
+    public ExposedFoldout(string name, IEnumerable<ExposedElement> elements)
+    {
+        this.name = name;
+        this.elements = elements;
     }
 }
 public abstract class ExposedProperty : ExposedElement

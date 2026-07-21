@@ -92,6 +92,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetAngularVelocity
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Returns the owning Rigidbody's current angular
+    velocity in degrees per second.
   rectTransform: {fileID: 4407204174606095689}
 --- !u!1 &6152349114521858145
 GameObject:

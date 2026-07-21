@@ -135,6 +135,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: RotationOf
   <displayColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Returns the current rotation of targetObject in
+    degrees.
   rectTransform: {fileID: 2132855211158686991}
   targetObject: {fileID: 4257158606887475238}
 --- !u!1 &6432467214491834447
@@ -370,6 +372,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 8633254358710008176}
+    - target: {fileID: 6581252706431435519, guid: 72c0a1078e568a246920ca8ad04035ce, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: targetObject
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

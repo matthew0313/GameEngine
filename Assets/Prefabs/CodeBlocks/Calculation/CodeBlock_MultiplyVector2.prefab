@@ -412,6 +412,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MultiplyVector2
   <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <MCPDescription>k__BackingField: Scales the Vector2 inputA by the number inputB.
   rectTransform: {fileID: 3177207089241545269}
   inputA: {fileID: 5829815900525738917}
   inputB: {fileID: 8749486159725788234}
@@ -696,6 +697,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 6891181742994128203}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint
@@ -737,6 +742,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 6891181742994128203}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

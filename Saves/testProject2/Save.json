@@ -1,0 +1,51 @@
+{
+  "projectName": "testProject2",
+  "lastOpenScene": 1397942501,
+  "assets": [
+    {
+      "type": 4,
+      "name": "NewScene0",
+      "uid": 1397942501,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {},
+        "strings": {
+          "scene": "{\"topGameObjects\":[{\"id\":\"Rigidbody\",\"name\":\"Player\",\"uid\":155304258,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":73.6739655,\"y\":47.4167137},\"data\":{\"integers\":{\"bodyType\":0},\"ulongs\":{},\"floats\":{\"mass\":1.0,\"linearDamping\":1.0,\"angularDamping\":0.05,\"gravityScale\":1.0},\"strings\":{},\"bools\":{\"useAutoMass\":false,\"freezeRotation\":false}},\"codeBlocks\":[{\"id\":\"OnUpdate\",\"uid\":18446744072301126642,\"position\":{\"x\":-287.273315,\"y\":173.072083},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":{\"id\":\"If\",\"uid\":18446744072599542816,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":{\"id\":\"KeyPressed\",\"uid\":18446744072175060280,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"setKey\":100},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"value\":true}}},{\"snapped\":{\"id\":\"SetVelocityX\",\"uid\":18446744072754160683,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{\"value\":5.0},\"strings\":{},\"bools\":{}}},{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}},{\"snapped\":{\"id\":\"If\",\"uid\":18446744072924594386,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":{\"id\":\"KeyPressed\",\"uid\":18446744072175060280,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"setKey\":97},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"value\":true}}},{\"snapped\":{\"id\":\"SetVelocityX\",\"uid\":18446744072088823474,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{\"value\":-5.0},\"strings\":{},\"bools\":{}}},{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}},{\"snapped\":{\"id\":\"If\",\"uid\":18446744073438552676,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":{\"id\":\"KeyDown\",\"uid\":1724895560,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"setKey\":32},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"value\":true}}},{\"snapped\":{\"id\":\"SetVelocityY\",\"uid\":1174503747,\"position\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"snapPoints\":[{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{\"value\":10.0},\"strings\":{},\"bools\":{}}},{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}},{\"snapped\":null,\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}}}]}],\"children\":[{\"id\":\"Sprite\",\"name\":\"Sprite\",\"uid\":18446744072240707395,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"orderInLayer\":0},\"ulongs\":{\"image\":0},\"floats\":{\"color.r\":1.0,\"color.g\":0.435324073,\"color.b\":0.435324073,\"color.a\":1.0},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[]},{\"id\":\"BoxCollider\",\"name\":\"BoxCollider\",\"uid\":1478169996,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"enabled\":true,\"isTrigger\":false}},\"codeBlocks\":[],\"children\":[]}]},{\"id\":\"Empty\",\"name\":\"Map\",\"uid\":425107841,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[{\"id\":\"Empty\",\"name\":\"Platform\",\"uid\":1591408927,\"position\":{\"x\":0.0,\"y\":-10.0},\"rotation\":0.0,\"scale\":{\"x\":100.0,\"y\":5.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[{\"id\":\"BoxCollider\",\"name\":\"BoxCollider\",\"uid\":1652516657,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{\"enabled\":true,\"isTrigger\":false}},\"codeBlocks\":[],\"children\":[]},{\"id\":\"Sprite\",\"name\":\"Sprite\",\"uid\":88528186,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"orderInLayer\":-1},\"ulongs\":{\"image\":0},\"floats\":{\"color.r\":0.4929159,\"color.g\":0.4929159,\"color.b\":0.4929159,\"color.a\":1.0},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[]}]}]}]}"
+        },
+        "bools": {}
+      }
+    },
+    {
+      "type": 2,
+      "name": "Empty",
+      "uid": 18446744073354689778,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {},
+        "strings": {
+          "prefabOrigin": "{\"id\":\"Empty\",\"name\":\"Empty\",\"uid\":345614144,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{},\"ulongs\":{},\"floats\":{},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[{\"id\":\"Sprite\",\"name\":\"Sprite\",\"uid\":18446744071610119273,\"position\":{\"x\":0.0,\"y\":0.0},\"rotation\":0.0,\"scale\":{\"x\":1.0,\"y\":1.0},\"lastOffset\":{\"x\":0.0,\"y\":0.0},\"data\":{\"integers\":{\"orderInLayer\":0},\"ulongs\":{\"image\":0},\"floats\":{\"color.r\":1.0,\"color.g\":1.0,\"color.b\":1.0,\"color.a\":1.0},\"strings\":{},\"bools\":{}},\"codeBlocks\":[],\"children\":[]}]}"
+        },
+        "bools": {}
+      }
+    },
+    {
+      "type": 1,
+      "name": "pixil-frame-0 (3)",
+      "uid": 18446744072182041120,
+      "data": {
+        "integers": {},
+        "ulongs": {},
+        "floats": {
+          "pivotX": 0.5,
+          "pivotY": 0.5
+        },
+        "strings": {
+          "filePath": "Saves\\testProject2\\Assets\\pixil-frame-0 (3).png"
+        },
+        "bools": {}
+      }
+    }
+  ]
+}

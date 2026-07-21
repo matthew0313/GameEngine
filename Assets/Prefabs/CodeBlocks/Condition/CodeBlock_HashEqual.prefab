@@ -275,6 +275,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Equal(Hash)
   <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <MCPDescription>k__BackingField: True when inputA and inputB are the same execution
+    hash. Hashes identify one execution context, so this tests whether two values
+    came from the same run.
   rectTransform: {fileID: 3952018371628048385}
   inputA: {fileID: 828654601294099292}
   inputB: {fileID: 8506942803540891906}
@@ -648,6 +651,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1736368187479161226}
+    - target: {fileID: 6772424954926579334, guid: 9e47d0d8b90206145846334818d4ce7d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -765,6 +772,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1736368187479161226}
+    - target: {fileID: 6772424954926579334, guid: 9e47d0d8b90206145846334818d4ce7d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -190,6 +190,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Break
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Exits the innermost enclosing For or While loop
+    immediately. Nothing snapped after it runs, so it has no continuation slot.
   rectTransform: {fileID: 4884221520590488080}
 --- !u!1 &4465941481491373922
 GameObject:
@@ -641,5 +643,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 0}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: 
   layoutElement: {fileID: 0}
   defaultHeight: 0

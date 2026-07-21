@@ -74,6 +74,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 1697550080885042356}
   snapAnchor: {fileID: 1630707687202799545}
   highlight: {fileID: 8558329055853661759}
+  <snapPointName>k__BackingField: onTrue
   layoutElement: {fileID: 4397990210356726290}
   defaultHeight: 50
 --- !u!1 &2900554447505239078
@@ -455,6 +456,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: If
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Runs the blocks snapped into onTrue only when
+    condition is true, then continues into onFinish. onFinish runs whether or not
+    the condition passed. This block has no else branch - use IfElse when you need
+    one.
   rectTransform: {fileID: 9009849328756168441}
   condition: {fileID: 4801570259969126938}
   onTrue: {fileID: 1044255642255435475}
@@ -884,6 +889,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 1697550080885042356}
   snapAnchor: {fileID: 52723785528483351}
   highlight: {fileID: 8041664567590219074}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &8041664567590219074
@@ -1090,6 +1096,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1697550080885042356}
+    - target: {fileID: 1293845672188491859, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: condition
+      objectReference: {fileID: 0}
     - target: {fileID: 2348649141601419935, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

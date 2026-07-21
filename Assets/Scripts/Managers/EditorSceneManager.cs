@@ -214,6 +214,15 @@ public class EditorSceneManager : MonoBehaviour
                 tmp.LoadFile(filePath);
                 assets.Add(tmp);
             }
+            else if (filePath.EndsWith(".mp3"))
+            {
+                var tmp = new AudioAsset()
+                {
+                    name = Path.GetFileNameWithoutExtension(filePath)
+                };
+                tmp.LoadFile(filePath);
+                assets.Add(tmp);
+            }
             else
             {
                 AddLog(new()
@@ -290,6 +299,7 @@ public class EditorSceneManager : MonoBehaviour
         }
         return null;
     }
+    public MyAsset FindAssetWithUID(ulong uid) => FindAsset(item => item.uid == uid);
 
     public event Action<bool> onPlayModeToggle;
     MySceneSave sceneSave;

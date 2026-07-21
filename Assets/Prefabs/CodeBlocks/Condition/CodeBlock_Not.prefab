@@ -135,6 +135,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Not
   <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <MCPDescription>k__BackingField: 'Inverts input: true becomes false and false becomes
+    true.'
   rectTransform: {fileID: 3862591994090394307}
   input: {fileID: 6307099387298939790}
 --- !u!1 &1611465036211998899
@@ -286,6 +288,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 5389191365143718640}
+    - target: {fileID: 1293845672188491859, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 2348649141601419935, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -51,6 +51,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4066107087171971700}
   snapAnchor: {fileID: 556198096226806132}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &6577553084852814406
@@ -298,6 +299,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetVelocityX
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Sets the horizontal velocity of the owning Rigidbody
+    object to input, leaving vertical velocity unchanged. Only addable to a Rigidbody
+    object, or a prefab whose origin is one. Use this for direct movement control;
+    use AddVelocityX to accumulate onto existing velocity instead.
   rectTransform: {fileID: 3453263737707068497}
   <onFinish>k__BackingField: {fileID: 2315888032640577243}
   input: {fileID: 3243092156005557680}
@@ -666,6 +671,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4066107087171971700}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

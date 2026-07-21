@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MyGameObject_Image : MyGameObject_UI
 {
     public override string id => "Image";
-    public Image imageComp { get; private set; }
+    Image imageComp;
 
     public ImageAsset image { get; private set; }
     Sprite defaultSprite;
@@ -31,14 +31,21 @@ public class MyGameObject_Image : MyGameObject_UI
     }
     public void SetImage(ImageAsset image)
     {
+        if(this.image != null) this.image.onSpriteChange -= OnSpriteChange;
         this.image = image;
-        if (image == null)
+        if (image != null)
         {
-            imageComp.sprite = defaultSprite;
-            return;
+            image.onSpriteChange += OnSpriteChange;
+            OnSpriteChange(image.sprite);
         }
-        imageComp.sprite = image.sprite;
+        else OnSpriteChange(null);
     }
+
+    private void OnSpriteChange(Sprite sprite)
+    {
+        imageComp.sprite = sprite == null ? defaultSprite : sprite;
+    }
+
     public override MyGameObjectSave Save(bool prettyPrint = true)
     {
         var save = base.Save(prettyPrint);

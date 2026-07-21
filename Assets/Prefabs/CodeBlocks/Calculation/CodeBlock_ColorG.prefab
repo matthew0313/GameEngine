@@ -410,6 +410,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: ColorG
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Returns the green channel of input, from 0 to
+    1.
   rectTransform: {fileID: 8724983728552853850}
   input: {fileID: 5850137178130147020}
 --- !u!1001 &4542338848787739507
@@ -508,6 +510,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 5068137503153481116}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

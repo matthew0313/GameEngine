@@ -35,7 +35,7 @@ public class CodeBlock_For : ExecutableCodeBlock, IOnFinish
     }
     protected override IEnumerable<SnapPoint> GetSnapPoints()
     {
-        yield return index;
+        yield return loopCount;
         yield return onLoop;
         yield return index;
         yield return onFinish;

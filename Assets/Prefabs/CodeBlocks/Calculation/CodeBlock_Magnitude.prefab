@@ -410,6 +410,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Magnitude
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Returns the length of the Vector2 input as a number.
   rectTransform: {fileID: 3687247977742105835}
   input: {fileID: 2686080081482772311}
 --- !u!1001 &8135477503821424753
@@ -556,6 +557,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 5128379443234179489}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint

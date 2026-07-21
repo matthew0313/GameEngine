@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
-  m_MinWidth: 120
+  m_MinWidth: 240
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -496,6 +496,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetProperty
   <displayColor>k__BackingField: {r: 1, g: 0.47058824, b: 0.74509805, a: 1}
+  <MCPDescription>k__BackingField: Reads one of the owning object's inspector properties,
+    chosen from the block's dropdown. Which properties are offered depends on the
+    object type, so this block is only addable to objects exposing at least one.
   rectTransform: {fileID: 3952018371628048385}
   propertyDropdown: {fileID: 7176282448551078743}
 --- !u!114 &4070507450292517762

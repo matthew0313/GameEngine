@@ -412,6 +412,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: NotEqual
   <displayColor>k__BackingField: {r: 0, g: 0.6666667, b: 1, a: 1}
+  <MCPDescription>k__BackingField: True when inputA does not equal inputB numerically.
   rectTransform: {fileID: 5872585533981526178}
   inputA: {fileID: 2739831285584163906}
   inputB: {fileID: 8756467329357227366}
@@ -568,6 +569,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 8800432880870153815}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -685,6 +690,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 8800432880870153815}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

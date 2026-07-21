@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
   m_IgnoreLayout: 0
-  m_MinWidth: 120
+  m_MinWidth: 240
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -454,6 +454,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetProperty
   <displayColor>k__BackingField: {r: 1, g: 0.47058824, b: 0.74509805, a: 1}
+  <MCPDescription>k__BackingField: Writes value into one of the owning object's inspector
+    properties, chosen from the block's dropdown. Only addable to objects exposing
+    at least one property.
   rectTransform: {fileID: 4884221520590488080}
   propertyDropdown: {fileID: 7513374178556771100}
   value: {fileID: 396162088894673844}
@@ -1991,6 +1994,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4172691281082572838}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 1705021443638480466}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &7844315786637959958
@@ -2009,6 +2013,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4172691281082572838}
+    - target: {fileID: 7612183944997392546, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: value
+      objectReference: {fileID: 0}
     - target: {fileID: 8481515158658132261, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

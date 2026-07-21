@@ -34,29 +34,34 @@ public class Codeblock_GetProperty : PropertyCodeBlock
         cache.Clear();
         IInspectable inspectable = owner as IInspectable;
         propertyDropdown.ClearOptions();
-        foreach (var i in inspectable.GetElements())
-        {
-            if (i is ExposedProperty property)
-            {
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
-                if (i is ExposedNumber number) cache.Add(_ => new() { number = number.getter() });
-                else if (i is ExposedBool boolean) cache.Add(_ => new() { condition = boolean.getter() });
-                else if (i is ExposedString str) cache.Add(_ => new() { str = str.getter() });
-                else if (i is ExposedDropdown dropdown) cache.Add(_ => new() { number = (float)dropdown.getter() });
-                else if (i is ExposedObject obj) cache.Add(_ => new() { obj = obj.getter() });
-                else if (i is ExposedAsset asset) cache.Add(_ => new() { asset = asset.getter() });
-                else if (i is ExposedVector2 vector2) cache.Add(_ => new() { vector2 = vector2.getter() });
-                else if (i is ExposedColor color) cache.Add(_ => new() { color = color.getter() });
-            }
-            else if (i is ExposedAnchor anchor)
-            {
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin"));
-                cache.Add(_ => new() { vector2 = anchor.minGetter() });
-                propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax"));
-                cache.Add(_ => new() { vector2 = anchor.maxGetter() });
-            }
-        }
+        foreach (var i in inspectable.GetElements()) CacheElement(i);
         propertyDropdown.RefreshShownValue();
+    }
+    void CacheElement(ExposedElement i)
+    {
+        if (i is ExposedProperty property)
+        {
+            propertyDropdown.options.Add(new TMP_Dropdown.OptionData(property.name));
+            if (i is ExposedNumber number) cache.Add(_ => new() { number = number.getter() });
+            else if (i is ExposedBool boolean) cache.Add(_ => new() { condition = boolean.getter() });
+            else if (i is ExposedString str) cache.Add(_ => new() { str = str.getter() });
+            else if (i is ExposedDropdown dropdown) cache.Add(_ => new() { number = (float)dropdown.getter() });
+            else if (i is ExposedObject obj) cache.Add(_ => new() { obj = obj.getter() });
+            else if (i is ExposedAsset asset) cache.Add(_ => new() { asset = asset.getter() });
+            else if (i is ExposedVector2 vector2) cache.Add(_ => new() { vector2 = vector2.getter() });
+            else if (i is ExposedColor color) cache.Add(_ => new() { color = color.getter() });
+        }
+        else if(i is ExposedFoldout foldout)
+        {
+            foreach (var k in foldout.elements) CacheElement(k);
+        }
+        else if (i is ExposedAnchor anchor)
+        {
+            propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMin"));
+            cache.Add(_ => new() { vector2 = anchor.minGetter() });
+            propertyDropdown.options.Add(new TMP_Dropdown.OptionData("anchorMax"));
+            cache.Add(_ => new() { vector2 = anchor.maxGetter() });
+        }
     }
     public override float GetNumber(ulong hash) => cache[propertyDropdown.value].Invoke(hash).number;
     public override bool GetCondition(ulong hash) => cache[propertyDropdown.value].Invoke(hash).condition;

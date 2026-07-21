@@ -190,6 +190,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: WaitFrame
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Pauses execution until the next frame, then continues.
   rectTransform: {fileID: 4884221520590488080}
   <onFinish>k__BackingField: {fileID: 5565614791616963547}
 --- !u!1 &4465941481491373922
@@ -739,5 +740,6 @@ MonoBehaviour:
   ownerBlock: {fileID: 6156141717559607182}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 4977705520893361818}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0

@@ -92,6 +92,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetVelocityY
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Returns the owning Rigidbody's current vertical
+    velocity.
   rectTransform: {fileID: 3204460533089925710}
 --- !u!1 &7910073163826308090
 GameObject:

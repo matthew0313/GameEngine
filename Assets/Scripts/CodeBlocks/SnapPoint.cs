@@ -8,6 +8,7 @@ public abstract class SnapPoint : MonoBehaviour
     [SerializeField] protected CodeBlock ownerBlock;
     [SerializeField] protected Transform snapAnchor;
     [SerializeField] GameObject highlight;
+    [field:SerializeField] public string snapPointName { get; private set; }
     public virtual bool IsSnappable(CodeBlock codeBlock) => codeBlock != ownerBlock;
     public CodeBlock snapped { get; protected set; }
     public virtual void Snap(CodeBlock codeBlock)

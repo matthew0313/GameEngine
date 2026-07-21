@@ -92,6 +92,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: CollidedObject
   <displayColor>k__BackingField: {r: 1, g: 0.43137255, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Returns the object that triggered the OnTriggerEnter
+    or OnTriggerExit block it belongs to. Created automatically by that block and
+    cannot be added on its own.
   rectTransform: {fileID: 3952018371628048385}
 --- !u!1 &5995240225872662190
 GameObject:

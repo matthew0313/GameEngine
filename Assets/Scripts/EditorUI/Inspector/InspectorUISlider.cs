@@ -1,12 +1,14 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class InspectorUISlider : InspectorUIElement
 {
     [SerializeField] TMP_Text label;
     [SerializeField] Slider slider;
     [SerializeField] TMP_Text minValue, maxValue;
+    [SerializeField] TMP_InputField input;
     ExposedSlider element;
     float value = 0.0f;
     public void Set(ExposedSlider element)
@@ -25,6 +27,13 @@ public class InspectorUISlider : InspectorUIElement
         {
             element.setter(val);
         });
+        input.text = value.ToString();
+        input.onEndEdit.RemoveAllListeners();
+        input.onEndEdit.AddListener(val =>
+        {
+            if (float.TryParse(val, out float result)) element.setter(result);
+            else input.text = value.ToString();
+        });
     }
     private void Update()
     {
@@ -34,6 +43,7 @@ public class InspectorUISlider : InspectorUIElement
         {
             value = tmp;
             slider.value = value;
+            input.text = value.ToString();
         }
     }
 }

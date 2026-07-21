@@ -12,7 +12,9 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
 
     [HideInInspector] public SnapPoint snappedPoint;
     [field:SerializeField] public string blockID { get; private set; }
-    [field: SerializeField] public Color displayColor { get; private set; }
+    [field:SerializeField] public Color displayColor { get; private set; }
+    [field:SerializeField]
+    [field:TextArea] public string MCPDescription { get; private set; }
     public abstract CodeBlockCategory category { get; }
 
     public virtual void Set(ICodeable owner)
@@ -157,7 +159,7 @@ public abstract class CodeBlock : MonoBehaviour, IPointerDownHandler
         foreach (var snapPoint in GetSnapPoints())
         {
             if (index >= save.snapPoints.Count) break;
-            snapPoint.EarlyLoad(save.snapPoints[index++]);
+            snapPoint.EarlyLoad(save.snapPoints[index++], resetUID);
         }
     }
     public virtual void Load(CodeBlockSave save)

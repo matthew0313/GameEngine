@@ -57,7 +57,6 @@ public class MyScene : MonoBehaviour, IParent
     }
     public void AddChild(MyGameObject child)
     {
-        Debug.Log(child.name);
         if (prefabMode)
         {
             prefabOrigin.AddChild(child); return;

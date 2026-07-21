@@ -136,6 +136,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Vector2Y
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Returns the y component of input.
   rectTransform: {fileID: 4688222632701439643}
   input: {fileID: 7003003109933969339}
 --- !u!1 &5689304143564888394
@@ -556,6 +557,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 2991330608630298508}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint

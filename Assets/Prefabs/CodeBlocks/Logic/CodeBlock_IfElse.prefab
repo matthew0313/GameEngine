@@ -442,6 +442,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4277177171004065363}
   snapAnchor: {fileID: 3843246020236980924}
   highlight: {fileID: 8563830119501368551}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &1613863803702329009
@@ -904,6 +905,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: IfElse
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Runs onTrue when condition is true and onFalse
+    when it is false, then continues either way.
   rectTransform: {fileID: 7838936916146948779}
   condition: {fileID: 2828827895930710872}
   onTrue: {fileID: 8682479591933531721}
@@ -1079,6 +1082,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4277177171004065363}
   snapAnchor: {fileID: 1378880145351650460}
   highlight: {fileID: 4753476835222935478}
+  <snapPointName>k__BackingField: onTrue
   layoutElement: {fileID: 926936421738293765}
   defaultHeight: 50
 --- !u!1 &6515736610346622471
@@ -1155,6 +1159,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 4277177171004065363}
   snapAnchor: {fileID: 6313467321820254886}
   highlight: {fileID: 1590149568377507700}
+  <snapPointName>k__BackingField: onFalse
   layoutElement: {fileID: 754947208207318226}
   defaultHeight: 50
 --- !u!1 &7714259481697172392
@@ -1627,6 +1632,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4277177171004065363}
+    - target: {fileID: 1293845672188491859, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: condition
+      objectReference: {fileID: 0}
     - target: {fileID: 2348649141601419935, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

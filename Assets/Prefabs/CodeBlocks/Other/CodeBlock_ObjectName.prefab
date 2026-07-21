@@ -272,6 +272,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: ObjectName
   <displayColor>k__BackingField: {r: 1, g: 0.3529412, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Returns the name of input as a string.
   rectTransform: {fileID: 3952018371628048385}
   input: {fileID: 2662907213879967869}
 --- !u!1001 &9196845731343270530
@@ -370,6 +371,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 4525944594000461492}
+    - target: {fileID: 6581252706431435519, guid: 72c0a1078e568a246920ca8ad04035ce, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

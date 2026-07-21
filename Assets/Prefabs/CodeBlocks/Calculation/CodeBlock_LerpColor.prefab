@@ -277,6 +277,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: LerpColor
   <displayColor>k__BackingField: {r: 0.7058824, g: 0.39215687, b: 0.8235294, a: 1}
+  <MCPDescription>k__BackingField: Returns a colour interpolated between inputA and
+    inputB by t. t is clamped to 0-1.
   rectTransform: {fileID: 5530316395026953638}
   inputA: {fileID: 4861123641471056070}
   inputB: {fileID: 3586093760200293636}
@@ -788,6 +790,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1630043113288123394}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -825,6 +831,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1630043113288123394}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: t
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1022,6 +1032,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1630043113288123394}
+    - target: {fileID: 7937169766374167999, guid: 5d56bd8554b2b154ab4e06f1bbf4a704, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -797,6 +797,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: Wait
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Pauses execution for duration, then continues.
+    The unit dropdown on the block selects milliseconds, seconds or minutes.
   rectTransform: {fileID: 4884221520590488080}
   unit: {fileID: 3469541601579871294}
   duration: {fileID: 6115605677743381035}
@@ -2000,6 +2002,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 1358022843705005399}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 8553860048146841727}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &8910368940828537194
@@ -2022,6 +2025,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1358022843705005399}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: duration
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

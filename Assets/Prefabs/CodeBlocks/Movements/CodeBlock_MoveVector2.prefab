@@ -51,6 +51,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8339579935036623638}
   snapAnchor: {fileID: 7151294555515578481}
   highlight: {fileID: 4528697052038117905}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1 &719489153658300175
@@ -128,6 +129,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8339579935036623638}
   snapAnchor: {fileID: 1696164691082352463}
   highlight: {fileID: 1411180586367676443}
+  <snapPointName>k__BackingField: move
   layoutElement: {fileID: 8596414504406019147}
   defaultWidth: 160
   unSnapped: {fileID: 719491670307422236}
@@ -1632,6 +1634,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: MoveVector2
   <displayColor>k__BackingField: {r: 0, g: 0.5851226, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Offsets the object by move relative to its current
+    position. Vector2 form of Move.
   rectTransform: {fileID: 3263180544118482844}
   move: {fileID: 2546843567492999418}
   <onFinish>k__BackingField: {fileID: 7557378386602137552}

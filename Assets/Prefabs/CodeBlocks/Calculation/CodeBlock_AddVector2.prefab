@@ -549,6 +549,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: AddVector2
   <displayColor>k__BackingField: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  <MCPDescription>k__BackingField: Returns the component-wise sum of inputA and inputB.
   rectTransform: {fileID: 3996961660495666156}
   inputA: {fileID: 6245930964313596574}
   inputB: {fileID: 3197269501754303933}
@@ -696,6 +697,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 2022564189220939991}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputA
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint
@@ -865,6 +870,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 2022564189220939991}
+    - target: {fileID: 6170452889442273062, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: inputB
+      objectReference: {fileID: 0}
     - target: {fileID: 7634603172465178642, guid: 251496ff1fa7b6443b085e2e0d07e49d, type: 3}
       propertyPath: m_Name
       value: Vector2SnapPoint

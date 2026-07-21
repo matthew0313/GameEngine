@@ -190,6 +190,10 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: EndIf
   <displayColor>k__BackingField: {r: 1, g: 0.5882353, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Ends the entire execution when condition is true
+    - nothing further runs, including blocks after the enclosing starter. When condition
+    is false, execution continues normally. Use this as an early exit; use If to
+    run a branch conditionally.
   rectTransform: {fileID: 4884221520590488080}
   condition: {fileID: 2941723428611590563}
   <onFinish>k__BackingField: {fileID: 5565614791616963547}
@@ -741,6 +745,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 2403146330915889939}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 4977705520893361818}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &4118454001130680816
@@ -755,6 +760,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 2403146330915889939}
+    - target: {fileID: 1293845672188491859, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: condition
+      objectReference: {fileID: 0}
     - target: {fileID: 2348649141601419935, guid: e1a9dfbc786764247a6d356b94a9ceae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -92,7 +92,9 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: DeltaTime
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
-  <category>k__BackingField: 2
+  <MCPDescription>k__BackingField: Seconds elapsed since the previous frame. Multiply
+    per-frame movement by this to make it frame-rate independent. Use FixedDeltaTime
+    inside OnFixedUpdate instead.
   rectTransform: {fileID: 3952018371628048385}
 --- !u!1 &5995240225872662190
 GameObject:

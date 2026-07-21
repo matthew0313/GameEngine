@@ -92,6 +92,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: FixedDeltaTime
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Length of one fixed physics step in seconds. Use
+    inside OnFixedUpdate; use DeltaTime inside OnUpdate.
   rectTransform: {fileID: 3952018371628048385}
 --- !u!1 &5995240225872662190
 GameObject:

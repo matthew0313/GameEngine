@@ -423,6 +423,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetVariable
   <displayColor>k__BackingField: {r: 1, g: 0.3529412, b: 0, a: 1}
+  <MCPDescription>k__BackingField: Sets the variable named variableName on targetObject
+    to value, creating the variable if it does not already exist.
   rectTransform: {fileID: 4884221520590488080}
   targetObject: {fileID: 4198629982298676625}
   variableName: {fileID: 5508564981142679250}
@@ -1021,6 +1023,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 1722833889093625572}
   snapAnchor: {fileID: 3414415597929905338}
   highlight: {fileID: 1705021443638480466}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &6994593585330593646
@@ -1119,6 +1122,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1722833889093625572}
+    - target: {fileID: 6581252706431435519, guid: 72c0a1078e568a246920ca8ad04035ce, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: targetObject
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1156,6 +1163,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1722833889093625572}
+    - target: {fileID: 7612183944997392546, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: value
+      objectReference: {fileID: 0}
     - target: {fileID: 8481515158658132261, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1357,6 +1368,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 1722833889093625572}
+    - target: {fileID: 4584853831862147280, guid: cc660078f660674408ec36329ca4b269, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: variableName
+      objectReference: {fileID: 0}
     - target: {fileID: 7361008773202721686, guid: cc660078f660674408ec36329ca4b269, type: 3}
       propertyPath: m_text
       value: "MyVar\u200B"

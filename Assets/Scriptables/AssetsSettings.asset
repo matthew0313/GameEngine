@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AssetsSettings
   <prefabAssetIcon>k__BackingField: {fileID: 21300000, guid: 8a211151c361c3f48ba35b2264ae5d48, type: 3}
   <sceneAssetIcon>k__BackingField: {fileID: 21300000, guid: 4dc8801ddee32d84297118c5f984ba52, type: 3}
+  <audioAssetIcon>k__BackingField: {fileID: 21300000, guid: 94e73bd0e10a340459b17194617f8bee, type: 3}

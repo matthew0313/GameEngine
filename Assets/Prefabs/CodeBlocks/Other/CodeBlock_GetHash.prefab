@@ -271,4 +271,7 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: GetHash
   <displayColor>k__BackingField: {r: 0.39215687, g: 0.6862745, b: 0.5882353, a: 1}
+  <MCPDescription>k__BackingField: Returns the execution hash of the current run.
+    Hashes distinguish concurrent executions of the same blocks; compare them with
+    Equal(Hash).
   rectTransform: {fileID: 3952018371628048385}

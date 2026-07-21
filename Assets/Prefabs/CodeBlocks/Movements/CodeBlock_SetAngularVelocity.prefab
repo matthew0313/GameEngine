@@ -398,6 +398,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: SetAngularVelocity
   <displayColor>k__BackingField: {r: 0, g: 0.5882353, b: 1, a: 1}
+  <MCPDescription>k__BackingField: Sets the owning Rigidbody's angular velocity to
+    input, in degrees per second.
   rectTransform: {fileID: 7525782581216845419}
   <onFinish>k__BackingField: {fileID: 2430067464746815826}
   input: {fileID: 2645111293616217146}
@@ -644,6 +646,7 @@ MonoBehaviour:
   ownerBlock: {fileID: 8614408283356705373}
   snapAnchor: {fileID: 8984943038280504795}
   highlight: {fileID: 0}
+  <snapPointName>k__BackingField: onFinish
   layoutElement: {fileID: 0}
   defaultHeight: 0
 --- !u!1001 &850143579780020091
@@ -666,6 +669,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 8614408283356705373}
+    - target: {fileID: 3420769385873386305, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 5281054007434813328, guid: a4a20d79d1606614ba231617e452e5ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

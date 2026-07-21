@@ -136,6 +136,8 @@ MonoBehaviour:
   snappedPoint: {fileID: 0}
   <blockID>k__BackingField: CastToNumber
   <displayColor>k__BackingField: {r: 0, g: 0.627451, b: 0.3137255, a: 1}
+  <MCPDescription>k__BackingField: Reads a wildcard value as a number, for use where
+    a numeric slot is required.
   rectTransform: {fileID: 3862591994090394307}
   input: {fileID: 5030654227039336519}
 --- !u!1 &1611465036211998899
@@ -428,6 +430,10 @@ PrefabInstance:
       propertyPath: ownerBlock
       value: 
       objectReference: {fileID: 5021137404299796932}
+    - target: {fileID: 7612183944997392546, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
+      propertyPath: <snapPointName>k__BackingField
+      value: input
+      objectReference: {fileID: 0}
     - target: {fileID: 8481515158658132261, guid: 5abf555789eb6d44d96999afd3d27a67, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
